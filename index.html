@@ -234,6 +234,9 @@ header .lede{font-size:19px;line-height:1.6;color:var(--ink)}
 .tip .lines span{flex:1 1 180px}
 .tip .lines a{min-width:72px;justify-content:center}
 
+.rooted{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--strong);border-radius:var(--r);padding:24px 26px}
+.rooted p{font-size:18px;line-height:1.75}
+
 /* Text-size toggle */
 .topbar .tools{display:flex;gap:10px;flex-wrap:wrap}
 .sizebtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;cursor:pointer}
@@ -355,6 +358,12 @@ html[data-size="large"] .wrap{zoom:1.18}
         <p class="note" data-i18n="t6P">Being followed, watched or harassed is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
       </div>
     </div>
+  </section>
+
+  <section class="rooted" id="rooted">
+    <h2 data-i18n="rootH">Rooted in this land</h2>
+    <p data-i18n="rootP1">This map sits on Tsalagi (Cherokee) land. It follows <strong>gadugi</strong>, the Cherokee tradition of working together, in which neighbors turn out to help one another plant, harvest and get through hard times; the Snowbird Cherokee, not far from here, still practice it. Every rating is a small piece of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
+    <p data-i18n="rootP2">It also carries <strong>orenda</strong>, an Iroquoian word for the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they can be in their own bodies. This map exists to give some of it back, together.</p>
   </section>
 
   <div class="cols">
@@ -542,6 +551,9 @@ const L={
   polH:"Sobre los datos policiales",
   polP:"Asheville publica datos de incidentes, pero solo cubren la ciudad; la Oficina del Sheriff cubre el resto del condado. El número de incidentes refleja dónde patrulla la policía y qué se reporta. La mayoría del acoso en los senderos nunca se reporta. Por eso esta capa mostrará contexto junto a cada lugar y no entrará en el puntaje.",
   wontH:"Lo que este mapa no hace",
+  rootH:"Arraigado en esta tierra",
+  rootP1:"Este mapa está en tierra tsalagi (cherokee). Sigue el <strong>gadugi</strong>, la tradición cherokee de trabajar juntos, en la que los vecinos se reúnen para ayudarse a sembrar, cosechar y salir adelante en tiempos difíciles; los cherokee de Snowbird, no muy lejos de aquí, todavía la practican. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, ofrecida para que la próxima pueda salir sabiendo más y con menos miedo.",
+  rootP2:"También lleva el <strong>orenda</strong>, una palabra iroquesa para el poder que tiene cada ser vivo. El miedo quita parte de ese poder al limitar adónde van las mujeres y qué tan plenamente pueden estar en su propio cuerpo. Este mapa existe para devolver una parte, juntas.",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
   foot1:"Las ubicaciones y el contorno del condado son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
   foot3:"<a href=\"about.html?lang=es\">Acerca de, términos y privacidad</a> · <a href=\"about.html?lang=es#built-es\">Cómo se creó</a>",
