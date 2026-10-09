@@ -84,6 +84,11 @@ a{color:var(--accent);font-weight:600}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .cols section{display:grid;gap:8px;align-content:start}
 .cols ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.care{display:grid;gap:18px;border-top:1px solid var(--line);padding-top:24px}
+.care .cols{gap:20px}
+.help{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px}
+.lines li{margin-bottom:4px}
+.num{font-family:var(--mono);font-weight:500;user-select:all}
 footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);display:grid;gap:6px}
 @media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
 .mini{font:700 28px var(--display);font-variant-numeric:tabular-nums;line-height:1}
@@ -112,7 +117,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:va
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Buncombe County, NC · Tsalagi land · Prototype v0.5</div>
+    <div class="eyebrow">Buncombe County, NC · Tsalagi land · Prototype v0.6</div>
     <h1>Buncombe Safer Miles</h1>
     <p class="lede">A community map of parks, greenways and trails, scored on what makes a place feel safer for women running or walking alone: light, people, open sightlines, signal, staff and a visible parking lot.</p>
     <p class="notice"><strong>Starter scores.</strong> The environmental scores below are first-pass estimates waiting for local women to confirm or correct. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Police incident data is built in as a layer and will fill in later. Use this as one input alongside your own judgment.</p>
@@ -168,6 +173,64 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:va
       <p class="note">It rates places, never people. It won't show who runs where, when anyone goes, or live locations, so it can't be used to find a woman alone. Ratings are saved without names and the page shows only scores, counts and tags, never who rated.</p>
     </section>
   </div>
+
+
+  <section class="care" id="care">
+    <div class="eyebrow">Before you go</div>
+    <h2>Running alone, well</h2>
+    <p class="note">None of this is a list of what you owe anyone. The responsibility for harm sits with whoever causes it. These are the practices women here already use to keep the miles they love, gathered in one place so no one has to learn them alone.</p>
+    <div class="cols">
+      <section>
+        <h3>Set it up</h3>
+        <ul class="note">
+          <li>Tell one person your route and when you'll be back. A text is enough. Many watches and phones can share your live location with that one person, and only them.</li>
+          <li>Check this map for cell signal before you pick a route. Some trails here lose signal within a few minutes of the trailhead.</li>
+          <li>Plan for the light. Dusk comes fast in the mountains and earlier than you expect under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
+          <li>Leave the car ready: nothing visible inside, key where you can reach it, parked where you can see the lot from the trail if you can.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>While you're out</h3>
+        <ul class="note">
+          <li>Keep one ear open, or run without music on quiet stretches. Hearing is how you get the extra seconds.</li>
+          <li>Trust the feeling. If a person, a car or a stretch of trail makes you uneasy, change your plan. Turn around, leave, cut the run short. You never need a reason that would satisfy someone else.</li>
+          <li>Keep your head up through the parking lot and the first and last quarter mile. The trailhead is where most unwanted encounters start.</li>
+          <li>If someone is following you, go toward people, not away from them: a dog park, a sports field, a staffed building, another runner. Say out loud what is happening.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Together is a strategy</h3>
+        <ul class="note">
+          <li>A running partner changes everything about a route, including which ones are open to you. Women's run groups in Asheville meet on the greenways most weeks; ask at a local running store.</li>
+          <li>Nod to other women on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
+          <li>Rate the places you use. Your rating is what turns this from one person's guesses into something the next woman can trust.</li>
+        </ul>
+      </section>
+    </div>
+    <div class="cols">
+      <section class="help">
+        <h3>If something happens</h3>
+        <p class="note">You decide what counts as something, and you decide what to do about it. These lines are free, confidential, and staffed around the clock by people who will follow your lead.</p>
+        <ul class="note lines">
+          <li><b>Emergency:</b> <span class="num">911</span></li>
+          <li><b>Our VOICE</b> (sexual violence, Buncombe County), 24-hour crisis line: <span class="num">828-255-7576</span></li>
+          <li><b>Helpmate</b> (domestic violence, Buncombe County), 24-hour helpline: <span class="num">828-254-0516</span></li>
+          <li><b>National Sexual Assault Hotline</b> (RAINN): <span class="num">800-656-4673</span></li>
+        </ul>
+        <p class="note">Being followed, watched or harassed is reason enough to call. You do not need to have been hurt.</p>
+      </section>
+      <section>
+        <h3>If you share these trails</h3>
+        <p class="note">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell:</p>
+        <ul class="note">
+          <li>Call out before you pass, and pass wide.</li>
+          <li>Don't match pace behind someone. Pass, or fall back.</li>
+          <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
+          <li>If you see someone being followed or bothered, step in with your presence: walk alongside, ask if she's okay, stay until she says she is.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
 
   <footer>
     <p>Locations and the county outline are approximate. Tap “Directions” for exact trailheads.</p>
