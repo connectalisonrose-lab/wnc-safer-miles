@@ -101,11 +101,6 @@ a{color:var(--accent);font-weight:600}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .cols section{display:grid;gap:8px;align-content:start}
 .cols ul{margin:0;padding-left:18px;display:grid;gap:4px}
-.care{display:grid;gap:18px;border-top:1px solid var(--line);padding-top:24px}
-.care .cols{gap:20px}
-.help{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px}
-.lines li{margin-bottom:4px}
-.num{font-family:var(--mono);font-weight:500;user-select:all}
 footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);display:grid;gap:6px}
 @media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
 .mini{font:700 28px var(--display);font-variant-numeric:tabular-nums;line-height:1}
@@ -129,214 +124,343 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:va
 .fine{font-size:12.5px;color:var(--muted)}
 .warn{border-left:3px solid var(--caution);padding:6px 10px;font-size:13.5px;background:var(--bg)}
 .warn b{display:block;color:var(--caution)}
+
+.skip{position:absolute;left:16px;top:-48px;background:var(--ink);color:var(--bg);padding:8px 12px;border-radius:6px;z-index:10;font-weight:600}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.langbtn{font:600 13px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.langbtn:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h3.area{margin:0}
 </style>
 </head>
 <body>
+<a class="skip" href="#pick" data-i18n="skip">Skip to the map</a>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Buncombe County, NC · Tsalagi land · Prototype v0.6</div>
+    <div class="topbar">
+      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, NC · Tsalagi land · v0.7</div>
+      <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+    </div>
     <h1>Buncombe Safer Miles</h1>
-    <p class="lede">A community map of parks, greenways and trails, scored on what makes a place feel safer for women running or walking alone: light, people, open sightlines, signal, staff and a visible parking lot.</p>
-    <p class="notice"><strong>Starter scores.</strong> The environmental scores below are first-pass estimates waiting for local women to confirm or correct. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Police incident data is built in as a layer and will fill in later. Use this as one input alongside your own judgment. <a href="#safety">Safety tips and crisis lines ↓</a></p>
+    <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what makes a place feel safer for women running or walking alone: light, people, open sightlines, signal, staff and a visible parking lot.</p>
+    <p class="notice" data-i18n="notice"><strong>Starter scores.</strong> The environmental scores below are first-pass estimates waiting for local women to confirm or correct. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. <a href="#safety">Safety tips and crisis lines ↓</a></p>
   </header>
 
-  <div class="main">
+  <main class="main">
     <div class="mapbox">
-      <label class="pick"><span>Choose a place</span><select id="pick"></select></label>
-      <p class="hint">Or tap a numbered pin. The place's score, ratings and a rate button appear below the map.</p>
-      <div class="filters" role="group" aria-label="Filter places">
-        <button class="chip" id="f-all" data-f="all" aria-pressed="true">All places</button>
-        <button class="chip" id="f-strong" data-f="strong" aria-pressed="false">Strong</button>
-        <button class="chip" id="f-mixed" data-f="mixed" aria-pressed="false">Mixed</button>
-        <button class="chip" id="f-caution" data-f="caution" aria-pressed="false">Go prepared</button>
+      <label class="pick"><span data-i18n="pickLabel">Choose a place</span><select id="pick"></select></label>
+      <p class="hint" data-i18n="hint">Or tap a numbered pin. The place's score, ratings and a rate button appear below the map.</p>
+      <div class="filters" role="group" data-i18n-aria="filterAria" aria-label="Filter places">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true" data-i18n="fAll">All places</button>
+        <button class="chip" id="f-strong" data-f="strong" aria-pressed="false" data-i18n="fStrong">Strong</button>
+        <button class="chip" id="f-mixed" data-f="mixed" aria-pressed="false" data-i18n="fMixed">Mixed</button>
+        <button class="chip" id="f-caution" data-f="caution" aria-pressed="false" data-i18n="fCaution">Go prepared</button>
       </div>
-      <svg class="map" id="map" viewBox="0 0 1000 802" role="img" aria-label="Map of Buncombe County with scored running places"></svg>
+      <svg class="map" id="map" viewBox="0 0 1000 802" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe County with scored places. Each pin is a button."></svg>
       <div class="legend">
-        <span><i class="sw" style="background:var(--strong)"></i>Strong 75+</span>
-        <span><i class="sw" style="background:var(--mixed)"></i>Mixed 55–74</span>
-        <span><i class="sw" style="background:var(--caution)"></i>Go prepared &lt;55</span>
-        <span><i class="sw" style="background:var(--river)"></i>Rivers</span>
+        <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
+        <span><i class="sw" style="background:var(--mixed)"></i><span data-i18n="lgMixed">Mixed 55–74</span></span>
+        <span><i class="sw" style="background:var(--caution)"></i><span data-i18n="lgCaution">Go prepared &lt;55</span></span>
+        <span><i class="sw" style="background:var(--river)"></i><span data-i18n="lgRivers">Rivers</span></span>
       </div>
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
-  </div>
+  </main>
 
   <section style="display:grid;gap:12px">
-    <h2>Places by area</h2>
-    <p class="note">The number is the place's rank across the county, 1 being safest by the current score.</p>
+    <h2 data-i18n="listH">Places by area</h2>
+    <p class="note" data-i18n="listNote">The number is the place's rank across the county, 1 being safest by the current score.</p>
     <div class="list" id="list"></div>
   </section>
 
   <section class="tips" id="safety">
     <div class="tips-head">
-      <div class="eyebrow">Safety tips</div>
-      <h2>Going out with a plan</h2>
-      <p class="note">These are options, not rules. Women here use different ones depending on the place, the hour and the day. The responsibility for harm always belongs to the person who causes it. Take what fits and leave the rest.</p>
+      <div class="eyebrow" data-i18n="tipsEyebrow">Safety tips</div>
+      <h2 data-i18n="tipsH">Going out with a plan</h2>
+      <p class="note" data-i18n="tipsIntro">None of this is a list of what you owe anyone. The responsibility for harm always belongs to the person who causes it. These are practices women here already use to keep the miles they love, gathered in one place so no one has to learn them alone. Take what fits and leave the rest.</p>
     </div>
     <div class="tip-grid">
       <div class="tip">
-        <h3>Before you go</h3>
-        <ul>
-          <li><b>Tell one person</b> where you're going and when you'll be back, and text them when you're done.</li>
-          <li><b>Check sunset.</b> Loops take longer than planned, and the places marked Go prepared change most after dark.</li>
-          <li><b>Charge your phone</b> and download an offline map for forest trails like Bent Creek, where signal drops.</li>
-          <li><b>Park facing out</b>, near the lot entrance or under a light, so leaving is quick.</li>
+        <h3 data-i18n="t1H">Before you go</h3>
+        <ul data-i18n="t1L">
+          <li><b>Tell one person</b> your route and when you'll be back, and text them when you're done.</li>
+          <li><b>Check this map for cell signal</b> before you pick a route. Some trails here lose signal minutes from the trailhead. Charge your phone and download an offline map.</li>
+          <li><b>Plan for the light.</b> Dusk comes early under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
+          <li><b>Leave the car ready:</b> parked facing out near the lot entrance, nothing visible inside, key within reach.</li>
         </ul>
       </div>
       <div class="tip">
-        <h3>While you're moving</h3>
-        <ul>
-          <li><b>Keep one ear free.</b> Hearing what's behind you matters more on wooded stretches than open loops.</li>
+        <h3 data-i18n="t2H">While you're out</h3>
+        <ul data-i18n="t2L">
+          <li><b>Keep one ear free</b>, or skip music on quiet stretches. Hearing is how you get the extra seconds.</li>
+          <li><b>Trust the feeling.</b> If a person, a car or a stretch of trail makes you uneasy, turn around, leave or cut the run short. You never need a reason that would satisfy someone else.</li>
+          <li><b>Stay alert at the edges.</b> The parking lot and the first and last quarter mile are where most unwanted encounters start.</li>
+          <li><b>If someone follows you,</b> go toward people: a dog park, a field, a staffed building, another runner. Say out loud what is happening.</li>
           <li><b>Vary your routes and times</b> so your pattern is harder to predict.</li>
-          <li><b>Trust the feeling.</b> Turning around, crossing over or cutting a run short needs no explanation.</li>
-          <li><b>Head toward people</b>, a staffed building or a road if something feels wrong.</li>
         </ul>
       </div>
       <div class="tip">
-        <h3>Your phone and apps</h3>
-        <ul>
+        <h3 data-i18n="t3H">Your phone and apps</h3>
+        <ul data-i18n="t3L">
           <li><b>Set up emergency SOS today.</b> Most phones call 911 and alert your contacts with a few presses of the side button. Practice once so you know it.</li>
           <li><b>Share live location</b> with one trusted person for the length of your run, then turn it off.</li>
           <li><b>Lock down fitness apps.</b> Make activities private or followers-only, hide the start and end near home, and opt out of public heatmaps. Researchers at NC State showed public heatmaps can still reveal where frequent runners live.</li>
         </ul>
       </div>
-      <div class="tip help">
-        <h3>If something happens</h3>
-        <ul class="lines">
-          <li><span>In danger now</span><a href="tel:911">911</a></li>
-          <li><span>Helpmate, 24 hours<small>Domestic and intimate partner violence</small></span><a href="tel:+18282540516">828-254-0516</a></li>
-          <li><span>Our VOICE, 24 hours<small>Sexual violence and trafficking</small></span><a href="tel:+18282557576">828-255-7576</a></li>
+      <div class="tip">
+        <h3 data-i18n="t4H">Together is a strategy</h3>
+        <ul data-i18n="t4L">
+          <li><b>Run with someone</b> when you can. A partner changes which routes are open to you. Local running stores can point you to women's group runs.</li>
+          <li><b>Nod to other women</b> on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
+          <li><b>Rate the places you use.</b> Your rating turns this map from estimates into something the next woman can trust.</li>
         </ul>
-        <p class="note">You can call even if you're unsure what happened or whether it counts. Talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
+      </div>
+      <div class="tip">
+        <h3 data-i18n="t5H">If you share these trails</h3>
+        <p class="note" data-i18n="t5P">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell.</p>
+        <ul data-i18n="t5L">
+          <li>Call out before you pass, and pass wide.</li>
+          <li>Don't match pace behind someone. Pass, or fall back.</li>
+          <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
+          <li>If you see someone being followed or bothered, walk alongside, ask if she's okay, and stay until she says she is.</li>
+        </ul>
+      </div>
+      <div class="tip help">
+        <h3 data-i18n="t6H">If something happens</h3>
+        <ul class="lines">
+          <li><span data-i18n="l911">In danger now</span><a href="tel:911">911</a></li>
+          <li><span data-i18n="lVoice">Our VOICE, 24 hours<small>Sexual violence and trafficking · Buncombe County</small></span><a href="tel:+18282557576">828-255-7576</a></li>
+          <li><span data-i18n="lHelp">Helpmate, 24 hours<small>Domestic and intimate partner violence · Buncombe County</small></span><a href="tel:+18282540516">828-254-0516</a></li>
+          <li><span data-i18n="lRainn">RAINN, 24 hours<small>National Sexual Assault Hotline</small></span><a href="tel:+18006564673">800-656-4673</a></li>
+        </ul>
+        <p class="note" data-i18n="t6P">Being followed, watched or harassed is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
       </div>
     </div>
   </section>
 
   <div class="cols">
     <section>
-      <h3>How the score works</h3>
-      <p class="note">Each place gets 1–5 on six factors, weighted toward what matters most when you're alone:</p>
-      <ul class="note">
-        <li>Foot traffic, 25%</li>
-        <li>Open sightlines, 20%</li>
-        <li>Cell signal, 15%</li>
-        <li>Staff or ranger presence, 15%</li>
-        <li>Lighting, 15%</li>
-        <li>Visible parking, 10%</li>
-      </ul>
-      <p class="note">The result is scaled to 100. Women's ratings then blend in: one rating shifts the score a little, and the more ratings a place has, the more they count, up to 40% of the score. Any rating of 1 or 2 is also flagged on the place itself as a warning.</p>
+      <h3 data-i18n="howH">How the score works</h3>
+      <div data-i18n="howBody">
+        <p class="note">Each place gets 1–5 on six factors, weighted toward what matters most when you're alone:</p>
+        <ul class="note">
+          <li>Foot traffic, 25%</li>
+          <li>Open sightlines, 20%</li>
+          <li>Cell signal, 15%</li>
+          <li>Staff or ranger presence, 15%</li>
+          <li>Lighting, 15%</li>
+          <li>Visible parking, 10%</li>
+        </ul>
+        <p class="note">The result is scaled to 100. Women's ratings then blend in: one rating shifts the score a little, and the more ratings a place has, the more they count, up to 40% of the score. Any rating of 1 or 2 is also flagged on the place itself as a warning.</p>
+      </div>
     </section>
     <section>
-      <h3>About police data</h3>
-      <p class="note">Asheville publishes incident data, but it covers city limits only, and the Sheriff's Office covers the rest of the county. Incident counts reflect where policing happens and what gets reported. Most harassment on trails never reaches a report. So this layer will show context next to each place and stay out of the score.</p>
+      <h3 data-i18n="polH">About police data</h3>
+      <p class="note" data-i18n="polP">Asheville publishes incident data, but it covers city limits only, and the Sheriff's Office covers the rest of the county. Incident counts reflect where policing happens and what gets reported. Most harassment on trails never reaches a report. So this layer will show context next to each place and stay out of the score.</p>
     </section>
     <section>
-      <h3>What this map won't do</h3>
-      <p class="note">It rates places, never people. It won't show who runs where, when anyone goes, or live locations, so it can't be used to find a woman alone. Ratings are saved without names and the page shows only scores, counts and tags, never who rated.</p>
+      <h3 data-i18n="wontH">What this map won't do</h3>
+      <p class="note" data-i18n="wontP">It rates places, never people. It won't show who runs where, when anyone goes, or live locations, so it can't be used to find a woman alone. Ratings are saved without names and the page shows only scores, counts and tags, never who rated.</p>
     </section>
   </div>
 
-
-  <section class="care" id="care">
-    <div class="eyebrow">Before you go</div>
-    <h2>Running alone, well</h2>
-    <p class="note">None of this is a list of what you owe anyone. The responsibility for harm sits with whoever causes it. These are the practices women here already use to keep the miles they love, gathered in one place so no one has to learn them alone.</p>
-    <div class="cols">
-      <section>
-        <h3>Set it up</h3>
-        <ul class="note">
-          <li>Tell one person your route and when you'll be back. A text is enough. Many watches and phones can share your live location with that one person, and only them.</li>
-          <li>Check this map for cell signal before you pick a route. Some trails here lose signal within a few minutes of the trailhead.</li>
-          <li>Plan for the light. Dusk comes fast in the mountains and earlier than you expect under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
-          <li>Leave the car ready: nothing visible inside, key where you can reach it, parked where you can see the lot from the trail if you can.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>While you're out</h3>
-        <ul class="note">
-          <li>Keep one ear open, or run without music on quiet stretches. Hearing is how you get the extra seconds.</li>
-          <li>Trust the feeling. If a person, a car or a stretch of trail makes you uneasy, change your plan. Turn around, leave, cut the run short. You never need a reason that would satisfy someone else.</li>
-          <li>Keep your head up through the parking lot and the first and last quarter mile. The trailhead is where most unwanted encounters start.</li>
-          <li>If someone is following you, go toward people, not away from them: a dog park, a sports field, a staffed building, another runner. Say out loud what is happening.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Together is a strategy</h3>
-        <ul class="note">
-          <li>A running partner changes everything about a route, including which ones are open to you. Women's run groups in Asheville meet on the greenways most weeks; ask at a local running store.</li>
-          <li>Nod to other women on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
-          <li>Rate the places you use. Your rating is what turns this from one person's guesses into something the next woman can trust.</li>
-        </ul>
-      </section>
-    </div>
-    <div class="cols">
-      <section class="help">
-        <h3>If something happens</h3>
-        <p class="note">You decide what counts as something, and you decide what to do about it. These lines are free, confidential, and staffed around the clock by people who will follow your lead.</p>
-        <ul class="note lines">
-          <li><b>Emergency:</b> <span class="num">911</span></li>
-          <li><b>Our VOICE</b> (sexual violence, Buncombe County), 24-hour crisis line: <span class="num">828-255-7576</span></li>
-          <li><b>Helpmate</b> (domestic violence, Buncombe County), 24-hour helpline: <span class="num">828-254-0516</span></li>
-          <li><b>National Sexual Assault Hotline</b> (RAINN): <span class="num">800-656-4673</span></li>
-        </ul>
-        <p class="note">Being followed, watched or harassed is reason enough to call. You do not need to have been hurt.</p>
-      </section>
-      <section>
-        <h3>If you share these trails</h3>
-        <p class="note">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell:</p>
-        <ul class="note">
-          <li>Call out before you pass, and pass wide.</li>
-          <li>Don't match pace behind someone. Pass, or fall back.</li>
-          <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
-          <li>If you see someone being followed or bothered, step in with your presence: walk alongside, ask if she's okay, stay until she says she is.</li>
-        </ul>
-      </section>
-    </div>
-  </section>
-
   <footer>
-    <p>Locations and the county outline are approximate. Tap “Directions” for exact trailheads.</p>
-    <p>© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
+    <p data-i18n="foot1">Locations and the county outline are approximate. Use “Directions” for exact trailheads.</p>
+    <p data-i18n="foot2">© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
   </footer>
 </div>
 
 <script>
 const PLACES=[
- {n:"Carrier Park",a:"ash",t:"Park · paved loop",lat:35.5716,lng:-82.5794,f:[3,5,5,5,2,4],note:"Open fields and a busy velodrome loop along the French Broad. Rarely empty in daylight."},
- {n:"French Broad River Park",a:"ash",t:"Park · riverside paths",lat:35.5781,lng:-82.5740,f:[3,4,4,5,2,4],note:"Connects to Carrier Park by greenway. Dog park keeps people around."},
- {n:"Hominy Creek River Park",a:"ash",t:"Park · wooded trail",lat:35.5617,lng:-82.5929,f:[1,3,3,4,1,2],note:"Quieter wooded sections and a lot that's hard to see from the road. Better with a buddy."},
- {n:"Wilma Dykeman Greenway",a:"ash",t:"Greenway · River Arts District",lat:35.5876,lng:-82.5660,f:[4,5,4,5,2,3],note:"Lit, busy and flat, with businesses along much of it."},
- {n:"Reed Creek Greenway",a:"ash",t:"Greenway · near UNCA",lat:35.6077,lng:-82.5562,f:[3,4,3,5,2,3],note:"Short and well used by students. Some tree-lined stretches."},
- {n:"Beaver Lake Bird Sanctuary",a:"ash",t:"Park · lake boardwalk",lat:35.6370,lng:-82.5568,f:[2,4,4,5,1,4],note:"Steady walkers around the lake. Unstaffed and dark after sunset."},
- {n:"Richmond Hill Park",a:"ash",t:"Park · wooded trails",lat:35.6105,lng:-82.5974,f:[1,2,2,3,1,2],note:"Disc golf and dense woods with fewer people on weekdays."},
- {n:"Lake Julian Park",a:"south",t:"County park · lake loop",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],note:"Open views across the water and a staffed park office during posted hours."},
- {n:"Bent Creek & Lake Powhatan",a:"south",t:"National forest · trail network",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route."},
- {n:"NC Arboretum",a:"south",t:"Gated grounds · trails",lat:35.4986,lng:-82.6102,f:[2,4,3,4,5,5],note:"Staffed, gated and closed at night. Paid parking means a monitored lot."},
- {n:"Botanical Gardens at Asheville",a:"ash",t:"Garden · short loops",lat:35.6153,lng:-82.5643,f:[2,3,3,5,2,3],note:"Small and peaceful, next to campus. Quiet early mornings."},
- {n:"Pack Square Park",a:"ash",t:"Downtown park",lat:35.5953,lng:-82.5503,f:[5,5,5,5,3,3],note:"Lit, central and always populated. Good for short loops through downtown."},
- {n:"Azalea Park",a:"ash",t:"Park · sports fields",lat:35.5874,lng:-82.4956,f:[3,4,4,4,2,4],note:"Fields and the Swannanoa River path. Busiest during games."},
- {n:"Lake Tomahawk Park",a:"east",t:"Park · Black Mountain",lat:35.6131,lng:-82.3260,f:[3,4,5,5,2,4],note:"Flat lake loop in town with clear views all the way around."},
- {n:"Lake Louise Park",a:"north",t:"Park · Weaverville",lat:35.6970,lng:-82.5620,f:[3,3,5,5,2,4],note:"Small, open lake loop in a residential area."},
- {n:"Enka Recreation Destination",a:"west",t:"County park · trails",lat:35.5460,lng:-82.6510,f:[2,3,4,4,2,4],note:"Newer trails near the county sports park. Use is still building."},
- {n:"Charles D. Owen Park",a:"east",t:"Park · Swannanoa",lat:35.6074,lng:-82.4000,f:[2,3,4,4,2,3],note:"Two small lakes and open lawn. Quieter on weekdays."},
- {n:"Folk Art Center trailhead",a:"east",t:"Mountains-to-Sea Trail",lat:35.5676,lng:-82.4920,f:[1,3,2,3,3,4],note:"Staffed center during open hours, then wooded trail with patchy signal."}
+ {n:"Carrier Park",a:"ash",lat:35.5716,lng:-82.5794,f:[3,5,5,5,2,4],
+  t:"Park · paved loop",te:"Parque · circuito pavimentado",
+  note:"Open fields and a busy velodrome loop along the French Broad. Rarely empty in daylight.",
+  ne:"Campos abiertos y un circuito de velódromo muy concurrido junto al río French Broad. Rara vez está vacío de día."},
+ {n:"French Broad River Park",a:"ash",lat:35.5781,lng:-82.5740,f:[3,4,4,5,2,4],
+  t:"Park · riverside paths",te:"Parque · senderos junto al río",
+  note:"Connects to Carrier Park by greenway. Dog park keeps people around.",
+  ne:"Se conecta con Carrier Park por un sendero verde. El parque para perros mantiene gente alrededor."},
+ {n:"Hominy Creek River Park",a:"ash",lat:35.5617,lng:-82.5929,f:[1,3,3,4,1,2],
+  t:"Park · wooded trail",te:"Parque · sendero boscoso",
+  note:"Quieter wooded sections and a lot that's hard to see from the road. Better with a buddy.",
+  ne:"Tramos boscosos más tranquilos y un estacionamiento difícil de ver desde la calle. Mejor ir acompañada."},
+ {n:"Wilma Dykeman Greenway",a:"ash",lat:35.5876,lng:-82.5660,f:[4,5,4,5,2,3],
+  t:"Greenway · River Arts District",te:"Sendero verde · River Arts District",
+  note:"Lit, busy and flat, with businesses along much of it.",
+  ne:"Iluminado, concurrido y plano, con negocios a lo largo de gran parte del recorrido."},
+ {n:"Reed Creek Greenway",a:"ash",lat:35.6077,lng:-82.5562,f:[3,4,3,5,2,3],
+  t:"Greenway · near UNCA",te:"Sendero verde · cerca de UNCA",
+  note:"Short and well used by students. Some tree-lined stretches.",
+  ne:"Corto y muy usado por estudiantes. Algunos tramos bordeados de árboles."},
+ {n:"Beaver Lake Bird Sanctuary",a:"ash",lat:35.6370,lng:-82.5568,f:[2,4,4,5,1,4],
+  t:"Park · lake boardwalk",te:"Parque · pasarela del lago",
+  note:"Steady walkers around the lake. Unstaffed and dark after sunset.",
+  ne:"Siempre hay gente caminando alrededor del lago. Sin personal y oscuro después del atardecer."},
+ {n:"Richmond Hill Park",a:"ash",lat:35.6105,lng:-82.5974,f:[1,2,2,3,1,2],
+  t:"Park · wooded trails",te:"Parque · senderos boscosos",
+  note:"Disc golf and dense woods with fewer people on weekdays.",
+  ne:"Disc golf y bosque denso, con menos gente entre semana."},
+ {n:"Lake Julian Park",a:"south",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],
+  t:"County park · lake loop",te:"Parque del condado · circuito del lago",
+  note:"Open views across the water and a staffed park office during posted hours.",
+  ne:"Vistas abiertas sobre el agua y una oficina con personal en el horario indicado."},
+ {n:"Bent Creek & Lake Powhatan",a:"south",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
+  t:"National forest · trail network",te:"Bosque nacional · red de senderos",
+  note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route.",
+  ne:"Entradas concurridas, pero bosque profundo y poca señal una vez adentro. Comparta su ruta."},
+ {n:"NC Arboretum",a:"south",lat:35.4986,lng:-82.6102,f:[2,4,3,4,5,5],
+  t:"Gated grounds · trails",te:"Terreno con portón · senderos",
+  note:"Staffed, gated and closed at night. Paid parking means a monitored lot.",
+  ne:"Con personal, con portón y cerrado de noche. El estacionamiento pagado significa un lote vigilado."},
+ {n:"Botanical Gardens at Asheville",a:"ash",lat:35.6153,lng:-82.5643,f:[2,3,3,5,2,3],
+  t:"Garden · short loops",te:"Jardín · circuitos cortos",
+  note:"Small and peaceful, next to campus. Quiet early mornings.",
+  ne:"Pequeño y tranquilo, junto al campus. Silencioso temprano en la mañana."},
+ {n:"Pack Square Park",a:"ash",lat:35.5953,lng:-82.5503,f:[5,5,5,5,3,3],
+  t:"Downtown park",te:"Parque del centro",
+  note:"Lit, central and always populated. Good for short loops through downtown.",
+  ne:"Iluminado, céntrico y siempre con gente. Bueno para vueltas cortas por el centro."},
+ {n:"Azalea Park",a:"ash",lat:35.5874,lng:-82.4956,f:[3,4,4,4,2,4],
+  t:"Park · sports fields",te:"Parque · campos deportivos",
+  note:"Fields and the Swannanoa River path. Busiest during games.",
+  ne:"Campos y el sendero del río Swannanoa. Más concurrido durante los partidos."},
+ {n:"Lake Tomahawk Park",a:"east",lat:35.6131,lng:-82.3260,f:[3,4,5,5,2,4],
+  t:"Park · Black Mountain",te:"Parque · Black Mountain",
+  note:"Flat lake loop in town with clear views all the way around.",
+  ne:"Circuito plano alrededor del lago, en el pueblo, con vista despejada en todo el recorrido."},
+ {n:"Lake Louise Park",a:"north",lat:35.6970,lng:-82.5620,f:[3,3,5,5,2,4],
+  t:"Park · Weaverville",te:"Parque · Weaverville",
+  note:"Small, open lake loop in a residential area.",
+  ne:"Circuito pequeño y abierto alrededor de un lago, en una zona residencial."},
+ {n:"Enka Recreation Destination",a:"west",lat:35.5460,lng:-82.6510,f:[2,3,4,4,2,4],
+  t:"County park · trails",te:"Parque del condado · senderos",
+  note:"Newer trails near the county sports park. Use is still building.",
+  ne:"Senderos nuevos cerca del complejo deportivo del condado. Todavía no tienen mucho uso."},
+ {n:"Charles D. Owen Park",a:"east",lat:35.6074,lng:-82.4000,f:[2,3,4,4,2,3],
+  t:"Park · Swannanoa",te:"Parque · Swannanoa",
+  note:"Two small lakes and open lawn. Quieter on weekdays.",
+  ne:"Dos lagos pequeños y césped abierto. Más tranquilo entre semana."},
+ {n:"Folk Art Center trailhead",a:"east",lat:35.5676,lng:-82.4920,f:[1,3,2,3,3,4],
+  t:"Mountains-to-Sea Trail",te:"Mountains-to-Sea Trail",
+  note:"Staffed center during open hours, then wooded trail with patchy signal.",
+  ne:"Centro con personal en horario de apertura; después, sendero boscoso con señal intermitente."}
 ];
-const FACT=["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
-const TIMES={day:"Daylight",dusk:"Dawn or dusk",dark:"After dark"};
-const TAGS={lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed"};
-const BL={strong:"Strong",mixed:"Mixed",caution:"Go prepared"};
-const AREAS={ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka"};
-PLACES.forEach((p,i)=>{p.i=i;p.env=Math.round(p.f.reduce((a,v,k)=>a+((v-1)/4)*W[k],0)*100);});
+const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
-let RATINGS={}; // place index -> [{s,t,g}]
+const L={
+ en:{
+  FACT:["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"],
+  TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
+  TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed"},
+  BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared"},
+  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka"},
+  ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
+  dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
+  before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",
+  rNone:"Women's ratings · none yet",rNoneP:"Be the first. Ratings show as soon as they come in.",
+  rCount:n=>`Women's ratings · ${n} ${n===1?"rating":"ratings"}`,
+  warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
+  avg:(e,s)=>`average for how safe women felt here. Environmental score ${e}, blended score ${s}.`,
+  rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name. Takes about 20 seconds.",rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
+  polS:"Police incident context · not connected",polP:"Will show nearby reported incidents for context, kept out of the score.",
+  dir:"Directions ↗",rank:(r,t)=>`#${r} of ${t}`,blended:"blended",listCount:n=>` · ${n} ${n===1?"rating":"ratings"}`,
+  aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es"
+ },
+ es:{
+  FACT:["Iluminación","Gente alrededor","Visibilidad","Señal de celular","Personal en el lugar","Estacionamiento visible"],
+  TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
+  TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida"},
+  BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada"},
+  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka"},
+  ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
+  dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
+  before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",
+  rNone:"Calificaciones de mujeres · aún no hay",rNoneP:"Sea la primera. Las calificaciones aparecen en cuanto llegan.",
+  rCount:n=>`Calificaciones de mujeres · ${n} ${n===1?"calificación":"calificaciones"}`,
+  warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
+  avg:(e,s)=>`promedio de qué tan seguras se sintieron las mujeres aquí. Puntaje del entorno ${e}, puntaje combinado ${s}.`,
+  rateS:"Califique este lugar",rateP:"Cuatro preguntas rápidas, sin registrarse y sin nombre. Toma unos 20 segundos.",rateB:n=>`Calificar ${n} ↗`,rateF:"Las calificaciones aparecen en el mapa dentro de un día, sin nombres.",
+  polS:"Datos policiales · aún no conectados",polP:"Mostrará incidentes reportados cercanos como contexto, sin entrar en el puntaje.",
+  dir:"Cómo llegar ↗",rank:(r,t)=>`N.º ${r} de ${t}`,blended:"combinado",listCount:n=>` · ${n} ${n===1?"calificación":"calificaciones"}`,
+  aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
+  // static page text
+  skip:"Ir al mapa",
+  eyebrow:"Condado de Buncombe, NC · Tierra tsalagi · v0.7",
+  lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que hace que un lugar se sienta más seguro para las mujeres que corren o caminan solas: luz, gente, buena visibilidad, señal, personal y un estacionamiento a la vista.",
+  notice:"<strong>Puntajes iniciales.</strong> Los puntajes del entorno son estimaciones preliminares que esperan ser confirmadas o corregidas por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. <a href=\"#safety\">Consejos de seguridad y líneas de ayuda ↓</a>",
+  pickLabel:"Elija un lugar",
+  hint:"O toque un punto numerado. El puntaje del lugar, sus calificaciones y un botón para calificar aparecen debajo del mapa.",
+  filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
+  mapAria:"Mapa del condado de Buncombe con los lugares calificados. Cada punto es un botón.",
+  lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
+  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el condado; el 1 es el más seguro según el puntaje actual.",
+  tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
+  tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
+  t1H:"Antes de salir",
+  t1L:"<li><b>Avísele a una persona</b> su ruta y a qué hora volverá, y mándele un mensaje al terminar.</li><li><b>Revise la señal de celular en este mapa</b> antes de elegir una ruta. En algunos senderos se pierde la señal a pocos minutos de la entrada. Cargue su teléfono y descargue un mapa sin conexión.</li><li><b>Planee según la luz.</b> Bajo los árboles oscurece temprano. Si va a estar afuera cerca del atardecer, empiece por el extremo abierto de la ruta y termine allí.</li><li><b>Deje el carro listo:</b> estacionado de frente a la salida cerca de la entrada del lote, sin nada a la vista adentro y con la llave a mano.</li>",
+  t2H:"Mientras está afuera",
+  t2L:"<li><b>Mantenga un oído libre</b>, o no use música en los tramos solitarios. Oír le da esos segundos de ventaja.</li><li><b>Confíe en lo que siente.</b> Si una persona, un carro o un tramo del sendero la incomoda, dé la vuelta, váyase o acorte su recorrido. Nunca necesita una razón que convenza a otra persona.</li><li><b>Esté atenta en los extremos.</b> El estacionamiento y el primer y último tramo del recorrido son donde empiezan la mayoría de los encuentros no deseados.</li><li><b>Si alguien la sigue,</b> vaya hacia donde hay gente: un parque para perros, un campo, un edificio con personal, otra corredora. Diga en voz alta lo que está pasando.</li><li><b>Cambie sus rutas y horarios</b> para que su rutina sea más difícil de predecir.</li>",
+  t3H:"Su teléfono y sus aplicaciones",
+  t3L:"<li><b>Configure hoy la función de emergencia SOS.</b> La mayoría de los teléfonos llaman al 911 y avisan a sus contactos al presionar varias veces el botón lateral. Practíquelo una vez para conocerlo.</li><li><b>Comparta su ubicación en tiempo real</b> con una persona de confianza mientras dure su recorrido, y luego desactívela.</li><li><b>Proteja sus aplicaciones de ejercicio.</b> Haga que sus actividades sean privadas o solo para seguidores, oculte el inicio y el final cerca de su casa, y desactive los mapas de calor públicos. Investigadores de NC State demostraron que estos mapas aún pueden revelar dónde viven las personas que corren con frecuencia.</li>",
+  t4H:"Juntas es una estrategia",
+  t4L:"<li><b>Salga acompañada</b> cuando pueda. Tener compañía cambia qué rutas están a su alcance. En las tiendas de artículos para correr le pueden recomendar grupos de mujeres.</li><li><b>Salude a otras mujeres</b> en el sendero. Ser vista, y ver, es parte de lo que hace seguro un lugar.</li><li><b>Califique los lugares que usa.</b> Su calificación convierte este mapa de estimaciones en algo en lo que la próxima mujer puede confiar.</li>",
+  t5H:"Si comparte estos senderos",
+  t5P:"La mayoría de las personas en estos caminos no quieren hacer daño. Algunos hábitos lo dejan claro a una mujer que todavía no puede saberlo.",
+  t5L:"<li>Avise antes de pasar, y pase con espacio.</li><li>No mantenga el mismo ritmo detrás de alguien. Pase o quédese atrás.</li><li>No la detenga para hablar. Audífonos puestos y mirada al frente es una respuesta.</li><li>Si ve que alguien está siendo seguida o molestada, camine a su lado, pregúntele si está bien y quédese hasta que ella diga que lo está.</li>",
+  t6H:"Si algo pasa",
+  l911:"Peligro inmediato",
+  lVoice:"Our VOICE, 24 horas<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
+  lHelp:"Helpmate, 24 horas<small>Violencia doméstica y de pareja · Condado de Buncombe</small>",
+  lRainn:"RAINN, 24 horas<small>Línea nacional contra la agresión sexual</small>",
+  t6P:"Que la sigan, la observen o la acosen es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
+  howH:"Cómo funciona el puntaje",
+  howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una calificación mueve un poco el puntaje, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
+  polH:"Sobre los datos policiales",
+  polP:"Asheville publica datos de incidentes, pero solo cubren la ciudad; la Oficina del Sheriff cubre el resto del condado. El número de incidentes refleja dónde patrulla la policía y qué se reporta. La mayoría del acoso en los senderos nunca se reporta. Por eso esta capa mostrará contexto junto a cada lugar y no entrará en el puntaje.",
+  wontH:"Lo que este mapa no hace",
+  wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
+  foot1:"Las ubicaciones y el contorno del condado son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
+  foot2:"© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra."
+ }
+};
+
+let lang="en";
+try{
+  const q=new URLSearchParams(location.search).get("lang");
+  if(q==="es"||q==="en")lang=q;
+  else if(location.hash==="#es")lang="es";
+  else{const s=localStorage.getItem("sm-lang");if(s==="es"||s==="en")lang=s;else if((navigator.language||"").toLowerCase().startsWith("es"))lang="es";}
+}catch(e){}
+const T=()=>L[lang];
+
+document.querySelectorAll("[data-i18n]").forEach(el=>{el.dataset.en=el.innerHTML;});
+document.querySelectorAll("[data-i18n-aria]").forEach(el=>{el.dataset.enAria=el.getAttribute("aria-label");});
+function applyStatic(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;el.innerHTML=lang==="en"?el.dataset.en:(L.es[k]??el.dataset.en);});
+  document.querySelectorAll("[data-i18n-aria]").forEach(el=>{const k=el.dataset.i18nAria;el.setAttribute("aria-label",lang==="en"?el.dataset.enAria:(L.es[k]??el.dataset.enAria));});
+  const b=document.getElementById("langbtn");b.textContent=T().btn;b.setAttribute("lang",T().btnLang);
+  b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
+}
+document.getElementById("langbtn").addEventListener("click",()=>{
+  lang=lang==="en"?"es":"en";
+  try{localStorage.setItem("sm-lang",lang);}catch(e){}
+  applyStatic();rebuildPicker();renderMap();renderPanel();
+});
+
+PLACES.forEach((p,i)=>{p.i=i;p.env=Math.round(p.f.reduce((a,v,k)=>a+((v-1)/4)*W[k],0)*100);});
+const pt=p=>lang==="es"?p.te:p.t, pn=p=>lang==="es"?p.ne:p.note;
+
+let RATINGS={};
 let state={ready:false,sel:null,filter:"all"};
 
 function scoreAll(){
   PLACES.forEach(p=>{
-    const rs=RATINGS[p.i]||[];p.cnt=rs.length;
-    p.low=rs.filter(r=>r.s<=2);if(p.cnt>=MIN){p.avg=rs.reduce((a,r)=>a+r.s,0)/p.n;const w=.4*p.cnt/(p.cnt+2);p.s=Math.round((1-w)*p.env+w*((p.avg-1)/4)*100);}
+    const rs=RATINGS[p.i]||[];p.cnt=rs.length;p.low=rs.filter(r=>r.s<=2);
+    if(p.cnt>=MIN){p.avg=rs.reduce((a,r)=>a+r.s,0)/p.cnt;const w=.4*p.cnt/(p.cnt+2);p.s=Math.round((1-w)*p.env+w*((p.avg-1)/4)*100);}
     else{p.avg=null;p.s=p.env;}
     p.b=p.s>=75?"strong":p.s>=55?"mixed":"caution";
   });
@@ -355,123 +479,117 @@ const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
 const el=(t,a,parent=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
 const defs=el("defs",{});
 ["strong","mixed","caution"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
-el("path",{d:path(county)+" Z",class:"county"});
-el("path",{d:path(fb),class:"river"});
-el("path",{d:path(sw),class:"river","stroke-width":"2"});
-towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle"});t.textContent=n;});
-const halos=el("g",{}),pins=el("g",{});
+el("path",{d:path(county)+" Z",class:"county","aria-hidden":"true"});
+el("path",{d:path(fb),class:"river","aria-hidden":"true"});
+el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
+towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"});t.textContent=n;});
+const halos=el("g",{"aria-hidden":"true"}),pins=el("g",{});
 PLACES.forEach(p=>{
   p.h=el("circle",{cx:X(p.lng),cy:Y(p.lat),class:"halo"},halos);
   const g=el("g",{class:"pin",tabindex:"0",role:"button"},pins);
   p.dot=el("circle",{cx:X(p.lng),cy:Y(p.lat),r:13,class:"dot"},g);
-  p.num=el("text",{x:X(p.lng),y:Y(p.lat)+4,"text-anchor":"middle",class:"num"},g);
+  p.num=el("text",{x:X(p.lng),y:Y(p.lat)+4,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
   p.tt=el("title",{},g);
-  p.lbl=el("text",{x:X(p.lng),y:Y(p.lat)-20,"text-anchor":"middle",class:"lbl"},g);
+  p.lbl=el("text",{x:X(p.lng),y:Y(p.lat)-20,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
   g.addEventListener("click",()=>select(p,true));
-  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p);}});
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p,true);}});
   p.g=g;
 });
-const list=document.getElementById("list"),panel=document.getElementById("panel");
+const list=document.getElementById("list"),panel=document.getElementById("panel"),pick=document.getElementById("pick");
 PLACES.forEach(p=>{
-  const b=document.createElement("button");b.className="row";b.id="row-"+p.i;
+  const b=document.createElement("button");b.className="row";b.id="row-"+p.i;b.type="button";
   b.addEventListener("click",()=>select(p,true));
   p.row=b;
 });
+function rebuildPicker(){
+  pick.innerHTML="";
+  Object.keys(T().AREAS).forEach(a=>{const og=document.createElement("optgroup");og.label=T().AREAS[a];PLACES.filter(p=>p.a===a).forEach(p=>{const o=document.createElement("option");o.value=p.i;o.textContent=p.n;og.appendChild(o);});pick.appendChild(og);});
+  if(state.sel)pick.value=state.sel.i;
+}
+pick.addEventListener("change",()=>select(PLACES[+pick.value],true));
 
 function renderMap(){
+  const t=T();
   PLACES.forEach(p=>{
     p.h.setAttribute("r",22+p.s*.5);p.h.setAttribute("fill",`url(#g-${p.b})`);
     p.dot.setAttribute("style",`fill:var(--${p.b})`);
     p.num.textContent=p.r;p.tt.textContent=`${p.n} · ${p.s}`;
-    p.g.setAttribute("aria-label",`${p.n}, score ${p.s}`);
+    p.g.setAttribute("aria-label",t.aria(p.n,p.s,t.BL[p.b]));
     const on=state.filter==="all"||p.b===state.filter;
     p.g.classList.toggle("dim",!on);p.h.style.opacity=on?1:.1;p.row.hidden=!on;
     p.g.classList.toggle("sel",p===state.sel);p.row.classList.toggle("sel",p===state.sel);
+    if(p===state.sel)p.g.setAttribute("aria-current","true");else p.g.removeAttribute("aria-current");
   });
   if(state.sel)pins.appendChild(state.sel.g);
   list.innerHTML="";
-  Object.keys(AREAS).forEach(a=>{
+  Object.keys(t.AREAS).forEach(a=>{
     const ps=[...PLACES].filter(p=>p.a===a).sort((x,y)=>x.r-y.r);
-    const h=document.createElement("div");h.className="area";h.textContent=AREAS[a];list.appendChild(h);
+    const h=document.createElement("h3");h.className="area";h.textContent=t.AREAS[a];list.appendChild(h);
     ps.forEach(p=>{
-      p.row.innerHTML=`<span class="n">${p.r}</span><span class="nm">${p.n}<span class="ty">${p.t}${p.cnt>=MIN?` · ${p.cnt} rating${p.cnt===1?"":"s"}`:""}</span></span><span class="sc"><i class="sw" style="background:var(--${p.b})"></i>${p.s}</span>`;
+      p.row.innerHTML=`<span class="n">${p.r}</span><span class="nm">${p.n}<span class="ty">${pt(p)}${p.cnt>=MIN?t.listCount(p.cnt):""}</span></span><span class="sc"><i class="sw" style="background:var(--${p.b})"></i>${p.s}<span class="sr">, ${t.BL[p.b]}</span></span>`;
       list.appendChild(p.row);
     });
   });
   PLACES.forEach(p=>{p.lbl.textContent=p===state.sel?p.n:"";});
-  const pick=document.getElementById("pick");
-  if(!pick.options.length){Object.keys(AREAS).forEach(a=>{const og=document.createElement("optgroup");og.label=AREAS[a];PLACES.filter(p=>p.a===a).forEach(p=>{const o=document.createElement("option");o.value=p.i;o.textContent=p.n;og.appendChild(o);});pick.appendChild(og);});pick.addEventListener("change",()=>select(PLACES[+pick.value],true));}
   if(state.sel)pick.value=state.sel.i;
 }
 
 function ratingsBlock(p){
-  const rs=RATINGS[p.i]||[];
-  if(p.cnt<MIN){
-    return `<span class="status">Women's ratings · none yet</span><p class="note">Be the first. Ratings show as soon as they come in.</p>`;
-  }
-  const counts=Object.keys(TAGS).map(k=>[k,rs.filter(r=>(r.g||[]).includes(k)).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+  const t=T(),rs=RATINGS[p.i]||[];
+  if(p.cnt<MIN)return `<span class="status">${t.rNone}</span><p class="note">${t.rNoneP}</p>`;
+  const counts=Object.keys(t.TAGS).map(k=>[k,rs.filter(r=>(r.g||[]).includes(k)).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
   const lowT={};p.low.forEach(r=>{lowT[r.t]=(lowT[r.t]||0)+1;});
-  const warn=p.low.length?`<div class="warn"><b>${p.low.length===1?"Someone felt unsafe here":p.low.length+" women felt unsafe here"}</b> ${Object.keys(lowT).map(t=>`${(TIMES[t]||"time not given").toLowerCase()} (${lowT[t]})`).join(", ")}</div>`:"";
-  return `<span class="status">Women's ratings · ${p.cnt} ${p.cnt===1?"rating":"ratings"}</span>${warn}
-    <div class="scoreline"><span class="mini">${p.avg.toFixed(1)}<small>/5</small></span><span class="note">average for how safe women felt here. Environmental score ${p.env}, blended score ${p.s}.</span></div>
-    ${counts.length?`<div class="tags">${counts.map(([k,c])=>`<span class="tag">${TAGS[k]} <b>${c}</b></span>`).join("")}</div>`:""}`;
+  const warn=p.low.length?`<div class="warn" role="note"><b>${t.warn(p.low.length)}</b> ${Object.keys(lowT).map(k=>`${t.TIMES[k]||t.noTime} (${lowT[k]})`).join(", ")}</div>`:"";
+  return `<span class="status">${t.rCount(p.cnt)}</span>${warn}
+    <div class="scoreline"><span class="mini">${p.avg.toFixed(1)}<small>/5</small></span><span class="note">${t.avg(p.env,p.s)}</span></div>
+    ${counts.length?`<div class="tags">${counts.map(([k,c])=>`<span class="tag">${t.TAGS[k]} <b>${c}</b></span>`).join("")}</div>`:""}`;
 }
 function formBlock(p){
-  const url="https://tally.so/r/RGXoOd?place="+encodeURIComponent(p.n);
-  return `<span class="status">Rate this place</span>
-    <p class="note">Four quick questions, no sign-in, no name. Takes about 20 seconds.</p>
-    <a class="save" href="${url}" target="_blank" rel="noopener">Rate ${p.n} ↗</a>
-    <p class="fine">Ratings show on the map as soon as they come in, without names.</p>`;
+  const t=T(),url=FORMS[lang]+"?place="+encodeURIComponent(p.n);
+  return `<span class="status">${t.rateS}</span>
+    <p class="note">${t.rateP}</p>
+    <a class="save" href="${url}" target="_blank" rel="noopener">${t.rateB(p.n)}</a>
+    <p class="fine">${t.rateF}</p>`;
 }
-const ADVICE=[
- "Little or no lighting. Plan to finish well before sunset.",
- "Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.",
- "Dense cover in places. Keep one ear free and stay on the main trail.",
- "Weak cell signal. Tell someone your route before you lose service, and download an offline map.",
- "No staff on site. Note the nearest road or building you could head toward.",
- "The lot is hard to see from the road. Park near the entrance, facing out."
-];
 function goBlock(p){
-  const tips=p.f.map((v,k)=>v<=2?ADVICE[k]:null).filter(Boolean);
-  const dark=(RATINGS[p.i]||[]).some(r=>r.s<=2&&(r.t==="dark"||r.t==="dusk"));
-  if(dark)tips.unshift("Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.");
-  if(!tips.length)return `<span class="status">Before you go here</span><p class="note">No weak spots stand out. The general safety tips still apply.</p><a href="#safety">Safety tips ↓</a>`;
-  return `<span class="status">Before you go here</span><ul>${tips.map(t=>`<li>${t}</li>`).join("")}</ul><a href="#safety">More safety tips ↓</a>`;
+  const t=T();
+  const tips=p.f.map((v,k)=>v<=2?t.ADVICE[k]:null).filter(Boolean);
+  if((RATINGS[p.i]||[]).some(r=>r.s<=2&&(r.t==="dark"||r.t==="dusk")))tips.unshift(t.dark);
+  if(!tips.length)return `<span class="status">${t.before}</span><p class="note">${t.noWeak}</p><a href="#safety">${t.tipsLink}</a>`;
+  return `<span class="status">${t.before}</span><ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul><a href="#safety">${t.moreTips}</a>`;
 }
 function renderPanel(){
-  const p=state.sel;if(!p)return;
+  const p=state.sel;if(!p)return;const t=T();
   const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" Buncombe County NC")}`;
   panel.innerHTML=`
-    <div class="eyebrow">#${p.r} of ${PLACES.length} · ${p.t}</div>
+    <div class="eyebrow">${t.rank(p.r,PLACES.length)} · ${pt(p)}</div>
     <h2>${p.n}</h2>
-    <div class="scoreline"><span class="score">${p.s}</span><span class="band" style="background:var(--${p.b})">${BL[p.b]}</span>${p.cnt>=MIN?`<span class="note">blended</span>`:""}</div>
-    <p class="note">${p.note}</p>
-    <div class="factors">${FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
+    <div class="scoreline"><span class="score">${p.s}</span><span class="band" style="background:var(--${p.b})">${t.BL[p.b]}</span>${p.cnt>=MIN?`<span class="note">${t.blended}</span>`:""}</div>
+    <p class="note">${pn(p)}</p>
+    <div class="factors">${t.FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar" aria-hidden="true"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
     <div class="layer go">${goBlock(p)}</div>
     <div class="layer">${ratingsBlock(p)}</div>
     <div class="layer">${formBlock(p)}</div>
-    <div class="layer"><span class="status">Police incident context · not connected</span><p class="note">Will show nearby reported incidents for context, kept out of the score.</p></div>
-    <a href="${dir}" target="_blank" rel="noopener">Directions ↗</a>`;
+    <div class="layer"><span class="status">${t.polS}</span><p class="note">${t.polP}</p></div>
+    <a href="${dir}" target="_blank" rel="noopener">${t.dir}</a>`;
 }
-
 function select(p,jump){state.sel=p;renderMap();renderPanel();if(jump)panel.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
 
 document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
   state.filter=c.dataset.f;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c));renderMap();
 }));
 
-scoreAll();
-select([...PLACES].sort((a,b)=>a.r-b.r)[0]);
+function ingest(r){
+  const agg={};
+  Object.keys(r||{}).forEach(k=>{if(!PLACES[k]||!Array.isArray(r[k]))return;agg[k]=r[k].filter(v=>v&&typeof v.s==="number"&&v.s>=1&&v.s<=5).map(v=>({s:Math.round(v.s),t:String(v.t||""),g:Array.isArray(v.g)?v.g.filter(x=>L.en.TAGS[x]):[]}));});
+  RATINGS=agg;state.ready=true;scoreAll();renderMap();renderPanel();
+}
 
-(async()=>{
-  try{
-    const res=await fetch("ratings.json",{cache:"no-store"});
-    const r=res.ok?((await res.json())||{}).r||{}:{};const agg={};
-    Object.keys(r).forEach(k=>{if(!PLACES[k]||!Array.isArray(r[k]))return;agg[k]=r[k].filter(v=>v&&typeof v.s==="number"&&v.s>=1&&v.s<=5).map(v=>({s:Math.round(v.s),t:String(v.t||""),g:Array.isArray(v.g)?v.g.filter(x=>TAGS[x]):[]}));});
-    RATINGS=agg;
-  }catch(e){}
-  state.ready=true;scoreAll();renderMap();renderPanel();
-})();
+applyStatic();
+scoreAll();
+state.sel=[...PLACES].sort((a,b)=>a.r-b.r)[0];
+rebuildPicker();renderMap();renderPanel();
+(async()=>{try{const res=await fetch("ratings.json",{cache:"no-store"});ingest(res.ok?((await res.json())||{}).r:{});}catch(e){state.ready=true;}})();
 </script>
 </body>
 </html>
