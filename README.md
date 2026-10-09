@@ -7,7 +7,7 @@ A community map of parks, greenways and trails in western North Carolina, scored
 
 ## How this was built
 
-Concept, priorities and design decisions: Alison Rose. The code, page text, safety tips, Spanish translation, rating forms and daily update were built with Claude, an AI model by Anthropic, using Claude Code under her direction in October 2026. The starting factor scores come from a structured review of public evidence (official park pages, local news and Google Maps listings), not site visits, and are being corrected through community ratings and field visits. Places closed or damaged by Hurricane Helene are shown but not scored. The Spanish version is an AI draft awaiting native-speaker review. Full details: [about.html](https://connectalisonrose-lab.github.io/buncombe-safer-miles/about.html#built).
+Concept, priorities and design decisions: Alison Rose. The code, page text, safety tips, Spanish translation, rating forms and daily update were built with Claude, an AI model by Anthropic, using Claude Code under her direction in October 2026. The starting factor scores come from a structured review of public evidence (official park pages, local news and Google Maps listings), not site visits, and are being corrected through community ratings and field visits. Places closed or damaged by Hurricane Helene are shown but not scored. The Spanish version is an AI draft awaiting native-speaker review. Full details: [about.html](https://connectalisonrose-lab.github.io/wnc-safer-miles/about.html#built).
 
 The map rates places, never people. It never shows who rated, when anyone goes, or anyone's location.
 
