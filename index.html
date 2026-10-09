@@ -74,6 +74,10 @@ svg.map{width:100%;height:auto;display:block}
 .go{display:grid;gap:6px}
 .go ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
 .go a{font-size:13px}
+.band.b-strong,.band.b-mixed,.band.b-caution{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--bb)}
+.b-strong{--bb:var(--strong);background:color-mix(in srgb,var(--strong) 22%,var(--surface))}
+.b-mixed{--bb:var(--mixed);background:color-mix(in srgb,var(--mixed) 24%,var(--surface))}
+.b-caution{--bb:var(--caution);background:color-mix(in srgb,var(--caution) 20%,var(--surface))}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .sw{width:12px;height:12px;border-radius:50%;display:inline-block}
@@ -135,19 +139,20 @@ h3.area{margin:0}
 </style>
 </head>
 <body>
-<a class="skip" href="#pick" data-i18n="skip">Skip to the map</a>
+<a class="skip" href="#content" data-i18n="skip">Skip to the map</a>
 <div class="wrap">
   <header>
     <div class="topbar">
-      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, NC · Tsalagi land · v0.7</div>
+      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, NC · Tsalagi land · Pilot · v0.8</div>
       <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
     </div>
     <h1>Buncombe Safer Miles</h1>
     <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what makes a place feel safer for women running or walking alone: light, people, open sightlines, signal, staff and a visible parking lot.</p>
-    <p class="notice" data-i18n="notice"><strong>Starter scores.</strong> The environmental scores below are first-pass estimates waiting for local women to confirm or correct. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. <a href="#safety">Safety tips and crisis lines ↓</a></p>
+    <p class="notice" data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starter scores were drafted without site visits and are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911. <a href="#safety">Safety tips and crisis lines ↓</a></p>
   </header>
 
-  <main class="main">
+  <main id="content">
+  <div class="main">
     <div class="mapbox">
       <label class="pick"><span data-i18n="pickLabel">Choose a place</span><select id="pick"></select></label>
       <p class="hint" data-i18n="hint">Or tap a numbered pin. The place's score, ratings and a rate button appear below the map.</p>
@@ -166,7 +171,7 @@ h3.area{margin:0}
       </div>
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
-  </main>
+  </div>
 
   <section style="display:grid;gap:12px">
     <h2 data-i18n="listH">Places by area</h2>
@@ -265,8 +270,11 @@ h3.area{margin:0}
     </section>
   </div>
 
+  </main>
+
   <footer>
     <p data-i18n="foot1">Locations and the county outline are approximate. Use “Directions” for exact trailheads.</p>
+    <p data-i18n="foot3"><a href="about.html">About, terms and privacy</a> · <a href="about.html#built">How this was built</a></p>
     <p data-i18n="foot2">© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
   </footer>
 </div>
@@ -388,9 +396,9 @@ const L={
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
   // static page text
   skip:"Ir al mapa",
-  eyebrow:"Condado de Buncombe, NC · Tierra tsalagi · v0.7",
+  eyebrow:"Condado de Buncombe, NC · Tierra tsalagi · Piloto · v0.8",
   lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que hace que un lugar se sienta más seguro para las mujeres que corren o caminan solas: luz, gente, buena visibilidad, señal, personal y un estacionamiento a la vista.",
-  notice:"<strong>Puntajes iniciales.</strong> Los puntajes del entorno son estimaciones preliminares que esperan ser confirmadas o corregidas por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. <a href=\"#safety\">Consejos de seguridad y líneas de ayuda ↓</a>",
+  notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales se redactaron sin visitas en persona y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911. <a href=\"#safety\">Consejos de seguridad y líneas de ayuda ↓</a>",
   pickLabel:"Elija un lugar",
   hint:"O toque un punto numerado. El puntaje del lugar, sus calificaciones y un botón para calificar aparecen debajo del mapa.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
@@ -423,6 +431,7 @@ const L={
   wontH:"Lo que este mapa no hace",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
   foot1:"Las ubicaciones y el contorno del condado son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
+  foot3:"<a href=\"about.html?lang=es\">Acerca de, términos y privacidad</a> · <a href=\"about.html?lang=es#built-es\">Cómo se creó</a>",
   foot2:"© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra."
  }
 };
@@ -564,7 +573,7 @@ function renderPanel(){
   panel.innerHTML=`
     <div class="eyebrow">${t.rank(p.r,PLACES.length)} · ${pt(p)}</div>
     <h2>${p.n}</h2>
-    <div class="scoreline"><span class="score">${p.s}</span><span class="band" style="background:var(--${p.b})">${t.BL[p.b]}</span>${p.cnt>=MIN?`<span class="note">${t.blended}</span>`:""}</div>
+    <div class="scoreline"><span class="score">${p.s}</span><span class="band b-${p.b}">${t.BL[p.b]}</span>${p.cnt>=MIN?`<span class="note">${t.blended}</span>`:""}</div>
     <p class="note">${pn(p)}</p>
     <div class="factors">${t.FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar" aria-hidden="true"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
     <div class="layer go">${goBlock(p)}</div>

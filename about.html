@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>About, terms and privacy · Buncombe Safer Miles</title>
+<meta name="description" content="A community map of parks, greenways and trails in Buncombe County, NC, scored on what makes them safer for women running or walking alone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field-map page. Hand-drawn county map left, place detail right; stacks on phones. */
+:root{
+  --bg:#eef1ef; --surface:#f8faf8; --ink:#1d2a27; --muted:#5a6964; --line:#c9d2ce;
+  --land:#e3e9e5; --river:#7fa3b5; --accent:#2f5d50;
+  --strong:#2a8a72; --mixed:#c98a1b; --caution:#b4475f;
+  --display:"Bitter",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141b19; --surface:#1b2421; --ink:#e4ebe8; --muted:#97a6a0; --line:#2f3c38;
+  --land:#1f2a27; --river:#4f7a8e; --accent:#8cc5b3;
+  --strong:#4cc2a2; --mixed:#e3a83c; --caution:#e07890; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b19; --surface:#1b2421; --ink:#e4ebe8; --muted:#97a6a0; --line:#2f3c38;
+  --land:#1f2a27; --river:#4f7a8e; --accent:#8cc5b3;
+  --strong:#4cc2a2; --mixed:#e3a83c; --caution:#e07890; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 48px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:17px;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:10px}
+header .lede{color:var(--muted);font-size:16px}
+.notice{border-left:3px solid var(--mixed);padding:10px 14px;background:var(--surface);font-size:14px;max-width:none}
+.main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:10px;min-width:0}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13px var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,.pin:focus-visible,.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+svg.map{width:100%;height:auto;display:block}
+.county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 4}
+.river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.road{fill:none;stroke:var(--line);stroke-width:2}
+.town{font:500 15px var(--mono);fill:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.pin{cursor:pointer}
+.pin .dot{stroke:var(--surface);stroke-width:2.5}
+.pin.sel .dot{stroke:var(--ink);stroke-width:3.5}
+.pin .num{font:600 12px var(--mono);fill:var(--surface);pointer-events:none}
+.pin.dim{opacity:.15;pointer-events:none}
+.pick{display:grid;gap:4px;font-size:13px;font-weight:600}
+.pick select{font:500 15px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
+.hint{font-size:13px;color:var(--muted)}
+.area{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 14px 6px;background:var(--bg);border-bottom:1px solid var(--line)}
+.pin .lbl{font:600 13px var(--body);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.tips{display:grid;gap:16px}
+.tips-head{display:grid;gap:8px}
+.tip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.tip{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.tip ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px}
+.tip li b{font-weight:600}
+.tip.help{border-color:var(--caution);border-width:1px 1px 1px 4px}
+.tip.help h3{color:var(--caution)}
+.tip .lines{list-style:none;padding:0;gap:0}
+.tip .lines li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.tip .lines li:last-child{border-bottom:0}
+.tip .lines span{display:grid;font-weight:600}
+.tip .lines small{font-weight:400;color:var(--muted);font-size:12.5px}
+.tip .lines a{font:600 15px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-decoration:none;user-select:all}
+.go{display:grid;gap:6px}
+.go ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
+.go a{font-size:13px}
+.band.b-strong,.band.b-mixed,.band.b-caution{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--bb)}
+.b-strong{--bb:var(--strong);background:color-mix(in srgb,var(--strong) 22%,var(--surface))}
+.b-mixed{--bb:var(--mixed);background:color-mix(in srgb,var(--mixed) 24%,var(--surface))}
+.b-caution{--bb:var(--caution);background:color-mix(in srgb,var(--caution) 20%,var(--surface))}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:50%;display:inline-block}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:14px;min-width:0}
+.scoreline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.score{font:700 44px var(--display);font-variant-numeric:tabular-nums;line-height:1}
+.band{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:var(--surface)}
+.factors{display:grid;gap:8px}
+.f{display:grid;grid-template-columns:120px 1fr 28px;gap:10px;align-items:center;font-size:13px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.f b{font:500 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.layer{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px}
+.layer .status{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.note{color:var(--muted);font-size:14px}
+a{color:var(--accent);font-weight:600}
+.list{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;color:var(--ink);font:inherit;width:100%}
+.row:last-child{border-bottom:0}
+.row:hover,.row.sel{background:var(--land)}
+.row .n{font:600 13px var(--mono);color:var(--muted)}
+.row .nm{font-weight:600}
+.row .ty{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
+.row .sc{font:600 15px var(--mono);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.cols section{display:grid;gap:8px;align-content:start}
+.cols ul{margin:0;padding-left:18px;display:grid;gap:4px}
+footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);display:grid;gap:6px}
+@media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
+.mini{font:700 28px var(--display);font-variant-numeric:tabular-nums;line-height:1}
+.mini small{font-size:14px;color:var(--muted);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.tag b{font-family:var(--mono);font-weight:500;margin-left:4px}
+.rate{display:grid;gap:14px}
+.rate fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.rate legend{font-weight:600;font-size:14px;padding:0;margin-bottom:8px}
+.opt-label{font-weight:400;color:var(--muted);font-size:12.5px;margin-left:4px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font:600 14px var(--mono);min-width:42px;height:38px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;cursor:pointer;padding:0 10px}
+.opt.wide{font:500 13px var(--body)}
+.opt[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.opt:focus-visible,.save:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scale{display:flex;justify-content:space-between;max-width:250px;font-size:12px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.save{display:inline-block;font:600 14px var(--body);background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:10px 18px;cursor:pointer;text-decoration:none;justify-self:start}
+.save:disabled{opacity:.4;cursor:default}
+.fine{font-size:12.5px;color:var(--muted)}
+.warn{border-left:3px solid var(--caution);padding:6px 10px;font-size:13.5px;background:var(--bg)}
+.warn b{display:block;color:var(--caution)}
+
+.skip{position:absolute;left:16px;top:-48px;background:var(--ink);color:var(--bg);padding:8px 12px;border-radius:6px;z-index:10;font-weight:600}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.langbtn{font:600 13px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.langbtn:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h3.area{margin:0}
+
+.doc{max-width:760px}
+.doc article{display:grid;gap:22px}
+.doc section{display:grid;gap:10px}
+.doc h2{font-size:22px}
+.doc h3{font-size:16px;margin:0}
+.doc p,.doc li{font-size:15.5px;line-height:1.65;max-width:65ch;margin:0}
+.doc ul{margin:0;padding-left:20px;display:grid;gap:10px}
+.doc .lede{font-size:17px}
+.back{font-weight:600;font-size:14px}
+.mail{font-family:var(--mono);user-select:all;font-size:14px}
+.docfoot{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted)}
+.docfoot p{font-size:13px}
+</style>
+</head>
+<body>
+<a class="skip" href="#content" data-l="en">Skip to content</a>
+<a class="skip" href="#content" data-l="es" lang="es" hidden>Ir al contenido</a>
+<div class="wrap doc">
+  <header>
+    <div class="topbar">
+      <a class="back" href="./" data-l="en">← Back to the map</a>
+      <a class="back" href="./?lang=es" data-l="es" lang="es" hidden>← Volver al mapa</a>
+      <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+    </div>
+  </header>
+
+  <main id="content">
+  <article data-l="en" lang="en">
+    <div class="eyebrow">Buncombe Safer Miles · Pilot</div>
+    <h1>About, terms and privacy</h1>
+    <p class="lede">Buncombe Safer Miles is a community pilot. It is a free, independent map of places to run and walk, scored on what helps women feel safer there. This page explains what the map can and can't tell you, how your information is handled, and exactly how the project was built.</p>
+    <p class="note">Last updated October 9, 2026.</p>
+
+    <section>
+      <h2>Not a safety guarantee</h2>
+      <p>A high score means a place has fewer of the risk factors the map measures. It does not mean the place is safe, and a low score does not mean it is dangerous. Conditions change with the season, the weather, the time of day and who else is there. Scores and ratings can be wrong, incomplete or out of date. Use the map as one input alongside your own judgment.</p>
+      <p><strong>This map is not an emergency service.</strong> If you are in danger, call 911.</p>
+    </section>
+
+    <section>
+      <h2>Who runs this</h2>
+      <p>The project is run by Alison Rose, a runner who lives in Buncombe County. It is not affiliated with or endorsed by the City of Asheville, Buncombe County, any police agency, UNC Asheville, or any organization named on the map, including the crisis lines it lists.</p>
+    </section>
+
+    <section>
+      <h2>Terms of use</h2>
+      <ul>
+        <li><strong>Use at your own risk.</strong> The map, scores, ratings and tips are provided as they are, without any promise that they are accurate or complete. To the fullest extent the law allows, Alison Rose and the project are not responsible for any loss, injury or harm connected to using the map or relying on it.</li>
+        <li><strong>Ratings are opinions.</strong> Each rating reflects one person's experience of a place. Ratings are not checked and are not statements of fact about any person, business or public agency.</li>
+        <li><strong>Rate places, never people.</strong> Don't submit false ratings, and don't use the map to find, follow or harass anyone. The project may remove any rating, without notice, that looks false, abusive or aimed at a person.</li>
+        <li><strong>Group walks.</strong> Any group rating walk is voluntary and at your own risk. Walks hosted with a partner organization may follow that organization's own rules and waivers.</li>
+        <li><strong>Changes.</strong> This is a pilot. The map, scoring and these terms may change, and the date at the top of this page will show when.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <h3>What the rating form collects</h3>
+      <p>The place, how safe you felt (1 to 5), the time of day in three bands (daylight, dawn or dusk, after dark), and any of six checkboxes. It never asks for your name, email, phone number or an account, and it has no free-text box.</p>
+      <h3>What the services record</h3>
+      <p>Tally, the form service, also records when you submitted and a random respondent code, and like most websites it may log technical details such as your IP address under its own privacy policy. The website is hosted on GitHub Pages, which may log visits. The page loads its fonts from Google Fonts, so your browser contacts Google when you open it. The project does not use analytics, ads or tracking cookies.</p>
+      <h3>Where responses go</h3>
+      <p>Responses are stored in Tally and in a private Google Sheet that only Alison Rose can open. Once a day, an automated process reads the responses, removes everything except the place, the rating, the time band and the checkboxes, and publishes those totals to the map. Submission times and respondent codes are never published.</p>
+      <h3>Coursework and research</h3>
+      <p>Alison Rose may describe what the pilot shows in coursework, presentations or research, using anonymous totals only, never individual responses. Any formal research use would go through the appropriate university ethics review first.</p>
+      <h3>Removal and questions</h3>
+      <p>Because the project doesn't know who you are, it can't look up your rating by name. If you submitted something you want removed, or you have any question about this page, email <span class="mail">connect.alisonrose@gmail.com</span> with the place and roughly when you rated it.</p>
+    </section>
+
+    <section id="built">
+      <h2>How this was built</h2>
+      <p>In the interest of full transparency, here is exactly how the project was made.</p>
+      <ul>
+        <li><strong>Concept and direction: Alison Rose.</strong> The idea, the priorities, the decision to rate places and never people, to keep police data out of the score, to show low ratings as warnings, to add Spanish and to frame this as a pilot all came from her. She reviewed, tested and decided what to keep at each step.</li>
+        <li><strong>Built with AI.</strong> The site was built with Claude, an AI model made by Anthropic, using Claude Code, working under Alison's direction in October 2026. Claude wrote the website code, drafted the page text, safety tips and Spanish translation, created the rating forms, set up the daily update, and researched the crisis lines and partner organizations.</li>
+        <li><strong>The starter scores are AI estimates.</strong> The six factor scores for each place were first-pass estimates drafted by Claude from general knowledge of these places, not from site visits. That is why they're labeled starter scores. They are being corrected through women's ratings and planned visits to each place at midday and at dusk.</li>
+        <li><strong>The Spanish version is an AI draft</strong> waiting for review by native speakers in the community.</li>
+        <li><strong>Crisis-line numbers</strong> were checked against two public sources each on October 9, 2026.</li>
+        <li><strong>The map is drawn in code.</strong> The county outline and place locations are approximate. No Google Maps data is used on the map itself; the "Directions" link opens Google Maps.</li>
+        <li><strong>The tools:</strong> GitHub Pages hosts the site, and its code is public at <a href="https://github.com/connectalisonrose-lab/buncombe-safer-miles" target="_blank" rel="noopener">github.com/connectalisonrose-lab/buncombe-safer-miles</a>. Tally runs the English and Spanish forms. Responses go to Google Sheets. A scheduled AI task, also run by Claude, does the once-a-day update described under Privacy.</li>
+        <li><strong>The scoring method</strong> is explained on the map under "How the score works," and in Alison's written rationale for the project, which draws on research in feminist geography, environmental design and participatory mapping.</li>
+      </ul>
+    </section>
+
+    <footer class="docfoot">
+      <p>© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
+    </footer>
+  </article>
+
+  <article data-l="es" lang="es" hidden>
+    <div class="eyebrow">Buncombe Safer Miles · Piloto</div>
+    <h1>Acerca de, términos y privacidad</h1>
+    <p class="lede">Buncombe Safer Miles es un proyecto piloto comunitario. Es un mapa gratuito e independiente de lugares para correr y caminar, calificados según lo que ayuda a las mujeres a sentirse más seguras. Esta página explica lo que el mapa puede y no puede decirle, cómo se maneja su información y cómo se creó exactamente el proyecto.</p>
+    <p class="note">Última actualización: 9 de octubre de 2026.</p>
+
+    <section>
+      <h2>No es una garantía de seguridad</h2>
+      <p>Un puntaje alto significa que un lugar tiene menos de los factores de riesgo que mide el mapa. No significa que el lugar sea seguro, y un puntaje bajo no significa que sea peligroso. Las condiciones cambian según la temporada, el clima, la hora del día y quién más esté allí. Los puntajes y las calificaciones pueden estar equivocados, incompletos o desactualizados. Use el mapa como un dato más, junto con su propio criterio.</p>
+      <p><strong>Este mapa no es un servicio de emergencia.</strong> Si está en peligro, llame al 911.</p>
+    </section>
+
+    <section>
+      <h2>Quién está a cargo</h2>
+      <p>El proyecto está a cargo de Alison Rose, corredora que vive en el condado de Buncombe. No está afiliado ni respaldado por la Ciudad de Asheville, el condado de Buncombe, ninguna agencia policial, UNC Asheville ni ninguna organización mencionada en el mapa, incluidas las líneas de ayuda que aparecen en él.</p>
+    </section>
+
+    <section>
+      <h2>Términos de uso</h2>
+      <ul>
+        <li><strong>Úselo bajo su propio riesgo.</strong> El mapa, los puntajes, las calificaciones y los consejos se ofrecen tal como están, sin ninguna promesa de que sean exactos o completos. En la medida máxima que permita la ley, Alison Rose y el proyecto no son responsables de ninguna pérdida, lesión o daño relacionado con el uso del mapa o con confiar en él.</li>
+        <li><strong>Las calificaciones son opiniones.</strong> Cada calificación refleja la experiencia de una persona en un lugar. Las calificaciones no se verifican y no son afirmaciones de hecho sobre ninguna persona, negocio o agencia pública.</li>
+        <li><strong>Califique lugares, nunca personas.</strong> No envíe calificaciones falsas ni use el mapa para encontrar, seguir o acosar a nadie. El proyecto puede eliminar sin aviso cualquier calificación que parezca falsa, abusiva o dirigida contra una persona.</li>
+        <li><strong>Caminatas en grupo.</strong> Cualquier caminata en grupo para calificar lugares es voluntaria y bajo su propio riesgo. Las caminatas organizadas con otra organización pueden seguir las reglas y exenciones de esa organización.</li>
+        <li><strong>Cambios.</strong> Este es un proyecto piloto. El mapa, el sistema de puntajes y estos términos pueden cambiar, y la fecha al inicio de esta página indicará cuándo.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Privacidad</h2>
+      <h3>Lo que recoge el formulario</h3>
+      <p>El lugar, qué tan segura se sintió (de 1 a 5), la hora del día en tres franjas (de día, al amanecer o al atardecer, de noche) y cualquiera de seis casillas. Nunca pide su nombre, correo electrónico, teléfono ni una cuenta, y no tiene espacio para escribir texto libre.</p>
+      <h3>Lo que registran los servicios</h3>
+      <p>Tally, el servicio de formularios, también registra cuándo envió su respuesta y un código aleatorio de participante y, como la mayoría de los sitios web, puede registrar datos técnicos como su dirección IP según su propia política de privacidad. El sitio web está alojado en GitHub Pages, que puede registrar las visitas. La página carga sus tipos de letra desde Google Fonts, así que su navegador se conecta con Google al abrirla. El proyecto no usa analíticas, anuncios ni cookies de rastreo.</p>
+      <h3>Adónde van las respuestas</h3>
+      <p>Las respuestas se guardan en Tally y en una hoja de cálculo privada de Google que solo Alison Rose puede abrir. Una vez al día, un proceso automático lee las respuestas, elimina todo excepto el lugar, la calificación, la franja horaria y las casillas, y publica esos totales en el mapa. Nunca se publican las horas de envío ni los códigos de participante.</p>
+      <h3>Trabajos académicos e investigación</h3>
+      <p>Alison Rose puede describir lo que muestra el piloto en trabajos académicos, presentaciones o investigaciones, usando solo totales anónimos y nunca respuestas individuales. Cualquier uso formal en una investigación pasaría primero por la revisión ética universitaria correspondiente.</p>
+      <h3>Eliminación y preguntas</h3>
+      <p>Como el proyecto no sabe quién es usted, no puede buscar su calificación por nombre. Si envió algo que quiere eliminar, o tiene alguna pregunta sobre esta página, escriba a <span class="mail">connect.alisonrose@gmail.com</span> indicando el lugar y aproximadamente cuándo lo calificó.</p>
+    </section>
+
+    <section id="built-es">
+      <h2>Cómo se creó</h2>
+      <p>Con total transparencia, así se hizo exactamente el proyecto.</p>
+      <ul>
+        <li><strong>Concepto y dirección: Alison Rose.</strong> La idea, las prioridades y las decisiones de calificar lugares y nunca personas, de dejar los datos policiales fuera del puntaje, de mostrar las calificaciones bajas como advertencias, de agregar el español y de presentarlo como un piloto fueron suyas. Ella revisó, probó y decidió qué conservar en cada paso.</li>
+        <li><strong>Hecho con inteligencia artificial.</strong> El sitio se creó con Claude, un modelo de inteligencia artificial de Anthropic, usando Claude Code, bajo la dirección de Alison en octubre de 2026. Claude escribió el código del sitio, redactó los textos, los consejos de seguridad y la traducción al español, creó los formularios, configuró la actualización diaria e investigó las líneas de ayuda y las organizaciones aliadas.</li>
+        <li><strong>Los puntajes iniciales son estimaciones de la IA.</strong> Los seis puntajes de cada lugar fueron estimaciones preliminares redactadas por Claude a partir de conocimiento general sobre estos lugares, no de visitas en persona. Por eso se llaman puntajes iniciales. Se están corrigiendo con las calificaciones de las mujeres y con visitas planificadas a cada lugar al mediodía y al atardecer.</li>
+        <li><strong>La versión en español es un borrador hecho con IA</strong> que espera la revisión de hablantes nativas de la comunidad.</li>
+        <li><strong>Los números de las líneas de ayuda</strong> se verificaron con dos fuentes públicas cada uno el 9 de octubre de 2026.</li>
+        <li><strong>El mapa está dibujado con código.</strong> El contorno del condado y las ubicaciones son aproximados. El mapa no usa datos de Google Maps; el enlace "Cómo llegar" abre Google Maps.</li>
+        <li><strong>Las herramientas:</strong> GitHub Pages aloja el sitio, y su código es público en <a href="https://github.com/connectalisonrose-lab/buncombe-safer-miles" target="_blank" rel="noopener">github.com/connectalisonrose-lab/buncombe-safer-miles</a>. Tally maneja los formularios en inglés y español. Las respuestas van a Google Sheets. Una tarea programada de IA, también a cargo de Claude, hace la actualización diaria descrita en la sección de privacidad.</li>
+        <li><strong>El método de puntaje</strong> se explica en el mapa, en "Cómo funciona el puntaje", y en el documento de fundamentos de Alison, que se basa en investigaciones de geografía feminista, diseño del entorno y mapeo participativo.</li>
+      </ul>
+    </section>
+
+    <footer class="docfoot">
+      <p>© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra.</p>
+    </footer>
+  </article>
+  </main>
+</div>
+<script>
+let lang="en";
+try{const q=new URLSearchParams(location.search).get("lang");if(q==="es"||q==="en")lang=q;else{const s=localStorage.getItem("sm-lang");if(s==="es"||s==="en")lang=s;else if((navigator.language||"").toLowerCase().startsWith("es"))lang="es";}}catch(e){}
+function apply(){document.documentElement.lang=lang;document.querySelectorAll("[data-l]").forEach(el=>{el.hidden=el.dataset.l!==lang;});
+const b=document.getElementById("langbtn");b.textContent=lang==="en"?"Español":"English";b.setAttribute("lang",lang==="en"?"es":"en");b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
+document.title=lang==="en"?"About, terms and privacy · Buncombe Safer Miles":"Acerca de, términos y privacidad · Buncombe Safer Miles";}
+document.getElementById("langbtn").addEventListener("click",()=>{lang=lang==="en"?"es":"en";try{localStorage.setItem("sm-lang",lang);}catch(e){}apply();});
+apply();
+</script>
+</body>
+</html>
