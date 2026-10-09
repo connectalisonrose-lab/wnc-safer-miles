@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#eef3f2;color:#1c2b2b}@media (prefers-color-scheme:dark){body{background:#111919;color:#ecf1f0}}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Buncombe Safer Miles</title>
+<title>WNC Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe County, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Buncombe Safer Miles — design system (Oct 2026)
+/* WNC Safer Miles — design system (Oct 2026)
    Calm and legible first. One typeface, Atkinson Hyperlegible, designed for low-vision readability.
    Palette from Blue Ridge haze. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
 :root{
   --bg:#eef3f2; --surface:#ffffff; --band:#e1eae8; --ink:#1c2b2b; --muted:#465756; --line:#d3dedc;
   --land:#e4ece9; --river:#5b8da3; --accent:#2a6b5c;
-  --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
+  --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089; --closed:#667473;
   --font:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:var(--font); --body:var(--font); --mono:var(--font);
   --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:72px;
@@ -25,11 +25,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#111919; --surface:#192323; --band:#1d2a2a; --ink:#ecf1f0; --muted:#b4c2c0; --line:#2e3c3b;
   --land:#1f2b2b; --river:#5f93aa; --accent:#93d2c0;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}}
+  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; --closed:#6f7d7c; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#111919; --surface:#192323; --band:#1d2a2a; --ink:#ecf1f0; --muted:#b4c2c0; --line:#2e3c3b;
   --land:#1f2b2b; --river:#5f93aa; --accent:#93d2c0;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}
+  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; --closed:#6f7d7c; color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -121,6 +121,10 @@ svg.map{width:100%;height:auto;display:block}
 .warn b{display:block}
 .save{display:inline-flex;align-items:center;justify-self:start;font:700 17px var(--font);min-height:52px;padding:12px 24px;border-radius:10px;background:var(--accent);color:var(--surface);text-decoration:none}
 
+.status-note{border-left:4px solid var(--mixed);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;background:color-mix(in srgb,var(--mixed) 10%,var(--surface))}
+.status-note.off{border-left-color:var(--muted);background:var(--band)}
+.row .sc.off{font-size:15px;color:var(--muted)}
+.pin .dot{}
 /* ---------- Places list ---------- */
 .list{columns:2 360px;column-gap:var(--s3)}
 .list .area{font:700 18px var(--font);margin:var(--s3) 0 var(--s1);padding:0;color:var(--ink);break-after:avoid}
@@ -195,7 +199,7 @@ html[data-size="large"] .wrap{zoom:1.18}
       <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
     </div>
     <div class="title">
-      <h1>Buncombe Safer Miles</h1>
+      <h1>WNC Safer Miles</h1>
       <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what helps women feel safer running or walking alone.</p>
     </div>
     <ul class="facts">
@@ -203,7 +207,7 @@ html[data-size="large"] .wrap{zoom:1.18}
       <li data-i18n="fact2"><strong>Not a guarantee</strong>A higher score means fewer known risk factors. Use it alongside your own judgment.</li>
       <li data-i18n="fact3"><strong>Not an emergency service</strong>If you are in danger, call <a href="tel:911">911</a>. <a href="#safety">Crisis lines and safety tips</a></li>
     </ul>
-    <details class="more"><summary data-i18n="moreS">More about this pilot</summary><p data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starter scores were drafted without site visits and are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911.</p></details>
+    <details class="more"><summary data-i18n="moreS">More about this pilot</summary><p data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starting scores come from a review of public sources, such as park and county pages, local news and Google Maps listings, not from site visits, and they are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911.</p></details>
   </header>
 
   <main id="content">
@@ -225,6 +229,7 @@ html[data-size="large"] .wrap{zoom:1.18}
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
         <span><i class="sw" style="background:var(--mixed)"></i><span data-i18n="lgMixed">Mixed 55–74</span></span>
         <span><i class="sw" style="background:var(--caution)"></i><span data-i18n="lgCaution">Go prepared &lt;55</span></span>
+        <span><i class="sw" style="background:var(--closed)"></i><span data-i18n="lgClosed">Closed or unconfirmed (×)</span></span>
         <span><i class="sw" style="background:var(--river)"></i><span data-i18n="lgRivers">Rivers</span></span>
       </div>
     </div>
@@ -356,75 +361,75 @@ html[data-size="large"] .wrap{zoom:1.18}
 
 <script>
 const PLACES=[
- {n:"Carrier Park",a:"ash",lat:35.5716,lng:-82.5794,f:[3,5,5,5,2,4],
+ {n:"Carrier Park",a:"ash",st:"partial",sn:'Partly open after Hurricane Helene: the east side, picnic shelter, lawn, east parking lot and greenway are open; the west side is closed. Some light poles are damaged.',sne:'Abierto en parte después del huracán Helene: el lado este, el refugio de pícnic, el césped, el estacionamiento este y el sendero verde están abiertos; el lado oeste está cerrado. Algunos postes de luz están dañados.',lat:35.5716,lng:-82.5794,f:[2,4,5,5,2,3],
   t:"Park · paved loop",te:"Parque · circuito pavimentado",
-  note:"Open fields and a busy velodrome loop along the French Broad. Rarely empty in daylight.",
-  ne:"Campos abiertos y un circuito de velódromo muy concurrido junto al río French Broad. Rara vez está vacío de día."},
- {n:"French Broad River Park",a:"ash",lat:35.5781,lng:-82.5740,f:[3,4,4,5,2,4],
+  note:"Open lawn and greenway access along the French Broad. Part of the park is still closed after Helene.",
+  ne:"Césped abierto y acceso al sendero verde junto al río French Broad. Parte del parque sigue cerrada después de Helene."},
+ {n:"French Broad River Park",a:"ash",st:"closed",sn:"Closed after Hurricane Helene, as of the city's latest update. Parts of the greenway nearby are open; follow posted signs. Not scored until it reopens.",sne:'Cerrado después del huracán Helene, según la última actualización de la ciudad. Partes del sendero verde cercano están abiertas; siga los letreros. No tiene puntaje hasta que reabra.',lat:35.5781,lng:-82.5740,f:[3,4,4,5,2,4],
   t:"Park · riverside paths",te:"Parque · senderos junto al río",
   note:"Connects to Carrier Park by greenway. Dog park keeps people around.",
   ne:"Se conecta con Carrier Park por un sendero verde. El parque para perros mantiene gente alrededor."},
- {n:"Hominy Creek River Park",a:"ash",lat:35.5617,lng:-82.5929,f:[1,3,3,4,1,2],
+ {n:"Hominy Creek River Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5617,lng:-82.5929,f:[1,2,3,4,1,2],
   t:"Park · wooded trail",te:"Parque · sendero boscoso",
   note:"Quieter wooded sections and a lot that's hard to see from the road. Better with a buddy.",
   ne:"Tramos boscosos más tranquilos y un estacionamiento difícil de ver desde la calle. Mejor ir acompañada."},
- {n:"Wilma Dykeman Greenway",a:"ash",lat:35.5876,lng:-82.5660,f:[4,5,4,5,2,3],
+ {n:"Wilma Dykeman Greenway",a:"ash",st:"open",sn:"",sne:"Plano y muy usado, con negocios a lo largo de gran parte del recorrido.",lat:35.5876,lng:-82.5660,f:[3,4,4,5,2,3],
   t:"Greenway · River Arts District",te:"Sendero verde · River Arts District",
-  note:"Lit, busy and flat, with businesses along much of it.",
+  note:"Flat and well used, with businesses along much of it.",
   ne:"Iluminado, concurrido y plano, con negocios a lo largo de gran parte del recorrido."},
- {n:"Reed Creek Greenway",a:"ash",lat:35.6077,lng:-82.5562,f:[3,4,3,5,2,3],
+ {n:"Reed Creek Greenway",a:"ash",st:"open",sn:"",sne:"",lat:35.6077,lng:-82.5562,f:[3,4,3,5,2,2],
   t:"Greenway · near UNCA",te:"Sendero verde · cerca de UNCA",
   note:"Short and well used by students. Some tree-lined stretches.",
   ne:"Corto y muy usado por estudiantes. Algunos tramos bordeados de árboles."},
- {n:"Beaver Lake Bird Sanctuary",a:"ash",lat:35.6370,lng:-82.5568,f:[2,4,4,5,1,4],
+ {n:"Beaver Lake Bird Sanctuary",a:"ash",st:"open",sn:"",sne:"Siempre hay gente caminando alrededor del lago. Sin personal, y el portón del estacionamiento se cierra solo al anochecer.",lat:35.6370,lng:-82.5568,f:[2,4,3,5,1,3],
   t:"Park · lake boardwalk",te:"Parque · pasarela del lago",
-  note:"Steady walkers around the lake. Unstaffed and dark after sunset.",
+  note:"Steady walkers around the lake. Unstaffed, and the parking lot gate closes automatically at dusk.",
   ne:"Siempre hay gente caminando alrededor del lago. Sin personal y oscuro después del atardecer."},
- {n:"Richmond Hill Park",a:"ash",lat:35.6105,lng:-82.5974,f:[1,2,2,3,1,2],
+ {n:"Richmond Hill Park",a:"ash",st:"partial",sn:'Partly open after Hurricane Helene: some trails are open, restrooms are closed and creek bridges are out, so crossings are wet.',sne:'Abierto en parte después del huracán Helene: algunos senderos están abiertos, los baños están cerrados y los puentes del arroyo no están, así que hay que cruzar por el agua.',lat:35.6105,lng:-82.5974,f:[1,2,2,3,1,2],
   t:"Park · wooded trails",te:"Parque · senderos boscosos",
   note:"Disc golf and dense woods with fewer people on weekdays.",
   ne:"Disc golf y bosque denso, con menos gente entre semana."},
- {n:"Lake Julian Park",a:"south",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],
+ {n:"Lake Julian Park",a:"south",st:"open",sn:"",sne:"Vistas abiertas sobre el agua y alquiler de botes de pedal en temporada. La hora de cierre cambia según la estación.",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],
   t:"County park · lake loop",te:"Parque del condado · circuito del lago",
-  note:"Open views across the water and a staffed park office during posted hours.",
+  note:"Open views across the water and seasonal paddle-boat rentals. Closing time changes with the season.",
   ne:"Vistas abiertas sobre el agua y una oficina con personal en el horario indicado."},
- {n:"Bent Creek & Lake Powhatan",a:"south",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
+ {n:"Bent Creek & Lake Powhatan",a:"south",st:"open",sn:"",sne:"",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
   t:"National forest · trail network",te:"Bosque nacional · red de senderos",
   note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route.",
   ne:"Entradas concurridas, pero bosque profundo y poca señal una vez adentro. Comparta su ruta."},
- {n:"NC Arboretum",a:"south",lat:35.4986,lng:-82.6102,f:[2,4,3,4,5,5],
+ {n:"NC Arboretum",a:"south",st:"open",sn:"",sne:"",lat:35.4986,lng:-82.6102,f:[2,5,3,4,5,5],
   t:"Gated grounds · trails",te:"Terreno con portón · senderos",
   note:"Staffed, gated and closed at night. Paid parking means a monitored lot.",
   ne:"Con personal, con portón y cerrado de noche. El estacionamiento pagado significa un lote vigilado."},
- {n:"Botanical Gardens at Asheville",a:"ash",lat:35.6153,lng:-82.5643,f:[2,3,3,5,2,3],
+ {n:"Botanical Gardens at Asheville",a:"ash",st:"open",sn:"",sne:"",lat:35.6153,lng:-82.5643,f:[2,3,2,5,3,3],
   t:"Garden · short loops",te:"Jardín · circuitos cortos",
   note:"Small and peaceful, next to campus. Quiet early mornings.",
   ne:"Pequeño y tranquilo, junto al campus. Silencioso temprano en la mañana."},
- {n:"Pack Square Park",a:"ash",lat:35.5953,lng:-82.5503,f:[5,5,5,5,3,3],
+ {n:"Pack Square Park",a:"ash",st:"open",sn:"",sne:"Céntrico, concurrido y abierto a toda hora. Bueno para circuitos cortos por el centro.",lat:35.5953,lng:-82.5503,f:[4,5,5,5,3,3],
   t:"Downtown park",te:"Parque del centro",
-  note:"Lit, central and always populated. Good for short loops through downtown.",
+  note:"Central, busy and open around the clock. Good for short loops through downtown.",
   ne:"Iluminado, céntrico y siempre con gente. Bueno para vueltas cortas por el centro."},
- {n:"Azalea Park",a:"ash",lat:35.5874,lng:-82.4956,f:[3,4,4,4,2,4],
+ {n:"Azalea Park",a:"ash",st:"unclear",sn:"Heavily damaged by Hurricane Helene, and we couldn't confirm which parts are open. Not scored until its status is confirmed.",sne:'Muy dañado por el huracán Helene, y no pudimos confirmar qué partes están abiertas. No tiene puntaje hasta confirmar su estado.',lat:35.5874,lng:-82.4956,f:[3,4,4,4,2,4],
   t:"Park · sports fields",te:"Parque · campos deportivos",
   note:"Fields and the Swannanoa River path. Busiest during games.",
   ne:"Campos y el sendero del río Swannanoa. Más concurrido durante los partidos."},
- {n:"Lake Tomahawk Park",a:"east",lat:35.6131,lng:-82.3260,f:[3,4,5,5,2,4],
+ {n:"Lake Tomahawk Park",a:"east",st:"open",sn:"",sne:"",lat:35.6131,lng:-82.3260,f:[3,4,5,5,2,4],
   t:"Park · Black Mountain",te:"Parque · Black Mountain",
   note:"Flat lake loop in town with clear views all the way around.",
   ne:"Circuito plano alrededor del lago, en el pueblo, con vista despejada en todo el recorrido."},
- {n:"Lake Louise Park",a:"north",lat:35.6970,lng:-82.5620,f:[3,3,5,5,2,4],
+ {n:"Lake Louise Park",a:"north",st:"open",sn:"",sne:"",lat:35.6970,lng:-82.5620,f:[3,4,5,5,2,4],
   t:"Park · Weaverville",te:"Parque · Weaverville",
   note:"Small, open lake loop in a residential area.",
   ne:"Circuito pequeño y abierto alrededor de un lago, en una zona residencial."},
- {n:"Enka Recreation Destination",a:"west",lat:35.5460,lng:-82.6510,f:[2,3,4,4,2,4],
+ {n:"Enka Recreation Destination",a:"west",st:"partial",sn:'Partly open: construction of the walking path and other upgrades is expected to run through about November 2026.',sne:'Abierto en parte: se espera que la construcción del sendero peatonal y otras mejoras dure hasta noviembre de 2026, aproximadamente.',lat:35.5460,lng:-82.6510,f:[3,3,4,4,3,4],
   t:"County park · trails",te:"Parque del condado · senderos",
   note:"Newer trails near the county sports park. Use is still building.",
   ne:"Senderos nuevos cerca del complejo deportivo del condado. Todavía no tienen mucho uso."},
- {n:"Charles D. Owen Park",a:"east",lat:35.6074,lng:-82.4000,f:[2,3,4,4,2,3],
+ {n:"Charles D. Owen Park",a:"east",st:"closed",sn:'Closed since Hurricane Helene; Buncombe County is planning a rebuild. Not scored until it reopens.',sne:'Cerrado desde el huracán Helene; el condado de Buncombe planea reconstruirlo. No tiene puntaje hasta que reabra.',lat:35.6074,lng:-82.4000,f:[2,3,4,4,2,3],
   t:"Park · Swannanoa",te:"Parque · Swannanoa",
   note:"Two small lakes and open lawn. Quieter on weekdays.",
   ne:"Dos lagos pequeños y césped abierto. Más tranquilo entre semana."},
- {n:"Folk Art Center trailhead",a:"east",lat:35.5676,lng:-82.4920,f:[1,3,2,3,3,4],
+ {n:"Folk Art Center trailhead",a:"east",st:"open",sn:"",sne:"",lat:35.5676,lng:-82.4920,f:[1,2,2,3,3,4],
   t:"Mountains-to-Sea Trail",te:"Mountains-to-Sea Trail",
   note:"Staffed center during open hours, then wooded trail with patchy signal.",
   ne:"Centro con personal en horario de apertura; después, sendero boscoso con señal intermitente."}
@@ -438,7 +443,7 @@ const L={
   FACT:["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"],
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
   TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed"},
-  BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared"},
+  BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
   AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
@@ -450,13 +455,14 @@ const L={
   rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name. Takes about 20 seconds.",rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
   polS:"Police incident context · not connected",polP:"Will show nearby reported incidents for context, kept out of the score.",
   dir:"Directions ↗",rank:(r,t)=>`#${r} of ${t}`,blended:"blended",listCount:n=>` · ${n} ${n===1?"rating":"ratings"}`,
-  aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es"
+  aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es",
+  ariaOff:n=>`${n}, closed or status unconfirmed, not scored`,unclear:"Status unclear",partial:"Partly open",partialH:"Partly open.",closedH:"Closed.",unclearH:"Status unclear."
  },
  es:{
   FACT:["Iluminación","Gente alrededor","Visibilidad","Señal de celular","Personal en el lugar","Estacionamiento visible"],
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
   TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida"},
-  BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada"},
+  BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
   AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
@@ -469,11 +475,12 @@ const L={
   polS:"Datos policiales · aún no conectados",polP:"Mostrará incidentes reportados cercanos como contexto, sin entrar en el puntaje.",
   dir:"Cómo llegar ↗",rank:(r,t)=>`N.º ${r} de ${t}`,blended:"combinado",listCount:n=>` · ${n} ${n===1?"calificación":"calificaciones"}`,
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
+  ariaOff:n=>`${n}, cerrado o con estado sin confirmar, sin puntaje`,unclear:"Estado sin confirmar",partial:"Abierto en parte",partialH:"Abierto en parte.",closedH:"Cerrado.",unclearH:"Estado sin confirmar.",
   // static page text
   skip:"Ir al mapa",
   eyebrow:"Condado de Buncombe, Carolina del Norte, en tierra tsalagi (cherokee)",
   lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
-  notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales se redactaron sin visitas en persona y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
+  notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales vienen de una revisión de fuentes públicas, como páginas de parques y del condado, noticias locales y fichas de Google Maps, no de visitas en persona, y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
   hint:"Toque un número en el mapa, o elija un lugar arriba, para ver su puntaje y calificaciones y para calificarlo.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
@@ -510,6 +517,7 @@ const L={
   moreS:"Más sobre este piloto",
   rootS1:"Cherokee: trabajar juntos. Se pronuncia ga-du-gui.",
   rootS2:"Iroquesa: el poder que tiene cada ser vivo.",
+  lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
   rootP1:"Este mapa está en tierra tsalagi (cherokee). Sigue el <strong>gadugi</strong>, la tradición cherokee de trabajar juntos, en la que los vecinos se reúnen para ayudarse a sembrar, cosechar y salir adelante en tiempos difíciles; los cherokee de Snowbird, no muy lejos de aquí, todavía la practican. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, ofrecida para que la próxima pueda salir sabiendo más y con menos miedo.",
   rootP2:"También lleva el <strong>orenda</strong>, una palabra iroquesa para el poder que tiene cada ser vivo. El miedo quita parte de ese poder al limitar adónde van las mujeres y qué tan plenamente pueden estar en su propio cuerpo. Este mapa existe para devolver una parte, juntas.",
@@ -544,7 +552,8 @@ document.getElementById("langbtn").addEventListener("click",()=>{
   applyStatic();rebuildPicker();renderMap();renderPanel();
 });
 
-PLACES.forEach((p,i)=>{p.i=i;p.env=Math.round(p.f.reduce((a,v,k)=>a+((v-1)/4)*W[k],0)*100);});
+let N_SCORED=0;
+PLACES.forEach((p,i)=>{p.i=i;p.off=p.st==="closed"||p.st==="unclear";p.env=Math.round(p.f.reduce((a,v,k)=>a+((v-1)/4)*W[k],0)*100);});
 const pt=p=>lang==="es"?p.te:p.t, pn=p=>lang==="es"?p.ne:p.note;
 
 let RATINGS={};
@@ -556,8 +565,12 @@ function scoreAll(){
     if(p.cnt>=MIN){p.avg=rs.reduce((a,r)=>a+r.s,0)/p.cnt;const w=.4*p.cnt/(p.cnt+2);p.s=Math.round((1-w)*p.env+w*((p.avg-1)/4)*100);}
     else{p.avg=null;p.s=p.env;}
     p.b=p.s>=75?"strong":p.s>=55?"mixed":"caution";
+    if(p.off){p.s=null;p.b="closed";}
   });
-  [...PLACES].sort((a,b)=>b.s-a.s||a.i-b.i).forEach((p,r)=>p.r=r+1);
+  const scored=PLACES.filter(p=>!p.off);
+  scored.sort((a,b)=>b.s-a.s||a.i-b.i).forEach((p,r)=>p.r=r+1);
+  PLACES.filter(p=>p.off).forEach(p=>p.r=null);
+  N_SCORED=scored.length;
 }
 
 const minLng=-82.90,maxLng=-82.24,minLat=35.41,maxLat=35.84;
@@ -571,7 +584,7 @@ const towns=[["Asheville",35.606,-82.535],["Black Mountain",35.632,-82.335],["We
 const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
 const el=(t,a,parent=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
 const defs=el("defs",{});
-["strong","mixed","caution"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
+["strong","mixed","caution","closed"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
 el("path",{d:path(county)+" Z",class:"county","aria-hidden":"true"});
 el("path",{d:path(fb),class:"river","aria-hidden":"true"});
 el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
@@ -604,10 +617,10 @@ pick.addEventListener("change",()=>select(PLACES[+pick.value],true));
 function renderMap(){
   const t=T();
   PLACES.forEach(p=>{
-    p.h.setAttribute("r",22+p.s*.5);p.h.setAttribute("fill",`url(#g-${p.b})`);
+    p.h.setAttribute("r",p.off?0:22+p.s*.5);p.h.setAttribute("fill",`url(#g-${p.b})`);
     p.dot.setAttribute("style",`fill:var(--${p.b})`);
-    p.num.textContent=p.r;p.tt.textContent=`${p.n} · ${p.s}`;
-    p.g.setAttribute("aria-label",t.aria(p.n,p.s,t.BL[p.b]));
+    p.num.textContent=p.off?"×":p.r;p.tt.textContent=p.off?`${p.n} · ${t.BL.closed}`:`${p.n} · ${p.s}`;
+    p.g.setAttribute("aria-label",p.off?t.ariaOff(p.n):t.aria(p.n,p.s,t.BL[p.b]));
     const on=state.filter==="all"||p.b===state.filter;
     p.g.classList.toggle("dim",!on);p.h.style.opacity=on?1:.1;p.row.hidden=!on;
     p.g.classList.toggle("sel",p===state.sel);p.row.classList.toggle("sel",p===state.sel);
@@ -616,10 +629,11 @@ function renderMap(){
   if(state.sel)pins.appendChild(state.sel.g);
   list.innerHTML="";
   Object.keys(t.AREAS).forEach(a=>{
-    const ps=[...PLACES].filter(p=>p.a===a).sort((x,y)=>x.r-y.r);
+    const ps=[...PLACES].filter(p=>p.a===a).sort((x,y)=>(x.r??999)-(y.r??999));
+    if(!ps.length)return;
     const h=document.createElement("h3");h.className="area";h.textContent=t.AREAS[a];list.appendChild(h);
     ps.forEach(p=>{
-      p.row.innerHTML=`<span class="n">${p.r}</span><span class="nm">${p.n}<span class="ty">${pt(p)}${p.cnt>=MIN?t.listCount(p.cnt):""}</span></span><span class="sc"><i class="sw" style="background:var(--${p.b})"></i>${p.s}<span class="sr">, ${t.BL[p.b]}</span></span>`;
+      p.row.innerHTML=p.off?`<span class="n">×</span><span class="nm">${p.n}<span class="ty">${pt(p)}</span></span><span class="sc off">${p.st==="closed"?t.BL.closed:t.unclear}</span>`:`<span class="n">${p.r}</span><span class="nm">${p.n}<span class="ty">${pt(p)}${p.st==="partial"?" · "+t.partial:""}${p.cnt>=MIN?t.listCount(p.cnt):""}</span></span><span class="sc"><i class="sw" style="background:var(--${p.b})"></i>${p.s}<span class="sr">, ${t.BL[p.b]}</span></span>`;
       list.appendChild(p.row);
     });
   });
@@ -653,11 +667,19 @@ function goBlock(p){
 }
 function renderPanel(){
   const p=state.sel;if(!p)return;const t=T();
-  const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" Buncombe County NC")}`;
+  const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}`;
+  const sn=lang==="es"?p.sne:p.sn;
+  if(p.off){panel.innerHTML=`
+    <div class="eyebrow">${pt(p)}</div>
+    <h2>${p.n}</h2>
+    <div class="status-note off" role="note">${p.st==="unclear"?`<b>${t.unclearH}</b> `:""}${sn}</div>
+    <p class="note">${pn(p)}</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}" target="_blank" rel="noopener">${t.dir}</a>`;return;}
   panel.innerHTML=`
-    <div class="eyebrow">${t.rank(p.r,PLACES.length)} · ${pt(p)}</div>
+    <div class="eyebrow">${t.rank(p.r,N_SCORED)} · ${pt(p)}</div>
     <h2>${p.n}</h2>
     <div class="scoreline"><span class="score">${p.s}</span><span class="band b-${p.b}">${t.BL[p.b]}</span>${p.cnt>=MIN?`<span class="note">${t.blended}</span>`:""}</div>
+    ${sn?`<div class="status-note" role="note">${sn}</div>`:""}
     <p class="note">${pn(p)}</p>
     <div class="factors">${t.FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar" aria-hidden="true"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
     <div class="layer go">${goBlock(p)}</div>
