@@ -3,253 +3,185 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#f6f2eb;color:#1f2b28}@media (prefers-color-scheme:dark){body{background:#151b19;color:#efebe4}}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#eef3f2;color:#1c2b2b}@media (prefers-color-scheme:dark){body{background:#111919;color:#ecf1f0}}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Buncombe Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe County, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Layout: a field-map page. Hand-drawn county map left, place detail right; stacks on phones. */
+/* Buncombe Safer Miles — design system (Oct 2026)
+   Calm and legible first. One typeface, Atkinson Hyperlegible, designed for low-vision readability.
+   Palette from Blue Ridge haze. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
 :root{
-  --bg:#eef1ef; --surface:#f8faf8; --ink:#1d2a27; --muted:#5a6964; --line:#c9d2ce;
-  --land:#e3e9e5; --river:#7fa3b5; --accent:#2f5d50;
-  --strong:#2a8a72; --mixed:#c98a1b; --caution:#b4475f;
-  --display:"Bitter",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --bg:#eef3f2; --surface:#ffffff; --band:#e1eae8; --ink:#1c2b2b; --muted:#465756; --line:#d3dedc;
+  --land:#e4ece9; --river:#5b8da3; --accent:#2a6b5c;
+  --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
+  --font:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:var(--font); --body:var(--font); --mono:var(--font);
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:72px;
+  --r:12px; --max:1120px; --gut:24px;
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#141b19; --surface:#1b2421; --ink:#e4ebe8; --muted:#97a6a0; --line:#2f3c38;
-  --land:#1f2a27; --river:#4f7a8e; --accent:#8cc5b3;
-  --strong:#4cc2a2; --mixed:#e3a83c; --caution:#e07890; color-scheme:dark}}
+  --bg:#111919; --surface:#192323; --band:#1d2a2a; --ink:#ecf1f0; --muted:#b4c2c0; --line:#2e3c3b;
+  --land:#1f2b2b; --river:#5f93aa; --accent:#93d2c0;
+  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#141b19; --surface:#1b2421; --ink:#e4ebe8; --muted:#97a6a0; --line:#2f3c38;
-  --land:#1f2a27; --river:#4f7a8e; --accent:#8cc5b3;
-  --strong:#4cc2a2; --mixed:#e3a83c; --caution:#e07890; color-scheme:dark}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 48px;display:grid;gap:28px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-.01em}
-h2{font-size:22px;font-weight:700}
-h3{font-size:17px;font-weight:700}
-p{margin:0;max-width:65ch}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-header{display:grid;gap:10px}
-header .lede{color:var(--muted);font-size:16px}
-.notice{border-left:3px solid var(--mixed);padding:10px 14px;background:var(--surface);font-size:14px;max-width:none}
-.main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
-@media (max-width:860px){.main{grid-template-columns:1fr}}
-.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:10px;min-width:0}
-.filters{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font:500 13px var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.chip:focus-visible,.pin:focus-visible,.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-svg.map{width:100%;height:auto;display:block}
-.county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 4}
-.river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.road{fill:none;stroke:var(--line);stroke-width:2}
-.town{font:500 15px var(--mono);fill:var(--muted);letter-spacing:.04em;text-transform:uppercase}
-.pin{cursor:pointer}
-.pin .dot{stroke:var(--surface);stroke-width:2.5}
-.pin.sel .dot{stroke:var(--ink);stroke-width:3.5}
-.pin .num{font:600 12px var(--mono);fill:var(--surface);pointer-events:none}
-.pin.dim{opacity:.15;pointer-events:none}
-.pick{display:grid;gap:4px;font-size:13px;font-weight:600}
-.pick select{font:500 15px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
-.hint{font-size:13px;color:var(--muted)}
-.area{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 14px 6px;background:var(--bg);border-bottom:1px solid var(--line)}
-.pin .lbl{font:600 13px var(--body);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
-.tips{display:grid;gap:16px}
-.tips-head{display:grid;gap:8px}
-.tip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.tip{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:10px;align-content:start;min-width:0}
-.tip ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px}
-.tip li b{font-weight:600}
-.tip.help{border-color:var(--caution);border-width:1px 1px 1px 4px}
-.tip.help h3{color:var(--caution)}
-.tip .lines{list-style:none;padding:0;gap:0}
-.tip .lines li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
-.tip .lines li:last-child{border-bottom:0}
-.tip .lines span{display:grid;font-weight:600}
-.tip .lines small{font-weight:400;color:var(--muted);font-size:12.5px}
-.tip .lines a{font:600 15px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-decoration:none;user-select:all}
-.go{display:grid;gap:6px}
-.go ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14px}
-.go a{font-size:13px}
-.band.b-strong,.band.b-mixed,.band.b-caution{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--bb)}
-.b-strong{--bb:var(--strong);background:color-mix(in srgb,var(--strong) 22%,var(--surface))}
-.b-mixed{--bb:var(--mixed);background:color-mix(in srgb,var(--mixed) 24%,var(--surface))}
-.b-caution{--bb:var(--caution);background:color-mix(in srgb,var(--caution) 20%,var(--surface))}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.sw{width:12px;height:12px;border-radius:50%;display:inline-block}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:14px;min-width:0}
-.scoreline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.score{font:700 44px var(--display);font-variant-numeric:tabular-nums;line-height:1}
-.band{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:var(--surface)}
-.factors{display:grid;gap:8px}
-.f{display:grid;grid-template-columns:120px 1fr 28px;gap:10px;align-items:center;font-size:13px}
-.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
-.f b{font:500 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right}
-.layer{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px}
-.layer .status{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.note{color:var(--muted);font-size:14px}
-a{color:var(--accent);font-weight:600}
-.list{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;color:var(--ink);font:inherit;width:100%}
-.row:last-child{border-bottom:0}
-.row:hover,.row.sel{background:var(--land)}
-.row .n{font:600 13px var(--mono);color:var(--muted)}
-.row .nm{font-weight:600}
-.row .ty{display:block;font-size:12.5px;color:var(--muted);font-weight:400}
-.row .sc{font:600 15px var(--mono);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.cols section{display:grid;gap:8px;align-content:start}
-.cols ul{margin:0;padding-left:18px;display:grid;gap:4px}
-footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);display:grid;gap:6px}
-@media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
-.mini{font:700 28px var(--display);font-variant-numeric:tabular-nums;line-height:1}
-.mini small{font-size:14px;color:var(--muted);font-weight:500}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-.tag b{font-family:var(--mono);font-weight:500;margin-left:4px}
-.rate{display:grid;gap:14px}
-.rate fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
-.rate legend{font-weight:600;font-size:14px;padding:0;margin-bottom:8px}
-.opt-label{font-weight:400;color:var(--muted);font-size:12.5px;margin-left:4px}
-.opts{display:flex;flex-wrap:wrap;gap:6px}
-.opt{font:600 14px var(--mono);min-width:42px;height:38px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;cursor:pointer;padding:0 10px}
-.opt.wide{font:500 13px var(--body)}
-.opt[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
-.opt:focus-visible,.save:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.scale{display:flex;justify-content:space-between;max-width:250px;font-size:12px;color:var(--muted)}
-.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
-.save{display:inline-block;font:600 14px var(--body);background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:10px 18px;cursor:pointer;text-decoration:none;justify-self:start}
-.save:disabled{opacity:.4;cursor:default}
-.fine{font-size:12.5px;color:var(--muted)}
-.warn{border-left:3px solid var(--caution);padding:6px 10px;font-size:13.5px;background:var(--bg)}
-.warn b{display:block;color:var(--caution)}
+  --bg:#111919; --surface:#192323; --band:#1d2a2a; --ink:#ecf1f0; --muted:#b4c2c0; --line:#2e3c3b;
+  --land:#1f2b2b; --river:#5f93aa; --accent:#93d2c0;
+  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}
 
-.skip{position:absolute;left:16px;top:-48px;background:var(--ink);color:var(--bg);padding:8px 12px;border-radius:6px;z-index:10;font-weight:600}
-.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.langbtn{font:600 13px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
-.langbtn:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--font);font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--max);margin:0 auto;padding:var(--s4) var(--gut) var(--s5);display:grid;gap:var(--s5)}
+@media (max-width:640px){:root{--gut:16px;--s5:48px}.wrap{padding-top:var(--s3)}}
+h1,h2,h3{font-family:var(--font);font-weight:700;margin:0;line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.015em}
+h2{font-size:clamp(25px,3.4vw,31px)}
+h3{font-size:21px}
+p{margin:0;max-width:64ch}
+a{color:var(--accent);font-weight:700;text-underline-offset:3px;text-decoration-thickness:1.5px}
+strong,b{font-weight:700}
+button{font-family:var(--font)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-h3.area{margin:0}
+.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:8px;z-index:10}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+.note,.hint{color:var(--muted);font-size:17px}
+.fine{color:var(--muted);font-size:15px}
+.section-head{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
 
-/* ===== Calm, readable layer (Oct 2026) =====
-   Goals: psychological safety and easy reading. Warm paper tones instead of clinical grey,
-   no alarm-red (the "Go prepared" band is a soft plum), larger type and line height,
-   no all-caps or monospace labels, big tap targets, gentle supportive crisis panel. */
-:root{
-  --bg:#f6f2eb; --surface:#fffdf9; --ink:#1f2b28; --muted:#46524e; --line:#ddd5c8;
-  --land:#ede7dc; --river:#6b93a6; --accent:#25594c;
-  --strong:#2b7a64; --mixed:#94650f; --caution:#83548a;
-  --soft:#e8f0ec; --mono:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --r:14px;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#151b19; --surface:#1d2522; --ink:#efebe4; --muted:#bcc5c0; --line:#3a4642;
-  --land:#232c29; --river:#5f8ea3; --accent:#9fd3c2;
-  --strong:#62c8a8; --mixed:#e8b45c; --caution:#cfa3d3; --soft:#22312c; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#151b19; --surface:#1d2522; --ink:#efebe4; --muted:#bcc5c0; --line:#3a4642;
-  --land:#232c29; --river:#5f8ea3; --accent:#9fd3c2;
-  --strong:#62c8a8; --mixed:#e8b45c; --caution:#cfa3d3; --soft:#22312c; color-scheme:dark}
+/* ---------- Header ---------- */
+header{display:grid;gap:var(--s3)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.eyebrow{font-size:16px;color:var(--muted)}
+.tools{display:flex;gap:var(--s1);flex-wrap:wrap}
+.langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.title{display:grid;gap:var(--s2)}
+header .lede{font-size:clamp(19px,2.2vw,22px);line-height:1.55;max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);list-style:none;margin:0;padding:0}
+@media (max-width:820px){.facts{grid-template-columns:1fr}}
+.facts li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) 20px;font-size:16px;line-height:1.55}
+.facts li strong{display:block;font-size:18px;margin-bottom:2px}
+details.more{font-size:16px;color:var(--muted)}
+details.more summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:44px;display:inline-flex;align-items:center}
+details.more p{margin-top:var(--s1);max-width:72ch}
 
-body{font-size:17px;line-height:1.7;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
-.wrap{gap:36px;padding-block:32px 64px}
-h1{font-size:clamp(32px,6vw,46px)}
-h2{font-size:clamp(24px,3.5vw,28px)}
-h3{font-size:19px;line-height:1.3}
-p{max-width:62ch}
-a{text-underline-offset:3px;text-decoration-thickness:1.5px}
+/* ---------- Map + panel ---------- */
+.toolbar{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:var(--s2);align-items:end;margin-bottom:var(--s2)}
+@media (max-width:820px){.toolbar{grid-template-columns:1fr}}
+.pick{display:grid;gap:6px;font-weight:700;font-size:16px}
+.pick select{font:400 17px var(--font);min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s1)}
+.main{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s3);align-items:start}
+@media (max-width:900px){.main{grid-template-columns:1fr}}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2);display:grid;gap:var(--s2);min-width:0}
+.mapbox .hint{font-size:15px}
+svg.map{width:100%;height:auto;display:block}
+.county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
+.river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.town{font:400 22px var(--font);fill:var(--muted)}
+.pin{cursor:pointer}
+.pin .dot{stroke:var(--surface);stroke-width:3}
+.pin.sel .dot{stroke:var(--ink);stroke-width:4}
+.pin .num{font:700 17px var(--font);fill:var(--surface);pointer-events:none}
+.pin .lbl{font:700 20px var(--font);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:6px;stroke-linejoin:round;pointer-events:none}
+.pin.dim{opacity:.25;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);font-size:15px}
+.legend>span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none}
 
-/* Labels: sentence case, regular letters, readable size */
-.eyebrow,.area,.layer .status,.town{text-transform:none;letter-spacing:0;font-family:var(--body)}
-.eyebrow{font-size:15px;font-weight:500}
-header .lede{font-size:19px;line-height:1.6;color:var(--ink)}
-.notice{font-size:16px;line-height:1.65;border-left:4px solid var(--mixed);border-radius:0 var(--r) var(--r) 0;padding:16px 20px}
-.note,.hint,.tip ul,.go ul,.legend,.pick,.fine,.opt-label,.scale,.tag,.row .ty,.tip .lines small,.docfoot,.docfoot p,footer{font-size:16px}
-.fine,.scale,.row .ty,.tip .lines small,footer{font-size:15px}
-.note,.hint{line-height:1.65}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:var(--s2);min-width:0;scroll-margin-top:var(--s2)}
+@media (min-width:901px){.panel{position:sticky;top:var(--s2);max-height:calc(100vh - 32px);overflow:auto}}
+.panel>.eyebrow{font-size:15px}
+.panel h2{font-size:28px}
+.scoreline{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.score{font:700 52px/1 var(--font)}
+.band{font:700 15px var(--font);padding:5px 14px;border-radius:999px;color:var(--ink)}
+.b-strong{background:color-mix(in srgb,var(--strong) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--strong)}
+.b-mixed{background:color-mix(in srgb,var(--mixed) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--mixed)}
+.b-caution{background:color-mix(in srgb,var(--caution) 16%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--caution)}
+.factors{display:grid;gap:10px}
+.f{display:grid;grid-template-columns:132px 1fr 36px;gap:12px;align-items:center;font-size:16px}
+.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.f b{text-align:right;font-size:16px}
+.layer{border-top:1px solid var(--line);padding-top:var(--s2);display:grid;gap:var(--s1)}
+.layer .status{font-weight:700;font-size:17px}
+.layer ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.mini{font:700 32px/1 var(--font)}
+.mini small{font-size:16px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:var(--s1)}
+.tag{font-size:15px;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.tag b{margin-left:4px}
+.warn{border-left:4px solid var(--caution);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;background:color-mix(in srgb,var(--caution) 9%,var(--surface))}
+.warn b{display:block}
+.save{display:inline-flex;align-items:center;justify-self:start;font:700 17px var(--font);min-height:52px;padding:12px 24px;border-radius:10px;background:var(--accent);color:var(--surface);text-decoration:none}
 
-/* Softer containers */
-.mapbox,.panel,.tip,.list{border-radius:var(--r)}
-.panel,.tip{padding:22px 24px;gap:16px}
-.tip-grid{gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.tip ul,.go ul{gap:12px;padding-left:20px}
+/* ---------- Places list ---------- */
+.list{columns:2 360px;column-gap:var(--s3)}
+.list .area{font:700 18px var(--font);margin:var(--s3) 0 var(--s1);padding:0;color:var(--ink);break-after:avoid}
+.list .area:first-child{margin-top:0}
+.row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:var(--s2);align-items:center;width:100%;padding:12px 16px;margin-bottom:var(--s1);background:var(--surface);border:1px solid var(--line);border-radius:10px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;break-inside:avoid}
+.row:hover,.row.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.row .n{font-weight:700;color:var(--muted)}
+.row .nm{font-weight:700}
+.row .ty{display:block;font-size:15px;color:var(--muted);font-weight:400}
+.row .sc{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
 
-/* Big, easy tap targets (at least 44px) */
-.chip,.langbtn,.sizebtn{font:600 16px var(--body);min-height:44px;padding:8px 18px}
-.filters{gap:10px}
-.pick select{font-size:17px;min-height:48px;border-radius:10px}
-.opt{font:600 17px var(--body);min-width:52px;height:52px;border-radius:10px}
-.opt.wide{font:500 16px var(--body)}
-.opts{gap:10px}
-.save{font:600 17px var(--body);min-height:52px;padding:12px 24px;border-radius:10px}
-.row{padding:16px 18px;grid-template-columns:36px minmax(0,1fr) auto;gap:14px}
-.row .n,.row .sc{font-family:var(--body);font-size:17px}
-.rate legend{font-size:17px}
-.go a{font-size:16px}
-
-/* Focus is always clearly visible */
-.chip:focus-visible,.pin:focus-visible,.row:focus-visible,.opt:focus-visible,.save:focus-visible,
-.langbtn:focus-visible,.sizebtn:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-
-/* Score badges and bars: calm, never shouting */
-.band{font:600 14px var(--body);letter-spacing:0;text-transform:none;padding:4px 12px;border-radius:999px}
-.f{grid-template-columns:140px 1fr 32px;font-size:16px}
-.f b{font:600 16px var(--body)}
-.bar{height:10px;border-radius:5px}
-.sw{width:14px;height:14px}
-.legend{gap:18px;color:var(--ink)}
-
-.layer{padding-top:16px;gap:8px}
-.layer .status{font:600 16px var(--body);color:var(--ink)}
-.mini{font-size:32px}
-.mini small{font-size:16px}
-
-/* Map text */
-.town{font:500 17px var(--body);fill:var(--muted)}
-.pin .num{font:700 14px var(--body)}
-.pin .lbl{font:600 15px var(--body)}
-.pin.dim{opacity:.28}
-
-/* Warnings: noticed, not frightening */
-.warn{border-left:4px solid var(--caution);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;line-height:1.6;background:color-mix(in srgb,var(--caution) 9%,var(--surface))}
-.warn b{color:var(--ink)}
-
-/* Crisis lines: steady, supportive, easy to tap */
-.tip.help{border:1px solid var(--line);border-left:5px solid var(--accent);background:var(--soft)}
-.tip.help h3{color:var(--ink)}
-.tip .lines li{padding:12px 0;align-items:center}
-.tip .lines span{font-size:17px}
-.tip .lines a{font:700 18px var(--body);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;user-select:auto}
-
+/* ---------- Tips ---------- */
+.tips-head .eyebrow{display:none}
+.tip-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2)}
+.tip{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:12px;align-content:start;min-width:0}
+.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}
 .tip.help{grid-column:1/-1}
-.tip.help .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:28px}
-.tip .lines li{flex-wrap:wrap;justify-content:space-between;border-bottom:1px solid var(--line)}
-.tip .lines li:last-child{border-bottom:1px solid var(--line)}
-.tip .lines span{flex:1 1 180px}
-.tip .lines a{min-width:72px;justify-content:center}
+@media (max-width:980px){.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}.tip:nth-child(5){grid-column:1/-1}}
+@media (max-width:640px){.tip-grid{grid-template-columns:1fr}.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:auto}}
+.tip ul{margin:0;padding-left:20px;display:grid;gap:12px}
+.tip.help{background:var(--band);border-color:transparent}
+.tip .lines{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:var(--s4);gap:0 var(--s4)}
+.tip .lines li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tip .lines span{display:grid;flex:1 1 200px;font-weight:700;font-size:17px}
+.tip .lines small{font-weight:400;color:var(--muted);font-size:15px}
+.tip .lines a{font:700 18px var(--font);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:10px 18px;min-height:44px;min-width:76px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
 
-.rooted{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--strong);border-radius:var(--r);padding:24px 26px}
-.rooted p{font-size:18px;line-height:1.75}
+/* ---------- Rooted (the one bold moment) ---------- */
+.rooted{background:var(--band);border-radius:var(--r);padding:var(--s4) clamp(20px,4vw,48px);display:grid;gap:var(--s3)}
+.rooted-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:760px){.rooted-grid{grid-template-columns:1fr;gap:var(--s3)}}
+.rooted .term{font:700 clamp(40px,6vw,60px)/1 var(--font);color:var(--accent);letter-spacing:-.01em}
+.rooted .sub{font-size:16px;color:var(--muted);margin:6px 0 var(--s2)}
+.rooted p.body{font-size:18px;line-height:1.7}
 
-/* Text-size toggle */
-.topbar .tools{display:flex;gap:10px;flex-wrap:wrap}
-.sizebtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;cursor:pointer}
-.sizebtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* ---------- Explainers ---------- */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:var(--s3)}}
+.cols section{display:grid;gap:var(--s1);align-content:start;border-top:2px solid var(--ink);padding-top:var(--s2)}
+.cols ul{margin:0;padding-left:20px;display:grid;gap:4px}
+
+main{display:grid;gap:var(--s5)}
+.tips-head{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
+footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted);display:grid;gap:var(--s1)}
+
+/* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
 
-/* About page */
-.doc{max-width:780px}
+/* ---------- About page ---------- */
+.doc{max-width:760px}
+.doc article{display:grid;gap:var(--s4)}
+.doc section{display:grid;gap:12px}
+.doc h2{font-size:27px}
+.doc h3{font-size:20px}
 .doc p,.doc li{font-size:18px;line-height:1.75}
-.doc .lede{font-size:19px}
-.doc h3{font-size:19px}
+.doc ul{margin:0;padding-left:22px;display:grid;gap:12px}
+.doc .lede{font-size:20px}
 .back{font-size:17px}
-.mail{font-family:var(--body);font-size:17px;font-weight:600}
+.mail{font-weight:700;user-select:all}
+.docfoot{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted)}
+.docfoot p{font-size:15px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -259,25 +191,35 @@ html[data-size="large"] .wrap{zoom:1.18}
 <div class="wrap">
   <header>
     <div class="topbar">
-      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, NC · Tsalagi land · Pilot · v0.8</div>
+      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, North Carolina, on Tsalagi (Cherokee) land</div>
       <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
     </div>
-    <h1>Buncombe Safer Miles</h1>
-    <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what makes a place feel safer for women running or walking alone: light, people, open sightlines, signal, staff and a visible parking lot.</p>
-    <p class="notice" data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starter scores were drafted without site visits and are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911. <a href="#safety">Safety tips and crisis lines ↓</a></p>
+    <div class="title">
+      <h1>Buncombe Safer Miles</h1>
+      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what helps women feel safer running or walking alone.</p>
+    </div>
+    <ul class="facts">
+      <li data-i18n="fact1"><strong>A community pilot</strong>Scores start as estimates and get better as women rate the places they use.</li>
+      <li data-i18n="fact2"><strong>Not a guarantee</strong>A higher score means fewer known risk factors. Use it alongside your own judgment.</li>
+      <li data-i18n="fact3"><strong>Not an emergency service</strong>If you are in danger, call <a href="tel:911">911</a>. <a href="#safety">Crisis lines and safety tips</a></li>
+    </ul>
+    <details class="more"><summary data-i18n="moreS">More about this pilot</summary><p data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starter scores were drafted without site visits and are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911.</p></details>
   </header>
 
   <main id="content">
-  <div class="main">
-    <div class="mapbox">
-      <label class="pick"><span data-i18n="pickLabel">Choose a place</span><select id="pick"></select></label>
-      <p class="hint" data-i18n="hint">Or tap a numbered pin. The place's score, ratings and a rate button appear below the map.</p>
-      <div class="filters" role="group" data-i18n-aria="filterAria" aria-label="Filter places">
+  <section class="explore" aria-labelledby="pickLbl">
+  <div class="toolbar">
+    <label class="pick"><span id="pickLbl" data-i18n="pickLabel">Choose a place</span><select id="pick"></select></label>
+    <div class="filters" role="group" data-i18n-aria="filterAria" aria-label="Filter places">
         <button class="chip" id="f-all" data-f="all" aria-pressed="true" data-i18n="fAll">All places</button>
         <button class="chip" id="f-strong" data-f="strong" aria-pressed="false" data-i18n="fStrong">Strong</button>
         <button class="chip" id="f-mixed" data-f="mixed" aria-pressed="false" data-i18n="fMixed">Mixed</button>
         <button class="chip" id="f-caution" data-f="caution" aria-pressed="false" data-i18n="fCaution">Go prepared</button>
       </div>
+  </div>
+  <div class="main">
+    <div class="mapbox">
+      <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
       <svg class="map" id="map" viewBox="0 0 1000 802" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe County with scored places. Each pin is a button."></svg>
       <div class="legend">
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
@@ -288,10 +230,11 @@ html[data-size="large"] .wrap{zoom:1.18}
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
   </div>
+  </section>
 
-  <section style="display:grid;gap:12px">
-    <h2 data-i18n="listH">Places by area</h2>
-    <p class="note" data-i18n="listNote">The number is the place's rank across the county, 1 being safest by the current score.</p>
+  <section>
+    <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
+    <p class="note" data-i18n="listNote">The number is the place's rank across the county, 1 being safest by the current score.</p></div>
     <div class="list" id="list"></div>
   </section>
 
@@ -362,8 +305,18 @@ html[data-size="large"] .wrap{zoom:1.18}
 
   <section class="rooted" id="rooted">
     <h2 data-i18n="rootH">Rooted in this land</h2>
-    <p data-i18n="rootP1">This map sits on Tsalagi (Cherokee) land. It follows <strong>gadugi</strong>, the Cherokee tradition of working together, in which neighbors turn out to help one another plant, harvest and get through hard times; the Snowbird Cherokee, not far from here, still practice it. Every rating is a small piece of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
-    <p data-i18n="rootP2">It also carries <strong>orenda</strong>, an Iroquoian word for the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they can be in their own bodies. This map exists to give some of it back, together.</p>
+    <div class="rooted-grid">
+      <div>
+        <p class="term" lang="chr-Latn">gadugi</p>
+        <p class="sub" data-i18n="rootS1">Cherokee: working together. Said ga-doo-gee.</p>
+        <p class="body" data-i18n="rootP1">This map sits on Tsalagi (Cherokee) land. It follows <strong>gadugi</strong>, the Cherokee tradition of working together, in which neighbors turn out to help one another plant, harvest and get through hard times; the Snowbird Cherokee, not far from here, still practice it. Every rating is a small piece of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
+      </div>
+      <div>
+        <p class="term">orenda</p>
+        <p class="sub" data-i18n="rootS2">Iroquoian: the power every living being holds.</p>
+        <p class="body" data-i18n="rootP2">It also carries <strong>orenda</strong>, an Iroquoian word for the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they can be in their own bodies. This map exists to give some of it back, together.</p>
+      </div>
+    </div>
   </section>
 
   <div class="cols">
@@ -518,11 +471,11 @@ const L={
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
   // static page text
   skip:"Ir al mapa",
-  eyebrow:"Condado de Buncombe, NC · Tierra tsalagi · Piloto · v0.8",
-  lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que hace que un lugar se sienta más seguro para las mujeres que corren o caminan solas: luz, gente, buena visibilidad, señal, personal y un estacionamiento a la vista.",
-  notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales se redactaron sin visitas en persona y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911. <a href=\"#safety\">Consejos de seguridad y líneas de ayuda ↓</a>",
+  eyebrow:"Condado de Buncombe, Carolina del Norte, en tierra tsalagi (cherokee)",
+  lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
+  notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales se redactaron sin visitas en persona y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
-  hint:"O toque un punto numerado. El puntaje del lugar, sus calificaciones y un botón para calificar aparecen debajo del mapa.",
+  hint:"Toque un número en el mapa, o elija un lugar arriba, para ver su puntaje y calificaciones y para calificarlo.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
   mapAria:"Mapa del condado de Buncombe con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
@@ -551,6 +504,12 @@ const L={
   polH:"Sobre los datos policiales",
   polP:"Asheville publica datos de incidentes, pero solo cubren la ciudad; la Oficina del Sheriff cubre el resto del condado. El número de incidentes refleja dónde patrulla la policía y qué se reporta. La mayoría del acoso en los senderos nunca se reporta. Por eso esta capa mostrará contexto junto a cada lugar y no entrará en el puntaje.",
   wontH:"Lo que este mapa no hace",
+  fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
+  fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
+  fact3:"<strong>No es un servicio de emergencia</strong>Si está en peligro, llame al <a href=\"tel:911\">911</a>. <a href=\"#safety\">Líneas de ayuda y consejos</a>",
+  moreS:"Más sobre este piloto",
+  rootS1:"Cherokee: trabajar juntos. Se pronuncia ga-du-gui.",
+  rootS2:"Iroquesa: el poder que tiene cada ser vivo.",
   rootH:"Arraigado en esta tierra",
   rootP1:"Este mapa está en tierra tsalagi (cherokee). Sigue el <strong>gadugi</strong>, la tradición cherokee de trabajar juntos, en la que los vecinos se reúnen para ayudarse a sembrar, cosechar y salir adelante en tiempos difíciles; los cherokee de Snowbird, no muy lejos de aquí, todavía la practican. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, ofrecida para que la próxima pueda salir sabiendo más y con menos miedo.",
   rootP2:"También lleva el <strong>orenda</strong>, una palabra iroquesa para el poder que tiene cada ser vivo. El miedo quita parte de ese poder al limitar adónde van las mujeres y qué tan plenamente pueden estar en su propio cuerpo. Este mapa existe para devolver una parte, juntas.",
@@ -621,10 +580,10 @@ const halos=el("g",{"aria-hidden":"true"}),pins=el("g",{});
 PLACES.forEach(p=>{
   p.h=el("circle",{cx:X(p.lng),cy:Y(p.lat),class:"halo"},halos);
   const g=el("g",{class:"pin",tabindex:"0",role:"button"},pins);
-  p.dot=el("circle",{cx:X(p.lng),cy:Y(p.lat),r:13,class:"dot"},g);
-  p.num=el("text",{x:X(p.lng),y:Y(p.lat)+4,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
+  p.dot=el("circle",{cx:X(p.lng),cy:Y(p.lat),r:19,class:"dot"},g);
+  p.num=el("text",{x:X(p.lng),y:Y(p.lat)+6,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
   p.tt=el("title",{},g);
-  p.lbl=el("text",{x:X(p.lng),y:Y(p.lat)-20,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
+  p.lbl=el("text",{x:X(p.lng),y:Y(p.lat)-28,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
   g.addEventListener("click",()=>select(p,true));
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p,true);}});
   p.g=g;
