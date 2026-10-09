@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#eef3f2;color:#1c2b2b}@media (prefers-color-scheme:dark){body{background:#111919;color:#ecf1f0}}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>WNC Safer Miles</title>
-<meta name="description" content="A community map of parks, greenways and trails in Buncombe County, NC, scored on what makes them safer for women running or walking alone.">
+<meta name="description" content="A community map of parks, greenways and trails in Buncombe and Henderson counties, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
@@ -195,12 +195,12 @@ html[data-size="large"] .wrap{zoom:1.18}
 <div class="wrap">
   <header>
     <div class="topbar">
-      <div class="eyebrow" data-i18n="eyebrow">Buncombe County, North Carolina, on Tsalagi (Cherokee) land</div>
+      <div class="eyebrow" data-i18n="eyebrow">Western North Carolina, on Tsalagi (Cherokee) land</div>
       <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
     </div>
     <div class="title">
       <h1>WNC Safer Miles</h1>
-      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails, scored on what helps women feel safer running or walking alone.</p>
+      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails in Buncombe and Henderson counties, scored on what helps women feel safer running or walking alone.</p>
     </div>
     <ul class="facts">
       <li data-i18n="fact1"><strong>A community pilot</strong>Scores start as estimates and get better as women rate the places they use.</li>
@@ -224,7 +224,7 @@ html[data-size="large"] .wrap{zoom:1.18}
   <div class="main">
     <div class="mapbox">
       <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
-      <svg class="map" id="map" viewBox="0 0 1000 802" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe County with scored places. Each pin is a button."></svg>
+      <svg class="map" id="map" viewBox="0 0 1000 1250" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe and Henderson counties with scored places. Each pin is a button."></svg>
       <div class="legend">
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
         <span><i class="sw" style="background:var(--mixed)"></i><span data-i18n="lgMixed">Mixed 55–74</span></span>
@@ -301,6 +301,7 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><span data-i18n="l911">In danger now</span><a href="tel:911">911</a></li>
           <li><span data-i18n="lVoice">Our VOICE, 24 hours<small>Sexual violence and trafficking · Buncombe County</small></span><a href="tel:+18282557576">828-255-7576</a></li>
           <li><span data-i18n="lHelp">Helpmate, 24 hours<small>Domestic and intimate partner violence · Buncombe County</small></span><a href="tel:+18282540516">828-254-0516</a></li>
+          <li><span data-i18n="lSafe">Safelight, 24 hours<small>Interpersonal violence, sexual assault and child abuse · Henderson County</small></span><a href="tel:+18286933840">828-693-3840</a></li>
           <li><span data-i18n="lRainn">RAINN, 24 hours<small>National Sexual Assault Hotline</small></span><a href="tel:+18006564673">800-656-4673</a></li>
         </ul>
         <p class="note" data-i18n="t6P">Being followed, watched or harassed is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
@@ -432,7 +433,39 @@ const PLACES=[
  {n:"Folk Art Center trailhead",a:"east",st:"open",sn:"",sne:"",lat:35.5676,lng:-82.4920,f:[1,2,2,3,3,4],
   t:"Mountains-to-Sea Trail",te:"Mountains-to-Sea Trail",
   note:"Staffed center during open hours, then wooded trail with patchy signal.",
-  ne:"Centro con personal en horario de apertura; después, sendero boscoso con señal intermitente."}
+  ne:"Centro con personal en horario de apertura; después, sendero boscoso con señal intermitente."},
+ {n:"Jackson Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.315,lng:-82.4432,f:[3,4,3,5,3,4],
+  t:"Park · fields and nature trail",te:"Parque · campos y sendero natural",
+  note:"Hendersonville's 220-acre park with lit courts and fields, a 1.2-mile wooded nature trail and the start of the Oklawaha Greenway.",
+  ne:"El parque de 220 acres de Hendersonville, con canchas y campos iluminados, un sendero natural boscoso de 1.2 millas y el inicio del sendero Oklawaha."},
+ {n:"Oklawaha Greenway",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3341,lng:-82.463,f:[2,3,3,5,2,3],
+  t:"Greenway · Jackson Park to Berkeley Mills",te:"Sendero verde · de Jackson Park a Berkeley Mills",
+  note:"About 3.25 miles, mostly shaded, linking several city parks. Patton Park along the way has a lit half-mile loop.",
+  ne:"Unas 3.25 millas, en su mayoría a la sombra, que unen varios parques de la ciudad. Patton Park, en el camino, tiene un circuito iluminado de media milla."},
+ {n:"Ecusta Trail (Hendersonville)",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3122,lng:-82.4651,f:[2,4,4,4,1,3],
+  t:"Rail trail · first 6 miles open",te:"Sendero ferroviario · primeras 6 millas abiertas",
+  note:"Flat, paved and popular, starting downtown. Several road crossings, and fast bikes can pass without warning.",
+  ne:"Plano, pavimentado y concurrido, empieza en el centro. Varios cruces de calle, y las bicicletas rápidas pueden pasar sin avisar."},
+ {n:"Bill Moore Community Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.4264,lng:-82.4959,f:[2,4,3,5,2,4],
+  t:"Park · Fletcher",te:"Parque · Fletcher",
+  note:"Busy fields and playground near the lot, with walking trails that run back into the woods. Open daylight to dusk.",
+  ne:"Campos y área de juegos concurridos cerca del estacionamiento, con senderos que se adentran en el bosque. Abierto de día hasta el anochecer."},
+ {n:"Mills River Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3832,lng:-82.5495,f:[2,4,4,4,2,4],
+  t:"Park · Mills River",te:"Parque · Mills River",
+  note:"Open fields, a riverside fishing pier and walking trails, with steady local use most days.",
+  ne:"Campos abiertos, un muelle de pesca junto al río y senderos, con gente de la zona casi todos los días."},
+ {n:"Westfeldt Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.422,lng:-82.5416,f:[1,2,4,4,1,4],
+  t:"River park · short loop",te:"Parque junto al río · circuito corto",
+  note:"A short loop under half a mile beside the French Broad, a large lot and no restrooms. Busy with tubers in summer, quiet otherwise.",
+  ne:"Un circuito corto de menos de media milla junto al río French Broad, un estacionamiento grande y sin baños. Lleno de gente en verano, tranquilo el resto del año."},
+ {n:"Holmes Educational State Forest",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.2407,lng:-82.577,f:[1,2,2,2,4,3],
+  t:"State forest · trails",te:"Bosque estatal · senderos",
+  note:"Staffed during limited hours (closed Mondays, and weekends in winter). Wooded trails and a rural setting where signal may be weak.",
+  ne:"Con personal en horario limitado (cerrado los lunes y los fines de semana en invierno). Senderos boscosos en una zona rural donde la señal puede ser débil."},
+ {n:"Bullington Gardens",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3687,lng:-82.4342,f:[2,2,3,4,4,4],
+  t:"Garden · nature trail",te:"Jardín · sendero natural",
+  note:"Staff and volunteers on site, open 9 to 4 except Sundays. Narrow trails; a good-size lot.",
+  ne:"Personal y voluntarios en el lugar, abierto de 9 a 4 excepto los domingos. Senderos angostos; un estacionamiento de buen tamaño."}
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
@@ -444,7 +477,7 @@ const L={
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
   TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed"},
   BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
-  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka"},
+  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
   before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",
@@ -463,7 +496,7 @@ const L={
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
   TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida"},
   BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
-  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka"},
+  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
   before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",
@@ -478,13 +511,13 @@ const L={
   ariaOff:n=>`${n}, cerrado o con estado sin confirmar, sin puntaje`,unclear:"Estado sin confirmar",partial:"Abierto en parte",partialH:"Abierto en parte.",closedH:"Cerrado.",unclearH:"Estado sin confirmar.",
   // static page text
   skip:"Ir al mapa",
-  eyebrow:"Condado de Buncombe, Carolina del Norte, en tierra tsalagi (cherokee)",
-  lede:"Un mapa comunitario de parques, senderos verdes y caminos, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
+  eyebrow:"Oeste de Carolina del Norte, en tierra tsalagi (cherokee)",
+  lede:"Un mapa comunitario de parques, senderos verdes y caminos en los condados de Buncombe y Henderson, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
   notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales vienen de una revisión de fuentes públicas, como páginas de parques y del condado, noticias locales y fichas de Google Maps, no de visitas en persona, y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
   hint:"Toque un número en el mapa, o elija un lugar arriba, para ver su puntaje y calificaciones y para calificarlo.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
-  mapAria:"Mapa del condado de Buncombe con los lugares calificados. Cada punto es un botón.",
+  mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
   listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el condado; el 1 es el más seguro según el puntaje actual.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
@@ -504,6 +537,7 @@ const L={
   l911:"Peligro inmediato",
   lVoice:"Our VOICE, 24 horas<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
   lHelp:"Helpmate, 24 horas<small>Violencia doméstica y de pareja · Condado de Buncombe</small>",
+  lSafe:"Safelight, 24 horas<small>Violencia interpersonal, agresión sexual y abuso infantil · Condado de Henderson</small>",
   lRainn:"RAINN, 24 horas<small>Línea nacional contra la agresión sexual</small>",
   t6P:"Que la sigan, la observen o la acosen es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
   howH:"Cómo funciona el puntaje",
@@ -573,19 +607,21 @@ function scoreAll(){
   N_SCORED=scored.length;
 }
 
-const minLng=-82.90,maxLng=-82.24,minLat=35.41,maxLat=35.84;
-const X=lng=>(lng-minLng)/(maxLng-minLng)*1000, Y=lat=>(maxLat-lat)/(maxLat-minLat)*802;
+const minLng=-82.90,maxLng=-82.24,minLat=35.17,maxLat=35.84,MAPH=1250;
+const X=lng=>(lng-minLng)/(maxLng-minLng)*1000, Y=lat=>(maxLat-lat)/(maxLat-minLat)*MAPH;
 const path=pts=>pts.map((p,k)=>(k?"L":"M")+X(p[1]).toFixed(1)+" "+Y(p[0]).toFixed(1)).join(" ");
 const county=[[35.77,-82.80],[35.81,-82.72],[35.80,-82.62],[35.82,-82.50],[35.80,-82.42],[35.76,-82.28],[35.66,-82.26],[35.60,-82.27],[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46,-82.70],[35.50,-82.75],[35.56,-82.80],[35.62,-82.84],[35.68,-82.88]];
-const fb=[[35.45,-82.57],[35.49,-82.585],[35.53,-82.588],[35.565,-82.580],[35.58,-82.572],[35.60,-82.575],[35.625,-82.590],[35.65,-82.605],[35.69,-82.62],[35.73,-82.635],[35.80,-82.68]];
+const fb=[[35.30,-82.62],[35.34,-82.585],[35.38,-82.565],[35.42,-82.545],[35.45,-82.57],[35.49,-82.585],[35.53,-82.588],[35.565,-82.580],[35.58,-82.572],[35.60,-82.575],[35.625,-82.590],[35.65,-82.605],[35.69,-82.62],[35.73,-82.635],[35.80,-82.68]];
 const sw=[[35.615,-82.31],[35.605,-82.36],[35.60,-82.41],[35.59,-82.47],[35.575,-82.52],[35.567,-82.55],[35.565,-82.578]];
-const towns=[["Asheville",35.606,-82.535],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
+const hendCo=[[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46,-82.70],[35.40,-82.74],[35.30,-82.76],[35.21,-82.70],[35.19,-82.60],[35.19,-82.48],[35.20,-82.37],[35.24,-82.30],[35.33,-82.27],[35.45,-82.27]];
+const towns=[["Hendersonville",35.29,-82.43],["Mills River",35.37,-82.62],["Asheville",35.606,-82.535],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
 
 const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
 const el=(t,a,parent=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
 const defs=el("defs",{});
 ["strong","mixed","caution","closed"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
 el("path",{d:path(county)+" Z",class:"county","aria-hidden":"true"});
+el("path",{d:path(hendCo)+" Z",class:"county","aria-hidden":"true"});
 el("path",{d:path(fb),class:"river","aria-hidden":"true"});
 el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
 towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"});t.textContent=n;});
@@ -702,7 +738,7 @@ function ingest(r){
 
 applyStatic();
 scoreAll();
-state.sel=[...PLACES].sort((a,b)=>a.r-b.r)[0];
+state.sel=PLACES.filter(p=>!p.off).sort((a,b)=>a.r-b.r)[0];
 rebuildPicker();renderMap();renderPanel();
 (async()=>{try{const res=await fetch("ratings.json",{cache:"no-store"});ingest(res.ok?((await res.json())||{}).r:{});}catch(e){state.ready=true;}})();
 </script>
