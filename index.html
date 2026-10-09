@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#f6f2eb;color:#1f2b28}@media (prefers-color-scheme:dark){body{background:#151b19;color:#efebe4}}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Buncombe Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe County, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a field-map page. Hand-drawn county map left, place detail right; stacks on phones. */
 :root{
@@ -136,6 +136,119 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:va
 .langbtn:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 h3.area{margin:0}
+
+/* ===== Calm, readable layer (Oct 2026) =====
+   Goals: psychological safety and easy reading. Warm paper tones instead of clinical grey,
+   no alarm-red (the "Go prepared" band is a soft plum), larger type and line height,
+   no all-caps or monospace labels, big tap targets, gentle supportive crisis panel. */
+:root{
+  --bg:#f6f2eb; --surface:#fffdf9; --ink:#1f2b28; --muted:#46524e; --line:#ddd5c8;
+  --land:#ede7dc; --river:#6b93a6; --accent:#25594c;
+  --strong:#2b7a64; --mixed:#94650f; --caution:#83548a;
+  --soft:#e8f0ec; --mono:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151b19; --surface:#1d2522; --ink:#efebe4; --muted:#bcc5c0; --line:#3a4642;
+  --land:#232c29; --river:#5f8ea3; --accent:#9fd3c2;
+  --strong:#62c8a8; --mixed:#e8b45c; --caution:#cfa3d3; --soft:#22312c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151b19; --surface:#1d2522; --ink:#efebe4; --muted:#bcc5c0; --line:#3a4642;
+  --land:#232c29; --river:#5f8ea3; --accent:#9fd3c2;
+  --strong:#62c8a8; --mixed:#e8b45c; --caution:#cfa3d3; --soft:#22312c; color-scheme:dark}
+
+body{font-size:17px;line-height:1.7;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+.wrap{gap:36px;padding-block:32px 64px}
+h1{font-size:clamp(32px,6vw,46px)}
+h2{font-size:clamp(24px,3.5vw,28px)}
+h3{font-size:19px;line-height:1.3}
+p{max-width:62ch}
+a{text-underline-offset:3px;text-decoration-thickness:1.5px}
+
+/* Labels: sentence case, regular letters, readable size */
+.eyebrow,.area,.layer .status,.town{text-transform:none;letter-spacing:0;font-family:var(--body)}
+.eyebrow{font-size:15px;font-weight:500}
+header .lede{font-size:19px;line-height:1.6;color:var(--ink)}
+.notice{font-size:16px;line-height:1.65;border-left:4px solid var(--mixed);border-radius:0 var(--r) var(--r) 0;padding:16px 20px}
+.note,.hint,.tip ul,.go ul,.legend,.pick,.fine,.opt-label,.scale,.tag,.row .ty,.tip .lines small,.docfoot,.docfoot p,footer{font-size:16px}
+.fine,.scale,.row .ty,.tip .lines small,footer{font-size:15px}
+.note,.hint{line-height:1.65}
+
+/* Softer containers */
+.mapbox,.panel,.tip,.list{border-radius:var(--r)}
+.panel,.tip{padding:22px 24px;gap:16px}
+.tip-grid{gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.tip ul,.go ul{gap:12px;padding-left:20px}
+
+/* Big, easy tap targets (at least 44px) */
+.chip,.langbtn,.sizebtn{font:600 16px var(--body);min-height:44px;padding:8px 18px}
+.filters{gap:10px}
+.pick select{font-size:17px;min-height:48px;border-radius:10px}
+.opt{font:600 17px var(--body);min-width:52px;height:52px;border-radius:10px}
+.opt.wide{font:500 16px var(--body)}
+.opts{gap:10px}
+.save{font:600 17px var(--body);min-height:52px;padding:12px 24px;border-radius:10px}
+.row{padding:16px 18px;grid-template-columns:36px minmax(0,1fr) auto;gap:14px}
+.row .n,.row .sc{font-family:var(--body);font-size:17px}
+.rate legend{font-size:17px}
+.go a{font-size:16px}
+
+/* Focus is always clearly visible */
+.chip:focus-visible,.pin:focus-visible,.row:focus-visible,.opt:focus-visible,.save:focus-visible,
+.langbtn:focus-visible,.sizebtn:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Score badges and bars: calm, never shouting */
+.band{font:600 14px var(--body);letter-spacing:0;text-transform:none;padding:4px 12px;border-radius:999px}
+.f{grid-template-columns:140px 1fr 32px;font-size:16px}
+.f b{font:600 16px var(--body)}
+.bar{height:10px;border-radius:5px}
+.sw{width:14px;height:14px}
+.legend{gap:18px;color:var(--ink)}
+
+.layer{padding-top:16px;gap:8px}
+.layer .status{font:600 16px var(--body);color:var(--ink)}
+.mini{font-size:32px}
+.mini small{font-size:16px}
+
+/* Map text */
+.town{font:500 17px var(--body);fill:var(--muted)}
+.pin .num{font:700 14px var(--body)}
+.pin .lbl{font:600 15px var(--body)}
+.pin.dim{opacity:.28}
+
+/* Warnings: noticed, not frightening */
+.warn{border-left:4px solid var(--caution);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;line-height:1.6;background:color-mix(in srgb,var(--caution) 9%,var(--surface))}
+.warn b{color:var(--ink)}
+
+/* Crisis lines: steady, supportive, easy to tap */
+.tip.help{border:1px solid var(--line);border-left:5px solid var(--accent);background:var(--soft)}
+.tip.help h3{color:var(--ink)}
+.tip .lines li{padding:12px 0;align-items:center}
+.tip .lines span{font-size:17px}
+.tip .lines a{font:700 18px var(--body);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;user-select:auto}
+
+.tip.help{grid-column:1/-1}
+.tip.help .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:28px}
+.tip .lines li{flex-wrap:wrap;justify-content:space-between;border-bottom:1px solid var(--line)}
+.tip .lines li:last-child{border-bottom:1px solid var(--line)}
+.tip .lines span{flex:1 1 180px}
+.tip .lines a{min-width:72px;justify-content:center}
+
+/* Text-size toggle */
+.topbar .tools{display:flex;gap:10px;flex-wrap:wrap}
+.sizebtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;cursor:pointer}
+.sizebtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+html[data-size="large"] .wrap{zoom:1.18}
+
+/* About page */
+.doc{max-width:780px}
+.doc p,.doc li{font-size:18px;line-height:1.75}
+.doc .lede{font-size:19px}
+.doc h3{font-size:19px}
+.back{font-size:17px}
+.mail{font-family:var(--body);font-size:17px;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -599,6 +712,25 @@ scoreAll();
 state.sel=[...PLACES].sort((a,b)=>a.r-b.r)[0];
 rebuildPicker();renderMap();renderPanel();
 (async()=>{try{const res=await fetch("ratings.json",{cache:"no-store"});ingest(res.ok?((await res.json())||{}).r:{});}catch(e){state.ready=true;}})();
+</script>
+<script>
+/* Larger-text toggle: remembered per browser, labelled in the page's current language. */
+(function(){
+  const root=document.documentElement, lb=document.getElementById("langbtn");
+  if(!lb)return;
+  const btn=document.createElement("button");btn.type="button";btn.className="sizebtn";btn.id="sizebtn";
+  const box=document.createElement("div");box.className="tools";lb.replaceWith(box);box.append(btn,lb);
+  let big=false;try{big=localStorage.getItem("sm-size")==="large";}catch(e){}
+  function paint(){
+    if(big)root.dataset.size="large";else delete root.dataset.size;
+    const es=(root.lang||"en").startsWith("es");
+    btn.textContent=big?(es?"Texto normal":"Normal text"):(es?"Texto más grande":"Larger text");
+    btn.setAttribute("aria-pressed",String(big));
+  }
+  btn.addEventListener("click",()=>{big=!big;try{localStorage.setItem("sm-size",big?"large":"normal");}catch(e){}paint();});
+  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
+  paint();
+})();
 </script>
 </body>
 </html>
