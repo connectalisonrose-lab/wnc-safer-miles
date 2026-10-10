@@ -181,6 +181,11 @@ footer{padding-bottom:72px}
 .suggest{margin-top:var(--s4);padding:16px 20px;border:1px dashed var(--line);border-radius:12px;background:var(--surface)}
 .suggest a{font-weight:700}
 
+.draftnote:empty{display:none}
+.draftnote{margin:var(--s3) 0 0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);font-size:15px}
+.root-review{margin-top:var(--s3)}
+.note.src a{white-space:nowrap}
+
 /* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
 
@@ -218,6 +223,7 @@ html[data-size="large"] .wrap{zoom:1.18}
       <li data-i18n="fact2"><strong>Not a guarantee</strong>A higher score means fewer known risk factors. Use it alongside your own judgment.</li>
       <li data-i18n="fact3"><strong>Not an emergency service</strong>If you are in danger, call <a href="tel:911">911</a>. <a href="#safety">Crisis lines and safety tips</a></li>
     </ul>
+    <p class="draftnote" data-i18n="draftNote"></p>
     <details class="more"><summary data-i18n="moreS">More about this pilot</summary><p data-i18n="notice"><strong>This is a pilot, and the scores are starting estimates.</strong> A high score means fewer known risk factors, not a guarantee of safety. The starting scores come from a review of public sources, such as park and county pages, local news and Google Maps listings, not from site visits, and they are waiting for local women to confirm or correct them. Anyone can rate a place from its panel; it takes about 20 seconds and asks for no name. Use this as one input alongside your own judgment. This map is not an emergency service; if you are in danger, call 911.</p></details>
   </header>
 
@@ -250,7 +256,7 @@ html[data-size="large"] .wrap{zoom:1.18}
 
   <section>
     <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
-    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map, 1 being safest by the current score. Closed or unconfirmed places are marked × and not ranked.</p></div>
+    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map by its current score: 1 has the fewest known risk factors, which is not the same as safe. Closed or unconfirmed places are marked × and not ranked.</p></div>
     <div class="list" id="list"></div>
     <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Buncombe or Henderson County ↗</a> It's anonymous, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
@@ -268,6 +274,7 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><b>Tell one person</b> your route and when you'll be back, and text them when you're done.</li>
           <li><b>Check this map for cell signal</b> before you pick a route. Some trails here lose signal minutes from the trailhead. Charge your phone and download an offline map.</li>
           <li><b>Plan for the light.</b> Dusk comes early under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
+          <li><b>Check the season.</b> Gates and hours change through the year, and on state game lands like Bent Creek hunting is allowed in season. Wear something bright in fall and winter.</li>
           <li><b>Leave the car ready:</b> parked facing out near the lot entrance, nothing visible inside, key within reach.</li>
         </ul>
       </div>
@@ -366,6 +373,7 @@ html[data-size="large"] .wrap{zoom:1.18}
         <p class="body" data-i18n="rootP2">It also carries <strong>orenda</strong>, an Iroquoian word for the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they can be in their own bodies. This map exists to give some of it back, together.</p>
       </div>
     </div>
+    <p class="note root-review" data-i18n="rootReview">Gadugi is offered here with respect, by someone who is not Cherokee, and is awaiting review by Cherokee knowledge holders. If its use here is wrong, it will change.</p>
   </section>
 
   <div class="cols">
@@ -439,8 +447,8 @@ const PLACES=[
   ne:"Vistas abiertas sobre el agua y alquiler de botes de pedal en temporada. La hora de cierre cambia según la estación."},
  {n:"Bent Creek & Lake Powhatan",a:"south",st:"open",sn:"",sne:"",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
   t:"National forest · trail network",te:"Bosque nacional · red de senderos",
-  note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route.",
-  ne:"Entradas concurridas, pero bosque profundo y poca señal una vez adentro. Comparta su ruta."},
+  note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route. Bent Creek is state game land, so hunting is allowed in season (not bears); wear something bright in fall and winter.",
+  ne:"Entradas concurridas, pero bosque profundo y poca señal una vez adentro. Comparta su ruta. Bent Creek es terreno de caza del estado, así que se permite cazar en temporada (no osos); use algo de color vivo en otoño e invierno."},
  {n:"NC Arboretum",a:"south",st:"open",sn:"",sne:"",lat:35.4986,lng:-82.6102,f:[2,5,3,4,5,5],
   t:"Gated grounds · trails",te:"Terreno con portón · senderos",
   note:"Staffed, gated and closed at night. Paid parking means a monitored lot.",
@@ -516,13 +524,33 @@ const PLACES=[
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
+const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
+const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed"];
+const CHK=Array(26).fill("2026-10-09").concat(["2026-10-10"]);
+const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
+const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
+[["City of Asheville","https://www.ashevillenc.gov/news/richmond-hill-park-partially-reopens-on-october-11-in-recovery-milestone-as-asheville-continues-post-helene-progress/"]],
+[["Buncombe County","https://www.buncombenc.gov/Facilities/Facility/Details/Lake-Julian-Park-6"]],
+[["U.S. Forest Service","https://www.fs.usda.gov/r08/northcarolina/recreation/bent-creek-experimental-forest"],GRUN,["WLOS","https://wlos.com/news/ask-13/ask-13-are-hunters-allowed-in-bent-creek"]],
+[GRUN],[],[["WFAE","https://www.wfae.org/2026-06-04/for-second-year-in-a-row-only-one-public-pool-will-be-open-in-asheville-this-summer"]],
+[["WLOS","https://wlos.com/news/local/residents-ready-for-azalea-parks-comeback-as-asheville-unveils-new-recovery-plan"],["City of Asheville","https://www.ashevillenc.gov/projects/azalea-parks-and-infrastructure-recovery/"]],
+[],[],[["Buncombe County","https://www.buncombenc.gov/1131/Enka-Recreation-Destination"]],
+[["WFAE","https://www.wfae.org/2026-08-19/swannanoa-residents-push-for-owen-park-repairs"]],
+[["National Park Service","https://home.nps.gov/blri/planyourvisit/folk-art-center.htm"]],
+[["Henderson County","https://www.hendersoncountync.gov/recreation/page/jackson-park"]],
+[["City of Hendersonville","https://www.hendersonvillenc.gov/parks-greenspace"],["NC Helene recovery","https://www.wncrecovery.nc.gov/blog/2025/03/24/town-staff-uncovers-hope-and-rebuilds-connection"]],
+[["Henderson County","https://www.hendersoncountync.gov/recreation/page/ecusta-trail"]],
+[["Town of Fletcher","https://www.fletchernc.org/departments/parks-and-recreation/billmoorecommunitypark/"]],
+[],[["Henderson County","https://www.hendersoncountync.gov/recreation/page/westfeldt-park"]],
+[["NC Forest Service","https://www.ncagr.gov/divisions/nc-forest-service/state-forests/educational-state-forests/holmes/about"]],
+[],[["Conserving Carolina","https://conservingcarolina.org/bearwallow-mountain/"],["Enlace Latino NC","https://enlacelatinonc.org/en/Bearwallow-Mountain-reopens-after-nine-months-of-closure-due-to-Helene/"],["Explore Asheville","https://www.exploreasheville.com/article/bearwallow-mountain-trail"]]];
 const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
 const L={
  en:{
   FACT:["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"],
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
-  TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed"},
+  TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed",access:"Paved, level or step-free"},
   BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
   AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
@@ -532,7 +560,8 @@ const L={
   rCount:n=>`Women's ratings · ${n} ${n===1?"rating":"ratings"}`,
   warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
   avg:(e,s)=>`average for how safe women felt here. Environmental score ${e}, blended score ${s}.`,
-  rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name. Takes about 20 seconds.",rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
+  rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name. Takes about 20 seconds. All women, trans women included, and nonbinary people are welcome to rate. Totals may be used in research; individual answers never are.",
+  evH:"How sure we are",CONF:{high:"High confidence: official sources or news state the key facts directly.",med:"Medium confidence: based on consistent reviews or guides more than official sources.",lowmed:"Low-to-medium confidence: few sources.",unk:"Damage is confirmed, but current access is unknown."},evCell:"Cell signal is estimated from the setting at every place, not measured.",evChecked:d=>`Checked against public sources on ${d}; not yet checked in person.`,evSrc:"Sources:",evGoogle:"Google Maps listing and reviews",evMethod:"How scores are made",change:"Report a change here ↗",MONTHS:["January","February","March","April","May","June","July","August","September","October","November","December"],fmtDate:(y,m,d,M)=>`${M[m-1]} ${d}, ${y}`,rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
   polS:"Police incident context · not connected",panelPolP:"Where public incident data exists, nearby reports will show here as context. They never enter the score.",
   dir:"Directions ↗",rank:(r,t)=>`#${r} of ${t} scored places`,blended:"blended",listCount:n=>` · ${n} ${n===1?"rating":"ratings"}`,
   aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es",
@@ -541,7 +570,7 @@ const L={
  es:{
   FACT:["Iluminación","Gente alrededor","Visibilidad","Señal de celular","Personal en el lugar","Estacionamiento visible"],
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
-  TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida"},
+  TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida",access:"Pavimentado, plano o sin escalones"},
   BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
   AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
@@ -551,7 +580,8 @@ const L={
   rCount:n=>`Calificaciones de mujeres · ${n} ${n===1?"calificación":"calificaciones"}`,
   warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
   avg:(e,s)=>`promedio de qué tan seguras se sintieron las mujeres aquí. Puntaje del entorno ${e}, puntaje combinado ${s}.`,
-  rateS:"Califique este lugar",rateP:"Cuatro preguntas rápidas, sin registrarse y sin nombre. Toma unos 20 segundos.",rateB:n=>`Calificar ${n} ↗`,rateF:"Las calificaciones aparecen en el mapa dentro de un día, sin nombres.",
+  rateS:"Califique este lugar",rateP:"Cuatro preguntas rápidas, sin registrarse y sin nombre. Toma unos 20 segundos. Todas las mujeres, incluidas las mujeres trans, y las personas no binarias pueden calificar. Los totales pueden usarse en investigaciones; las respuestas individuales nunca.",
+  evH:"Qué tan seguros estamos",CONF:{high:"Confianza alta: fuentes oficiales o noticias dicen los datos clave directamente.",med:"Confianza media: se basa más en reseñas o guías consistentes que en fuentes oficiales.",lowmed:"Confianza baja a media: pocas fuentes.",unk:"El daño está confirmado, pero no se sabe si hoy hay acceso."},evCell:"La señal de celular se estima según el entorno en todos los lugares; no se midió.",evChecked:d=>`Revisado con fuentes públicas el ${d}; aún no se ha visitado en persona.`,evSrc:"Fuentes:",evGoogle:"ficha y reseñas de Google Maps",evMethod:"Cómo se calculan los puntajes",change:"Reporte un cambio aquí ↗",MONTHS:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],fmtDate:(y,m,d,M)=>`${d} de ${M[m-1]} de ${y}`,rateB:n=>`Calificar ${n} ↗`,rateF:"Las calificaciones aparecen en el mapa dentro de un día, sin nombres.",
   polS:"Datos policiales · aún no conectados",panelPolP:"Donde existan datos públicos de incidentes, los reportes cercanos aparecerán aquí como contexto. Nunca entran en el puntaje.",
   dir:"Cómo llegar ↗",rank:(r,t)=>`N.º ${r} de ${t} lugares con puntaje`,blended:"combinado",listCount:n=>` · ${n} ${n===1?"calificación":"calificaciones"}`,
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
@@ -567,11 +597,11 @@ const L={
   mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
   suggest:"<strong>¿Conoce un lugar que falta?</strong> <a href=\"https://tally.so/r/WOGNya\" target=\"_blank\" rel=\"noopener\">Sugiera un parque, sendero verde o camino en el condado de Buncombe o Henderson ↗</a> Es anónimo, y cada sugerencia se investiga y se revisa antes de agregar algo al mapa.",
-  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa; el 1 es el más seguro según el puntaje actual. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
+  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa según su puntaje actual: el 1 tiene menos factores de riesgo conocidos, lo que no es lo mismo que ser seguro. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
   tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
   t1H:"Antes de salir",
-  t1L:"<li><b>Avísele a una persona</b> su ruta y a qué hora volverá, y mándele un mensaje al terminar.</li><li><b>Revise la señal de celular en este mapa</b> antes de elegir una ruta. En algunos senderos se pierde la señal a pocos minutos de la entrada. Cargue su teléfono y descargue un mapa sin conexión.</li><li><b>Planee según la luz.</b> Bajo los árboles oscurece temprano. Si va a estar afuera cerca del atardecer, empiece por el extremo abierto de la ruta y termine allí.</li><li><b>Deje el carro listo:</b> estacionado de frente a la salida cerca de la entrada del lote, sin nada a la vista adentro y con la llave a mano.</li>",
+  t1L:"<li><b>Avísele a una persona</b> su ruta y a qué hora volverá, y mándele un mensaje al terminar.</li><li><b>Revise la señal de celular en este mapa</b> antes de elegir una ruta. En algunos senderos se pierde la señal a pocos minutos de la entrada. Cargue su teléfono y descargue un mapa sin conexión.</li><li><b>Planee según la luz.</b> Bajo los árboles oscurece temprano. Si va a estar afuera cerca del atardecer, empiece por el extremo abierto de la ruta y termine allí.</li><li><b>Fíjese en la temporada.</b> Los portones y horarios cambian durante el año, y en terrenos de caza del estado como Bent Creek se permite cazar en temporada. Use algo de color vivo en otoño e invierno.</li><li><b>Deje el carro listo:</b> estacionado de frente a la salida cerca de la entrada del lote, sin nada a la vista adentro y con la llave a mano.</li>",
   t2H:"Mientras está afuera",
   t2L:"<li><b>Mantenga un oído libre</b>, o no use música en los tramos solitarios. Oír le da esos segundos de ventaja.</li><li><b>Confíe en lo que siente.</b> Si una persona, un carro o un tramo del sendero la incomoda, dé la vuelta, váyase o acorte su recorrido. Nunca necesita una razón que convenza a otra persona.</li><li><b>Esté atenta en los extremos.</b> El estacionamiento y el primer y último tramo del recorrido son donde empiezan la mayoría de los encuentros no deseados.</li><li><b>Si alguien la sigue,</b> vaya hacia donde hay gente: un parque para perros, un campo, un edificio con personal, otra corredora. Diga en voz alta lo que está pasando.</li><li><b>Cambie sus rutas y horarios</b> para que su rutina sea más difícil de predecir.</li>",
   t3H:"Su teléfono y sus aplicaciones",
@@ -616,6 +646,8 @@ const L={
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
   rootP1:"Este mapa está en tierra tsalagi (cherokee). Sigue el <strong>gadugi</strong>, la tradición cherokee de trabajar juntos, en la que los vecinos se reúnen para ayudarse a sembrar, cosechar y salir adelante en tiempos difíciles; los cherokee de Snowbird, no muy lejos de aquí, todavía la practican. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, ofrecida para que la próxima pueda salir sabiendo más y con menos miedo.",
+  rootReview:"El gadugi se presenta aquí con respeto, por alguien que no es cherokee, y está en espera de revisión por parte de personas cherokee que guardan este conocimiento. Si su uso aquí no es correcto, se cambiará.",
+  draftNote:"Esta versión en español es un borrador hecho con IA y está en revisión por hablantes nativas. Si algo no se entiende bien, la versión en inglés es la de referencia.",
   rootP2:"También lleva el <strong>orenda</strong>, una palabra iroquesa para el poder que tiene cada ser vivo. El miedo quita parte de ese poder al limitar adónde van las mujeres y qué tan plenamente pueden estar en su propio cuerpo. Este mapa existe para devolver una parte, juntas.",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
   foot1:"Las ubicaciones y los contornos de los condados son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
@@ -749,6 +781,12 @@ function ratingsBlock(p){
     <div class="scoreline"><span class="mini">${p.avg.toFixed(1)}<small>/5</small></span><span class="note">${t.avg(p.env,p.s)}</span></div>
     ${counts.length?`<div class="tags">${counts.map(([k,c])=>`<span class="tag">${t.TAGS[k]} <b>${c}</b></span>`).join("")}</div>`:""}`;
 }
+function evidBlock(p){
+  const t=T(),i=p.i,[y,m,d]=CHK[i].split("-").map(Number),dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}`;
+  const links=SRC[i].map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).concat([`<a href="${dir}" target="_blank" rel="noopener">${t.evGoogle}</a>`]).join(" · ");
+  const ch=CHANGE[lang]?`<a href="${CHANGE[lang]}?place=${encodeURIComponent(p.n)}" target="_blank" rel="noopener">${t.change}</a>`:"";
+  return `<span class="status">${t.evH}</span><p class="note">${t.CONF[CF[i]]} ${t.evCell} ${t.evChecked(t.fmtDate(y,m,d,t.MONTHS))}</p><p class="note src">${t.evSrc} ${links} · <a href="about.html${lang==="es"?"?lang=es#built-es":"#built"}">${t.evMethod}</a></p>${ch}`;
+}
 function formBlock(p){
   const t=T(),url=FORMS[lang]+"?place="+encodeURIComponent(p.n);
   return `<span class="status">${t.rateS}</span>
@@ -772,6 +810,7 @@ function renderPanel(){
     <h2>${p.n}</h2>
     <div class="status-note off" role="note">${p.st==="unclear"?`<b>${t.unclearH}</b> `:""}${sn}</div>
     <p class="note">${pn(p)}</p>
+    <div class="layer">${evidBlock(p)}</div>
     <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}" target="_blank" rel="noopener">${t.dir}</a>`;return;}
   panel.innerHTML=`
     <div class="eyebrow">${t.rank(p.r,N_SCORED)} · ${pt(p)}</div>
@@ -780,6 +819,7 @@ function renderPanel(){
     ${sn?`<div class="status-note" role="note">${sn}</div>`:""}
     <p class="note">${pn(p)}</p>
     <div class="factors">${t.FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar" aria-hidden="true"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
+    <div class="layer">${evidBlock(p)}</div>
     <div class="layer go">${goBlock(p)}</div>
     <div class="layer">${ratingsBlock(p)}</div>
     <div class="layer">${formBlock(p)}</div>
