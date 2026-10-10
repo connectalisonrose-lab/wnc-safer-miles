@@ -183,8 +183,18 @@ footer{padding-bottom:72px}
 
 .draftnote:empty{display:none}
 .draftnote{margin:var(--s3) 0 0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);font-size:15px}
-.rooted-grid{align-items:start}
-.rooted .root-review{margin:var(--s2) auto 0;max-width:62ch;text-align:center;padding-top:var(--s3);border-top:1px solid color-mix(in srgb,var(--ink) 15%,transparent);width:100%}
+.rooted{--rb:#e9ebf5;--ra:#4b5a8f;--rl:#c9cee6;background:var(--rb);text-align:center;justify-items:center}
+.rooted h2{text-align:center}
+.rooted .term{color:var(--ra)}
+.rooted-grid{width:100%;align-items:stretch;gap:0}
+.rooted-grid>div{padding:0 clamp(16px,3vw,40px);display:flex;flex-direction:column;align-items:center}
+.rooted-grid>div+div{border-left:1px solid var(--rl)}
+.rooted p.body{max-width:44ch;margin-inline:auto}
+.rooted .sub{line-height:1.5}
+.rooted .root-review{margin:var(--s2) auto 0;max-width:62ch;text-align:center;padding-top:var(--s3);border-top:1px solid var(--rl);width:100%}
+@media (max-width:760px){.rooted-grid>div{padding:0}.rooted-grid>div+div{border-left:0;border-top:1px solid var(--rl);margin-top:var(--s3);padding-top:var(--s3)}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rooted{--rb:#1f2336;--ra:#b9c3ee;--rl:#363c58}}
+:root[data-theme="dark"] .rooted{--rb:#1f2336;--ra:#b9c3ee;--rl:#363c58}
 .note.src a{white-space:nowrap}
 
 /* ---------- Larger text ---------- */
@@ -365,12 +375,12 @@ html[data-size="large"] .wrap{zoom:1.18}
     <div class="rooted-grid">
       <div>
         <p class="term" lang="chr-Latn">gadugi</p>
-        <p class="sub" data-i18n="rootS1">Tsalagi (Cherokee): working together. Said ga-doo-gee.</p>
+        <p class="sub" data-i18n="rootS1">Tsalagi (Cherokee)<br>working together · said ga-doo-gee</p>
         <p class="body" data-i18n="rootP1">This map sits on Tsalagi homelands, still home to the Eastern Band of Cherokee Indians. <strong>Gadugi</strong> is the Cherokee tradition of people turning out together to help a neighbor plant, harvest or get through hard times. Each rating is a small part of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
       </div>
       <div>
         <p class="term">orenda</p>
-        <p class="sub" data-i18n="rootS2">Haudenosaunee: the power every living being holds.</p>
+        <p class="sub" data-i18n="rootS2">Haudenosaunee<br>the power every living being holds</p>
         <p class="body" data-i18n="rootP2"><strong>Orenda</strong> comes from the Haudenosaunee peoples, and is offered here by someone learning her own family's Haudenosaunee line. It names the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they live in their own bodies. This map exists to give some of it back, together.</p>
       </div>
     </div>
@@ -642,14 +652,14 @@ const L={
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
   fact3:"<strong>No es un servicio de emergencia</strong>Si está en peligro, llame al <a href=\"tel:911\">911</a>. <a href=\"#safety\">Líneas de ayuda y consejos</a>",
   moreS:"Más sobre este piloto",
-  rootS1:"Tsalagi (cherokee): trabajar juntos. Se pronuncia ga-du-gui.",
-  rootS2:"Haudenosaunee: el poder que tiene todo ser vivo.",
+  rootS1:"Tsalagi (cherokee)<br>trabajar juntos · se dice ga-du-gui",
+  rootS2:"Haudenosaunee<br>el poder que tiene todo ser vivo",
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
   rootP1:"Este mapa está en tierras tsalagi, todavía hogar de la Banda Oriental de Indios Cherokee. El <strong>gadugi</strong> es la tradición cherokee de reunirse para ayudar a un vecino a sembrar, cosechar o pasar tiempos difíciles. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, para que la siguiente salga sabiendo más y con menos miedo.",
   rootReview:"Ambas palabras se comparten con respeto, por alguien que no es cherokee y que todavía está aprendiendo sobre sus raíces haudenosaunee. Están en espera de revisión por parte de personas cherokee y haudenosaunee que guardan este conocimiento, y se cambiarán si así lo piden.",
   draftNote:"Esta versión en español es un borrador hecho con IA y está en revisión por hablantes nativas. Si algo no se entiende bien, la versión en inglés es la de referencia.",
-  rootP2:"El <strong>orenda</strong> viene de los pueblos haudenosaunee, y lo comparte aquí alguien que está aprendiendo sobre la línea haudenosaunee de su propia familia. Nombra el poder que tiene todo ser vivo. El miedo le quita parte de ese poder al limitar a dónde van las mujeres y qué tan plenamente viven en su propio cuerpo. Este mapa existe para devolver algo de ese poder, juntas.",
+  rootP2:"El <strong>orenda</strong> viene de los pueblos haudenosaunee, y lo comparte aquí alguien que aprende sobre la línea haudenosaunee de su familia. Nombra el poder que tiene todo ser vivo. El miedo le quita parte de ese poder al limitar a dónde van las mujeres y qué tan plenamente viven en su propio cuerpo. Este mapa existe para devolver algo de ese poder, juntas.",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
   foot1:"Las ubicaciones y los contornos de los condados son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
   foot3:"<a href=\"about.html?lang=es\">Acerca de, términos y privacidad</a> · <a href=\"about.html?lang=es#built-es\">Cómo se creó</a>",
