@@ -239,7 +239,7 @@ html[data-size="large"] .wrap{zoom:1.18}
 
   <section>
     <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
-    <p class="note" data-i18n="listNote">The number is the place's rank across the county, 1 being safest by the current score.</p></div>
+    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map, 1 being safest by the current score. Closed places are marked × and not ranked.</p></div>
     <div class="list" id="list"></div>
   </section>
 
@@ -343,7 +343,7 @@ html[data-size="large"] .wrap{zoom:1.18}
     </section>
     <section>
       <h3 data-i18n="polH">About police data</h3>
-      <p class="note" data-i18n="polP">Asheville publishes incident data, but it covers city limits only, and the Sheriff's Office covers the rest of the county. Incident counts reflect where policing happens and what gets reported. Most harassment on trails never reaches a report. So this layer will show context next to each place and stay out of the score.</p>
+      <p class="note" data-i18n="polP">Police data is uneven across the two counties. Asheville publishes block-level incident data, but only inside city limits. Hendersonville publishes only monthly citywide totals, and neither county sheriff's office publishes a public incident map. Incident counts also reflect where policing happens and what gets reported, and most harassment on trails never reaches a report. So police data will appear only as context where it exists, and it stays out of the score.</p>
     </section>
     <section>
       <h3 data-i18n="wontH">What this map won't do</h3>
@@ -354,7 +354,7 @@ html[data-size="large"] .wrap{zoom:1.18}
   </main>
 
   <footer>
-    <p data-i18n="foot1">Locations and the county outline are approximate. Use “Directions” for exact trailheads.</p>
+    <p data-i18n="foot1">Locations and the county outlines are approximate. Use “Directions” for exact trailheads.</p>
     <p data-i18n="foot3"><a href="about.html">About, terms and privacy</a> · <a href="about.html#built">How this was built</a></p>
     <p data-i18n="foot2">© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
   </footer>
@@ -486,7 +486,7 @@ const L={
   warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
   avg:(e,s)=>`average for how safe women felt here. Environmental score ${e}, blended score ${s}.`,
   rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name. Takes about 20 seconds.",rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
-  polS:"Police incident context · not connected",polP:"Will show nearby reported incidents for context, kept out of the score.",
+  polS:"Police incident context · not connected",panelPolP:"Where public incident data exists, nearby reports will show here as context. They never enter the score.",
   dir:"Directions ↗",rank:(r,t)=>`#${r} of ${t}`,blended:"blended",listCount:n=>` · ${n} ${n===1?"rating":"ratings"}`,
   aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es",
   ariaOff:n=>`${n}, closed or status unconfirmed, not scored`,unclear:"Status unclear",partial:"Partly open",partialH:"Partly open.",closedH:"Closed.",unclearH:"Status unclear."
@@ -505,7 +505,7 @@ const L={
   warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
   avg:(e,s)=>`promedio de qué tan seguras se sintieron las mujeres aquí. Puntaje del entorno ${e}, puntaje combinado ${s}.`,
   rateS:"Califique este lugar",rateP:"Cuatro preguntas rápidas, sin registrarse y sin nombre. Toma unos 20 segundos.",rateB:n=>`Calificar ${n} ↗`,rateF:"Las calificaciones aparecen en el mapa dentro de un día, sin nombres.",
-  polS:"Datos policiales · aún no conectados",polP:"Mostrará incidentes reportados cercanos como contexto, sin entrar en el puntaje.",
+  polS:"Datos policiales · aún no conectados",panelPolP:"Donde existan datos públicos de incidentes, los reportes cercanos aparecerán aquí como contexto. Nunca entran en el puntaje.",
   dir:"Cómo llegar ↗",rank:(r,t)=>`N.º ${r} de ${t}`,blended:"combinado",listCount:n=>` · ${n} ${n===1?"calificación":"calificaciones"}`,
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
   ariaOff:n=>`${n}, cerrado o con estado sin confirmar, sin puntaje`,unclear:"Estado sin confirmar",partial:"Abierto en parte",partialH:"Abierto en parte.",closedH:"Cerrado.",unclearH:"Estado sin confirmar.",
@@ -519,7 +519,7 @@ const L={
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
   mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
-  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el condado; el 1 es el más seguro según el puntaje actual.",
+  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa; el 1 es el más seguro según el puntaje actual. Los lugares cerrados llevan × y no tienen posición.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
   tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
   t1H:"Antes de salir",
@@ -543,7 +543,7 @@ const L={
   howH:"Cómo funciona el puntaje",
   howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una calificación mueve un poco el puntaje, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sobre los datos policiales",
-  polP:"Asheville publica datos de incidentes, pero solo cubren la ciudad; la Oficina del Sheriff cubre el resto del condado. El número de incidentes refleja dónde patrulla la policía y qué se reporta. La mayoría del acoso en los senderos nunca se reporta. Por eso esta capa mostrará contexto junto a cada lugar y no entrará en el puntaje.",
+  polP:"Los datos policiales son desiguales entre los dos condados. Asheville publica datos de incidentes por cuadra, pero solo dentro de la ciudad. Hendersonville publica solo totales mensuales de toda la ciudad, y ninguna de las dos oficinas del sheriff publica un mapa público de incidentes. Además, el número de incidentes refleja dónde patrulla la policía y qué se reporta, y la mayoría del acoso en los senderos nunca se reporta. Por eso los datos policiales solo aparecerán como contexto donde existan, y no entran en el puntaje.",
   wontH:"Lo que este mapa no hace",
   fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
@@ -556,7 +556,7 @@ const L={
   rootP1:"Este mapa está en tierra tsalagi (cherokee). Sigue el <strong>gadugi</strong>, la tradición cherokee de trabajar juntos, en la que los vecinos se reúnen para ayudarse a sembrar, cosechar y salir adelante en tiempos difíciles; los cherokee de Snowbird, no muy lejos de aquí, todavía la practican. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, ofrecida para que la próxima pueda salir sabiendo más y con menos miedo.",
   rootP2:"También lleva el <strong>orenda</strong>, una palabra iroquesa para el poder que tiene cada ser vivo. El miedo quita parte de ese poder al limitar adónde van las mujeres y qué tan plenamente pueden estar en su propio cuerpo. Este mapa existe para devolver una parte, juntas.",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
-  foot1:"Las ubicaciones y el contorno del condado son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
+  foot1:"Las ubicaciones y los contornos de los condados son aproximados. Use \"Cómo llegar\" para ver la entrada exacta.",
   foot3:"<a href=\"about.html?lang=es\">Acerca de, términos y privacidad</a> · <a href=\"about.html?lang=es#built-es\">Cómo se creó</a>",
   foot2:"© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra."
  }
@@ -721,7 +721,7 @@ function renderPanel(){
     <div class="layer go">${goBlock(p)}</div>
     <div class="layer">${ratingsBlock(p)}</div>
     <div class="layer">${formBlock(p)}</div>
-    <div class="layer"><span class="status">${t.polS}</span><p class="note">${t.polP}</p></div>
+    <div class="layer"><span class="status">${t.polS}</span><p class="note">${t.panelPolP}</p></div>
     <a href="${dir}" target="_blank" rel="noopener">${t.dir}</a>`;
 }
 function select(p,jump){state.sel=p;renderMap();renderPanel();if(jump)panel.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
