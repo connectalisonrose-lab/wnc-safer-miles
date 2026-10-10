@@ -247,7 +247,7 @@ html[data-size="large"] .wrap{zoom:1.18}
 
   <section>
     <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
-    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map, 1 being safest by the current score. Closed places are marked × and not ranked.</p></div>
+    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map, 1 being safest by the current score. Closed or unconfirmed places are marked × and not ranked.</p></div>
     <div class="list" id="list"></div>
   </section>
 
@@ -377,7 +377,7 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li>Lighting, 15%</li>
           <li>Visible parking, 10%</li>
         </ul>
-        <p class="note">The result is scaled to 100. Women's ratings then blend in: one rating shifts the score a little, and the more ratings a place has, the more they count, up to 40% of the score. Any rating of 1 or 2 is also flagged on the place itself as a warning.</p>
+        <p class="note">The result is scaled to 100. Women's ratings then blend in: one rating can move a score by up to about 13 points, enough to change the band of a place near a cutoff, and the more ratings a place has, the more they count, up to 40% of the score. Any rating of 1 or 2 is also flagged on the place itself as a warning.</p>
       </div>
     </section>
     <section>
@@ -413,26 +413,26 @@ const PLACES=[
   t:"Park · wooded trail",te:"Parque · sendero boscoso",
   note:"Quieter wooded sections and a lot that's hard to see from the road. Better with a buddy.",
   ne:"Tramos boscosos más tranquilos y un estacionamiento difícil de ver desde la calle. Mejor ir acompañada."},
- {n:"Wilma Dykeman Greenway",a:"ash",st:"open",sn:"",sne:"Plano y muy usado, con negocios a lo largo de gran parte del recorrido.",lat:35.5876,lng:-82.5660,f:[3,4,4,5,2,3],
+ {n:"Wilma Dykeman Greenway",a:"ash",st:"open",sn:"",sne:"",lat:35.5876,lng:-82.5660,f:[3,4,4,5,2,3],
   t:"Greenway · River Arts District",te:"Sendero verde · River Arts District",
   note:"Flat and well used, with businesses along much of it.",
-  ne:"Iluminado, concurrido y plano, con negocios a lo largo de gran parte del recorrido."},
+  ne:"Plano y muy usado, con negocios a lo largo de gran parte del recorrido."},
  {n:"Reed Creek Greenway",a:"ash",st:"open",sn:"",sne:"",lat:35.6077,lng:-82.5562,f:[3,4,3,5,2,2],
   t:"Greenway · near UNCA",te:"Sendero verde · cerca de UNCA",
   note:"Short and well used by students. Some tree-lined stretches.",
   ne:"Corto y muy usado por estudiantes. Algunos tramos bordeados de árboles."},
- {n:"Beaver Lake Bird Sanctuary",a:"ash",st:"open",sn:"",sne:"Siempre hay gente caminando alrededor del lago. Sin personal, y el portón del estacionamiento se cierra solo al anochecer.",lat:35.6370,lng:-82.5568,f:[2,4,3,5,1,3],
+ {n:"Beaver Lake Bird Sanctuary",a:"ash",st:"open",sn:"",sne:"",lat:35.6370,lng:-82.5568,f:[2,4,3,5,1,3],
   t:"Park · lake boardwalk",te:"Parque · pasarela del lago",
   note:"Steady walkers around the lake. Unstaffed, and the parking lot gate closes automatically at dusk.",
-  ne:"Siempre hay gente caminando alrededor del lago. Sin personal y oscuro después del atardecer."},
+  ne:"Siempre hay gente caminando alrededor del lago. Sin personal, y el portón del estacionamiento se cierra solo al anochecer."},
  {n:"Richmond Hill Park",a:"ash",st:"partial",sn:'Partly open after Hurricane Helene: some trails are open, restrooms are closed and creek bridges are out, so crossings are wet.',sne:'Abierto en parte después del huracán Helene: algunos senderos están abiertos, los baños están cerrados y los puentes del arroyo no están, así que hay que cruzar por el agua.',lat:35.6105,lng:-82.5974,f:[1,2,2,3,1,2],
   t:"Park · wooded trails",te:"Parque · senderos boscosos",
   note:"Disc golf and dense woods with fewer people on weekdays.",
   ne:"Disc golf y bosque denso, con menos gente entre semana."},
- {n:"Lake Julian Park",a:"south",st:"open",sn:"",sne:"Vistas abiertas sobre el agua y alquiler de botes de pedal en temporada. La hora de cierre cambia según la estación.",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],
+ {n:"Lake Julian Park",a:"south",st:"open",sn:"",sne:"",lat:35.4797,lng:-82.5373,f:[2,4,5,5,3,4],
   t:"County park · lake loop",te:"Parque del condado · circuito del lago",
   note:"Open views across the water and seasonal paddle-boat rentals. Closing time changes with the season.",
-  ne:"Vistas abiertas sobre el agua y una oficina con personal en el horario indicado."},
+  ne:"Vistas abiertas sobre el agua y alquiler de botes de pedal en temporada. La hora de cierre cambia según la estación."},
  {n:"Bent Creek & Lake Powhatan",a:"south",st:"open",sn:"",sne:"",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
   t:"National forest · trail network",te:"Bosque nacional · red de senderos",
   note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route.",
@@ -445,10 +445,10 @@ const PLACES=[
   t:"Garden · short loops",te:"Jardín · circuitos cortos",
   note:"Small and peaceful, next to campus. Quiet early mornings.",
   ne:"Pequeño y tranquilo, junto al campus. Silencioso temprano en la mañana."},
- {n:"Pack Square Park",a:"ash",st:"open",sn:"",sne:"Céntrico, concurrido y abierto a toda hora. Bueno para circuitos cortos por el centro.",lat:35.5953,lng:-82.5503,f:[4,5,5,5,3,3],
+ {n:"Pack Square Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5953,lng:-82.5503,f:[4,5,5,5,3,3],
   t:"Downtown park",te:"Parque del centro",
   note:"Central, busy and open around the clock. Good for short loops through downtown.",
-  ne:"Iluminado, céntrico y siempre con gente. Bueno para vueltas cortas por el centro."},
+  ne:"Céntrico, concurrido y abierto a toda hora. Bueno para circuitos cortos por el centro."},
  {n:"Azalea Park",a:"ash",st:"unclear",sn:"Heavily damaged by Hurricane Helene, and we couldn't confirm which parts are open. Not scored until its status is confirmed.",sne:'Muy dañado por el huracán Helene, y no pudimos confirmar qué partes están abiertas. No tiene puntaje hasta confirmar su estado.',lat:35.5874,lng:-82.4956,f:[3,4,4,4,2,4],
   t:"Park · sports fields",te:"Parque · campos deportivos",
   note:"Fields and the Swannanoa River path. Busiest during games.",
@@ -562,7 +562,7 @@ const L={
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
   mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
-  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa; el 1 es el más seguro según el puntaje actual. Los lugares cerrados llevan × y no tienen posición.",
+  listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa; el 1 es el más seguro según el puntaje actual. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
   tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
   t1H:"Antes de salir",
@@ -598,7 +598,7 @@ const L={
   lRainn:"RAINN, 24 horas<small>Línea nacional contra la agresión sexual</small>",
   t6P:"Que la sigan, la observen o la acosen es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
   howH:"Cómo funciona el puntaje",
-  howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una calificación mueve un poco el puntaje, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
+  howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una sola calificación puede mover el puntaje hasta unos 13 puntos, lo suficiente para cambiar la categoría de un lugar cerca de un límite, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sobre los datos policiales",
   polP:"Los datos policiales son desiguales entre los dos condados. Asheville publica datos de incidentes por cuadra, pero solo dentro de la ciudad. Hendersonville publica solo totales mensuales de toda la ciudad, y ninguna de las dos oficinas del sheriff publica un mapa público de incidentes. Además, el número de incidentes refleja dónde patrulla la policía y qué se reporta, y la mayoría del acoso en los senderos nunca se reporta. Por eso los datos policiales solo aparecerán como contexto donde existan, y no entran en el puntaje.",
   wontH:"Lo que este mapa no hace",

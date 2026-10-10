@@ -2,7 +2,7 @@
 
 A community map of parks, greenways and trails in western North Carolina, scored on what makes a place feel safer for women running or walking alone: lighting, foot traffic, sightlines, cell signal, staff presence and visible parking. Women rate places anonymously through a short form, and their ratings blend into each place's score.
 
-- `index.html` is the whole site.
+- `index.html` is the map; `about.html` holds the method, terms, privacy notice and safety guidance for using the site.
 - `ratings.json` holds aggregated ratings (score, time of day, tags) and nothing else. It is refreshed automatically each morning from the English and Spanish rating forms by a scheduled AI task.
 
 ## How this was built
