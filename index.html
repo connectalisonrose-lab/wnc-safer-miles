@@ -178,6 +178,9 @@ footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;col
 .qexit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 footer{padding-bottom:72px}
 
+.suggest{margin-top:var(--s4);padding:16px 20px;border:1px dashed var(--line);border-radius:12px;background:var(--surface)}
+.suggest a{font-weight:700}
+
 /* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
 
@@ -249,6 +252,7 @@ html[data-size="large"] .wrap{zoom:1.18}
     <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
     <p class="note" data-i18n="listNote">The number is the place's rank across the whole map, 1 being safest by the current score. Closed or unconfirmed places are marked × and not ranked.</p></div>
     <div class="list" id="list"></div>
+    <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Buncombe or Henderson County ↗</a> It's anonymous, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
 
   <section class="tips" id="safety">
@@ -562,6 +566,7 @@ const L={
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
   mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
+  suggest:"<strong>¿Conoce un lugar que falta?</strong> <a href=\"https://tally.so/r/WOGNya\" target=\"_blank\" rel=\"noopener\">Sugiera un parque, sendero verde o camino en el condado de Buncombe o Henderson ↗</a> Es anónimo, y cada sugerencia se investiga y se revisa antes de agregar algo al mapa.",
   listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa; el 1 es el más seguro según el puntaje actual. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
   tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
