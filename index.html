@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#f6f2ea;color:#26231f}@media (prefers-color-scheme:dark){body{background:#171512;color:#f1ece4}}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#fbf5f3;color:#2b2226}@media (prefers-color-scheme:dark){body{background:#191416;color:#f6edef}}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>WNC Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe and Henderson counties, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +11,10 @@
 <style>
 /* WNC Safer Miles — design system (Oct 2026)
    Calm and legible first. One typeface, Atkinson Hyperlegible, designed for low-vision readability.
-   Palette: warm paper neutrals, deep teal accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
+   Palette: blush cream neutrals, dusty rose accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
 :root{
-  --bg:#f6f2ea; --surface:#ffffff; --band:#ece5d8; --ink:#26231f; --muted:#5a5249; --line:#ddd4c4;
-  --land:#ebe4d6; --river:#5b8da3; --accent:#2a6b5c;
+  --bg:#fbf5f3; --surface:#ffffff; --band:#f6e9e7; --ink:#2b2226; --muted:#665559; --line:#ecd9d6;
+  --land:#f5e7e3; --river:#5b8da3; --accent:#a3475d;
   --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089; --closed:#736b62;
   --font:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:var(--font); --body:var(--font); --mono:var(--font);
@@ -23,12 +23,12 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#171512; --surface:#201d19; --band:#26221d; --ink:#f1ece4; --muted:#c2b9ad; --line:#3a342c;
-  --land:#231f1a; --river:#5f93aa; --accent:#9cc4d2;
+  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#3e3136;
+  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
   --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; --closed:#7d756b; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#171512; --surface:#201d19; --band:#26221d; --ink:#f1ece4; --muted:#c2b9ad; --line:#3a342c;
-  --land:#231f1a; --river:#5f93aa; --accent:#9cc4d2;
+  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#3e3136;
+  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
   --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; --closed:#7d756b; color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
@@ -58,7 +58,7 @@ header{display:grid;gap:var(--s3)}
 .eyebrow{font-size:16px;color:var(--muted)}
 .tools{display:flex;gap:var(--s1);flex-wrap:wrap}
 .langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-.sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 .title{display:grid;gap:var(--s2)}
 header .lede{font-size:clamp(19px,2.2vw,22px);line-height:1.55;max-width:46ch}
 .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);list-style:none;margin:0;padding:0}
@@ -183,8 +183,9 @@ footer{padding-bottom:72px}
 
 .draftnote:empty{display:none}
 .draftnote{margin:var(--s3) 0 0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);font-size:15px}
-.rooted{--rb:#fbf8f2;--ra:#2a6b5c;--rl:#e4dccd;background:var(--rb);border:1px solid var(--rl);text-align:center;justify-items:center}
+.rooted{--rb:#fffafa;--ra:#a3475d;--rl:#efd8d6;background:var(--rb);border:1px solid var(--rl);text-align:center;justify-items:center}
 .rooted h2{text-align:center}
+.rooted .rose{--petal:#b8606e;--petal2:#cf8592;--leaf:#5f8a6e;display:block;margin:0 auto -8px}
 .rooted .term{color:var(--ra)}
 .rooted-grid{width:100%;align-items:stretch;gap:0}
 .rooted-grid>div{padding:0 clamp(16px,3vw,40px);display:flex;flex-direction:column;align-items:center}
@@ -193,8 +194,10 @@ footer{padding-bottom:72px}
 .rooted .sub{line-height:1.5}
 .rooted .root-review{margin:var(--s2) auto 0;max-width:62ch;text-align:center;padding-top:var(--s3);border-top:1px solid var(--rl);width:100%}
 @media (max-width:760px){.rooted-grid>div{padding:0}.rooted-grid>div+div{border-left:0;border-top:1px solid var(--rl);margin-top:var(--s3);padding-top:var(--s3)}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rooted{--rb:#201d19;--ra:#9cc4d2;--rl:#3a342c}}
-:root[data-theme="dark"] .rooted{--rb:#201d19;--ra:#9cc4d2;--rl:#3a342c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rooted{--rb:#221b1e;--ra:#eaa7b7;--rl:#3e3136}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rose{--petal:#e3a0aa;--petal2:#c97f8b}}
+:root[data-theme="dark"] .rose{--petal:#e3a0aa;--petal2:#c97f8b}
+:root[data-theme="dark"] .rooted{--rb:#221b1e;--ra:#eaa7b7;--rl:#3e3136}
 .note.src a{white-space:nowrap}
 
 /* ---------- Larger text ---------- */
@@ -371,6 +374,14 @@ html[data-size="large"] .wrap{zoom:1.18}
   </section>
 
   <section class="rooted" id="rooted">
+    <svg class="rose" viewBox="0 0 64 84" width="56" height="74" aria-hidden="true" focusable="false">
+      <path d="M32 44 C32 58 32 68 32 82" fill="none" stroke="var(--leaf)" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M32 62 C25 55 16 55 11 59 C17 65 26 66 32 62Z M32 62 C39 55 48 55 53 59 C47 65 38 66 32 62Z" fill="var(--leaf)"/>
+      <path d="M17 27 C13 14 22 5 32 7 C42 5 51 14 47 27Z" fill="var(--petal2)"/>
+      <path d="M32 23 C29 23 28 19 31 17 C35 15 39 19 37 23 C35 27 28 28 25 23 C22 17 26 11 32 11 C39 11 44 16 43 23" fill="none" stroke="var(--petal)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M13 21 C13 38 23 47 32 47 C41 47 51 38 51 21 C47 30 40 34 32 34 C24 34 17 30 13 21Z" fill="var(--petal)"/>
+      <path d="M22 37 C26 41 29 42 32 42 C35 42 38 41 42 37" fill="none" stroke="var(--petal2)" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+    </svg>
     <h2 data-i18n="rootH">Rooted in this land</h2>
     <div class="rooted-grid">
       <div>
