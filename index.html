@@ -58,6 +58,24 @@
 .tip.help h3,.tip.help .lines-h{text-align:center}
 @media (max-width:760px){.tip.help .lines{grid-template-columns:1fr}.tip.help .lines li{justify-content:space-between!important}}
 @media (max-width:640px){.tablist{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.tablist [role=tab]{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}.tip.help .lines:not(.txt) span{flex:1 1 150px}}
+
+/* ---------- Help card: resource tiles ---------- */
+.tip.help .now{display:flex;justify-content:center;align-items:center;gap:var(--s2);padding:12px var(--s2);background:var(--surface);border:1px solid var(--line);border-radius:10px;font-weight:700;font-size:18px}
+.tip.help .rescards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tip.help .rescards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tip.help .rescards li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:12px;align-content:space-between}
+.tip.help .rescards li>span{display:grid;gap:2px;font-weight:700;font-size:17px}
+.tip.help .rescards small{font-weight:400;color:var(--muted);font-size:15px}
+.tip.help .acts{display:flex;flex-wrap:wrap;gap:8px}
+.tip.help .acts a,.tip.help .now a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;font:700 16px var(--font);text-decoration:none;border:1.5px solid var(--accent);white-space:nowrap}
+.tip.help a.call{background:var(--accent);color:var(--bg)}
+.tip.help a.call.big{font-size:20px;padding:8px 28px}
+.tip.help a.web{background:var(--surface);color:var(--accent)}
+.tip.help a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.tip.help .desk-note{text-align:center;margin:0 auto;max-width:none}
+header .incl{margin:0;font-size:17px;color:var(--muted);max-width:60ch}
+@media (max-width:900px){.tip.help .rescards.three{grid-template-columns:1fr}}
+@media (max-width:640px){.tip.help .rescards{grid-template-columns:1fr}.tip.help .acts a{flex:1 1 auto}}
 </style>
 <title>WNC Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe and Henderson counties, NC, scored on what makes them safer for women running or walking alone.">
@@ -286,6 +304,7 @@ html[data-size="large"] .wrap{zoom:1.18}
     <div class="title">
       <h1>WNC Safer Miles</h1>
       <p class="lede" data-i18n="lede">A community map of parks, greenways and trails in Buncombe and Henderson counties, scored on what helps women feel safer running or walking alone.</p>
+      <p class="incl" data-i18n="incl">For all women, trans women included, and for nonbinary, gender-expansive and LGBTQ+ people who have ever felt unsafe out alone.</p>
     </div>
     <ul class="facts">
       <li data-i18n="fact1"><strong>A community pilot</strong>Scores start as estimates and get better as women rate the places they use.</li>
@@ -424,20 +443,28 @@ html[data-size="large"] .wrap{zoom:1.18}
     <div class="tip-grid">
       <div class="tip help">
         <h3 data-i18n="t6H">If something happens</h3>
-        <ul class="lines">
-          <li><span data-i18n="l911">In danger now</span><a href="tel:911">911</a></li>
-          <li><span data-i18n="lVoice">Our VOICE, 24 hours<small>Sexual violence and trafficking · Buncombe County</small></span><a href="tel:+18282557576">828-255-7576</a></li>
-          <li><span data-i18n="lHelp">Helpmate, 24 hours<small>Domestic and intimate partner violence · Buncombe County</small></span><a href="tel:+18282540516">828-254-0516</a></li>
-          <li><span data-i18n="lSafe">Safelight, 24 hours<small>Interpersonal violence, sexual assault and child abuse · Henderson County</small></span><a href="tel:+18286933840">828-693-3840</a></li>
-          <li><span data-i18n="lRainn">RAINN, 24 hours<small>National Sexual Assault Hotline</small></span><a href="tel:+18006564673">800-656-4673</a></li>
+        <div class="now"><span data-i18n="l911">In danger now</span><a class="call big" href="tel:911">911</a></div>
+        <h4 class="lines-h" data-i18n="callH">Call, 24 hours a day</h4>
+        <ul class="rescards">
+          <li><span data-i18n="lVoice">Our VOICE<small>Sexual violence and trafficking · Buncombe County</small></span><div class="acts"><a class="call" href="tel:+18282557576">828-255-7576</a><a class="web" href="https://ourvoicenc.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lHelp">Helpmate<small>Domestic and intimate partner violence · Buncombe County</small></span><div class="acts"><a class="call" href="tel:+18282540516">828-254-0516</a><a class="web" href="https://helpmateonline.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lSafe">Safelight<small>Interpersonal violence, sexual assault and child abuse · Henderson County</small></span><div class="acts"><a class="call" href="tel:+18286933840">828-693-3840</a><a class="web" href="https://safelightfamily.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lRainn">RAINN<small>National Sexual Assault Hotline</small></span><div class="acts"><a class="call" href="tel:+18006564673">800-656-4673</a><a class="web" href="https://rainn.org/help-and-healing/hotline" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
         </ul>
-        <h4 class="lines-h" data-i18n="txtH">Prefer to text?</h4>
-        <ul class="lines txt">
-          <li><span data-i18n="tRainn">RAINN, 24 hours<small>Sexual assault · English and Spanish · or chat at rainn.org</small></span><a href="sms:64673" data-i18n="tRainnA">Text HOPE to 64673</a></li>
-          <li><span data-i18n="tNdvh">National Domestic Violence Hotline, 24 hours<small>Abuse by a partner or ex · or chat at thehotline.org</small></span><a href="sms:88788" data-i18n="tNdvhA">Text START to 88788</a></li>
-          <li><span data-i18n="t988">988 Suicide &amp; Crisis Lifeline, 24 hours<small>Emotional distress of any kind · English and Spanish</small></span><a href="sms:988" data-i18n="t988A">Call or text 988</a></li>
+        <h4 class="lines-h" data-i18n="txtH">Prefer to text or chat?</h4>
+        <ul class="rescards three">
+          <li><span data-i18n="tRainn">RAINN<small>Sexual assault · English and Spanish</small></span><div class="acts"><a class="call" href="sms:64673" data-i18n="tRainnA">Text HOPE to 64673</a><a class="web" href="https://rainn.org/help-and-healing/hotline" target="_blank" rel="noopener" data-i18n="chatLink">Chat online ↗</a></div></li>
+          <li><span data-i18n="tNdvh">National Domestic Violence Hotline<small>Abuse by a partner or ex</small></span><div class="acts"><a class="call" href="sms:88788" data-i18n="tNdvhA">Text START to 88788</a><a class="web" href="https://www.thehotline.org/get-help/" target="_blank" rel="noopener" data-i18n="chatLink">Chat online ↗</a></div></li>
+          <li><span data-i18n="t988">988 Suicide &amp; Crisis Lifeline<small>Emotional distress of any kind · English and Spanish</small></span><div class="acts"><a class="call" href="sms:988" data-i18n="t988A">Call or text 988</a><a class="web" href="https://988lifeline.org/" target="_blank" rel="noopener" data-i18n="chatLink">Chat online ↗</a></div></li>
         </ul>
-        <p class="note" data-i18n="t6P">Being followed, watched or harassed is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
+        <h4 class="lines-h" data-i18n="lgbtH">LGBTQ+ support</h4>
+        <ul class="rescards three">
+          <li><span data-i18n="lTrevor">The Trevor Project<small>LGBTQ+ young people · 24 hours</small></span><div class="acts"><a class="call" href="tel:+18664887386">1-866-488-7386</a><a class="call" href="sms:678678" data-i18n="lTrevorA">Text START to 678-678</a><a class="web" href="https://www.thetrevorproject.org/get-help/" target="_blank" rel="noopener" data-i18n="chatLink">Chat online ↗</a></div></li>
+          <li><span data-i18n="lTrans">Trans Lifeline<small>Peer support from trans and nonbinary operators · weekdays 1–9 p.m. Eastern · English and Spanish</small></span><div class="acts"><a class="call" href="tel:+18775658860">877-565-8860</a><a class="web" href="https://translifeline.org/hotline/" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lTranz">Tranzmission<small>Support groups and advocacy for trans and nonbinary people in Western North Carolina</small></span><div class="acts"><a class="web" href="https://tranzmission.org/" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+        </ul>
+        <p class="fine desk-note" data-i18n="deskNote">On a computer? Call or text from your phone, or use the website and chat links. Unless noted, lines are free, confidential and open 24 hours.</p>
+        <p class="note" data-i18n="t6P">Being followed, watched or harassed, including for your gender, how you look or who you love, is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
         <p class="note safe-use" data-i18n="safeUse"><b>If someone checks your phone or browser:</b> use a private or incognito window, and the Quick exit button at the bottom of the screen leaves this site at once. Your browser history may still show this visit, so clear it if that is safe for you.</p>
       </div>
     </div>
@@ -719,21 +746,31 @@ const L={
   t8H:"Después de un susto",
   t8P:"Un momento de miedo puede quedarse en el cuerpo después de que pasa. El corazón acelerado, temblar o sentirse adormecida son respuestas normales. Estas son opciones para la hora siguiente; use lo que le ayude.",
   t8L:"<li><b>Primero, vaya a un lugar más seguro:</b> un estacionamiento iluminado, un edificio con personal, donde haya gente, o su carro con seguro puesto.</li><li><b>Alargue la exhalación.</b> Saque el aire más despacio de lo que lo toma, varias veces. Una exhalación larga ayuda a que el cuerpo se calme.</li><li><b>Vuelva al presente.</b> Nombre cinco cosas que ve y tres que oye, y apoye bien los pies en el suelo.</li><li><b>Sostenga algo.</b> Las llaves, una piedra lisa o cualquier cosa con textura en la mano le da al cuerpo algo firme en qué enfocarse.</li><li><b>Busque apoyo.</b> Mándele un mensaje a alguien de confianza, o llame o escriba a una consejera de las líneas de abajo. No tiene que explicarlo bien.</li><li><b>Más adelante, si quiere y cuando quiera:</b> califique el lugar para advertir a la próxima mujer, y pruebe <a href=\"#today\">otra opción</a> la próxima vez. No hay prisa ni una manera equivocada de recuperarse.</li>",
-  txtH:"¿Prefiere escribir?",
-  tRainn:"RAINN, 24 horas<small>Agresión sexual · en inglés y español · o chat en rainn.org</small>",
+  txtH:"¿Prefiere escribir o chatear?",
+  callH:"Llame, las 24 horas",
+  webLink:"Sitio web ↗",
+  chatLink:"Chat en línea ↗",
+  deskNote:"¿Está en una computadora? Llame o escriba desde su teléfono, o use los enlaces al sitio web y al chat. Salvo que se indique lo contrario, las líneas son gratuitas, confidenciales y atienden las 24 horas.",
+  incl:"Para todas las mujeres, incluidas las mujeres trans, y para las personas no binarias, de género expansivo y LGBTQ+ que alguna vez han sentido miedo al salir solas.",
+  lgbtH:"Apoyo LGBTQ+",
+  lTrevor:"The Trevor Project<small>Jóvenes LGBTQ+ · 24 horas</small>",
+  lTrevorA:"Escriba START al 678-678",
+  lTrans:"Trans Lifeline<small>Apoyo entre pares de operadores trans y no binarios · lunes a viernes, de 1 a 9 p. m. (hora del Este) · en inglés y español</small>",
+  lTranz:"Tranzmission<small>Grupos de apoyo y defensa para personas trans y no binarias en el oeste de Carolina del Norte</small>",
+  tRainn:"RAINN<small>Agresión sexual · en inglés y español</small>",
   tRainnA:"Escriba HOPE al 64673",
-  tNdvh:"Línea Nacional contra la Violencia Doméstica, 24 horas<small>Abuso de una pareja o expareja · o chat en espanol.thehotline.org</small>",
+  tNdvh:"Línea Nacional contra la Violencia Doméstica<small>Abuso de una pareja o expareja</small>",
   tNdvhA:"Escriba START al 88788",
-  t988:"988, línea de crisis y prevención del suicidio, 24 horas<small>Angustia emocional de cualquier tipo · mensajes y chat en español</small>",
+  t988:"988, línea de crisis y prevención del suicidio<small>Angustia emocional de cualquier tipo · en inglés y español</small>",
   t988A:"Llame o escriba al 988",
   safeUse:"<b>Si alguien revisa su teléfono o su navegador:</b> use una ventana privada o de incógnito, y el botón Salida rápida, abajo en la pantalla, lo saca de este sitio al instante. Es posible que el historial del navegador muestre esta visita; bórrelo si es seguro para usted.",
   t6H:"Si algo pasa",
   l911:"Peligro inmediato",
-  lVoice:"Our VOICE, 24 horas<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
-  lHelp:"Helpmate, 24 horas<small>Violencia doméstica y de pareja · Condado de Buncombe</small>",
-  lSafe:"Safelight, 24 horas<small>Violencia interpersonal, agresión sexual y abuso infantil · Condado de Henderson</small>",
-  lRainn:"RAINN, 24 horas<small>Línea nacional contra la agresión sexual</small>",
-  t6P:"Que la sigan, la observen o la acosen es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
+  lVoice:"Our VOICE<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
+  lHelp:"Helpmate<small>Violencia doméstica y de pareja · Condado de Buncombe</small>",
+  lSafe:"Safelight<small>Violencia interpersonal, agresión sexual y abuso infantil · Condado de Henderson</small>",
+  lRainn:"RAINN<small>Línea nacional contra la agresión sexual</small>",
+  t6P:"Que la sigan, la observen o la acosen, incluso por su género, su apariencia o a quién ama, es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
   howH:"Cómo funciona el puntaje",
   howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una sola calificación puede mover el puntaje hasta unos 13 puntos, lo suficiente para cambiar la categoría de un lugar cerca de un límite, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sobre los datos policiales",
