@@ -521,7 +521,7 @@ html[data-size="large"] .wrap{zoom:1.18}
         </div>
         <div class="tip" id="hw-police" role="tabpanel" aria-labelledby="tab-hw-police" tabindex="0">
       <h3 data-i18n="polH">No police data</h3>
-      <p class="note" data-i18n="polP">This map does not use police or crime data. Incident counts mostly show where policing happens and what gets reported, most harassment on trails is never reported, and crime maps can make a place look more dangerous, or safer, than it feels to a woman alone. The one exception is a serious violent incident at a specific place, such as an assault or an attack on a trail, confirmed by an official notice or reliable local news. After review, it may appear on that place as a dated alert with its source. Alerts never change a score, and they come down after 90 days unless the risk continues.</p>
+      <p class="note" data-i18n="polP">This map does not use police or crime data. Incident counts mostly show where policing happens and what gets reported, most harassment on trails is never reported, and crime maps can make a place look more dangerous, or safer, than it feels to a woman alone. The one exception is a serious violent incident at a specific place, such as an assault or an attack on a trail, confirmed by an official notice or reliable local news. After review, it may appear on that place as a dated alert with its source. Alerts never change a score, and they come down 12 months after the incident.</p>
         </div>
         <div class="tip" id="hw-wont" role="tabpanel" aria-labelledby="tab-hw-wont" tabindex="0">
       <h3 data-i18n="wontH">What this map won't do</h3>
@@ -574,7 +574,7 @@ const PLACES=[
   t:"County park · lake loop",te:"Parque del condado · circuito del lago",
   note:"Open views across the water and seasonal paddle-boat rentals. Closing time changes with the season.",
   ne:"Vistas abiertas sobre el agua y alquiler de botes de pedal en temporada. La hora de cierre cambia según la estación."},
- {n:"Bent Creek & Lake Powhatan",a:"south",st:"open",sn:"",sne:"",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
+ {n:"Bent Creek & Lake Powhatan",al:{d:"2026-05-21",en:"A runner was assaulted on a trail in the Bent Creek Experimental Forest on May 21, 2026. The Buncombe County Sheriff's Office arrested a man two days later on assault and kidnapping charges.",es:"El 21 de mayo de 2026, una corredora fue agredida en un sendero del Bosque Experimental Bent Creek. La Oficina del Sheriff del Condado de Buncombe arrestó a un hombre dos días después por cargos de agresión y secuestro.",u:"https://wlos.com/news/local/asheville-bent-creek-trail-attack-suspect-court-appearance-kidnapping-charge-hiker-assault-case",l:"WLOS"},a:"south",st:"open",sn:"",sne:"",lat:35.4877,lng:-82.6253,f:[1,4,2,2,2,3],
   t:"National forest · trail network",te:"Bosque nacional · red de senderos",
   note:"Busy trailheads, but deep woods and weak signal once you're in. Share your route. Bent Creek is state game land, so hunting is allowed in season (not bears); wear something bright in fall and winter.",
   ne:"Entradas concurridas, pero bosque profundo y poca señal una vez adentro. Comparta su ruta. Bent Creek es terreno de caza del estado, así que se permite cazar en temporada (no osos); use algo de color vivo en otoño e invierno."},
@@ -772,7 +772,7 @@ const L={
   howH:"Cómo funciona el puntaje",
   howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una sola calificación puede mover el puntaje hasta unos 13 puntos, lo suficiente para cambiar la categoría de un lugar cerca de un límite, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sin datos policiales",
-  polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran después de 90 días, a menos que el riesgo continúe.",
+  polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran 12 meses después del incidente.",
   wontH:"Lo que este mapa no hace",
   fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
@@ -923,7 +923,7 @@ function ratingsBlock(p){
     ${counts.length?`<div class="tags">${counts.map(([k,c])=>`<span class="tag">${t.TAGS[k]} <b>${c}</b></span>`).join("")}</div>`:""}`;
 }
 /* Serious-incident alert: only for a serious violent incident at this place, confirmed by an official notice or reliable news,
-   approved by the project owner. p.al={d:"YYYY-MM-DD",en:"…",es:"…",u:"source URL",l:"source name"}. Never changes the score; remove after 90 days unless the risk continues. */
+   approved by the project owner. p.al={d:"YYYY-MM-DD",en:"…",es:"…",u:"source URL",l:"source name"}. Never changes the score; remove 12 months after the incident date. */
 function alertBlock(p){if(!p.al)return "";const t=T(),[y,m,d]=p.al.d.split("-").map(Number);
   return `<div class="warn" role="note"><b>${t.alertH} · ${t.fmtDate(y,m,d,t.MONTHS)}</b>${lang==="es"?p.al.es:p.al.en} <a href="${p.al.u}" target="_blank" rel="noopener">${p.al.l} ↗</a></div>`;}
 function evidBlock(p){
