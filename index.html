@@ -169,6 +169,15 @@ main{display:grid;gap:var(--s5)}
 .tips-head{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
 footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted);display:grid;gap:var(--s1)}
 
+.tip.after{grid-column:1/-1}
+.tip.after ul{columns:2 340px;column-gap:var(--s4);display:block}
+.tip.after li{break-inside:avoid;margin-bottom:12px}
+.lines-h{font-size:18px;margin:var(--s3) 0 0}
+.safe-use{border-top:1px solid var(--line);padding-top:var(--s2)}
+.qexit{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:700 16px var(--font);min-height:48px;padding:10px 20px;border-radius:999px;border:2px solid var(--surface);background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:0 2px 10px color-mix(in srgb,var(--ink) 25%,transparent)}
+.qexit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+footer{padding-bottom:72px}
+
 /* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
 
@@ -306,6 +315,18 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><b>Rest.</b> A day off is part of training, and so is listening to your body.</li>
         </ul>
       </div>
+      <div class="tip after" id="after">
+        <h3 data-i18n="t8H">After a scare</h3>
+        <p class="note" data-i18n="t8P">A frightening moment can stay in the body after it's over. A racing heart, shaking or feeling numb are normal responses. These are options for the hour afterward; use what helps.</p>
+        <ul data-i18n="t8L">
+          <li><b>Get somewhere safer first:</b> a lit lot, a staffed building, other people, or your locked car.</li>
+          <li><b>Slow the exhale.</b> Breathe out longer than you breathe in, a few times. A longer exhale helps your body settle.</li>
+          <li><b>Come back to right now.</b> Name five things you can see and three you can hear, and press your feet into the ground.</li>
+          <li><b>Hold something.</b> Keys, a smooth stone or anything with texture in your hand gives your body something steady to focus on.</li>
+          <li><b>Reach out.</b> Text someone you trust, or call or text an advocate below. You don't have to explain it well.</li>
+          <li><b>Later, if and when you want:</b> rate the place so the next woman is warned, and try <a href="#today">a different option</a> next time. There's no rush, and no wrong way to recover.</li>
+        </ul>
+      </div>
       <div class="tip help">
         <h3 data-i18n="t6H">If something happens</h3>
         <ul class="lines">
@@ -315,7 +336,14 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><span data-i18n="lSafe">Safelight, 24 hours<small>Interpersonal violence, sexual assault and child abuse · Henderson County</small></span><a href="tel:+18286933840">828-693-3840</a></li>
           <li><span data-i18n="lRainn">RAINN, 24 hours<small>National Sexual Assault Hotline</small></span><a href="tel:+18006564673">800-656-4673</a></li>
         </ul>
+        <h4 class="lines-h" data-i18n="txtH">Prefer to text?</h4>
+        <ul class="lines">
+          <li><span data-i18n="tRainn">RAINN, 24 hours<small>Sexual assault · English and Spanish · or chat at rainn.org</small></span><a href="sms:64673" data-i18n="tRainnA">Text HOPE to 64673</a></li>
+          <li><span data-i18n="tNdvh">National Domestic Violence Hotline, 24 hours<small>Abuse by a partner or ex · or chat at thehotline.org</small></span><a href="sms:88788" data-i18n="tNdvhA">Text START to 88788</a></li>
+          <li><span data-i18n="t988">988 Suicide &amp; Crisis Lifeline, 24 hours<small>Emotional distress of any kind · English and Spanish</small></span><a href="sms:988" data-i18n="t988A">Call or text 988</a></li>
+        </ul>
         <p class="note" data-i18n="t6P">Being followed, watched or harassed is reason enough to call. You decide what counts, and talking to an advocate doesn't require a police report. When you're ready, rating the place, including "Felt watched or followed," warns others without naming anyone.</p>
+        <p class="note safe-use" data-i18n="safeUse"><b>If someone checks your phone or browser:</b> use a private or incognito window, and the Quick exit button at the bottom of the screen leaves this site at once. Your browser history may still show this visit, so clear it if that is safe for you.</p>
       </div>
     </div>
   </section>
@@ -547,6 +575,17 @@ const L={
   t7H:"Si hoy no se siente bien",
   t7P:"No ir es una decisión, no un fracaso. Si un lugar o un día no se siente seguro, esa sensación es información en la que vale la pena confiar. Otras maneras de moverse:",
   t7L:"<li><b>Elija un lugar más concurrido y con personal</b> para hoy. Filtre el mapa por Fuerte, o escoja un lugar con personal en horario de apertura.</li><li><b>Vaya acompañada.</b> Las tiendas de artículos para correr y los clubes organizan salidas en grupo, y una amiga o un perro cambian qué rutas se sienten posibles.</li><li><b>Muévase bajo techo.</b> Un YMCA, YWCA, gimnasio o centro recreativo comunitario le ofrece una pista o caminadora con gente y personal alrededor.</li><li><b>Quédese cerca de casa.</b> Una vuelta más corta de día por su propio vecindario, o una ruta que conoce bien, también cuenta.</li><li><b>Muévase en casa.</b> Escaleras, un video de caminata o de yoga, o estiramientos en el piso mantienen el hábito sin salir.</li><li><b>Descanse.</b> Un día libre es parte del entrenamiento, y escuchar a su cuerpo también.</li>",
+  t8H:"Después de un susto",
+  t8P:"Un momento de miedo puede quedarse en el cuerpo después de que pasa. El corazón acelerado, temblar o sentirse adormecida son respuestas normales. Estas son opciones para la hora siguiente; use lo que le ayude.",
+  t8L:"<li><b>Primero, vaya a un lugar más seguro:</b> un estacionamiento iluminado, un edificio con personal, donde haya gente, o su carro con seguro puesto.</li><li><b>Alargue la exhalación.</b> Saque el aire más despacio de lo que lo toma, varias veces. Una exhalación larga ayuda a que el cuerpo se calme.</li><li><b>Vuelva al presente.</b> Nombre cinco cosas que ve y tres que oye, y apoye bien los pies en el suelo.</li><li><b>Sostenga algo.</b> Las llaves, una piedra lisa o cualquier cosa con textura en la mano le da al cuerpo algo firme en qué enfocarse.</li><li><b>Busque apoyo.</b> Mándele un mensaje a alguien de confianza, o llame o escriba a una consejera de las líneas de abajo. No tiene que explicarlo bien.</li><li><b>Más adelante, si quiere y cuando quiera:</b> califique el lugar para advertir a la próxima mujer, y pruebe <a href=\"#today\">otra opción</a> la próxima vez. No hay prisa ni una manera equivocada de recuperarse.</li>",
+  txtH:"¿Prefiere escribir?",
+  tRainn:"RAINN, 24 horas<small>Agresión sexual · en inglés y español · o chat en rainn.org</small>",
+  tRainnA:"Escriba HOPE al 64673",
+  tNdvh:"Línea Nacional contra la Violencia Doméstica, 24 horas<small>Abuso de una pareja o expareja · o chat en espanol.thehotline.org</small>",
+  tNdvhA:"Escriba START al 88788",
+  t988:"988, línea de crisis y prevención del suicidio, 24 horas<small>Angustia emocional de cualquier tipo · mensajes y chat en español</small>",
+  t988A:"Llame o escriba al 988",
+  safeUse:"<b>Si alguien revisa su teléfono o su navegador:</b> use una ventana privada o de incógnito, y el botón Salida rápida, abajo en la pantalla, lo saca de este sitio al instante. Es posible que el historial del navegador muestre esta visita; bórrelo si es seguro para usted.",
   t6H:"Si algo pasa",
   l911:"Peligro inmediato",
   lVoice:"Our VOICE, 24 horas<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
@@ -773,6 +812,20 @@ rebuildPicker();renderMap();renderPanel();
   btn.addEventListener("click",()=>{big=!big;try{localStorage.setItem("sm-size",big?"large":"normal");}catch(e){}paint();});
   new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
   paint();
+})();
+</script>
+<script>
+/* Quick exit: replaces this page with a neutral site so Back does not return here. */
+(function(){
+  const root=document.documentElement;
+  const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
+  function paint(){const es=(root.lang||"en").startsWith("es");
+    b.textContent=es?"Salida rápida":"Quick exit";
+    b.setAttribute("aria-label",es?"Salir de este sitio de inmediato":"Leave this site immediately");}
+  b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
+    try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
+  document.body.appendChild(b);paint();
+  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
 })();
 </script>
 </body>

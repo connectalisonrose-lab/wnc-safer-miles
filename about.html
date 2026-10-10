@@ -164,6 +164,10 @@ svg.map{width:100%;height:auto;display:block}
 
 footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted);display:grid;gap:var(--s1)}
 
+.qexit{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:700 16px var(--font);min-height:48px;padding:10px 20px;border-radius:999px;border:2px solid var(--surface);background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:0 2px 10px color-mix(in srgb,var(--ink) 25%,transparent)}
+.qexit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.docfoot{padding-bottom:72px}
+
 /* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
 
@@ -240,6 +244,18 @@ html[data-size="large"] .wrap{zoom:1.18}
       <p>Because the project doesn't know who you are, it can't look up your rating by name. If you submitted something you want removed, or you have any question about this page, email <span class="mail">connect.alisonrose@gmail.com</span> with the place and roughly when you rated it.</p>
     </section>
 
+    <section id="safe-use">
+      <h2>Using this site safely</h2>
+      <p>If someone checks your phone, computer or browser, these steps can help keep your visit private.</p>
+      <ul>
+        <li><strong>Quick exit.</strong> The button at the bottom of every page replaces this site with a weather site, so pressing Back does not return here.</li>
+        <li><strong>Private browsing.</strong> A private or incognito window does not save this visit to your history.</li>
+        <li><strong>History.</strong> If you used a regular window, your browser history may show this site. Clear it only if doing so is safe for you; a suddenly empty history can draw attention too.</li>
+        <li><strong>A safer device.</strong> A library, work or friend's computer may be safer than a shared one at home.</li>
+      </ul>
+      <p>The rating form never asks for your name, and the map never shows who rated. Advocates at Our VOICE (828-255-7576), Helpmate (828-254-0516) and Safelight (828-693-3840) can help you plan for safety, including technology safety, any time of day.</p>
+    </section>
+
     <section id="built">
       <h2>How this was built</h2>
       <p>In the interest of full transparency, here is exactly how the project was made.</p>
@@ -303,6 +319,18 @@ html[data-size="large"] .wrap{zoom:1.18}
       <p>Como el proyecto no sabe quién es usted, no puede buscar su calificación por nombre. Si envió algo que quiere eliminar, o tiene alguna pregunta sobre esta página, escriba a <span class="mail">connect.alisonrose@gmail.com</span> indicando el lugar y aproximadamente cuándo lo calificó.</p>
     </section>
 
+    <section id="safe-use-es">
+      <h2>Cómo usar este sitio con seguridad</h2>
+      <p>Si alguien revisa su teléfono, computadora o navegador, estos pasos pueden ayudar a mantener su visita en privado.</p>
+      <ul>
+        <li><strong>Salida rápida.</strong> El botón que aparece abajo en cada página reemplaza este sitio por uno del clima, así que al presionar Atrás no se vuelve aquí.</li>
+        <li><strong>Navegación privada.</strong> Una ventana privada o de incógnito no guarda esta visita en el historial.</li>
+        <li><strong>Historial.</strong> Si usó una ventana normal, el historial del navegador puede mostrar este sitio. Bórrelo solo si es seguro para usted; un historial vacío de repente también puede llamar la atención.</li>
+        <li><strong>Un dispositivo más seguro.</strong> La computadora de una biblioteca, del trabajo o de una amiga puede ser más segura que una compartida en casa.</li>
+      </ul>
+      <p>El formulario nunca pide su nombre y el mapa nunca muestra quién calificó. Las consejeras de Our VOICE (828-255-7576), Helpmate (828-254-0516) y Safelight (828-693-3840) pueden ayudarle a planear su seguridad, incluida la seguridad con la tecnología, a cualquier hora.</p>
+    </section>
+
     <section id="built-es">
       <h2>Cómo se creó</h2>
       <p>Con total transparencia, así se hizo exactamente el proyecto.</p>
@@ -350,6 +378,20 @@ apply();
   btn.addEventListener("click",()=>{big=!big;try{localStorage.setItem("sm-size",big?"large":"normal");}catch(e){}paint();});
   new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
   paint();
+})();
+</script>
+<script>
+/* Quick exit: replaces this page with a neutral site so Back does not return here. */
+(function(){
+  const root=document.documentElement;
+  const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
+  function paint(){const es=(root.lang||"en").startsWith("es");
+    b.textContent=es?"Salida rápida":"Quick exit";
+    b.setAttribute("aria-label",es?"Salir de este sitio de inmediato":"Leave this site immediately");}
+  b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
+    try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
+  document.body.appendChild(b);paint();
+  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
 })();
 </script>
 </body>
