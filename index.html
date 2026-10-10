@@ -140,10 +140,9 @@ svg.map{width:100%;height:auto;display:block}
 .tips-head .eyebrow{display:none}
 .tip-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2)}
 .tip{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:12px;align-content:start;min-width:0}
-.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}
 .tip.help{grid-column:1/-1}
-@media (max-width:980px){.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}.tip:nth-child(5){grid-column:1/-1}}
-@media (max-width:640px){.tip-grid{grid-template-columns:1fr}.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:auto}}
+@media (max-width:980px){.tip{grid-column:span 3}}
+@media (max-width:640px){.tip-grid{grid-template-columns:1fr}.tip{grid-column:auto}}
 .tip ul{margin:0;padding-left:20px;display:grid;gap:12px}
 .tip.help{background:var(--band);border-color:transparent}
 .tip .lines{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:var(--s4);gap:0 var(--s4)}
@@ -293,6 +292,18 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li>Don't match pace behind someone. Pass, or fall back.</li>
           <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
           <li>If you see someone being followed or bothered, walk alongside, ask if she's okay, and stay until she says she is.</li>
+        </ul>
+      </div>
+      <div class="tip" id="today">
+        <h3 data-i18n="t7H">If today doesn't feel right</h3>
+        <p class="note" data-i18n="t7P">Not going is a choice, not a failure. If a place or a day doesn't feel safe, that feeling is information worth trusting. Some other ways to get your miles:</p>
+        <ul data-i18n="t7L">
+          <li><b>Pick a busier, staffed place</b> for today. Filter the map to Strong, or choose somewhere with staff during open hours.</li>
+          <li><b>Go with someone.</b> Local running stores and clubs host group runs, and a friend or a dog changes which routes feel open.</li>
+          <li><b>Move indoors.</b> A YMCA, YWCA, gym or community recreation center gives you a track or treadmill with people and staff around.</li>
+          <li><b>Stay close to home.</b> A shorter daylight loop in your own neighborhood, or a route you know well, still counts.</li>
+          <li><b>Move at home.</b> Stairs, a walking or yoga video, or stretching on the floor keeps the habit without the trip.</li>
+          <li><b>Rest.</b> A day off is part of training, and so is listening to your body.</li>
         </ul>
       </div>
       <div class="tip help">
@@ -480,7 +491,7 @@ const L={
   AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
-  before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",
+  before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",
   rNone:"Women's ratings · none yet",rNoneP:"Be the first. Ratings show as soon as they come in.",
   rCount:n=>`Women's ratings · ${n} ${n===1?"rating":"ratings"}`,
   warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
@@ -499,7 +510,7 @@ const L={
   AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
-  before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",
+  before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",
   rNone:"Calificaciones de mujeres · aún no hay",rNoneP:"Sea la primera. Las calificaciones aparecen en cuanto llegan.",
   rCount:n=>`Calificaciones de mujeres · ${n} ${n===1?"calificación":"calificaciones"}`,
   warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
@@ -533,6 +544,9 @@ const L={
   t5H:"Si comparte estos senderos",
   t5P:"La mayoría de las personas en estos caminos no quieren hacer daño. Algunos hábitos lo dejan claro a una mujer que todavía no puede saberlo.",
   t5L:"<li>Avise antes de pasar, y pase con espacio.</li><li>No mantenga el mismo ritmo detrás de alguien. Pase o quédese atrás.</li><li>No la detenga para hablar. Audífonos puestos y mirada al frente es una respuesta.</li><li>Si ve que alguien está siendo seguida o molestada, camine a su lado, pregúntele si está bien y quédese hasta que ella diga que lo está.</li>",
+  t7H:"Si hoy no se siente bien",
+  t7P:"No ir es una decisión, no un fracaso. Si un lugar o un día no se siente seguro, esa sensación es información en la que vale la pena confiar. Otras maneras de moverse:",
+  t7L:"<li><b>Elija un lugar más concurrido y con personal</b> para hoy. Filtre el mapa por Fuerte, o escoja un lugar con personal en horario de apertura.</li><li><b>Vaya acompañada.</b> Las tiendas de artículos para correr y los clubes organizan salidas en grupo, y una amiga o un perro cambian qué rutas se sienten posibles.</li><li><b>Muévase bajo techo.</b> Un YMCA, YWCA, gimnasio o centro recreativo comunitario le ofrece una pista o caminadora con gente y personal alrededor.</li><li><b>Quédese cerca de casa.</b> Una vuelta más corta de día por su propio vecindario, o una ruta que conoce bien, también cuenta.</li><li><b>Muévase en casa.</b> Escaleras, un video de caminata o de yoga, o estiramientos en el piso mantienen el hábito sin salir.</li><li><b>Descanse.</b> Un día libre es parte del entrenamiento, y escuchar a su cuerpo también.</li>",
   t6H:"Si algo pasa",
   l911:"Peligro inmediato",
   lVoice:"Our VOICE, 24 horas<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
@@ -698,8 +712,8 @@ function goBlock(p){
   const t=T();
   const tips=p.f.map((v,k)=>v<=2?t.ADVICE[k]:null).filter(Boolean);
   if((RATINGS[p.i]||[]).some(r=>r.s<=2&&(r.t==="dark"||r.t==="dusk")))tips.unshift(t.dark);
-  if(!tips.length)return `<span class="status">${t.before}</span><p class="note">${t.noWeak}</p><a href="#safety">${t.tipsLink}</a>`;
-  return `<span class="status">${t.before}</span><ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul><a href="#safety">${t.moreTips}</a>`;
+  if(!tips.length)return `<span class="status">${t.before}</span><p class="note">${t.noWeak}</p><a href="#safety">${t.tipsLink}</a><a href="#today">${t.today}</a>`;
+  return `<span class="status">${t.before}</span><ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul><a href="#safety">${t.moreTips}</a><a href="#today">${t.today}</a>`;
 }
 function renderPanel(){
   const p=state.sel;if(!p)return;const t=T();
