@@ -78,7 +78,7 @@ header .incl{margin:0;font-size:17px;color:var(--muted);max-width:60ch}
 @media (max-width:640px){.tip.help .rescards{grid-template-columns:1fr}.tip.help .acts a{flex:1 1 auto}}
 </style>
 <title>WNC Safer Miles</title>
-<meta name="description" content="A community map of parks, greenways and trails in Buncombe and Henderson counties, NC, scored on what makes them safer for women running or walking alone.">
+<meta name="description" content="A community map of parks, greenways and trails in Buncombe, Henderson and Jackson counties, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
@@ -153,6 +153,9 @@ details.more p{margin-top:var(--s1);max-width:72ch}
 .mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2);display:grid;gap:var(--s2);min-width:0}
 .mapbox .hint{font-size:15px}
 svg.map{width:100%;height:auto;display:block}
+.inset{border-top:1px solid var(--line);padding-top:var(--s2);display:grid;gap:var(--s1)}
+.inset-h{margin:0;font-size:18px}
+.inset-n{margin:0;font-size:15px}
 .county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
 .river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .town{font:400 22px var(--font);fill:var(--muted)}
@@ -303,7 +306,7 @@ html[data-size="large"] .wrap{zoom:1.18}
     </div>
     <div class="title">
       <h1>WNC Safer Miles</h1>
-      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails in Buncombe and Henderson counties, scored on what helps women feel safer running or walking alone.</p>
+      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails in Buncombe, Henderson and Jackson counties, scored on what helps women feel safer running or walking alone.</p>
       <p class="incl" data-i18n="incl">For all women, trans women included, and for nonbinary, gender-expansive and LGBTQ+ people who have ever felt unsafe out alone.</p>
     </div>
     <ul class="facts">
@@ -329,7 +332,12 @@ html[data-size="large"] .wrap{zoom:1.18}
   <div class="main">
     <div class="mapbox">
       <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
-      <svg class="map" id="map" viewBox="0 0 1000 1250" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe and Henderson counties with scored places. Each pin is a button."></svg>
+      <svg class="map" id="map" viewBox="0 0 1000 1250" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe and Henderson counties with scored places. Each pin is a button. Jackson County places are on a separate map below."></svg>
+      <div class="inset">
+        <h3 class="inset-h" data-i18n="jackH">Jackson County · Sylva and Cullowhee</h3>
+        <p class="note inset-n" data-i18n="jackN">Shown as its own map because Jackson County sits west of the area above. Positions are approximate, and the county outline is not drawn.</p>
+        <svg class="map" id="map2" viewBox="0 0 1000 840" role="group" data-i18n-aria="mapAria2" aria-label="Map of Jackson County places near Sylva and Cullowhee. Each pin is a button."></svg>
+      </div>
       <div class="legend">
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
         <span><i class="sw" style="background:var(--mixed)"></i><span data-i18n="lgMixed">Mixed 55–74</span></span>
@@ -649,13 +657,25 @@ const PLACES=[
  {n:"Bearwallow Mountain Trail",a:"hend",co:"hend",st:"partial",sn:'Open again after Hurricane Helene, but reach it only from the Edneyville side: roads through Gerton, including US 74-A and lower Bearwallow Mountain Road, are restricted, and emergency help may take longer to arrive.',sne:'Abierto de nuevo después del huracán Helene, pero solo se llega por el lado de Edneyville: los caminos por Gerton, incluidos la US 74-A y la parte baja de Bearwallow Mountain Road, están restringidos, y la ayuda de emergencia puede tardar más en llegar.',lat:35.4607,lng:-82.3681,f:[1,3,3,3,1,1],
   t:"Trail · mountain summit",te:"Sendero · cumbre de montaña",
   note:"A short, steep wooded climb to an open summit meadow on a working cattle farm. Roadside parking for only a few cars at Bearwallow Gap, no staff or lights, and cell signal not verified.",
-  ne:"Una subida corta y empinada por el bosque hasta un prado abierto en la cumbre, en una finca ganadera activa. Estacionamiento a la orilla del camino para pocos carros en Bearwallow Gap, sin personal ni luces, y la señal de celular no está verificada."}
+  ne:"Una subida corta y empinada por el bosque hasta un prado abierto en la cumbre, en una finca ganadera activa. Estacionamiento a la orilla del camino para pocos carros en Bearwallow Gap, sin personal ni luces, y la señal de celular no está verificada."},
+ {n:"Jackson County Greenway",a:"jack",co:"jack",st:"partial",sn:'Damaged by Hurricane Helene. The county reported the greenway open in October 2024, with two river accesses closed, and is now seeking disaster-relief funds to repair and extend it. We could not confirm which parts are open today, so follow posted signs.',sne:'Dañado por el huracán Helene. El condado informó en octubre de 2024 que el sendero verde estaba abierto, con dos accesos al río cerrados, y ahora busca fondos de ayuda por desastre para repararlo y ampliarlo. No pudimos confirmar qué partes están abiertas hoy, así que siga los letreros.',lat:35.3229,lng:-83.1886,f:[2,4,3,3,2,3],
+  t:"Greenway · Tuckasegee River",te:"Sendero verde · río Tuckasegee",
+  note:"A paved, nearly flat path of about a mile beside the Tuckasegee, with benches and a footbridge at Locust Creek. Advocates estimate roughly 160,000 visits a year. We found no staff or lighting information, and cell signal is estimated.",
+  ne:"Un sendero pavimentado y casi plano de cerca de una milla junto al río Tuckasegee, con bancas y un puente peatonal en Locust Creek. Defensores calculan unas 160,000 visitas al año. No encontramos información sobre personal ni iluminación, y la señal de celular es una estimación."},
+ {n:"WCU Trail System",a:"jack",co:"jack",st:"unclear",sn:"We could not confirm the trail system's current status or public access after Hurricane Helene. Not scored until Western Carolina University's outdoor program confirms it.",sne:'No pudimos confirmar el estado actual del sistema de senderos ni el acceso del público después del huracán Helene. No tiene puntaje hasta que el programa de actividades al aire libre de Western Carolina University lo confirme.',lat:35.3052,lng:-83.2031,f:[1,3,2,3,1,4],
+  t:"University trail system · single-track",te:"Senderos universitarios · de una sola vía",
+  note:"About 7 miles of single-track on Western Carolina University's Millennial Campus, reached from the Health and Human Sciences building lot on Little Savannah Road or the tunnel under NC 107. Opened in 2013 for hiking, running and biking.",
+  ne:"Unas 7 millas de senderos de una sola vía en el Millennial Campus de Western Carolina University, a los que se llega desde el estacionamiento del edificio de Ciencias de la Salud y Humanas en Little Savannah Road o por el túnel bajo la NC 107. Abrieron en 2013 para caminatas, correr y bicicleta."},
+ {n:"Pinnacle Park (Sylva)",a:"jack",co:"jack",st:"open",sn:"",sne:"",lat:35.4226,lng:-83.1912,f:[1,3,2,2,1,2],
+  t:"Town park · forest trails",te:"Parque del pueblo · senderos en el bosque",
+  note:"A 1,500-acre town park above Sylva. The lower loop is a short, certified forest therapy trail; the summit trail is a steep, rocky 7-mile round trip. Free gravel parking at the end of Fisher Creek Road, a sign-in kiosk, no staff or facilities, and cell signal not verified. The town has a state grant for trail and parking upgrades, so expect some work.",
+  ne:"Un parque del pueblo de 1,500 acres sobre Sylva. El circuito bajo es un sendero corto certificado de terapia forestal; el sendero a la cumbre es una subida empinada y rocosa de 7 millas ida y vuelta. Estacionamiento de grava gratis al final de Fisher Creek Road, un quiosco para registrarse, sin personal ni servicios, y la señal de celular no está verificada. El pueblo tiene una subvención estatal para mejorar senderos y estacionamiento, así que puede haber obras."}
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
 const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
-const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed"];
-const CHK=Array(26).fill("2026-10-09").concat(["2026-10-10"]);
+const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed"];
+const CHK=Array(26).fill("2026-10-09").concat(["2026-10-10","2026-10-10","2026-10-10","2026-10-10"]);
 const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
 const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
 [["City of Asheville","https://www.ashevillenc.gov/news/richmond-hill-park-partially-reopens-on-october-11-in-recovery-milestone-as-asheville-continues-post-helene-progress/"]],
@@ -672,16 +692,20 @@ const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https:
 [["Town of Fletcher","https://www.fletchernc.org/departments/parks-and-recreation/billmoorecommunitypark/"]],
 [],[["Henderson County","https://www.hendersoncountync.gov/recreation/page/westfeldt-park"]],
 [["NC Forest Service","https://www.ncagr.gov/divisions/nc-forest-service/state-forests/educational-state-forests/holmes/about"]],
-[],[["Conserving Carolina","https://conservingcarolina.org/bearwallow-mountain/"],["Enlace Latino NC","https://enlacelatinonc.org/en/Bearwallow-Mountain-reopens-after-nine-months-of-closure-due-to-Helene/"],["Explore Asheville","https://www.exploreasheville.com/article/bearwallow-mountain-trail"]]];
+[],[["Conserving Carolina","https://conservingcarolina.org/bearwallow-mountain/"],["Enlace Latino NC","https://enlacelatinonc.org/en/Bearwallow-Mountain-reopens-after-nine-months-of-closure-due-to-Helene/"],["Explore Asheville","https://www.exploreasheville.com/article/bearwallow-mountain-trail"]],
+[["Jackson County Parks","https://jacksonnc.org/jackson-county-recreation-center/parks"],["Smoky Mountain News","https://smokymountainnews.com/outdoors/item/38569-jackson-county-greenway-provides-access-update"],["Citizen Portal","https://citizenportal.ai/articles/9486137/North-Carolina/Jackson-County/Residents-urge-expansion-accessibility-repairs-to-Jackson-County-Greenway-as-county-pursues-CDBG-disaster-relief"]],
+[["Mountain Xpress","https://mountainx.com/news/community-news/western_carolina_universitys_trail_system_now_open/"],["Trailforks","https://www.trailforks.com/region/wcu-trail-system/"],["WCU Base Camp","https://www.wcu.edu/experience/campus-recreation/base-camp-cullowhee/"]],
+[["Discover Jackson NC","https://www.discoverjacksonnc.com/trail/pinnacle-park-trail/67e7154faf65b9b30598d3be/"],["Explore Asheville","https://exploreasheville.com/article/pinnacle-park-hike"],["Sylva Herald","https://www.thesylvaherald.com/news/article_d2ce1ea3-402f-4536-8d70-aea5475ff74b.html"]]];
 const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
 const L={
  en:{
   FACT:["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"],
+  jackH:"Jackson County · Sylva and Cullowhee",jackN:"Shown as its own map because Jackson County sits west of the area above. Positions are approximate, and the county outline is not drawn.",mapAria2:"Map of Jackson County places near Sylva and Cullowhee. Each pin is a button.",
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
   TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed",access:"Paved, level or step-free"},
   BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
-  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County"},
+  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva & Cullowhee"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
   before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",
@@ -697,10 +721,11 @@ const L={
  },
  es:{
   FACT:["Iluminación","Gente alrededor","Visibilidad","Señal de celular","Personal en el lugar","Estacionamiento visible"],
+  jackH:"Condado de Jackson · Sylva y Cullowhee",jackN:"Se muestra como un mapa aparte porque el condado de Jackson queda al oeste de la zona de arriba. Las posiciones son aproximadas y no se dibuja el contorno del condado.",mapAria2:"Mapa de los lugares del condado de Jackson cerca de Sylva y Cullowhee. Cada punto es un botón.",
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
   TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida",access:"Pavimentado, plano o sin escalones"},
   BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
-  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson"},
+  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva y Cullowhee"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
   before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",
@@ -716,12 +741,12 @@ const L={
   // static page text
   skip:"Ir al mapa",
   eyebrow:"Oeste de Carolina del Norte, en tierra tsalagi (cherokee)",
-  lede:"Un mapa comunitario de parques, senderos verdes y caminos en los condados de Buncombe y Henderson, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
+  lede:"Un mapa comunitario de parques, senderos verdes y caminos en los condados de Buncombe, Henderson y Jackson, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
   notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales vienen de una revisión de fuentes públicas, como páginas de parques y del condado, noticias locales y fichas de Google Maps, no de visitas en persona, y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
   hint:"Toque un número en el mapa, o elija un lugar arriba, para ver su puntaje y calificaciones y para calificarlo.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
-  mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Cada punto es un botón.",
+  mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Los lugares del condado de Jackson están en un mapa aparte, más abajo. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
   suggest:"<strong>¿Conoce un lugar que falta?</strong> <a href=\"https://tally.so/r/WOGNya\" target=\"_blank\" rel=\"noopener\">Sugiera un parque, sendero verde o camino en el condado de Buncombe o Henderson ↗</a> Es anónimo, y cada sugerencia se investiga y se revisa antes de agregar algo al mapa.",
   listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa según su puntaje actual: el 1 tiene menos factores de riesgo conocidos, lo que no es lo mismo que ser seguro. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
@@ -860,14 +885,20 @@ el("path",{d:path(hendCo)+" Z",class:"county","aria-hidden":"true"});
 el("path",{d:path(fb),class:"river","aria-hidden":"true"});
 el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
 towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"});t.textContent=n;});
-const halos=el("g",{"aria-hidden":"true"}),pins=el("g",{});
+/* Jackson County sits west of the main map, so it gets its own inset with its own projection. */
+const svg2=document.getElementById("map2"),m2={minLng:-83.30,maxLng:-83.08,minLat:35.285,maxLat:35.435,H:840};
+const X2=lng=>(lng-m2.minLng)/(m2.maxLng-m2.minLng)*1000, Y2=lat=>(m2.maxLat-lat)/(m2.maxLat-m2.minLat)*m2.H;
+[["Dillsboro",35.3626,-83.2603],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817]].forEach(([n,la,ln])=>{const t=el("text",{x:X2(ln),y:Y2(la),class:"town","text-anchor":"middle","aria-hidden":"true"},svg2);t.textContent=n;});
+const CN=p=>p.co==="jack"?"Jackson":p.co==="hend"?"Henderson":"Buncombe";
+const halos=el("g",{"aria-hidden":"true"}),pins=el("g",{}),halos2=el("g",{"aria-hidden":"true"},svg2),pins2=el("g",{},svg2);
 PLACES.forEach(p=>{
-  p.h=el("circle",{cx:X(p.lng),cy:Y(p.lat),class:"halo"},halos);
-  const g=el("g",{class:"pin",tabindex:"0",role:"button"},pins);
-  p.dot=el("circle",{cx:X(p.lng),cy:Y(p.lat),r:19,class:"dot"},g);
-  p.num=el("text",{x:X(p.lng),y:Y(p.lat)+6,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
+  const jk=p.co==="jack",px=jk?X2(p.lng):X(p.lng),py=jk?Y2(p.lat):Y(p.lat);
+  p.h=el("circle",{cx:px,cy:py,class:"halo"},jk?halos2:halos);
+  const g=el("g",{class:"pin",tabindex:"0",role:"button"},jk?pins2:pins);
+  p.dot=el("circle",{cx:px,cy:py,r:19,class:"dot"},g);
+  p.num=el("text",{x:px,y:py+6,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
   p.tt=el("title",{},g);
-  p.lbl=el("text",{x:X(p.lng),y:Y(p.lat)-28,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
+  p.lbl=el("text",{x:px,y:py-28,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
   g.addEventListener("click",()=>select(p,true));
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p,true);}});
   p.g=g;
@@ -897,7 +928,7 @@ function renderMap(){
     p.g.classList.toggle("sel",p===state.sel);p.row.classList.toggle("sel",p===state.sel);
     if(p===state.sel)p.g.setAttribute("aria-current","true");else p.g.removeAttribute("aria-current");
   });
-  if(state.sel)pins.appendChild(state.sel.g);
+  if(state.sel)state.sel.g.parentNode.appendChild(state.sel.g);
   list.innerHTML="";
   Object.keys(t.AREAS).forEach(a=>{
     const ps=[...PLACES].filter(p=>p.a===a).sort((x,y)=>(x.r??999)-(y.r??999));
@@ -927,7 +958,7 @@ function ratingsBlock(p){
 function alertBlock(p){if(!p.al)return "";const t=T(),[y,m,d]=p.al.d.split("-").map(Number);
   return `<div class="warn" role="note"><b>${t.alertH} · ${t.fmtDate(y,m,d,t.MONTHS)}</b>${lang==="es"?p.al.es:p.al.en} <a href="${p.al.u}" target="_blank" rel="noopener">${p.al.l} ↗</a></div>`;}
 function evidBlock(p){
-  const t=T(),i=p.i,[y,m,d]=CHK[i].split("-").map(Number),dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}`;
+  const t=T(),i=p.i,[y,m,d]=CHK[i].split("-").map(Number),dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+CN(p)+" County NC")}`;
   const links=SRC[i].map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).concat([`<a href="${dir}" target="_blank" rel="noopener">${t.evGoogle}</a>`]).join(" · ");
   const ch=CHANGE[lang]?`<a href="${CHANGE[lang]}?place=${encodeURIComponent(p.n)}" target="_blank" rel="noopener">${t.change}</a>`:"";
   return `<span class="status">${t.evH}</span><p class="note">${t.CONF[CF[i]]} ${t.evCell} ${t.evChecked(t.fmtDate(y,m,d,t.MONTHS))}</p><p class="note src">${t.evSrc} ${links} · <a href="about.html${lang==="es"?"?lang=es#built-es":"#built"}">${t.evMethod}</a></p>${ch}`;
@@ -948,7 +979,7 @@ function goBlock(p){
 }
 function renderPanel(){
   const p=state.sel;if(!p)return;const t=T();
-  const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}`;
+  const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+CN(p)+" County NC")}`;
   const sn=lang==="es"?p.sne:p.sn;
   if(p.off){panel.innerHTML=`
     <div class="eyebrow">${pt(p)}</div>
@@ -957,7 +988,7 @@ function renderPanel(){
     ${alertBlock(p)}
     <p class="note">${pn(p)}</p>
     <div class="layer">${evidBlock(p)}</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+(p.co==="hend"?"Henderson":"Buncombe")+" County NC")}" target="_blank" rel="noopener">${t.dir}</a>`;return;}
+    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+CN(p)+" County NC")}" target="_blank" rel="noopener">${t.dir}</a>`;return;}
   panel.innerHTML=`
     <div class="eyebrow">${t.rank(p.r,N_SCORED)} · ${pt(p)}</div>
     <h2>${p.n}</h2>
