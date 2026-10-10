@@ -3,7 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#fbf5f3;color:#2b2226}@media (prefers-color-scheme:dark){body{background:#191416;color:#f6edef}}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#fbf5f3;color:#2b2226}@media (prefers-color-scheme:dark){body{background:#191416;color:#f6edef}}img{max-width:100%}[hidden]{display:none!important}
+/* ---------- Consolidated layout: folds and tabs ---------- */
+.fold{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.fold>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s1) var(--s2);padding:var(--s2) var(--s3);min-height:56px}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary h2{margin:0;font-size:22px}
+.fold-hint{font-weight:700;color:var(--accent)}
+.fold-hint::after{content:" ▾"}
+.fold[open] .fold-hint::after{content:" ▴"}
+.fold[open]>summary{border-bottom:1px solid var(--line)}
+.fold>.note,.fold>.list{margin:var(--s2) var(--s3)}
+.fold>.list{margin-bottom:var(--s3)}
+.list{columns:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s1) var(--s2);align-items:stretch}
+.list .area{grid-column:1/-1;margin:var(--s2) 0 0}
+.list .row{margin:0;height:100%}
+@media (max-width:980px){.list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.list{grid-template-columns:1fr}}
+.places-sec{display:grid;gap:var(--s2)}
+.tips>*,.howto>*,main>*{min-width:0}
+.tabs{min-width:0;max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tablist{min-width:0;max-width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1);padding:var(--s2);background:var(--band);border-bottom:1px solid var(--line)}
+.tablist [role=tab]{font:700 16px var(--font);min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tablist [role=tab]:hover{border-color:var(--accent)}
+.tablist [role=tab][aria-selected=true]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.panels{display:grid;padding:var(--s3) clamp(20px,4vw,48px)}
+.panels>[role=tabpanel]{grid-area:1/1;visibility:hidden;background:none;border:0;border-radius:0;padding:0;display:grid;gap:12px;align-content:start}
+.panels>[role=tabpanel].on{visibility:visible}
+.panels>[role=tabpanel]>h3{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.panels ul{columns:2 300px;column-gap:var(--s4);display:block;margin:0;padding-left:20px}
+.panels li{break-inside:avoid;margin-bottom:12px}
+.panels>[role=tabpanel]:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+@media (max-width:640px){.panels>[role=tabpanel]:not(.on){display:none}.tablist [role=tab]{font-size:15px;padding:8px 12px}}
+.tips .tip-grid{margin-top:var(--s3)}
+.howto{display:grid;gap:var(--s2)}
+.howto h2{text-align:center}
+.panels>[role=tabpanel] ul{columns:2 300px;column-gap:var(--s4);display:block;margin:0;padding-left:20px}
+.panels>[role=tabpanel] li{break-inside:avoid;margin-bottom:12px}
+.tips-head{justify-items:center;text-align:center}
+.tips-head .note{max-width:68ch}
+.places-sec .suggest{margin:0;max-width:none;text-align:center}
+.tip.help .lines{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tip.help .lines:not(.txt) li:first-child,.tip.help .lines.txt li:last-child{grid-column:1/-1}
+.tip.help .lines:not(.txt) li:first-child span,.tip.help .lines.txt li:last-child span{flex:0 1 auto}
+.tip.help .lines:not(.txt) li:first-child,.tip.help .lines.txt li:last-child{justify-content:center;gap:var(--s3)}
+.tip.help>.note{max-width:none}
+.tip.help h3,.tip.help .lines-h{text-align:center}
+@media (max-width:760px){.tip.help .lines{grid-template-columns:1fr}.tip.help .lines li{justify-content:space-between!important}}
+@media (max-width:640px){.tablist{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}.tablist [role=tab]{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}.tip.help .lines:not(.txt) span{flex:1 1 150px}}
+</style>
 <title>WNC Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails in Buncombe and Henderson counties, NC, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -268,10 +316,12 @@ html[data-size="large"] .wrap{zoom:1.18}
   </div>
   </section>
 
-  <section>
-    <div class="section-head"><h2 data-i18n="listH">Places by area</h2>
-    <p class="note" data-i18n="listNote">The number is the place's rank across the whole map by its current score: 1 has the fewest known risk factors, which is not the same as safe. Closed or unconfirmed places are marked × and not ranked.</p></div>
-    <div class="list" id="list"></div>
+  <section class="places-sec">
+    <details class="fold" id="placesFold">
+      <summary><h2 data-i18n="listH">Places by area</h2><span class="fold-hint" data-i18n="listShow">Show all places as a list</span></summary>
+      <p class="note" data-i18n="listNote">The number is the place's rank across the whole map by its current score: 1 has the fewest known risk factors, which is not the same as safe. Closed or unconfirmed places are marked × and not ranked.</p>
+      <div class="list" id="list"></div>
+    </details>
     <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Buncombe or Henderson County ↗</a> It's anonymous, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
 
@@ -281,77 +331,90 @@ html[data-size="large"] .wrap{zoom:1.18}
       <h2 data-i18n="tipsH">Going out with a plan</h2>
       <p class="note" data-i18n="tipsIntro">None of this is a list of what you owe anyone. The responsibility for harm always belongs to the person who causes it. These are practices women here already use to keep the miles they love, gathered in one place so no one has to learn them alone. Take what fits and leave the rest.</p>
     </div>
+    <div class="tabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Safety tips" data-i18n-aria="tipsTabs">
+        <button type="button" role="tab" id="tab-tp-before" aria-controls="tp-before" aria-selected="true" tabindex="0" data-i18n="t1H">Before you go</button>
+        <button type="button" role="tab" id="tab-tp-while" aria-controls="tp-while" aria-selected="false" tabindex="-1" data-i18n="t2H">While you're out</button>
+        <button type="button" role="tab" id="tab-tp-phone" aria-controls="tp-phone" aria-selected="false" tabindex="-1" data-i18n="t3H">Your phone and apps</button>
+        <button type="button" role="tab" id="tab-tp-together" aria-controls="tp-together" aria-selected="false" tabindex="-1" data-i18n="t4H">Together is a strategy</button>
+        <button type="button" role="tab" id="tab-tp-share" aria-controls="tp-share" aria-selected="false" tabindex="-1" data-i18n="t5H">If you share these trails</button>
+        <button type="button" role="tab" id="tab-today" aria-controls="today" aria-selected="false" tabindex="-1" data-i18n="t7H">If today doesn't feel right</button>
+        <button type="button" role="tab" id="tab-after" aria-controls="after" aria-selected="false" tabindex="-1" data-i18n="t8H">After a scare</button>
+      </div>
+      <div class="panels">
+        <div class="tip on" id="tp-before" role="tabpanel" aria-labelledby="tab-tp-before" tabindex="0">
+          <h3 data-i18n="t1H">Before you go</h3>
+          <ul data-i18n="t1L">
+            <li><b>Tell one person</b> your route and when you'll be back, and text them when you're done.</li>
+            <li><b>Check this map for cell signal</b> before you pick a route. Some trails here lose signal minutes from the trailhead. Charge your phone and download an offline map.</li>
+            <li><b>Plan for the light.</b> Dusk comes early under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
+            <li><b>Check the season.</b> Gates and hours change through the year, and on state game lands like Bent Creek hunting is allowed in season. Wear something bright in fall and winter.</li>
+            <li><b>Leave the car ready:</b> parked facing out near the lot entrance, nothing visible inside, key within reach.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-while" role="tabpanel" aria-labelledby="tab-tp-while" tabindex="0">
+          <h3 data-i18n="t2H">While you're out</h3>
+          <ul data-i18n="t2L">
+            <li><b>Keep one ear free</b>, or skip music on quiet stretches. Hearing is how you get the extra seconds.</li>
+            <li><b>Trust the feeling.</b> If a person, a car or a stretch of trail makes you uneasy, turn around, leave or cut the run short. You never need a reason that would satisfy someone else.</li>
+            <li><b>Stay alert at the edges.</b> The parking lot and the first and last quarter mile are where most unwanted encounters start.</li>
+            <li><b>If someone follows you,</b> go toward people: a dog park, a field, a staffed building, another runner. Say out loud what is happening.</li>
+            <li><b>Vary your routes and times</b> so your pattern is harder to predict.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-phone" role="tabpanel" aria-labelledby="tab-tp-phone" tabindex="0">
+          <h3 data-i18n="t3H">Your phone and apps</h3>
+          <ul data-i18n="t3L">
+            <li><b>Set up emergency SOS today.</b> Most phones call 911 and alert your contacts with a few presses of the side button. Practice once so you know it.</li>
+            <li><b>Share live location</b> with one trusted person for the length of your run, then turn it off.</li>
+            <li><b>Lock down fitness apps.</b> Make activities private or followers-only, hide the start and end near home, and opt out of public heatmaps. Researchers at NC State showed public heatmaps can still reveal where frequent runners live.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-together" role="tabpanel" aria-labelledby="tab-tp-together" tabindex="0">
+          <h3 data-i18n="t4H">Together is a strategy</h3>
+          <ul data-i18n="t4L">
+            <li><b>Run with someone</b> when you can. A partner changes which routes are open to you. Local running stores can point you to women's group runs.</li>
+            <li><b>Nod to other women</b> on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
+            <li><b>Rate the places you use.</b> Your rating turns this map from estimates into something the next woman can trust.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-share" role="tabpanel" aria-labelledby="tab-tp-share" tabindex="0">
+          <h3 data-i18n="t5H">If you share these trails</h3>
+          <p class="note" data-i18n="t5P">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell.</p>
+          <ul data-i18n="t5L">
+            <li>Call out before you pass, and pass wide.</li>
+            <li>Don't match pace behind someone. Pass, or fall back.</li>
+            <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
+            <li>If you see someone being followed or bothered, walk alongside, ask if she's okay, and stay until she says she is.</li>
+          </ul>
+        </div>
+        <div class="tip" id="today" role="tabpanel" aria-labelledby="tab-today" tabindex="0">
+          <h3 data-i18n="t7H">If today doesn't feel right</h3>
+          <p class="note" data-i18n="t7P">Not going is a choice, not a failure. If a place or a day doesn't feel safe, that feeling is information worth trusting. Some other ways to get your miles:</p>
+          <ul data-i18n="t7L">
+            <li><b>Pick a busier, staffed place</b> for today. Filter the map to Strong, or choose somewhere with staff during open hours.</li>
+            <li><b>Go with someone.</b> Local running stores and clubs host group runs, and a friend or a dog changes which routes feel open.</li>
+            <li><b>Move indoors.</b> A YMCA, YWCA, gym or community recreation center gives you a track or treadmill with people and staff around.</li>
+            <li><b>Stay close to home.</b> A shorter daylight loop in your own neighborhood, or a route you know well, still counts.</li>
+            <li><b>Move at home.</b> Stairs, a walking or yoga video, or stretching on the floor keeps the habit without the trip.</li>
+            <li><b>Rest.</b> A day off is part of training, and so is listening to your body.</li>
+          </ul>
+        </div>
+        <div class="tip" id="after" role="tabpanel" aria-labelledby="tab-after" tabindex="0">
+          <h3 data-i18n="t8H">After a scare</h3>
+          <p class="note" data-i18n="t8P">A frightening moment can stay in the body after it's over. A racing heart, shaking or feeling numb are normal responses. These are options for the hour afterward; use what helps.</p>
+          <ul data-i18n="t8L">
+            <li><b>Get somewhere safer first:</b> a lit lot, a staffed building, other people, or your locked car.</li>
+            <li><b>Slow the exhale.</b> Breathe out longer than you breathe in, a few times. A longer exhale helps your body settle.</li>
+            <li><b>Come back to right now.</b> Name five things you can see and three you can hear, and press your feet into the ground.</li>
+            <li><b>Hold something.</b> Keys, a smooth stone or anything with texture in your hand gives your body something steady to focus on.</li>
+            <li><b>Reach out.</b> Text someone you trust, or call or text an advocate below. You don't have to explain it well.</li>
+            <li><b>Later, if and when you want:</b> rate the place so the next woman is warned, and try <a href="#today">a different option</a> next time. There's no rush, and no wrong way to recover.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="tip-grid">
-      <div class="tip">
-        <h3 data-i18n="t1H">Before you go</h3>
-        <ul data-i18n="t1L">
-          <li><b>Tell one person</b> your route and when you'll be back, and text them when you're done.</li>
-          <li><b>Check this map for cell signal</b> before you pick a route. Some trails here lose signal minutes from the trailhead. Charge your phone and download an offline map.</li>
-          <li><b>Plan for the light.</b> Dusk comes early under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
-          <li><b>Check the season.</b> Gates and hours change through the year, and on state game lands like Bent Creek hunting is allowed in season. Wear something bright in fall and winter.</li>
-          <li><b>Leave the car ready:</b> parked facing out near the lot entrance, nothing visible inside, key within reach.</li>
-        </ul>
-      </div>
-      <div class="tip">
-        <h3 data-i18n="t2H">While you're out</h3>
-        <ul data-i18n="t2L">
-          <li><b>Keep one ear free</b>, or skip music on quiet stretches. Hearing is how you get the extra seconds.</li>
-          <li><b>Trust the feeling.</b> If a person, a car or a stretch of trail makes you uneasy, turn around, leave or cut the run short. You never need a reason that would satisfy someone else.</li>
-          <li><b>Stay alert at the edges.</b> The parking lot and the first and last quarter mile are where most unwanted encounters start.</li>
-          <li><b>If someone follows you,</b> go toward people: a dog park, a field, a staffed building, another runner. Say out loud what is happening.</li>
-          <li><b>Vary your routes and times</b> so your pattern is harder to predict.</li>
-        </ul>
-      </div>
-      <div class="tip">
-        <h3 data-i18n="t3H">Your phone and apps</h3>
-        <ul data-i18n="t3L">
-          <li><b>Set up emergency SOS today.</b> Most phones call 911 and alert your contacts with a few presses of the side button. Practice once so you know it.</li>
-          <li><b>Share live location</b> with one trusted person for the length of your run, then turn it off.</li>
-          <li><b>Lock down fitness apps.</b> Make activities private or followers-only, hide the start and end near home, and opt out of public heatmaps. Researchers at NC State showed public heatmaps can still reveal where frequent runners live.</li>
-        </ul>
-      </div>
-      <div class="tip">
-        <h3 data-i18n="t4H">Together is a strategy</h3>
-        <ul data-i18n="t4L">
-          <li><b>Run with someone</b> when you can. A partner changes which routes are open to you. Local running stores can point you to women's group runs.</li>
-          <li><b>Nod to other women</b> on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
-          <li><b>Rate the places you use.</b> Your rating turns this map from estimates into something the next woman can trust.</li>
-        </ul>
-      </div>
-      <div class="tip">
-        <h3 data-i18n="t5H">If you share these trails</h3>
-        <p class="note" data-i18n="t5P">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell.</p>
-        <ul data-i18n="t5L">
-          <li>Call out before you pass, and pass wide.</li>
-          <li>Don't match pace behind someone. Pass, or fall back.</li>
-          <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
-          <li>If you see someone being followed or bothered, walk alongside, ask if she's okay, and stay until she says she is.</li>
-        </ul>
-      </div>
-      <div class="tip" id="today">
-        <h3 data-i18n="t7H">If today doesn't feel right</h3>
-        <p class="note" data-i18n="t7P">Not going is a choice, not a failure. If a place or a day doesn't feel safe, that feeling is information worth trusting. Some other ways to get your miles:</p>
-        <ul data-i18n="t7L">
-          <li><b>Pick a busier, staffed place</b> for today. Filter the map to Strong, or choose somewhere with staff during open hours.</li>
-          <li><b>Go with someone.</b> Local running stores and clubs host group runs, and a friend or a dog changes which routes feel open.</li>
-          <li><b>Move indoors.</b> A YMCA, YWCA, gym or community recreation center gives you a track or treadmill with people and staff around.</li>
-          <li><b>Stay close to home.</b> A shorter daylight loop in your own neighborhood, or a route you know well, still counts.</li>
-          <li><b>Move at home.</b> Stairs, a walking or yoga video, or stretching on the floor keeps the habit without the trip.</li>
-          <li><b>Rest.</b> A day off is part of training, and so is listening to your body.</li>
-        </ul>
-      </div>
-      <div class="tip after" id="after">
-        <h3 data-i18n="t8H">After a scare</h3>
-        <p class="note" data-i18n="t8P">A frightening moment can stay in the body after it's over. A racing heart, shaking or feeling numb are normal responses. These are options for the hour afterward; use what helps.</p>
-        <ul data-i18n="t8L">
-          <li><b>Get somewhere safer first:</b> a lit lot, a staffed building, other people, or your locked car.</li>
-          <li><b>Slow the exhale.</b> Breathe out longer than you breathe in, a few times. A longer exhale helps your body settle.</li>
-          <li><b>Come back to right now.</b> Name five things you can see and three you can hear, and press your feet into the ground.</li>
-          <li><b>Hold something.</b> Keys, a smooth stone or anything with texture in your hand gives your body something steady to focus on.</li>
-          <li><b>Reach out.</b> Text someone you trust, or call or text an advocate below. You don't have to explain it well.</li>
-          <li><b>Later, if and when you want:</b> rate the place so the next woman is warned, and try <a href="#today">a different option</a> next time. There's no rush, and no wrong way to recover.</li>
-        </ul>
-      </div>
       <div class="tip help">
         <h3 data-i18n="t6H">If something happens</h3>
         <ul class="lines">
@@ -362,7 +425,7 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><span data-i18n="lRainn">RAINN, 24 hours<small>National Sexual Assault Hotline</small></span><a href="tel:+18006564673">800-656-4673</a></li>
         </ul>
         <h4 class="lines-h" data-i18n="txtH">Prefer to text?</h4>
-        <ul class="lines">
+        <ul class="lines txt">
           <li><span data-i18n="tRainn">RAINN, 24 hours<small>Sexual assault · English and Spanish · or chat at rainn.org</small></span><a href="sms:64673" data-i18n="tRainnA">Text HOPE to 64673</a></li>
           <li><span data-i18n="tNdvh">National Domestic Violence Hotline, 24 hours<small>Abuse by a partner or ex · or chat at thehotline.org</small></span><a href="sms:88788" data-i18n="tNdvhA">Text START to 88788</a></li>
           <li><span data-i18n="t988">988 Suicide &amp; Crisis Lifeline, 24 hours<small>Emotional distress of any kind · English and Spanish</small></span><a href="sms:988" data-i18n="t988A">Call or text 988</a></li>
@@ -398,8 +461,16 @@ html[data-size="large"] .wrap{zoom:1.18}
     <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. They are awaiting review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
   </section>
 
-  <div class="cols">
-    <section>
+  <section class="howto" aria-labelledby="howToH">
+    <h2 id="howToH" data-i18n="howToH">How this map works</h2>
+    <div class="tabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="How this map works" data-i18n-aria="howToH">
+        <button type="button" role="tab" id="tab-hw-score" aria-controls="hw-score" aria-selected="true" tabindex="0" data-i18n="howH">How the score works</button>
+        <button type="button" role="tab" id="tab-hw-police" aria-controls="hw-police" aria-selected="false" tabindex="-1" data-i18n="polH">About police data</button>
+        <button type="button" role="tab" id="tab-hw-wont" aria-controls="hw-wont" aria-selected="false" tabindex="-1" data-i18n="wontH">What this map won't do</button>
+      </div>
+      <div class="panels">
+        <div class="tip on" id="hw-score" role="tabpanel" aria-labelledby="tab-hw-score" tabindex="0">
       <h3 data-i18n="howH">How the score works</h3>
       <div data-i18n="howBody">
         <p class="note">Each place gets 1–5 on six factors, weighted toward what matters most when you're alone:</p>
@@ -413,16 +484,18 @@ html[data-size="large"] .wrap{zoom:1.18}
         </ul>
         <p class="note">The result is scaled to 100. Women's ratings then blend in: one rating can move a score by up to about 13 points, enough to change the band of a place near a cutoff, and the more ratings a place has, the more they count, up to 40% of the score. Any rating of 1 or 2 is also flagged on the place itself as a warning.</p>
       </div>
-    </section>
-    <section>
+        </div>
+        <div class="tip" id="hw-police" role="tabpanel" aria-labelledby="tab-hw-police" tabindex="0">
       <h3 data-i18n="polH">About police data</h3>
       <p class="note" data-i18n="polP">Police data is uneven across the two counties. Asheville publishes block-level incident data, but only inside city limits. Hendersonville publishes only monthly citywide totals, and neither county sheriff's office publishes a public incident map. Incident counts also reflect where policing happens and what gets reported, and most harassment on trails never reaches a report. So police data will appear only as context where it exists, and it stays out of the score.</p>
-    </section>
-    <section>
+        </div>
+        <div class="tip" id="hw-wont" role="tabpanel" aria-labelledby="tab-hw-wont" tabindex="0">
       <h3 data-i18n="wontH">What this map won't do</h3>
       <p class="note" data-i18n="wontP">It rates places, never people. It won't show who runs where, when anyone goes, or live locations, so it can't be used to find a woman alone. Ratings are saved without names and the page shows only scores, counts and tags, never who rated.</p>
-    </section>
-  </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   </main>
 
@@ -667,6 +740,9 @@ const L={
   rootS2:"Haudenosaunee<br>el poder que tiene todo ser vivo",
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
+  listShow:"Ver todos los lugares en una lista",
+  tipsTabs:"Consejos de seguridad",
+  howToH:"Cómo funciona este mapa",
   rootP1:"Este mapa está en tierras tsalagi, todavía hogar de la Banda Oriental de Indios Cherokee. El <strong>gadugi</strong> es la tradición cherokee de reunirse para ayudar a un vecino a sembrar, cosechar o pasar tiempos difíciles. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, para que la siguiente salga sabiendo más y con menos miedo.",
   rootReview:"Ambas palabras se comparten con respeto, por alguien que no es cherokee y que todavía está aprendiendo sobre sus raíces haudenosaunee. Están en espera de revisión por parte de personas cherokee y haudenosaunee que guardan este conocimiento, y se cambiarán si así lo piden.",
   draftNote:"Esta versión en español es un borrador hecho con IA y está en revisión por hablantes nativas. Si algo no se entiende bien, la versión en inglés es la de referencia.",
@@ -898,6 +974,19 @@ rebuildPicker();renderMap();renderPanel();
   document.body.appendChild(b);paint();
   new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
 })();
+
+/* Tabs: one topic at a time, equal height on wide screens; in-page links open the right tab */
+function openTab(id,focusTab){const pn=document.getElementById(id);if(!pn||pn.getAttribute("role")!=="tabpanel")return null;const box=pn.closest("[data-tabs]");
+  box.querySelectorAll("[role=tab]").forEach(tb=>{const on=tb.getAttribute("aria-controls")===id;tb.setAttribute("aria-selected",String(on));tb.tabIndex=on?0:-1;if(on&&focusTab)tb.focus();});
+  box.querySelectorAll("[role=tabpanel]").forEach(x=>x.classList.toggle("on",x.id===id));return box;}
+document.querySelectorAll("[data-tabs] [role=tab]").forEach(tb=>{
+  tb.addEventListener("click",()=>{openTab(tb.getAttribute("aria-controls"));tb.scrollIntoView({block:"nearest",inline:"nearest"});});
+  tb.addEventListener("keydown",e=>{const all=[...tb.parentElement.querySelectorAll("[role=tab]")];let k=all.indexOf(tb);
+    if(e.key==="ArrowRight")k=(k+1)%all.length;else if(e.key==="ArrowLeft")k=(k-1+all.length)%all.length;else if(e.key==="Home")k=0;else if(e.key==="End")k=all.length-1;else return;
+    e.preventDefault();openTab(all[k].getAttribute("aria-controls"),true);});});
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const box=openTab(a.getAttribute("href").slice(1));if(!box)return;
+  e.preventDefault();box.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});});
+if(location.hash){const b=openTab(location.hash.slice(1));if(b)b.scrollIntoView();}
 </script>
 </body>
 </html>
