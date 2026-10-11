@@ -38,6 +38,11 @@
 .tips .tip-grid{margin-top:var(--s3)}
 .howto{display:grid;gap:var(--s2)}
 .together{display:grid;gap:var(--s2)}
+.fold>.tg-intro{margin:var(--s2) var(--s3) 0;max-width:72ch}
+.fold>.tg{margin:var(--s2) var(--s3) var(--s3)}
+#howFold>.tabs{margin:var(--s2) var(--s3) var(--s3)}
+.howto .fold>summary h2{text-align:left}
+@media (max-width:640px){.fold>.tg-intro{margin:var(--s2) var(--s2) 0}.fold>.tg,#howFold>.tabs{margin:var(--s2)}}
 .tg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .tg>div{padding:var(--s2) var(--s3);display:grid;gap:12px;align-content:start}
 .tg .tg-why{background:var(--band);border-right:1px solid var(--line)}
@@ -51,7 +56,7 @@
 .tg small{color:var(--muted);font-size:14px}
 @media (max-width:900px){.tg{grid-template-columns:1fr}.tg .tg-why{border-right:0;border-bottom:1px solid var(--line)}.tg>div{padding:var(--s2)}}
 .why{display:grid;gap:var(--s2)}
-.stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}
+.stats{list-style:none;margin:0 auto;padding:0;display:grid;max-width:820px;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
 .stats li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) var(--s3);display:grid;gap:8px;align-content:start;justify-items:center;text-align:center}
 .stats b{display:block;font-size:44px;line-height:1;color:var(--accent)}
 .stats span{font-size:17px;line-height:1.55}
@@ -343,7 +348,7 @@ html[data-size="large"] .wrap{zoom:1.18}
 <div class="wrap">
   <header>
     <div class="topbar">
-      <div class="eyebrow" data-i18n="eyebrow">Western North Carolina, on Tsalagi (Cherokee) land</div>
+      <div class="eyebrow" data-i18n="eyebrow">Western North Carolina, on Cherokee land</div>
       <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
     </div>
     <div class="title">
@@ -416,46 +421,6 @@ html[data-size="large"] .wrap{zoom:1.18}
       <div class="list" id="list"></div>
     </details>
     <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Western North Carolina ↗</a> It's anonymous unless you choose to leave an email, and each suggestion is researched and reviewed before anything is added to the map.</p>
-  </section>
-
-  <section class="why" aria-labelledby="whyH">
-    <div class="tips-head">
-      <div class="eyebrow" data-i18n="whyEyebrow">Why this matters</div>
-      <h2 id="whyH" data-i18n="whyH">What women already know</h2>
-      <p class="note" data-i18n="whyIntro">If you have changed your route, your hour or what you wear to feel safer outside, the research says most women have too.</p>
-    </div>
-    <ul class="stats">
-      <li data-i18n="st1"><b>53%</b><span>of U.S. women say they would be afraid to walk alone at night within a mile of home, about twice the share of men (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a></li>
-      <li data-i18n="st2"><b>92%</b><span>of women runners have safety concerns about running outside, and 51% fear being physically attacked, compared with 28% of men.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">adidas and White Ribbon survey, 2023 ↗</a></li>
-      <li data-i18n="st3"><b>84%</b><span>of women in a Runner's World survey of more than 5,000 runners said they had been harassed while running.</span><a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Runner's World survey, via CBC News ↗</a></li>
-    </ul>
-    <p class="note why-more" data-i18n="whyMore">The six factors behind each score come from decades of research on how places feel to women. <a href="#research">See the research</a></p>
-  </section>
-
-  <section class="together" id="together" aria-labelledby="tgH">
-    <div class="tips-head">
-      <h2 id="tgH" data-i18n="tgH">Better, together</h2>
-      <p class="note" data-i18n="tgIntro">This map works the way <a href="#rooted">gadugi</a> does: people turning out together to do what no one could do alone. Every rating and suggestion makes it a little truer for the next woman.</p>
-    </div>
-    <div class="tg">
-      <div class="tg-why">
-        <h3 data-i18n="tgWhyH">Why together works</h3>
-        <ul data-i18n="tgWhy">
-          <li><b>Strength in numbers</b>Neighborhoods where people trust each other and are willing to step in for one another have less violence. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush and Earls, <i>Science</i>, 1997 ↗</a></small></li>
-          <li><b>Moving together calms the body</b>In one small study, people who exercised in a group had a 26% drop in stress; those who exercised alone saw no real change. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks and colleagues, 2017 ↗</a></small></li>
-          <li><b>Time outside is worth protecting</b>People who spent at least two hours a week in nature, in one visit or several, were more likely to report good health and wellbeing. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White and colleagues, <i>Scientific Reports</i>, 2019 ↗</a></small></li>
-        </ul>
-      </div>
-      <div class="tg-how">
-        <h3 data-i18n="tgHowH">Four ways to make it better</h3>
-        <ol data-i18n="tgHow">
-          <li><b>Rate the places you use</b>Your body's read on a place is information. If somewhere feels off, or feels good, say so. It takes about 20 seconds and asks for no name. <a href="#content">Choose a place</a></li>
-          <li><b>Suggest a place we're missing</b>Every suggestion is researched before it goes on the map. <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a place ↗</a></li>
-          <li><b>Walk it together</b>Go with a friend or two at the hour you'd usually go. Notice the lighting, how far ahead you can see and where you'd head if you needed to leave, the same questions women's safety audits ask. Then rate it.</li>
-          <li><b>Tell us what's changed</b>A light out, a new closure, a trail cleared after Helene. <a href="https://tally.so/r/VLRZpl" target="_blank" rel="noopener">Report a change ↗</a></li>
-        </ol>
-      </div>
-    </div>
   </section>
 
   <section class="tips" id="safety">
@@ -581,6 +546,19 @@ html[data-size="large"] .wrap{zoom:1.18}
     </div>
   </section>
 
+  <section class="why" aria-labelledby="whyH">
+    <div class="tips-head">
+      <div class="eyebrow" data-i18n="whyEyebrow">Why this matters</div>
+      <h2 id="whyH" data-i18n="whyH">What women already know</h2>
+      <p class="note" data-i18n="whyIntro">If you have changed your route, your hour or what you wear to feel safer outside, the research says most women have too.</p>
+    </div>
+    <ul class="stats">
+      <li data-i18n="st1"><b>53%</b><span>of U.S. women say they would be afraid to walk alone at night within a mile of home, about twice the share of men (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a></li>
+      <li data-i18n="st2"><b>92%</b><span>of women runners have safety concerns about running outside, and 51% fear being physically attacked, compared with 28% of men.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">adidas and White Ribbon survey, 2023 ↗</a></li>
+    </ul>
+    <p class="note why-more" data-i18n="whyMore">The six factors behind each score come from decades of research on how places feel to women. <a href="#research">See the research</a></p>
+  </section>
+
   <section class="rooted" id="rooted">
     <svg class="rose" viewBox="0 0 64 84" width="56" height="74" aria-hidden="true" focusable="false">
       <path d="M32 44 C32 58 32 68 32 82" fill="none" stroke="var(--leaf)" stroke-width="2.4" stroke-linecap="round"/>
@@ -606,8 +584,35 @@ html[data-size="large"] .wrap{zoom:1.18}
     <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. They are awaiting review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
   </section>
 
+  <section class="together" id="together" aria-labelledby="tgH">
+    <details class="fold" id="tgFold">
+      <summary><h2 id="tgH" data-i18n="tgH">Better, together</h2><span class="fold-hint" data-i18n="tgShow">Why community works, and four ways to help</span></summary>
+      <p class="note tg-intro" data-i18n="tgIntro">This map works the way <a href="#rooted">gadugi</a> does: people turning out together to do what no one could do alone. Every rating and suggestion makes it a little truer for the next woman.</p>
+    <div class="tg">
+      <div class="tg-why">
+        <h3 data-i18n="tgWhyH">Why together works</h3>
+        <ul data-i18n="tgWhy">
+          <li><b>Strength in numbers</b>Neighborhoods where people trust each other and are willing to step in for one another have less violence. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush and Earls, <i>Science</i>, 1997 ↗</a></small></li>
+          <li><b>Moving together calms the body</b>In one small study, people who exercised in a group had a 26% drop in stress; those who exercised alone saw no real change. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks and colleagues, 2017 ↗</a></small></li>
+          <li><b>Time outside is worth protecting</b>People who spent at least two hours a week in nature, in one visit or several, were more likely to report good health and wellbeing. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White and colleagues, <i>Scientific Reports</i>, 2019 ↗</a></small></li>
+        </ul>
+      </div>
+      <div class="tg-how">
+        <h3 data-i18n="tgHowH">Four ways to make it better</h3>
+        <ol data-i18n="tgHow">
+          <li><b>Rate the places you use</b>Your body's read on a place is information. If somewhere feels off, or feels good, say so. It takes about 20 seconds and asks for no name. <a href="#content">Choose a place</a></li>
+          <li><b>Suggest a place we're missing</b>Every suggestion is researched before it goes on the map. <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a place ↗</a></li>
+          <li><b>Walk it together</b>Go with a friend or two at the hour you'd usually go. Notice the lighting, how far ahead you can see and where you'd head if you needed to leave, the same questions women's safety audits ask. Then rate it.</li>
+          <li><b>Tell us what's changed</b>A light out, a new closure, a trail cleared after Helene. <a href="https://tally.so/r/VLRZpl" target="_blank" rel="noopener">Report a change ↗</a></li>
+        </ol>
+      </div>
+    </div>
+    </details>
+  </section>
+
   <section class="howto" aria-labelledby="howToH">
-    <h2 id="howToH" data-i18n="howToH">How this map works</h2>
+    <details class="fold" id="howFold">
+    <summary><h2 id="howToH" data-i18n="howToH">How this map works</h2><span class="fold-hint" data-i18n="howShow">Scores, the no-police-data rule and the research</span></summary>
     <div class="tabs" data-tabs>
       <div class="tablist" role="tablist" aria-label="How this map works" data-i18n-aria="howToH">
         <button type="button" role="tab" id="tab-hw-score" aria-controls="hw-score" aria-selected="true" tabindex="0" data-i18n="howH">How the score works</button>
@@ -644,11 +649,13 @@ html[data-size="large"] .wrap{zoom:1.18}
       <div data-i18n="resBody">
         <p class="note">Women's safety audits began in Toronto in 1989, created by METRAC (the Metropolitan Toronto Action Committee on Violence Against Women and Children). Women walk a place together and note what makes it feel unsafe, such as poor lighting or missing signs. UN-Habitat now shares the method as a tool for cities. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">UN-Habitat guide ↗</a></p>
         <p class="note">Bonnie Fisher and Jack Nasar found that fear runs highest where someone could hide, where you can't see far ahead and where there is no easy way out (<i>Environment and Behavior</i>, 1992). That is why open sightlines carry a fifth of every score. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Study summary ↗</a></p>
+        <p class="note">Harassment is common, too: 84% of women in a Runner's World survey of more than 5,000 runners said they had been harassed while running. <a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Via CBC News ↗</a></p>
         <p class="note">This map turns those same questions into six factors, then asks local women to confirm or correct them. Your ratings are part of the evidence.</p>
       </div>
         </div>
       </div>
     </div>
+    </details>
   </section>
 
   </main>
@@ -1152,7 +1159,7 @@ const L={
   ariaOff:n=>`${n}, cerrado o con estado sin confirmar, sin puntaje`,unclear:"Estado sin confirmar",partial:"Abierto en parte",partialH:"Abierto en parte.",closedH:"Cerrado.",unclearH:"Estado sin confirmar.",
   // static page text
   skip:"Ir al mapa",
-  eyebrow:"Oeste de Carolina del Norte, en tierra tsalagi (cherokee)",
+  eyebrow:"Oeste de Carolina del Norte, en tierra cherokee",
   lede:"Un mapa comunitario de parques, senderos verdes y caminos en el oeste de Carolina del Norte, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas. Empieza en los condados de Buncombe, Henderson, Jackson, Haywood, Transylvania y Madison, y crece a medida que las mujeres califican y sugieren lugares.",
   notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales vienen de una revisión de fuentes públicas, como páginas de parques y del condado, noticias locales y fichas de Google Maps, no de visitas en persona, y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. El correo es opcional, solo si quiere una respuesta. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
@@ -1215,6 +1222,8 @@ const L={
   polH:"Sin datos policiales",
   polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran 12 meses después del incidente.",
   tgH:"Mejor, juntas",
+  howShow:"Puntajes, la regla de no usar datos policiales y la investigación",
+  tgShow:"Por qué funciona la comunidad, y cuatro formas de ayudar",
   tgIntro:`Este mapa funciona como el <a href="#rooted">gadugi</a>: gente que se reúne para hacer lo que nadie podría hacer sola. Cada calificación y cada sugerencia lo hacen un poco más fiel para la siguiente mujer.`,
   tgWhyH:"Por qué funciona hacerlo juntas",
   tgWhy:`<li><b>La fuerza está en el grupo</b>Los barrios donde la gente confía entre sí y está dispuesta a intervenir por los demás tienen menos violencia. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush y Earls, <i>Science</i>, 1997 ↗</a></small></li><li><b>Moverse juntas calma el cuerpo</b>En un estudio pequeño, quienes hicieron ejercicio en grupo redujeron su estrés un 26%; quienes lo hicieron solos no tuvieron un cambio real. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks y colegas, 2017 ↗</a></small></li><li><b>Vale la pena proteger el tiempo afuera</b>Las personas que pasaron al menos dos horas a la semana en la naturaleza, en una visita o en varias, tenían más probabilidad de reportar buena salud y bienestar. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White y colegas, <i>Scientific Reports</i>, 2019 ↗</a></small></li>`,
@@ -1225,10 +1234,9 @@ const L={
   whyIntro:"Si alguna vez ha cambiado su ruta, su horario o su ropa para sentirse más segura afuera, la investigación muestra que la mayoría de las mujeres también lo ha hecho.",
   st1:`<b>53%</b><span>de las mujeres en EE. UU. dice que tendría miedo de caminar sola de noche a menos de una milla de su casa, cerca del doble que los hombres (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a>`,
   st2:`<b>92%</b><span>de las mujeres que corren tiene preocupaciones de seguridad al correr al aire libre, y el 51% teme ser atacada físicamente, frente al 28% de los hombres.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">Encuesta de adidas y White Ribbon, 2023 ↗</a>`,
-  st3:`<b>84%</b><span>de las mujeres en una encuesta de Runner's World a más de 5,000 corredores dijo haber sufrido acoso mientras corría.</span><a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Encuesta de Runner's World, vía CBC News ↗</a>`,
   whyMore:`Los seis factores detrás de cada puntaje vienen de décadas de investigación sobre cómo perciben las mujeres los lugares. <a href="#research">Vea la investigación</a>`,
   resH:"La investigación detrás",
-  resBody:`<p class="note">Las auditorías de seguridad de las mujeres comenzaron en Toronto en 1989, creadas por METRAC (el Comité de Acción de Toronto contra la Violencia hacia Mujeres y Niños). Las mujeres recorren un lugar juntas y anotan lo que lo hace sentir inseguro, como poca iluminación o falta de letreros. ONU-Hábitat comparte hoy el método como herramienta para las ciudades. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">Guía de ONU-Hábitat ↗</a></p><p class="note">Bonnie Fisher y Jack Nasar encontraron que el miedo es mayor donde alguien podría esconderse, donde no se ve lejos y donde no hay una salida fácil (<i>Environment and Behavior</i>, 1992). Por eso la visibilidad abierta vale una quinta parte de cada puntaje. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Resumen del estudio ↗</a></p><p class="note">Este mapa convierte esas mismas preguntas en seis factores y luego pide a las mujeres de la zona que los confirmen o corrijan. Sus calificaciones son parte de la evidencia.</p>`,
+  resBody:`<p class="note">Las auditorías de seguridad de las mujeres comenzaron en Toronto en 1989, creadas por METRAC (el Comité de Acción de Toronto contra la Violencia hacia Mujeres y Niños). Las mujeres recorren un lugar juntas y anotan lo que lo hace sentir inseguro, como poca iluminación o falta de letreros. ONU-Hábitat comparte hoy el método como herramienta para las ciudades. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">Guía de ONU-Hábitat ↗</a></p><p class="note">Bonnie Fisher y Jack Nasar encontraron que el miedo es mayor donde alguien podría esconderse, donde no se ve lejos y donde no hay una salida fácil (<i>Environment and Behavior</i>, 1992). Por eso la visibilidad abierta vale una quinta parte de cada puntaje. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Resumen del estudio ↗</a></p><p class="note">El acoso también es común: el 84% de las mujeres en una encuesta de Runner's World a más de 5,000 corredores dijo haber sufrido acoso mientras corría. <a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Vía CBC News ↗</a></p><p class="note">Este mapa convierte esas mismas preguntas en seis factores y luego pide a las mujeres de la zona que los confirmen o corrijan. Sus calificaciones son parte de la evidencia.</p>`,
   wontH:"Lo que este mapa no hace",
   fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
@@ -1505,7 +1513,7 @@ rebuildPicker();renderMap();renderPanel();
 })();
 
 /* Tabs: one topic at a time, equal height on wide screens; in-page links open the right tab */
-function openTab(id,focusTab){const pn=document.getElementById(id);if(!pn||pn.getAttribute("role")!=="tabpanel")return null;const box=pn.closest("[data-tabs]");
+function openTab(id,focusTab){const pn=document.getElementById(id);if(!pn||pn.getAttribute("role")!=="tabpanel")return null;const fd=pn.closest("details");if(fd)fd.open=true;const box=pn.closest("[data-tabs]");
   box.querySelectorAll("[role=tab]").forEach(tb=>{const on=tb.getAttribute("aria-controls")===id;tb.setAttribute("aria-selected",String(on));tb.tabIndex=on?0:-1;if(on){const tl=tb.parentElement;if(tl.scrollWidth>tl.clientWidth)tl.scrollLeft=Math.max(0,tb.offsetLeft-tl.offsetLeft-16);}if(on&&focusTab)tb.focus();});
   box.querySelectorAll("[role=tabpanel]").forEach(x=>x.classList.toggle("on",x.id===id));return box;}
 document.querySelectorAll("[data-tabs] [role=tab]").forEach(tb=>{
