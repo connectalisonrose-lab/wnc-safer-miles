@@ -922,16 +922,40 @@ const PLACES=[
   t:"Neighborhood park · paved walking loop",te:"Parque de barrio · circuito pavimentado",
   note:"A Southside neighborhood park with a paved walking loop and a lot. The historic pool has been closed since 2021 while the city plans its future.",
   ne:"Un parque de barrio en Southside, con un circuito pavimentado y estacionamiento. La piscina histórica está cerrada desde 2021 mientras la ciudad decide su futuro."},
- {n:"Main Street Nature Park (Weaverville)",a:"north",st:"open",sn:"",sne:"",lat:35.6965,lng:-82.5605,f:[2, 3, 3, 4, 1, 4],
+ {n:"Main Street Nature Park (Weaverville)",a:"north",st:"open",sn:"",sne:"",lat:35.6987,lng:-82.5590,f:[2, 3, 3, 4, 1, 4],
   t:"Town nature park · walking trail",te:"Parque natural del pueblo · sendero",
   note:"About 10 acres behind Weaverville Town Hall with a walking trail, a native-plant area and a meadow stage. Open daily; leashed dogs welcome. Park on Pine Street, Main Street or behind Town Hall.",
-  ne:"Unos 10 acres detrás del ayuntamiento de Weaverville, con un sendero, un área de plantas nativas y un escenario en la pradera. Abierto todos los días; se permiten perros con correa. Estacione en Pine Street, Main Street o detrás del ayuntamiento."}
+  ne:"Unos 10 acres detrás del ayuntamiento de Weaverville, con un sendero, un área de plantas nativas y un escenario en la pradera. Abierto todos los días; se permiten perros con correa. Estacione en Pine Street, Main Street o detrás del ayuntamiento."},
+ {n:"Sullivan Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.32635,lng:-82.45739,f:[2, 3, 3, 5, 1, 2],
+  t:"Neighborhood park · on the Oklawaha Greenway",te:"Parque de barrio · en el Oklawaha Greenway",
+  note:"A small Hendersonville park on a greenway section that links to the Oklawaha Greenway, with covered basketball courts and a playground. Street parking; restrooms open seasonally.",
+  ne:"Un pequeño parque de Hendersonville en un tramo que conecta con el Oklawaha Greenway, con canchas de baloncesto techadas y área de juegos. Estacionamiento en la calle; baños abiertos según la temporada."},
+ {n:"Dr. Martin Luther King Jr. Memorial Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.31683,lng:-82.45759,f:[3, 3, 4, 5, 1, 2],
+  t:"Pocket park · short paved walk",te:"Parque pequeño · camino pavimentado corto",
+  note:"A small green beside the Henderson County Courthouse, two blocks from Main Street, with a paved walking path, benches and a bike repair stand. A place to pause on a downtown walk rather than log miles.",
+  ne:"Un pequeño espacio verde junto al juzgado del condado de Henderson, a dos cuadras de Main Street, con un camino pavimentado, bancas y una estación para reparar bicicletas. Un lugar para descansar en una caminata por el centro más que para sumar millas."},
+ {n:"East Flat Rock Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.2801,lng:-82.42072,f:[2, 3, 4, 4, 1, 4],
+  t:"County park · paved quarter-mile loop",te:"Parque del condado · circuito pavimentado de un cuarto de milla",
+  note:"A county park on US 176 with a paved quarter-mile walking trail, more trails and fields in the back, a playground, disc golf and restrooms.",
+  ne:"Un parque del condado en la US 176, con un sendero pavimentado de un cuarto de milla, más senderos y campos al fondo, área de juegos, disc golf y baños."},
+ {n:"Laurel Green Park (Laurel Park)",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.31427,lng:-82.48309,f:[2, 3, 4, 5, 1, 3],
+  t:"Town park · walking paths",te:"Parque del pueblo · caminos para caminar",
+  note:"A small Laurel Park town park with meandering walking paths along a creek, a gazebo and a fenced playground. Pairs well with Rhododendron Lake Nature Park nearby.",
+  ne:"Un pequeño parque del pueblo de Laurel Park, con caminos que serpentean junto a un arroyo, un quiosco y un área de juegos cercada. Se combina bien con Rhododendron Lake Nature Park, que queda cerca."},
+ {n:"The Village Green (Cashiers)",a:"jack",co:"jack",st:"open",sn:"",sne:"",lat:35.11068,lng:-83.10087,f:[2, 3, 4, 3, 1, 4],
+  t:"Town green · walking paths",te:"Parque del pueblo · caminos para caminar",
+  note:"A park in the center of Cashiers with paths around open lawns, along wetlands and through a forest glade, plus a play area and gardens. It links to the Cashiers Greenway Ramble. Some boardwalk sections are rough.",
+  ne:"Un parque en el centro de Cashiers, con caminos alrededor de céspedes abiertos, junto a humedales y por un claro del bosque, además de área de juegos y jardines. Conecta con el Cashiers Greenway Ramble. Algunas pasarelas de madera están en mal estado."},
+ {n:"Blannahassett Island (Marshall)",a:"mad",co:"mad",st:"unclear",sn:"Flooded by the French Broad River during Hurricane Helene; volunteers were restoring the park in March 2026. We couldn't confirm that the walking loop is fully open. Not scored until its status is confirmed.",sne:"Se inundó con el río French Broad durante el huracán Helene; en marzo de 2026 había voluntarios restaurando el parque. No pudimos confirmar que el circuito para caminar esté abierto del todo. Sin puntuación hasta confirmar su estado.",lat:35.7967,lng:-82.68716,f:[2, 3, 4, 3, 1, 4],
+  t:"River island park · half-mile loop",te:"Parque en isla del río · circuito de media milla",
+  note:"An island in the French Broad across from downtown Marshall with a half-mile walking loop, a fishing pier and a playground, a short walk from shops on Main Street.",
+  ne:"Una isla en el French Broad frente al centro de Marshall, con un circuito para caminar de media milla, un muelle de pesca y área de juegos, a poca distancia de las tiendas de Main Street."}
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
 const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
-const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","med","med","med","lowmed","med","lowmed","lowmed","lowmed","lowmed","med","high","high","med","med","med","high","med","med","med","med","med","high","med","lowmed"];
-const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"),Array(10).fill("2026-10-11")).concat(Array(14).fill("2026-10-11"));
+const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","med","med","med","lowmed","med","lowmed","lowmed","lowmed","lowmed","med","high","high","med","med","med","high","med","med","med","med","med","high","med","lowmed","med","med","med","med","med","lowmed"];
+const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"),Array(10).fill("2026-10-11")).concat(Array(14).fill("2026-10-11")).concat(Array(4).fill("2026-10-11")).concat(Array(2).fill("2026-10-11"));
 const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
 const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
 [["City of Asheville","https://www.ashevillenc.gov/news/richmond-hill-park-partially-reopens-on-october-11-in-recovery-milestone-as-asheville-continues-post-helene-progress/"]],
@@ -1005,7 +1029,13 @@ const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https:
 [["City of Asheville","https://www.ashevillenc.gov/locations/murphy-oakley-park/"]],
 [["City of Asheville","https://www.ashevillenc.gov/locations/pritchard-park/"]],
 [["City of Asheville","https://www.ashevillenc.gov/locations/walton-street-park/"]],
-[["Town of Weaverville","https://weavervillenc.org/visiting/"]]];
+[["Town of Weaverville","https://weavervillenc.org/visiting/"]],
+[["City of Hendersonville","https://www.hendersonvillenc.gov/parks"]],
+[["City of Hendersonville","https://www.hendersonvillenc.gov/parks"]],
+[["Henderson County Parks and Recreation","https://hendersoncountync.gov/recreation/page/east-flat-rock-park"]],
+[["Town of Laurel Park","https://laurelpark.org/parks"]],
+[["Discover Jackson NC","https://www.discoverjacksonnc.com/attractions/the-village-green/"]],
+[["Madison County Parks and Recreation","https://www.madisoncountync.gov/parks-facilities.html"],["WLOS, March 2026","https://www.wlos.com/news/local/volunteers-help-restore-marshall-parks-damaged-hurricane-helene-floodwaters-storm-flood-blannahassett-island-rollins-park-wnc-north-carolina-repairs-cleanup"]]];
 const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
 const L={
