@@ -38,6 +38,11 @@
 .tips .tip-grid{margin-top:var(--s3)}
 .howto{display:grid;gap:var(--s2)}
 .howto h2{text-align:center}
+.mapbox,.main>*{min-width:0}
+.maptabs{margin-top:var(--s1);min-width:0;max-width:100%}
+.maptabs .panels{padding:var(--s1)}
+.maptabs .tablist [role=tab]{font-size:15px}
+.maps-n{margin:0}
 .panels>[role=tabpanel] ul{columns:3 240px;column-gap:var(--s4);display:block;margin:0;padding-left:20px}
 .panels>[role=tabpanel] li{break-inside:avoid;margin-bottom:12px}
 .tips-head{justify-items:center;text-align:center}
@@ -334,22 +339,23 @@ html[data-size="large"] .wrap{zoom:1.18}
   <div class="main">
     <div class="mapbox">
       <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
-      <svg class="map" id="map" viewBox="0 0 1000 1250" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe and Henderson counties with scored places. Each pin is a button. Jackson County places are on a separate map below."></svg>
-      <div class="inset">
-        <h3 class="inset-h" data-i18n="avlH">Asheville, up close</h3>
-        <p class="note inset-n" data-i18n="avlN">The dashed box on the map above, zoomed in so nearby pins don't overlap. Positions are approximate.</p>
-        <svg class="map" id="mapA" viewBox="0 0 1000 912" role="group" data-i18n-aria="mapAriaA" aria-label="Zoomed map of Asheville places. Each pin is a button."></svg>
+      <div class="maptabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Map areas" data-i18n-aria="mapTabs">
+        <button type="button" role="tab" id="tab-mA" aria-controls="mA" aria-selected="true" tabindex="0" data-i18n="mT1">Asheville</button>
+        <button type="button" role="tab" id="tab-mB" aria-controls="mB" aria-selected="false" tabindex="-1" data-i18n="mT2">Around Buncombe</button>
+        <button type="button" role="tab" id="tab-mV" aria-controls="mV" aria-selected="false" tabindex="-1" data-i18n="mT5">Hendersonville</button>
+        <button type="button" role="tab" id="tab-mH" aria-controls="mH" aria-selected="false" tabindex="-1" data-i18n="mT3">Around Henderson</button>
+        <button type="button" role="tab" id="tab-mJ" aria-controls="mJ" aria-selected="false" tabindex="-1" data-i18n="mT4">Jackson County</button>
       </div>
-      <div class="inset">
-        <h3 class="inset-h" data-i18n="hvlH">Hendersonville, Laurel Park and Flat Rock, up close</h3>
-        <p class="note inset-n" data-i18n="hvlN">The second dashed box on the map above, zoomed in. Positions are approximate.</p>
-        <svg class="map" id="mapH" viewBox="0 0 1000 968" role="group" data-i18n-aria="mapAriaH" aria-label="Zoomed map of Hendersonville, Laurel Park and Flat Rock places. Each pin is a button."></svg>
+      <div class="panels">
+        <div class="tip on" id="mA" role="tabpanel" aria-labelledby="tab-mA"><svg class="map" id="mapA" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaA" aria-label="Map of places in Asheville. Each pin is a button."></svg></div>
+        <div class="tip" id="mB" role="tabpanel" aria-labelledby="tab-mB"><svg class="map" id="mapB" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaB" aria-label="Map of places in Buncombe County outside Asheville. Each pin is a button."></svg></div>
+        <div class="tip" id="mV" role="tabpanel" aria-labelledby="tab-mV"><svg class="map" id="mapV" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaV" aria-label="Map of places in Hendersonville, Laurel Park and Flat Rock. Each pin is a button."></svg></div>
+        <div class="tip" id="mH" role="tabpanel" aria-labelledby="tab-mH"><svg class="map" id="mapH" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaH" aria-label="Map of places in Henderson County outside Hendersonville, Laurel Park and Flat Rock. Each pin is a button."></svg></div>
+        <div class="tip" id="mJ" role="tabpanel" aria-labelledby="tab-mJ"><svg class="map" id="mapJ" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaJ" aria-label="Map of places in Jackson County. Each pin is a button."></svg></div>
       </div>
-      <div class="inset">
-        <h3 class="inset-h" data-i18n="jackH">Jackson County · Sylva, Cullowhee and Cashiers</h3>
-        <p class="note inset-n" data-i18n="jackN">Shown as its own map because Jackson County sits west of the area above. Cashiers is about 20 miles south, so its pin sits on the bottom edge. Positions are approximate, and the county outline is not drawn.</p>
-        <svg class="map" id="map2" viewBox="0 0 1000 1030" role="group" data-i18n-aria="mapAria2" aria-label="Map of Jackson County places near Sylva, Cullowhee and Cashiers. Each pin is a button."></svg>
       </div>
+      <p class="note maps-n" data-i18n="mapNote">Choose an area to see its places. Positions are approximate.</p>
       <div class="legend">
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
         <span><i class="sw" style="background:var(--mixed)"></i><span data-i18n="lgMixed">Mixed 55–74</span></span>
@@ -971,6 +977,9 @@ const L={
   rootS2:"Haudenosaunee<br>el poder que tiene todo ser vivo",
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
+  mapTabs:"Zonas del mapa",mT1:"Asheville",mT2:"Resto de Buncombe",mT3:"Resto de Henderson",mT5:"Hendersonville",mAriaV:"Mapa de los lugares en Hendersonville, Laurel Park y Flat Rock. Cada marcador es un botón.",mT4:"Condado de Jackson",
+  mapNote:"Elija una zona para ver sus lugares. Las ubicaciones son aproximadas.",
+  mAriaA:"Mapa de los lugares en Asheville. Cada marcador es un botón.",mAriaB:"Mapa de los lugares del condado de Buncombe fuera de Asheville. Cada marcador es un botón.",mAriaH:"Mapa de los lugares del condado de Henderson fuera de Hendersonville, Laurel Park y Flat Rock. Cada marcador es un botón.",mAriaJ:"Mapa de los lugares del condado de Jackson. Cada marcador es un botón.",
   alertH:"Alerta de seguridad",
   listShow:"Ver todos los lugares en una lista",
   tipsTabs:"Consejos de seguridad",
@@ -1031,50 +1040,43 @@ function scoreAll(){
   N_SCORED=scored.length;
 }
 
-const minLng=-82.90,maxLng=-82.24,minLat=35.17,maxLat=35.84,MAPH=1250;
-const X=lng=>(lng-minLng)/(maxLng-minLng)*1000, Y=lat=>(maxLat-lat)/(maxLat-minLat)*MAPH;
-const path=pts=>pts.map((p,k)=>(k?"L":"M")+X(p[1]).toFixed(1)+" "+Y(p[0]).toFixed(1)).join(" ");
 const county=[[35.77,-82.80],[35.81,-82.72],[35.80,-82.62],[35.82,-82.50],[35.80,-82.42],[35.76,-82.28],[35.66,-82.26],[35.60,-82.27],[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46,-82.70],[35.50,-82.75],[35.56,-82.80],[35.62,-82.84],[35.68,-82.88]];
 const fb=[[35.30,-82.62],[35.34,-82.585],[35.38,-82.565],[35.42,-82.545],[35.45,-82.57],[35.49,-82.585],[35.53,-82.588],[35.565,-82.580],[35.58,-82.572],[35.60,-82.575],[35.625,-82.590],[35.65,-82.605],[35.69,-82.62],[35.73,-82.635],[35.80,-82.68]];
 const sw=[[35.615,-82.31],[35.605,-82.36],[35.60,-82.41],[35.59,-82.47],[35.575,-82.52],[35.567,-82.55],[35.565,-82.578]];
 const hendCo=[[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46,-82.70],[35.40,-82.74],[35.30,-82.76],[35.21,-82.70],[35.19,-82.60],[35.19,-82.48],[35.20,-82.37],[35.24,-82.30],[35.33,-82.27],[35.45,-82.27]];
 const towns=[["Mills River",35.37,-82.62],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
-
-const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
-const el=(t,a,parent=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
-const defs=el("defs",{});
-["strong","mixed","caution","closed"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
-el("path",{d:path(county)+" Z",class:"county","aria-hidden":"true"});
-el("path",{d:path(hendCo)+" Z",class:"county","aria-hidden":"true"});
-el("path",{d:path(fb),class:"river","aria-hidden":"true"});
-el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
-towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"});t.textContent=n;});
-/* Dense areas and Jackson County get their own zoomed maps; each place is drawn on exactly one map.
-   A place outside an inset's box (Cashiers) is pinned to the nearest edge. Pins closer than 42px are nudged apart. */
-const INSETS=[
- {id:"mapA",minLng:-82.60,maxLng:-82.48,minLat:35.553,maxLat:35.642,H:912,box:true,lbl:"Asheville",
-  towns:[["Downtown",35.6005,-82.5480],["West Asheville",35.5745,-82.5900],["North Asheville",35.6330,-82.5560],["East Asheville",35.6040,-82.5000],["Biltmore Village",35.5620,-82.5440]]},
- {id:"mapH",minLng:-82.535,maxLng:-82.415,minLat:35.265,maxLat:35.36,H:968,box:true,lbl:"Hendersonville",
-  towns:[["Downtown",35.3230,-82.4560],["Laurel Park",35.3000,-82.5039],["Flat Rock",35.2800,-82.4600]]},
- {id:"map2",minLng:-83.30,maxLng:-83.08,minLat:35.25,maxLat:35.435,H:1030,co:"jack",
-  towns:[["Dillsboro",35.3626,-83.2603],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817],["Cashiers ↓",35.262,-83.165]]}
-];
+const NS="http://www.w3.org/2000/svg";
+const el=(t,a,parent)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
 const CN=p=>p.co==="jack"?"Jackson":p.co==="hend"?"Henderson":"Buncombe";
-const inBox=(m,p)=>p.lat>=m.minLat&&p.lat<=m.maxLat&&p.lng>=m.minLng&&p.lng<=m.maxLng;
-INSETS.forEach(m=>{
-  m.svg=document.getElementById(m.id);
-  m.X=lng=>(Math.min(Math.max(lng,m.minLng),m.maxLng)-m.minLng)/(m.maxLng-m.minLng)*1000;
-  m.Y=lat=>(m.maxLat-Math.min(Math.max(lat,m.minLat),m.maxLat))/(m.maxLat-m.minLat)*m.H;
-  m.towns.forEach(([n,la,ln])=>{const t=el("text",{x:m.X(ln),y:m.Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"},m.svg);t.textContent=n;});
+/* One map per area, shown one at a time in tabs. Each map is fitted to its own places, all the same size. */
+const MAPS=[
+ {id:"mapA",panel:"mA",has:p=>p.co!=="hend"&&p.co!=="jack"&&p.a==="ash",
+  towns:[["Downtown",35.6005,-82.5480],["West Asheville",35.5745,-82.5900],["North Asheville",35.6330,-82.5560],["East Asheville",35.6040,-82.5000],["Biltmore Village",35.5620,-82.5440]]},
+ {id:"mapB",panel:"mB",has:p=>p.co!=="hend"&&p.co!=="jack"&&p.a!=="ash",outline:county,towns:towns.concat([["Asheville",35.595,-82.551],["Montreat",35.645,-82.300]])},
+ {id:"mapV",panel:"mV",has:p=>p.co==="hend"&&p.lat>=35.265&&p.lat<=35.36&&p.lng>=-82.535&&p.lng<=-82.415,towns:[["Downtown",35.3187,-82.4610],["Laurel Park",35.3000,-82.5039],["Flat Rock",35.2712,-82.4415]]},
+ {id:"mapH",panel:"mH",has:p=>p.co==="hend"&&!(p.co==="hend"&&p.lat>=35.265&&p.lat<=35.36&&p.lng>=-82.535&&p.lng<=-82.415),outline:hendCo,towns:[["Hendersonville",35.3187,-82.4610],["Mills River",35.388,-82.567],["Fletcher",35.430,-82.501],["Saluda",35.2373,-82.3485],["Etowah",35.318,-82.597],["Edneyville",35.390,-82.340]]},
+ {id:"mapJ",panel:"mJ",has:p=>p.co==="jack",towns:[["Dillsboro",35.3626,-83.2503],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817],["Cashiers",35.1118,-83.0985]]}
+];
+const H=760,K=Math.cos(35.5*Math.PI/180);
+MAPS.forEach(m=>{
+  const ps=PLACES.filter(m.has);m.svg=document.getElementById(m.id);m.H=H;
+  let a=Math.min(...ps.map(p=>p.lat)),b=Math.max(...ps.map(p=>p.lat)),c=Math.min(...ps.map(p=>p.lng)),d=Math.max(...ps.map(p=>p.lng));
+  let w=(d-c)*K,h=b-a;const pad=Math.max(w,h*1000/H)*.12+.004;w+=2*pad;h+=2*pad*H/1000;
+  if(w/h<1000/H)w=h*1000/H;else h=w*H/1000;
+  const cl=(c+d)/2,ca=(a+b)/2;m.minLng=cl-w/K/2;m.maxLng=cl+w/K/2;m.minLat=ca-h/2;m.maxLat=ca+h/2;
+  m.X=lng=>(lng-m.minLng)/(m.maxLng-m.minLng)*1000;m.Y=lat=>(m.maxLat-lat)/(m.maxLat-m.minLat)*H;
+  const pth=pts=>pts.map((q,k)=>(k?"L":"M")+m.X(q[1]).toFixed(1)+" "+m.Y(q[0]).toFixed(1)).join(" ");
+  if(m.outline)el("path",{d:pth(m.outline)+" Z",class:"county","aria-hidden":"true"},m.svg);
+  if(m.id!=="mapJ"){el("path",{d:pth(fb),class:"river","aria-hidden":"true"},m.svg);el("path",{d:pth(sw),class:"river","stroke-width":"2","aria-hidden":"true"},m.svg);}
+  m.towns.forEach(([n,la,ln])=>{const x=m.X(ln),y=m.Y(la);if(x<60||x>940||y<30||y>H-20)return;const t=el("text",{x,y,class:"town","text-anchor":"middle","aria-hidden":"true"},m.svg);t.textContent=n;});
   m.halos=el("g",{"aria-hidden":"true"},m.svg);m.pins=el("g",{},m.svg);m.placed=[];
-  if(m.box){const x0=X(m.minLng),y0=Y(m.maxLat);el("rect",{x:x0,y:y0,width:X(m.maxLng)-x0,height:Y(m.minLat)-y0,class:"insetbox","aria-hidden":"true"});
-    const t=el("text",{x:x0+8,y:y0+24,class:"insetlbl","aria-hidden":"true"});t.textContent=m.lbl+" ↓";}
 });
-const MAIN={X,Y,halos:el("g",{"aria-hidden":"true"}),pins:el("g",{}),placed:[]};
-function mapFor(p){if(p.co==="jack")return INSETS[2];for(const m of INSETS.slice(0,2))if(p.co!=="jack"&&inBox(m,p))return m;return MAIN;}
+const defs=el("defs",{},MAPS[0].svg);
+["strong","mixed","caution","closed"].forEach(b=>{const g=el("radialGradient",{id:"g-"+b},defs);el("stop",{offset:"0%",style:`stop-color:var(--${b});stop-opacity:.55`},g);el("stop",{offset:"100%",style:`stop-color:var(--${b});stop-opacity:0`},g);});
+function mapFor(p){return MAPS.find(m=>m.has(p))||MAPS[1];}
 function spot(m,x,y){for(let k=0;k<12;k++){const hit=m.placed.find(([a,b])=>Math.hypot(a-x,b-y)<42);if(!hit)break;
   const dx=x-hit[0],dy=y-hit[1],d=Math.hypot(dx,dy)||1;x=hit[0]+dx/d*42;y=hit[1]+(d<1?42:dy/d*42);}m.placed.push([x,y]);return [x,y];}
-const clampXY=(m,x,y)=>[Math.min(Math.max(x,26),974),Math.min(Math.max(y,40),(m.H||MAPH)-26)];
+const clampXY=(m,x,y)=>[Math.min(Math.max(x,26),974),Math.min(Math.max(y,40),m.H-26)];
 PLACES.forEach(p=>{
   const m=mapFor(p),[px,py]=spot(m,...clampXY(m,m.X(p.lng),m.Y(p.lat)));
   p.h=el("circle",{cx:px,cy:py,class:"halo"},m.halos);
@@ -1187,7 +1189,7 @@ function renderPanel(){
     <div class="layer">${formBlock(p)}</div>
     <a href="${dir}" target="_blank" rel="noopener">${t.dir}</a>`;
 }
-function select(p,jump){state.sel=p;renderMap();renderPanel();if(jump)panel.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
+function select(p,jump){state.sel=p;openTab(mapFor(p).panel);renderMap();renderPanel();if(jump)panel.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
 
 document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
   state.filter=c.dataset.f;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c));renderMap();
@@ -1240,7 +1242,7 @@ rebuildPicker();renderMap();renderPanel();
 
 /* Tabs: one topic at a time, equal height on wide screens; in-page links open the right tab */
 function openTab(id,focusTab){const pn=document.getElementById(id);if(!pn||pn.getAttribute("role")!=="tabpanel")return null;const box=pn.closest("[data-tabs]");
-  box.querySelectorAll("[role=tab]").forEach(tb=>{const on=tb.getAttribute("aria-controls")===id;tb.setAttribute("aria-selected",String(on));tb.tabIndex=on?0:-1;if(on&&focusTab)tb.focus();});
+  box.querySelectorAll("[role=tab]").forEach(tb=>{const on=tb.getAttribute("aria-controls")===id;tb.setAttribute("aria-selected",String(on));tb.tabIndex=on?0:-1;if(on){const tl=tb.parentElement;if(tl.scrollWidth>tl.clientWidth)tl.scrollLeft=Math.max(0,tb.offsetLeft-tl.offsetLeft-16);}if(on&&focusTab)tb.focus();});
   box.querySelectorAll("[role=tabpanel]").forEach(x=>x.classList.toggle("on",x.id===id));return box;}
 document.querySelectorAll("[data-tabs] [role=tab]").forEach(tb=>{
   tb.addEventListener("click",()=>{openTab(tb.getAttribute("aria-controls"));tb.scrollIntoView({block:"nearest",inline:"nearest"});});
