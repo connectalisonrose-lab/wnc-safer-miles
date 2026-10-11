@@ -37,6 +37,19 @@
 @media (max-width:640px){.panels>[role=tabpanel]:not(.on){display:none}.tablist [role=tab]{font-size:15px;padding:8px 12px}}
 .tips .tip-grid{margin-top:var(--s3)}
 .howto{display:grid;gap:var(--s2)}
+.together{display:grid;gap:var(--s2)}
+.tg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tg>div{padding:var(--s2) var(--s3);display:grid;gap:12px;align-content:start}
+.tg .tg-why{background:var(--band);border-right:1px solid var(--line)}
+.tg h3{font-size:19px;margin:0}
+.tg ul,.tg ol{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.tg li{font-size:16px;line-height:1.6}
+.tg li b{display:block;color:var(--ink)}
+.tg ol{counter-reset:tg}
+.tg ol li{counter-increment:tg;position:relative;padding-left:44px}
+.tg ol li::before{content:counter(tg);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:700;display:grid;place-items:center;font-size:15px}
+.tg small{color:var(--muted);font-size:14px}
+@media (max-width:900px){.tg{grid-template-columns:1fr}.tg .tg-why{border-right:0;border-bottom:1px solid var(--line)}.tg>div{padding:var(--s2)}}
 .why{display:grid;gap:var(--s2)}
 .stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}
 .stats li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) var(--s3);display:grid;gap:8px;align-content:start;justify-items:center;text-align:center}
@@ -417,6 +430,32 @@ html[data-size="large"] .wrap{zoom:1.18}
       <li data-i18n="st3"><b>84%</b><span>of women in a Runner's World survey of more than 5,000 runners said they had been harassed while running.</span><a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Runner's World survey, via CBC News ↗</a></li>
     </ul>
     <p class="note why-more" data-i18n="whyMore">The six factors behind each score come from decades of research on how places feel to women. <a href="#research">See the research</a></p>
+  </section>
+
+  <section class="together" id="together" aria-labelledby="tgH">
+    <div class="tips-head">
+      <h2 id="tgH" data-i18n="tgH">Better, together</h2>
+      <p class="note" data-i18n="tgIntro">This map works the way <a href="#rooted">gadugi</a> does: people turning out together to do what no one could do alone. Every rating and suggestion makes it a little truer for the next woman.</p>
+    </div>
+    <div class="tg">
+      <div class="tg-why">
+        <h3 data-i18n="tgWhyH">Why together works</h3>
+        <ul data-i18n="tgWhy">
+          <li><b>Strength in numbers</b>Neighborhoods where people trust each other and are willing to step in for one another have less violence. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush and Earls, <i>Science</i>, 1997 ↗</a></small></li>
+          <li><b>Moving together calms the body</b>In one small study, people who exercised in a group had a 26% drop in stress; those who exercised alone saw no real change. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks and colleagues, 2017 ↗</a></small></li>
+          <li><b>Time outside is worth protecting</b>People who spent at least two hours a week in nature, in one visit or several, were more likely to report good health and wellbeing. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White and colleagues, <i>Scientific Reports</i>, 2019 ↗</a></small></li>
+        </ul>
+      </div>
+      <div class="tg-how">
+        <h3 data-i18n="tgHowH">Four ways to make it better</h3>
+        <ol data-i18n="tgHow">
+          <li><b>Rate the places you use</b>Your body's read on a place is information. If somewhere feels off, or feels good, say so. It takes about 20 seconds and asks for no name. <a href="#content">Choose a place</a></li>
+          <li><b>Suggest a place we're missing</b>Every suggestion is researched before it goes on the map. <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a place ↗</a></li>
+          <li><b>Walk it together</b>Go with a friend or two at the hour you'd usually go. Notice the lighting, how far ahead you can see and where you'd head if you needed to leave, the same questions women's safety audits ask. Then rate it.</li>
+          <li><b>Tell us what's changed</b>A light out, a new closure, a trail cleared after Helene. <a href="https://tally.so/r/VLRZpl" target="_blank" rel="noopener">Report a change ↗</a></li>
+        </ol>
+      </div>
+    </div>
   </section>
 
   <section class="tips" id="safety">
@@ -1175,6 +1214,12 @@ const L={
   howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una sola calificación puede mover el puntaje hasta unos 13 puntos, lo suficiente para cambiar la categoría de un lugar cerca de un límite, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sin datos policiales",
   polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran 12 meses después del incidente.",
+  tgH:"Mejor, juntas",
+  tgIntro:`Este mapa funciona como el <a href="#rooted">gadugi</a>: gente que se reúne para hacer lo que nadie podría hacer sola. Cada calificación y cada sugerencia lo hacen un poco más fiel para la siguiente mujer.`,
+  tgWhyH:"Por qué funciona hacerlo juntas",
+  tgWhy:`<li><b>La fuerza está en el grupo</b>Los barrios donde la gente confía entre sí y está dispuesta a intervenir por los demás tienen menos violencia. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush y Earls, <i>Science</i>, 1997 ↗</a></small></li><li><b>Moverse juntas calma el cuerpo</b>En un estudio pequeño, quienes hicieron ejercicio en grupo redujeron su estrés un 26%; quienes lo hicieron solos no tuvieron un cambio real. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks y colegas, 2017 ↗</a></small></li><li><b>Vale la pena proteger el tiempo afuera</b>Las personas que pasaron al menos dos horas a la semana en la naturaleza, en una visita o en varias, tenían más probabilidad de reportar buena salud y bienestar. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White y colegas, <i>Scientific Reports</i>, 2019 ↗</a></small></li>`,
+  tgHowH:"Cuatro formas de mejorarlo",
+  tgHow:`<li><b>Califique los lugares que usa</b>Lo que su cuerpo percibe de un lugar es información. Si algo se siente mal, o bien, dígalo. Toma unos 20 segundos y no pide su nombre. <a href="#content">Elija un lugar</a></li><li><b>Sugiera un lugar que falta</b>Cada sugerencia se investiga antes de agregarse al mapa. <a href="https://tally.so/r/WOGNya" target="_blank" rel="noopener">Sugerir un lugar ↗</a></li><li><b>Recórralo acompañada</b>Vaya con una o dos amigas a la hora en que suele ir. Fíjese en la iluminación, qué tan lejos puede ver y hacia dónde iría si tuviera que irse: las mismas preguntas de las auditorías de seguridad de las mujeres. Luego califíquelo.</li><li><b>Cuéntenos qué cambió</b>Una luz apagada, un cierre nuevo, un sendero despejado después de Helene. <a href="https://tally.so/r/eq1BMo" target="_blank" rel="noopener">Reportar un cambio ↗</a></li>`,
   whyEyebrow:"Por qué importa",
   whyH:"Lo que las mujeres ya saben",
   whyIntro:"Si alguna vez ha cambiado su ruta, su horario o su ropa para sentirse más segura afuera, la investigación muestra que la mayoría de las mujeres también lo ha hecho.",
