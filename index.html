@@ -83,7 +83,7 @@ header .incl{margin:0;font-size:17px;color:var(--muted);max-width:60ch}
 @media (max-width:640px){.tip.help .rescards{grid-template-columns:1fr}.tip.help .acts a{flex:1 1 auto}}
 </style>
 <title>WNC Safer Miles</title>
-<meta name="description" content="A community map of parks, greenways and trails in Buncombe, Henderson and Jackson counties, NC, scored on what makes them safer for women running or walking alone.">
+<meta name="description" content="A community map of parks, greenways and trails across Western North Carolina, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
@@ -281,7 +281,7 @@ footer{padding-bottom:72px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rose{--petal:#e3a0aa;--petal2:#c97f8b}}
 :root[data-theme="dark"] .rose{--petal:#e3a0aa;--petal2:#c97f8b}
 :root[data-theme="dark"] .rooted{--rb:#221b1e;--ra:#eaa7b7;--rl:#3e3136}
-.note.src a{white-space:nowrap}
+.note.src a{white-space:normal;overflow-wrap:anywhere}
 
 /* ---------- Larger text ---------- */
 html[data-size="large"] .wrap{zoom:1.18}
@@ -313,7 +313,7 @@ html[data-size="large"] .wrap{zoom:1.18}
     </div>
     <div class="title">
       <h1>WNC Safer Miles</h1>
-      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails in Buncombe, Henderson and Jackson counties, scored on what helps women feel safer running or walking alone.</p>
+      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails across Western North Carolina, scored on what helps women feel safer running or walking alone. It starts in Buncombe, Henderson, Jackson, Haywood, Transylvania and Madison counties and grows as women rate and suggest places.</p>
       <p class="incl" data-i18n="incl">For all women, trans women included, and for nonbinary, gender-expansive and LGBTQ+ people who have ever felt unsafe out alone.</p>
     </div>
     <ul class="facts">
@@ -345,13 +345,19 @@ html[data-size="large"] .wrap{zoom:1.18}
         <button type="button" role="tab" id="tab-mB" aria-controls="mB" aria-selected="false" tabindex="-1" data-i18n="mT2">Around Buncombe</button>
         <button type="button" role="tab" id="tab-mV" aria-controls="mV" aria-selected="false" tabindex="-1" data-i18n="mT5">Hendersonville</button>
         <button type="button" role="tab" id="tab-mH" aria-controls="mH" aria-selected="false" tabindex="-1" data-i18n="mT3">Around Henderson</button>
-        <button type="button" role="tab" id="tab-mJ" aria-controls="mJ" aria-selected="false" tabindex="-1" data-i18n="mT4">Jackson County</button>
+        <button type="button" role="tab" id="tab-mW" aria-controls="mW" aria-selected="false" tabindex="-1" data-i18n="mT6">Haywood</button>
+        <button type="button" role="tab" id="tab-mT" aria-controls="mT" aria-selected="false" tabindex="-1" data-i18n="mT7">Transylvania</button>
+        <button type="button" role="tab" id="tab-mM" aria-controls="mM" aria-selected="false" tabindex="-1" data-i18n="mT8">Madison</button>
+        <button type="button" role="tab" id="tab-mJ" aria-controls="mJ" aria-selected="false" tabindex="-1" data-i18n="mT4">Jackson</button>
       </div>
       <div class="panels">
         <div class="tip on" id="mA" role="tabpanel" aria-labelledby="tab-mA"><svg class="map" id="mapA" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaA" aria-label="Map of places in Asheville. Each pin is a button."></svg></div>
         <div class="tip" id="mB" role="tabpanel" aria-labelledby="tab-mB"><svg class="map" id="mapB" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaB" aria-label="Map of places in Buncombe County outside Asheville. Each pin is a button."></svg></div>
         <div class="tip" id="mV" role="tabpanel" aria-labelledby="tab-mV"><svg class="map" id="mapV" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaV" aria-label="Map of places in Hendersonville, Laurel Park and Flat Rock. Each pin is a button."></svg></div>
         <div class="tip" id="mH" role="tabpanel" aria-labelledby="tab-mH"><svg class="map" id="mapH" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaH" aria-label="Map of places in Henderson County outside Hendersonville, Laurel Park and Flat Rock. Each pin is a button."></svg></div>
+        <div class="tip" id="mW" role="tabpanel" aria-labelledby="tab-mW"><svg class="map" id="mapW" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaW" aria-label="Map of places in Haywood County. Each pin is a button."></svg></div>
+        <div class="tip" id="mT" role="tabpanel" aria-labelledby="tab-mT"><svg class="map" id="mapT" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaT" aria-label="Map of places in Transylvania County. Each pin is a button."></svg></div>
+        <div class="tip" id="mM" role="tabpanel" aria-labelledby="tab-mM"><svg class="map" id="mapM" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaM" aria-label="Map of places in Madison County. Each pin is a button."></svg></div>
         <div class="tip" id="mJ" role="tabpanel" aria-labelledby="tab-mJ"><svg class="map" id="mapJ" viewBox="0 0 1000 760" role="group" data-i18n-aria="mAriaJ" aria-label="Map of places in Jackson County. Each pin is a button."></svg></div>
       </div>
       </div>
@@ -374,7 +380,7 @@ html[data-size="large"] .wrap{zoom:1.18}
       <p class="note" data-i18n="listNote">The number is the place's rank across the whole map by its current score: 1 has the fewest known risk factors, which is not the same as safe. Closed or unconfirmed places are marked × and not ranked.</p>
       <div class="list" id="list"></div>
     </details>
-    <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Buncombe, Henderson or Jackson County ↗</a> It's anonymous unless you choose to leave an email, and each suggestion is researched and reviewed before anything is added to the map.</p>
+    <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Western North Carolina ↗</a> It's anonymous unless you choose to leave an email, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
 
   <section class="tips" id="safety">
@@ -476,6 +482,9 @@ html[data-size="large"] .wrap{zoom:1.18}
           <li><span data-i18n="lHelp">Helpmate<small>Domestic and intimate partner violence · Buncombe County</small></span><div class="acts"><a class="call" href="tel:+18282540516">828-254-0516</a><a class="web" href="https://helpmateonline.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
           <li><span data-i18n="lSafe">Safelight<small>Interpersonal violence, sexual assault and child abuse · Henderson County</small></span><div class="acts"><a class="call" href="tel:+18286933840">828-693-3840</a><a class="web" href="https://safelightfamily.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
           <li><span data-i18n="lCdp">Center for Domestic Peace<small>Domestic violence, sexual assault and human trafficking · Jackson County</small></span><div class="acts"><a class="call" href="tel:+18285861237">828-586-1237</a><a class="web" href="https://cdpjaxcountync.org" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lReach">REACH of Haywood County<small>Domestic and sexual violence · Haywood County</small></span><div class="acts"><a class="call" href="tel:+18284567898">828-456-7898</a><a class="web" href="https://www.reachofhaywood.org/" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lSafeT">SAFE of Transylvania County<small>Domestic and sexual violence · Transylvania County</small></span><div class="acts"><a class="call" href="tel:+18288857233">828-885-7233</a><a class="web" href="https://www.safetransylvania.org/" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
+          <li><span data-i18n="lMsp">My Sister's Place<small>Domestic and sexual violence · Madison County</small></span><div class="acts"><a class="call" href="tel:+18887653441">888-765-3441</a><a class="web" href="https://www.mysisters.place/" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
           <li><span data-i18n="lRainn">RAINN<small>National Sexual Assault Hotline</small></span><div class="acts"><a class="call" href="tel:+18006564673">800-656-4673</a><a class="web" href="https://rainn.org/help-and-healing/hotline" target="_blank" rel="noopener" data-i18n="webLink">Website ↗</a></div></li>
         </ul>
         <h4 class="lines-h" data-i18n="txtH">Prefer to text or chat?</h4>
@@ -808,13 +817,49 @@ const PLACES=[
  {n:"Cashiers Greenway Ramble",a:"jack",co:"jack",st:"partial",sn:"Partly built: about 2.3 miles are open, and more of the planned five-mile network is still under construction.",sne:"Construido en parte: unas 2.3 millas están abiertas, y el resto de la red planeada de cinco millas sigue en construcción.",lat:35.1075,lng:-83.102,f:[2, 3, 3, 4, 2, 3],
   t:"Greenway · Cashiers",te:"Sendero verde · Cashiers",
   note:"A walking network starting at the Cashiers Area Chamber of Commerce visitor center on Highway 64, with a map kiosk at the entrance.",
-  ne:"Una red para caminar que empieza en el centro de visitantes de la Cámara de Comercio de Cashiers, en la carretera 64, con un quiosco de mapas en la entrada."}
+  ne:"Una red para caminar que empieza en el centro de visitantes de la Cámara de Comercio de Cashiers, en la carretera 64, con un quiosco de mapas en la entrada."},
+ {n:"Lake Junaluska Walking Trail",a:"hay",co:"hay",st:"open",sn:"",sne:"",lat:35.5262,lng:-82.96,f:[3, 4, 4, 4, 3, 4],
+  t:"Lake loop · paved",te:"Circuito del lago · pavimentado",
+  note:"A paved, mostly flat 3.8-mile loop around Lake Junaluska, with benches, gazebos and the Rose Walk; a 2.3-mile option crosses the footbridge and the dam. Busy with walkers most days. The Welcome Center is open Monday to Saturday, 9 to 5.",
+  ne:"Un circuito pavimentado y casi plano de 3.8 millas alrededor del lago Junaluska, con bancas, glorietas y el Rose Walk; una opción de 2.3 millas cruza el puente peatonal y la presa. Hay muchas personas caminando casi todos los días. El centro de bienvenida abre de lunes a sábado, de 9 a 5."},
+ {n:"Richland Creek Greenway (Waynesville)",a:"hay",co:"hay",st:"open",sn:"",sne:"",lat:35.4985,lng:-82.9745,f:[2, 3, 3, 4, 2, 3],
+  t:"Greenway · paved, accessible",te:"Sendero verde · pavimentado y accesible",
+  note:"Waynesville's accessible greenway follows Richland Creek through Vance and Recreation Park (1.2 miles), then runs beside US 23 toward Lake Junaluska. Park at Recreation Park. The highway stretch is open to traffic noise and has few people.",
+  ne:"El sendero verde accesible de Waynesville sigue el arroyo Richland por Vance Park y Recreation Park (1.2 millas) y luego va junto a la US 23 hacia el lago Junaluska. Estacione en Recreation Park. El tramo junto a la carretera tiene ruido de tráfico y poca gente."},
+ {n:"Estatoe Trail (Brevard)",a:"tran",co:"tran",st:"open",sn:"",sne:"",lat:35.2445,lng:-82.735,f:[2, 4, 3, 4, 2, 3],
+  t:"Greenway · mostly paved",te:"Sendero verde · casi todo pavimentado",
+  note:"An almost 6-mile, mostly paved path from downtown Brevard to Davidson River Campground in Pisgah National Forest; the last mile is packed gravel. Popular with walkers, families and cyclists, with several busy street crossings. Parking at the Brevard Sports Complex, the Pisgah Ranger Station and the campground.",
+  ne:"Un camino de casi 6 millas, casi todo pavimentado, del centro de Brevard al campamento Davidson River en el Bosque Nacional Pisgah; la última milla es de grava compactada. Lo usan mucho personas que caminan, familias y ciclistas, y cruza varias calles transitadas. Estacionamiento en el Brevard Sports Complex, la estación de guardabosques de Pisgah y el campamento."},
+ {n:"Bracken Mountain Preserve",a:"tran",co:"tran",st:"open",sn:"",sne:"",lat:35.247,lng:-82.744,f:[1, 2, 2, 2, 1, 2],
+  t:"City preserve · forest trails",te:"Reserva de la ciudad · senderos en el bosque",
+  note:"About 9 miles of natural-surface trails owned by the City of Brevard, linking downtown to Pisgah National Forest. The main loop is 7.2 miles with about 1,200 feet of climbing. Trailhead at 186 Pinnacle Road. Quiet and wooded, with spotty signal.",
+  ne:"Unas 9 millas de senderos de tierra, propiedad de la ciudad de Brevard, que conectan el centro con el Bosque Nacional Pisgah. El circuito principal es de 7.2 millas con unos 1,200 pies de subida. La entrada está en 186 Pinnacle Road. Es tranquilo y boscoso, con señal irregular."},
+ {n:"DuPont State Recreational Forest",a:"tran",co:"tran",st:"partial",sn:"Open, but the N.C. Forest Service lists some closures, including the Triple Falls stairs. Check its closures page before you go.",sne:"Abierto, pero el Servicio Forestal de Carolina del Norte indica algunos cierres, incluidas las escaleras de Triple Falls. Revise su página de cierres antes de ir.",lat:35.2023,lng:-82.6196,f:[1, 4, 3, 2, 3, 4],
+  t:"State forest · waterfall trails",te:"Bosque estatal · senderos de cascadas",
+  note:"A busy state forest with wide gravel roads and trails to Hooker, Triple and High Falls. In summer it opens at 5 a.m. and closes at 10 p.m., and lots often fill by 9:30 a.m. Forest Service staff patrol, but cell signal is weak away from the lots.",
+  ne:"Un bosque estatal muy visitado, con caminos anchos de grava y senderos a las cascadas Hooker, Triple y High. En verano abre a las 5 a. m. y cierra a las 10 p. m., y los estacionamientos suelen llenarse antes de las 9:30 a. m. El personal del Servicio Forestal patrulla, pero la señal de celular es débil lejos de los estacionamientos."},
+ {n:"Lover's Leap Trail (Hot Springs)",a:"mad",co:"mad",st:"open",sn:"",sne:"",lat:35.8913,lng:-82.827,f:[1, 2, 2, 2, 1, 2],
+  t:"Forest trail · steep loop",te:"Sendero del bosque · circuito empinado",
+  note:"A steep loop of about 1.6 miles from the edge of Hot Springs, climbing above the French Broad River on the Appalachian Trail. Appalachian Trail hikers pass through, but it is wooded with spotty signal. The Forest Service lists Hot Springs-area trails as open after Helene.",
+  ne:"Un circuito empinado de unas 1.6 millas desde la orilla de Hot Springs, que sube sobre el río French Broad por el Sendero de los Apalaches. Pasan excursionistas del Sendero de los Apalaches, pero es boscoso y la señal es irregular. El Servicio Forestal indica que los senderos de la zona de Hot Springs están abiertos después de Helene."},
+ {n:"Laurel River Trail",a:"mad",co:"mad",st:"open",sn:"",sne:"",lat:35.879,lng:-82.76,f:[1, 2, 3, 1, 1, 2],
+  t:"Forest trail · creekside",te:"Sendero del bosque · junto al arroyo",
+  note:"A mostly flat 3.6-mile trail (7.2 miles round trip) along Big Laurel Creek near Hurricane, about 15 minutes from Marshall. Remote, with little or no cell signal. The Forest Service lists it as open after Helene.",
+  ne:"Un sendero casi plano de 3.6 millas (7.2 ida y vuelta) junto al arroyo Big Laurel, cerca de Hurricane, a unos 15 minutos de Marshall. Es remoto, con poca o ninguna señal de celular. El Servicio Forestal indica que está abierto después de Helene."},
+ {n:"Max Patch",a:"mad",co:"mad",st:"open",sn:"",sne:"",lat:35.7967,lng:-82.9626,f:[1, 3, 5, 2, 1, 3],
+  t:"Mountain bald · open summit",te:"Cumbre despejada",
+  note:"An open, grassy summit on the Appalachian Trail with wide views, reached by a long gravel road. Busy on clear weekends, but remote, with weak signal and fast-changing weather. The Forest Service restricts camping and fires.",
+  ne:"Una cumbre abierta y con pasto en el Sendero de los Apalaches, con vistas amplias, a la que se llega por un largo camino de grava. Hay mucha gente los fines de semana despejados, pero es remota, con poca señal y clima que cambia rápido. El Servicio Forestal restringe acampar y hacer fogatas."},
+ {n:"Otis Duck Walking Trail (Mars Hill)",a:"mad",co:"mad",st:"open",sn:"",sne:"",lat:35.827,lng:-82.549,f:[2, 3, 3, 4, 2, 3],
+  t:"Town trail · about a mile",te:"Sendero del pueblo · cerca de una milla",
+  note:"A walking trail of about a mile, built by Mars Hill University and the Town of Mars Hill. The campus also has a 0.75-mile Tree Trail on sidewalks and paved paths.",
+  ne:"Un sendero para caminar de cerca de una milla, hecho por Mars Hill University y el pueblo de Mars Hill. El campus también tiene el Tree Trail, de 0.75 millas por aceras y caminos pavimentados."}
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
 const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
-const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed"];
-const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"));
+const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","med","med","med","lowmed","med","lowmed","lowmed","lowmed","lowmed"];
+const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"),Array(9).fill("2026-10-11"));
 const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
 const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
 [["City of Asheville","https://www.ashevillenc.gov/news/richmond-hill-park-partially-reopens-on-october-11-in-recovery-milestone-as-asheville-continues-post-helene-progress/"]],
@@ -864,7 +909,16 @@ const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https:
 [["Conserving Carolina", "https://conservingcarolina.org/trail-update-openings-continued-closures-and-community-support/"], ["Wikipedia", "https://en.wikipedia.org/wiki/Florence_Nature_Preserve"]],
 [["Jackson County Parks", "https://www.jacksonnc.org/jackson-county-recreation-center/parks"], ["Cullowhee Rec Center", "https://www.jacksonnc.org/269/Cullowhee-Rec"]],
 [["Jackson County Parks", "https://www.jacksonnc.org/jackson-county-recreation-center/parks"]],
-[["Walk Cashiers", "https://cashiersramble.com/"]]];
+[["Walk Cashiers", "https://cashiersramble.com/"]],
+[["Visit Haywood","https://visithaywood.com/listings/lake-junaluska-walking-trail"]],
+[["Town of Waynesville","https://waynesvillenc.gov/departments/parks-recreation/waynesville-greenway"]],
+[["TrailLink","https://www.traillink.com/trail/estatoe-trail/"]],
+[["Conserving Carolina","https://conservingcarolina.org/bracken-preserve/"]],
+[["N.C. Forest Service closures","https://www.ncagr.gov/divisions/nc-forest-service/state-forests/dupont-state-recreational-forest/closures"],["N.C. Forest Service, May 2025","https://www.ncagr.gov/news/press-releases/2025/05/21/triple-falls-trail-dupont-state-recreational-forest-has-reopened"]],
+[["U.S. Forest Service, Sept. 2025","https://fs.usda.gov/r08/northcarolina/alerts/appalachian-ranger-district-hurricane-helene-updated-closures"]],
+[["U.S. Forest Service, Sept. 2025","https://fs.usda.gov/r08/northcarolina/alerts/appalachian-ranger-district-hurricane-helene-updated-closures"],["N.C. Natural and Cultural Resources, Aug. 2025","https://www.dncr.nc.gov/blog/2025/08/01/day-trip-itinerary-marshal-day-adventure-marshall"]],
+[["U.S. Forest Service","https://www.fs.usda.gov/r08/northcarolina/alerts/max-patch-restrictions"],["U.S. Forest Service, Sept. 2025","https://fs.usda.gov/r08/northcarolina/alerts/appalachian-ranger-district-hurricane-helene-updated-closures"]],
+[["Mars Hill University","https://www.mhu.edu/about/what-to-do-and-see/walking-trails/"]]];
 const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
 const L={
@@ -874,7 +928,7 @@ const L={
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
   TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed",access:"Paved, level or step-free"},
   BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
-  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva, Cullowhee & Cashiers"},
+  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva, Cullowhee & Cashiers",hay:"Haywood County · Waynesville & Lake Junaluska",tran:"Transylvania County · Brevard & DuPont",mad:"Madison County · Hot Springs, Marshall & Mars Hill"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
   before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",
@@ -894,7 +948,7 @@ const L={
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
   TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida",access:"Pavimentado, plano o sin escalones"},
   BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
-  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva, Cullowhee y Cashiers"},
+  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva, Cullowhee y Cashiers",hay:"Condado de Haywood · Waynesville y lago Junaluska",tran:"Condado de Transylvania · Brevard y DuPont",mad:"Condado de Madison · Hot Springs, Marshall y Mars Hill"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
   before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",
@@ -910,14 +964,14 @@ const L={
   // static page text
   skip:"Ir al mapa",
   eyebrow:"Oeste de Carolina del Norte, en tierra tsalagi (cherokee)",
-  lede:"Un mapa comunitario de parques, senderos verdes y caminos en los condados de Buncombe, Henderson y Jackson, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas.",
+  lede:"Un mapa comunitario de parques, senderos verdes y caminos en el oeste de Carolina del Norte, calificados según lo que ayuda a las mujeres a sentirse más seguras al correr o caminar solas. Empieza en los condados de Buncombe, Henderson, Jackson, Haywood, Transylvania y Madison, y crece a medida que las mujeres califican y sugieren lugares.",
   notice:"<strong>Este es un piloto y los puntajes son estimaciones iniciales.</strong> Un puntaje alto significa menos factores de riesgo conocidos, no una garantía de seguridad. Los puntajes iniciales vienen de una revisión de fuentes públicas, como páginas de parques y del condado, noticias locales y fichas de Google Maps, no de visitas en persona, y esperan ser confirmados o corregidos por mujeres de la zona. Cualquiera puede calificar un lugar desde su panel; toma unos 20 segundos y no pide su nombre. El correo es opcional, solo si quiere una respuesta. Úselo como un dato más, junto con su propio criterio. Este mapa no es un servicio de emergencia; si está en peligro, llame al 911.",
   pickLabel:"Elija un lugar",
   hint:"Toque un número en el mapa, o elija un lugar arriba, para ver su puntaje y calificaciones y para calificarlo.",
   filterAria:"Filtrar lugares",fAll:"Todos",fStrong:"Fuerte",fMixed:"Mixto",fCaution:"Vaya preparada",
   mapAria:"Mapa de los condados de Buncombe y Henderson con los lugares calificados. Los lugares del condado de Jackson están en un mapa aparte, más abajo. Cada punto es un botón.",
   lgStrong:"Fuerte 75+",lgMixed:"Mixto 55–74",lgCaution:"Vaya preparada &lt;55",lgRivers:"Ríos",
-  suggest:"<strong>¿Conoce un lugar que falta?</strong> <a href=\"https://tally.so/r/WOGNya\" target=\"_blank\" rel=\"noopener\">Sugiera un parque, sendero verde o camino en el condado de Buncombe, Henderson o Jackson ↗</a> Es anónimo, a menos que decida dejar su correo, y cada sugerencia se investiga y se revisa antes de agregar algo al mapa.",
+  suggest:"<strong>¿Conoce un lugar que falta?</strong> <a href=\"https://tally.so/r/WOGNya\" target=\"_blank\" rel=\"noopener\">Sugiera un parque, sendero verde o camino en el oeste de Carolina del Norte ↗</a> Es anónimo, a menos que decida dejar su correo, y cada sugerencia se investiga y se revisa antes de agregar algo al mapa.",
   listH:"Lugares por zona",listNote:"El número es la posición del lugar en todo el mapa según su puntaje actual: el 1 tiene menos factores de riesgo conocidos, lo que no es lo mismo que ser seguro. Los lugares cerrados o sin confirmar llevan × y no tienen posición.",
   tipsEyebrow:"Consejos de seguridad",tipsH:"Salir con un plan",
   tipsIntro:"Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
@@ -961,6 +1015,9 @@ const L={
   lVoice:"Our VOICE<small>Violencia sexual y trata de personas · Condado de Buncombe</small>",
   lHelp:"Helpmate<small>Violencia doméstica y de pareja · Condado de Buncombe</small>",
   lSafe:"Safelight<small>Violencia interpersonal, agresión sexual y abuso infantil · Condado de Henderson</small>",
+  lReach:"REACH of Haywood County<small>Violencia doméstica y sexual · Condado de Haywood</small>",
+  lSafeT:"SAFE of Transylvania County<small>Violencia doméstica y sexual · Condado de Transylvania</small>",
+  lMsp:"My Sister's Place<small>Violencia doméstica y sexual · Condado de Madison</small>",
   lCdp:"Center for Domestic Peace<small>Violencia doméstica, agresión sexual y trata de personas · Condado de Jackson</small>",
   lRainn:"RAINN<small>Línea nacional contra la agresión sexual</small>",
   t6P:"Que la sigan, la observen o la acosen, incluso por su género, su apariencia o a quién ama, es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial. Cuando esté lista, calificar el lugar, incluso marcando \"Me sentí observada o seguida\", advierte a otras sin nombrar a nadie. Para información en español por mensaje de texto, escriba VOZ al 85511 (Our VOICE).",
@@ -977,7 +1034,7 @@ const L={
   rootS2:"Haudenosaunee<br>el poder que tiene todo ser vivo",
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
-  mapTabs:"Zonas del mapa",mT1:"Asheville",mT2:"Resto de Buncombe",mT3:"Resto de Henderson",mT5:"Hendersonville",mAriaV:"Mapa de los lugares en Hendersonville, Laurel Park y Flat Rock. Cada marcador es un botón.",mT4:"Condado de Jackson",
+  mapTabs:"Zonas del mapa",mT1:"Asheville",mT2:"Resto de Buncombe",mT3:"Resto de Henderson",mT5:"Hendersonville",mAriaV:"Mapa de los lugares en Hendersonville, Laurel Park y Flat Rock. Cada marcador es un botón.",mT4:"Jackson",mT6:"Haywood",mT7:"Transylvania",mT8:"Madison",mAriaW:"Mapa de los lugares del condado de Haywood. Cada marcador es un botón.",mAriaT:"Mapa de los lugares del condado de Transylvania. Cada marcador es un botón.",mAriaM:"Mapa de los lugares del condado de Madison. Cada marcador es un botón.",
   mapNote:"Elija una zona para ver sus lugares. Las ubicaciones son aproximadas.",
   mAriaA:"Mapa de los lugares en Asheville. Cada marcador es un botón.",mAriaB:"Mapa de los lugares del condado de Buncombe fuera de Asheville. Cada marcador es un botón.",mAriaH:"Mapa de los lugares del condado de Henderson fuera de Hendersonville, Laurel Park y Flat Rock. Cada marcador es un botón.",mAriaJ:"Mapa de los lugares del condado de Jackson. Cada marcador es un botón.",
   alertH:"Alerta de seguridad",
@@ -1047,27 +1104,30 @@ const hendCo=[[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46
 const towns=[["Mills River",35.37,-82.62],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
 const NS="http://www.w3.org/2000/svg";
 const el=(t,a,parent)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
-const CN=p=>p.co==="jack"?"Jackson":p.co==="hend"?"Henderson":"Buncombe";
+const CN=p=>({jack:"Jackson",hend:"Henderson",hay:"Haywood",tran:"Transylvania",mad:"Madison"})[p.co]||"Buncombe";
 /* One map per area, shown one at a time in tabs. Each map is fitted to its own places, all the same size. */
 const MAPS=[
- {id:"mapA",panel:"mA",has:p=>p.co!=="hend"&&p.co!=="jack"&&p.a==="ash",
+ {id:"mapA",panel:"mA",has:p=>!p.co&&p.a==="ash",
   towns:[["Downtown",35.6005,-82.5480],["West Asheville",35.5745,-82.5900],["North Asheville",35.6330,-82.5560],["East Asheville",35.6040,-82.5000],["Biltmore Village",35.5620,-82.5440]]},
- {id:"mapB",panel:"mB",has:p=>p.co!=="hend"&&p.co!=="jack"&&p.a!=="ash",outline:county,towns:towns.concat([["Asheville",35.595,-82.551],["Montreat",35.645,-82.300]])},
+ {id:"mapB",panel:"mB",has:p=>!p.co&&p.a!=="ash",outline:county,towns:towns.concat([["Asheville",35.595,-82.551],["Montreat",35.645,-82.300]])},
  {id:"mapV",panel:"mV",has:p=>p.co==="hend"&&p.lat>=35.265&&p.lat<=35.36&&p.lng>=-82.535&&p.lng<=-82.415,towns:[["Downtown",35.3187,-82.4610],["Laurel Park",35.3000,-82.5039],["Flat Rock",35.2712,-82.4415]]},
  {id:"mapH",panel:"mH",has:p=>p.co==="hend"&&!(p.co==="hend"&&p.lat>=35.265&&p.lat<=35.36&&p.lng>=-82.535&&p.lng<=-82.415),outline:hendCo,towns:[["Hendersonville",35.3187,-82.4610],["Mills River",35.388,-82.567],["Fletcher",35.430,-82.501],["Saluda",35.2373,-82.3485],["Etowah",35.318,-82.597],["Edneyville",35.390,-82.340]]},
+ {id:"mapW",panel:"mW",has:p=>p.co==="hay",towns:[["Waynesville",35.4887,-82.9887],["Lake Junaluska",35.5310,-82.9650],["Canton",35.5329,-82.8374],["Clyde",35.5340,-82.9104]]},
+ {id:"mapT",panel:"mT",has:p=>p.co==="tran",towns:[["Brevard",35.2334,-82.7343],["Pisgah Forest",35.2690,-82.7010],["Cedar Mountain",35.1470,-82.6420]]},
+ {id:"mapM",panel:"mM",has:p=>p.co==="mad",towns:[["Hot Springs",35.8946,-82.8291],["Marshall",35.7973,-82.6843],["Mars Hill",35.8265,-82.5490],["Hurricane",35.8620,-82.7460]]},
  {id:"mapJ",panel:"mJ",has:p=>p.co==="jack",towns:[["Dillsboro",35.3626,-83.2503],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817],["Cashiers",35.1118,-83.0985]]}
 ];
 const H=760,K=Math.cos(35.5*Math.PI/180);
 MAPS.forEach(m=>{
   const ps=PLACES.filter(m.has);m.svg=document.getElementById(m.id);m.H=H;
   let a=Math.min(...ps.map(p=>p.lat)),b=Math.max(...ps.map(p=>p.lat)),c=Math.min(...ps.map(p=>p.lng)),d=Math.max(...ps.map(p=>p.lng));
-  let w=(d-c)*K,h=b-a;const pad=Math.max(w,h*1000/H)*.12+.004;w+=2*pad;h+=2*pad*H/1000;
+  let w=Math.max((d-c)*K,.05),h=Math.max(b-a,.04);const pad=Math.max(w,h*1000/H)*.12+.004;w+=2*pad;h+=2*pad*H/1000;
   if(w/h<1000/H)w=h*1000/H;else h=w*H/1000;
   const cl=(c+d)/2,ca=(a+b)/2;m.minLng=cl-w/K/2;m.maxLng=cl+w/K/2;m.minLat=ca-h/2;m.maxLat=ca+h/2;
   m.X=lng=>(lng-m.minLng)/(m.maxLng-m.minLng)*1000;m.Y=lat=>(m.maxLat-lat)/(m.maxLat-m.minLat)*H;
   const pth=pts=>pts.map((q,k)=>(k?"L":"M")+m.X(q[1]).toFixed(1)+" "+m.Y(q[0]).toFixed(1)).join(" ");
   if(m.outline)el("path",{d:pth(m.outline)+" Z",class:"county","aria-hidden":"true"},m.svg);
-  if(m.id!=="mapJ"){el("path",{d:pth(fb),class:"river","aria-hidden":"true"},m.svg);el("path",{d:pth(sw),class:"river","stroke-width":"2","aria-hidden":"true"},m.svg);}
+  if(["mapA","mapB","mapV","mapH"].includes(m.id)){el("path",{d:pth(fb),class:"river","aria-hidden":"true"},m.svg);el("path",{d:pth(sw),class:"river","stroke-width":"2","aria-hidden":"true"},m.svg);}
   m.towns.forEach(([n,la,ln])=>{const x=m.X(ln),y=m.Y(la);if(x<60||x>940||y<30||y>H-20)return;const t=el("text",{x,y,class:"town","text-anchor":"middle","aria-hidden":"true"},m.svg);t.textContent=n;});
   m.halos=el("g",{"aria-hidden":"true"},m.svg);m.pins=el("g",{},m.svg);m.placed=[];
 });
