@@ -156,6 +156,8 @@ svg.map{width:100%;height:auto;display:block}
 .inset{border-top:1px solid var(--line);padding-top:var(--s2);display:grid;gap:var(--s1)}
 .inset-h{margin:0;font-size:18px}
 .inset-n{margin:0;font-size:15px}
+.insetbox{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:5 5}
+.insetlbl{font:700 20px var(--font);fill:var(--muted)}
 .county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
 .river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .town{font:400 22px var(--font);fill:var(--muted)}
@@ -334,9 +336,19 @@ html[data-size="large"] .wrap{zoom:1.18}
       <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
       <svg class="map" id="map" viewBox="0 0 1000 1250" role="group" data-i18n-aria="mapAria" aria-label="Map of Buncombe and Henderson counties with scored places. Each pin is a button. Jackson County places are on a separate map below."></svg>
       <div class="inset">
-        <h3 class="inset-h" data-i18n="jackH">Jackson County · Sylva and Cullowhee</h3>
-        <p class="note inset-n" data-i18n="jackN">Shown as its own map because Jackson County sits west of the area above. Positions are approximate, and the county outline is not drawn.</p>
-        <svg class="map" id="map2" viewBox="0 0 1000 840" role="group" data-i18n-aria="mapAria2" aria-label="Map of Jackson County places near Sylva and Cullowhee. Each pin is a button."></svg>
+        <h3 class="inset-h" data-i18n="avlH">Asheville, up close</h3>
+        <p class="note inset-n" data-i18n="avlN">The dashed box on the map above, zoomed in so nearby pins don't overlap. Positions are approximate.</p>
+        <svg class="map" id="mapA" viewBox="0 0 1000 912" role="group" data-i18n-aria="mapAriaA" aria-label="Zoomed map of Asheville places. Each pin is a button."></svg>
+      </div>
+      <div class="inset">
+        <h3 class="inset-h" data-i18n="hvlH">Hendersonville, Laurel Park and Flat Rock, up close</h3>
+        <p class="note inset-n" data-i18n="hvlN">The second dashed box on the map above, zoomed in. Positions are approximate.</p>
+        <svg class="map" id="mapH" viewBox="0 0 1000 968" role="group" data-i18n-aria="mapAriaH" aria-label="Zoomed map of Hendersonville, Laurel Park and Flat Rock places. Each pin is a button."></svg>
+      </div>
+      <div class="inset">
+        <h3 class="inset-h" data-i18n="jackH">Jackson County · Sylva, Cullowhee and Cashiers</h3>
+        <p class="note inset-n" data-i18n="jackN">Shown as its own map because Jackson County sits west of the area above. Cashiers is about 20 miles south, so its pin sits on the bottom edge. Positions are approximate, and the county outline is not drawn.</p>
+        <svg class="map" id="map2" viewBox="0 0 1000 1030" role="group" data-i18n-aria="mapAria2" aria-label="Map of Jackson County places near Sylva, Cullowhee and Cashiers. Each pin is a button."></svg>
       </div>
       <div class="legend">
         <span><i class="sw" style="background:var(--strong)"></i><span data-i18n="lgStrong">Strong 75+</span></span>
@@ -669,13 +681,133 @@ const PLACES=[
  {n:"Pinnacle Park (Sylva)",a:"jack",co:"jack",st:"open",sn:"",sne:"",lat:35.4226,lng:-83.1912,f:[1,3,2,2,1,2],
   t:"Town park · forest trails",te:"Parque del pueblo · senderos en el bosque",
   note:"A 1,500-acre town park above Sylva. The lower loop is a short, certified forest therapy trail; the summit trail is a steep, rocky 7-mile round trip. Free gravel parking at the end of Fisher Creek Road, a sign-in kiosk, no staff or facilities, and cell signal not verified. The town has a state grant for trail and parking upgrades, so expect some work.",
-  ne:"Un parque del pueblo de 1,500 acres sobre Sylva. El circuito bajo es un sendero corto certificado de terapia forestal; el sendero a la cumbre es una subida empinada y rocosa de 7 millas ida y vuelta. Estacionamiento de grava gratis al final de Fisher Creek Road, un quiosco para registrarse, sin personal ni servicios, y la señal de celular no está verificada. El pueblo tiene una subvención estatal para mejorar senderos y estacionamiento, así que puede haber obras."}
+  ne:"Un parque del pueblo de 1,500 acres sobre Sylva. El circuito bajo es un sendero corto certificado de terapia forestal; el sendero a la cumbre es una subida empinada y rocosa de 7 millas ida y vuelta. Estacionamiento de grava gratis al final de Fisher Creek Road, un quiosco para registrarse, sin personal ni servicios, y la señal de celular no está verificada. El pueblo tiene una subvención estatal para mejorar senderos y estacionamiento, así que puede haber obras."},
+ {n:"Mountainside Park",a:"ash",st:"open",sn:"",sne:"",lat:35.588,lng:-82.5474,f:[4, 3, 3, 5, 1, 3],
+  t:"Park · lit walking path",te:"Parque · sendero iluminado",
+  note:"A hillside park near Memorial Stadium with a lit, paved walking path and some unpaved trail. Open 6 a.m. to 10 p.m., with an off-street lot.",
+  ne:"Un parque en la ladera cerca de Memorial Stadium, con un sendero pavimentado e iluminado y algunos tramos sin pavimentar. Abierto de 6 a. m. a 10 p. m., con estacionamiento fuera de la calle."},
+ {n:"Haw Creek Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5905,lng:-82.5049,f:[2, 3, 4, 5, 1, 4],
+  t:"Park · paved loop",te:"Parque · circuito pavimentado",
+  note:"A six-acre neighborhood park in East Asheville with a looped paved trail and an off-street lot. Restrooms open mid-April through October.",
+  ne:"Un parque de barrio de seis acres en el este de Asheville, con un circuito pavimentado y estacionamiento fuera de la calle. Los baños abren de mediados de abril a octubre."},
+ {n:"Masters Park",a:"ash",st:"open",sn:"",sne:"",lat:35.6112,lng:-82.4959,f:[1, 2, 2, 4, 1, 3],
+  t:"Natural area · hiking trail",te:"Área natural · sendero",
+  note:"A nine-acre natural area with an unpaved trail that connects to the Blue Ridge Parkway and the Mountains-to-Sea Trail. Small off-street lot on Maple Drive.",
+  ne:"Un área natural de nueve acres con un sendero sin pavimentar que conecta con el Blue Ridge Parkway y el Mountains-to-Sea Trail. Estacionamiento pequeño en Maple Drive."},
+ {n:"Murray Hill Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5825,lng:-82.5633,f:[2, 3, 3, 5, 1, 3],
+  t:"Park · paved loop and trail",te:"Parque · circuito pavimentado y sendero",
+  note:"A rolling West Asheville park with river views, a paved walking loop and some unpaved trail. Off-street parking.",
+  ne:"Un parque con lomas en el oeste de Asheville, con vista al río, un circuito pavimentado y algunos senderos sin pavimentar. Estacionamiento fuera de la calle."},
+ {n:"Owens-Bell Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5865,lng:-82.556,f:[2, 3, 3, 5, 1, 2],
+  t:"Park · short paved loop",te:"Parque · circuito pavimentado corto",
+  note:"A small Southside park with a short paved loop, a bridge, wetland pools and a mulched trail. Wheelchair accessible. We found no parking details.",
+  ne:"Un parque pequeño en Southside con un circuito pavimentado corto, un puente, charcas y un sendero con mantillo. Accesible en silla de ruedas. No encontramos información sobre estacionamiento."},
+ {n:"Riverside Cemetery",a:"ash",st:"open",sn:"",sne:"",lat:35.6063,lng:-82.5631,f:[1, 3, 4, 5, 2, 3],
+  t:"Historic cemetery · paved roads",te:"Cementerio histórico · caminos pavimentados",
+  note:"An 87-acre garden cemetery in Montford with more than 3.5 miles of paved roads that people walk. Open 7 a.m. to 6 p.m. and run by city Parks and Recreation. No dogs except service animals.",
+  ne:"Un cementerio-jardín de 87 acres en Montford con más de 3.5 millas de caminos pavimentados por donde la gente camina. Abierto de 7 a. m. a 6 p. m. y administrado por Parques y Recreación de la ciudad. No se permiten perros, salvo animales de servicio."},
+ {n:"Beaucatcher Overlook Park",a:"ash",st:"open",sn:"",sne:"",lat:35.5833,lng:-82.5466,f:[1, 2, 2, 5, 1, 2],
+  t:"Hilltop park · natural trail",te:"Parque en la cima · sendero natural",
+  note:"A hilltop park with downtown views and a natural-surface trail linking Mountainside Park to White Fawn Gap. Start from Memorial Stadium or Mountainside Park.",
+  ne:"Un parque en la cima con vista al centro y un sendero natural que une Mountainside Park con White Fawn Gap. Se empieza desde Memorial Stadium o Mountainside Park."},
+ {n:"Weaver Park & Glenn's Creek Greenway",a:"ash",st:"partial",sn:"Partly open: the east side, including the walking loop, restrooms and playground, has been closed for construction. The tennis and pickleball courts stay open. The city expected work to run into early 2026.",sne:"Abierto en parte: el lado este, incluidos el circuito para caminar, los baños y el área de juegos, ha estado cerrado por obras. Las canchas de tenis y pickleball siguen abiertas. La ciudad esperaba que las obras duraran hasta principios de 2026.",lat:35.6139,lng:-82.554,f:[3, 4, 4, 5, 1, 4],
+  t:"Park · greenway connection",te:"Parque · conexión con sendero verde",
+  note:"A North Asheville park on Merrimon Avenue with a paved walking path that joins the 0.75-mile Glenn's Creek Greenway toward UNC Asheville. Lit courts and fields, repaved lots.",
+  ne:"Un parque del norte de Asheville en Merrimon Avenue, con un sendero pavimentado que se une al sendero verde Glenn's Creek, de 0.75 millas, hacia UNC Asheville. Canchas y campos iluminados, estacionamientos repavimentados."},
+ {n:"Riverbend Park (Swannanoa Greenway)",a:"ash",st:"open",sn:"",sne:"",lat:35.5785,lng:-82.5146,f:[2, 3, 4, 5, 1, 4],
+  t:"Park · riverside greenway",te:"Parque · sendero verde junto al río",
+  note:"A half-mile paved section of the Swannanoa River Greenway beside the Riverbend shopping center, with a temporary dog park that keeps people around. Open 6 a.m. to 10 p.m.",
+  ne:"Un tramo pavimentado de media milla del sendero verde del río Swannanoa, junto al centro comercial Riverbend, con un parque temporal para perros que mantiene gente alrededor. Abierto de 6 a. m. a 10 p. m."},
+ {n:"Seven Springs Park",a:"ash",st:"open",sn:"",sne:"",lat:35.574,lng:-82.5427,f:[1, 2, 2, 5, 1, 2],
+  t:"Park · wooded creek loop",te:"Parque · circuito boscoso junto al arroyo",
+  note:"A former quarry with a steep wooded loop around Gibson Creek, used for short hikes and as a walking and jogging route away from cars. Meadow Park and Forest Park sit at either end.",
+  ne:"Una antigua cantera con un circuito boscoso y empinado alrededor del arroyo Gibson, usado para caminatas cortas y para caminar o trotar lejos de los carros. Meadow Park y Forest Park están en cada extremo."},
+ {n:"Asheville Urban Trail",a:"ash",st:"open",sn:"",sne:"",lat:35.5972,lng:-82.5555,f:[4, 5, 4, 5, 2, 3],
+  t:"Downtown walking route",te:"Ruta para caminar en el centro",
+  note:"A 1.7-mile self-guided walk through downtown with 30 sculpture stations, starting at Pack Square. Busy sidewalks and streetlights most of the way.",
+  ne:"Una caminata autoguiada de 1.7 millas por el centro con 30 estaciones de esculturas, que empieza en Pack Square. Aceras concurridas y alumbrado público en casi todo el recorrido."},
+ {n:"Collier Cove Nature Preserve",a:"south",st:"open",sn:"",sne:"",lat:35.452,lng:-82.545,f:[1, 1, 2, 3, 1, 2],
+  t:"County preserve · steep trails",te:"Reserva del condado · senderos empinados",
+  note:"Nearly 2 miles of steep, strenuous trail on a 29-acre wooded hillside in Arden. Limited parking and no restrooms. Usually quiet.",
+  ne:"Casi 2 millas de sendero empinado y exigente en una ladera boscosa de 29 acres en Arden. Estacionamiento limitado y sin baños. Por lo general, tranquilo."},
+ {n:"Buncombe County Sports Park",a:"west",st:"open",sn:"",sne:"",lat:35.552,lng:-82.659,f:[3, 3, 4, 5, 2, 4],
+  t:"County park · walking trail",te:"Parque del condado · sendero",
+  note:"A busy county park in Candler with a walking trail, soccer fields, disc golf, a dog park and a community garden. Open 8 a.m. to 9:15 p.m. daily.",
+  ne:"Un parque del condado concurrido en Candler, con sendero para caminar, campos de fútbol, disc golf, parque para perros y huerto comunitario. Abierto todos los días de 8 a. m. a 9:15 p. m."},
+ {n:"Warren Wilson College River Trail",a:"east",st:"unclear",sn:"We couldn't confirm the trail's condition after Hurricane Helene flooded the Swannanoa River, and the usual starting point, Owen Park, is closed. Not scored until its status is confirmed.",sne:"No pudimos confirmar el estado del sendero después de que el huracán Helene inundara el río Swannanoa, y el punto de partida habitual, Owen Park, está cerrado. No tiene puntaje hasta confirmar su estado.",lat:35.6108,lng:-82.4419,f:[1, 2, 4, 3, 1, 2],
+  t:"College trails · river and farmland",te:"Senderos universitarios · río y campos",
+  note:"About 5 miles out and back through meadows and farmland behind Warren Wilson College, with more campus trails nearby. Nearby roads have no sidewalk or shoulder.",
+  ne:"Unas 5 millas ida y vuelta entre prados y campos detrás de Warren Wilson College, con más senderos del campus cerca. Los caminos cercanos no tienen acera ni orilla."},
+ {n:"Montreat trails",a:"east",st:"partial",sn:"Mostly open. The Harry Bryan Trail is closed, and the Graybeard Trail is still being rebuilt after Hurricane Helene, so take care on its bridges and stairs.",sne:"Abierto en su mayoría. El sendero Harry Bryan está cerrado, y el sendero Graybeard todavía se está reconstruyendo después del huracán Helene, así que tenga cuidado en sus puentes y escaleras.",lat:35.6478,lng:-82.3025,f:[1, 3, 2, 3, 1, 3],
+  t:"Wilderness trails · Black Mountain",te:"Senderos en el bosque · Black Mountain",
+  note:"About 15 trails and 20 miles in the Montreat Wilderness, from the easy Lower Piney Trail to the steep Lookout Trail. Trailhead lots fill up; overflow parking is at Anderson Auditorium.",
+  ne:"Unos 15 senderos y 20 millas en el bosque de Montreat, desde el fácil Lower Piney hasta el empinado Lookout. Los estacionamientos de los senderos se llenan; hay estacionamiento adicional en Anderson Auditorium."},
+ {n:"Craggy Gardens",a:"east",st:"partial",sn:"Partly open after Hurricane Helene: the visitor center, Craggy Pinnacle Trail and short sections of the Mountains-to-Sea Trail are open. The picnic area is closed. The Parkway can close in winter weather.",sne:"Abierto en parte después del huracán Helene: el centro de visitantes, el sendero Craggy Pinnacle y tramos cortos del Mountains-to-Sea Trail están abiertos. El área de pícnic está cerrada. El Parkway puede cerrar con mal tiempo en invierno.",lat:35.6997,lng:-82.38,f:[1, 4, 4, 2, 3, 4],
+  t:"Blue Ridge Parkway · summit trails",te:"Blue Ridge Parkway · senderos de cumbre",
+  note:"Short, popular high-elevation trails off the Parkway, including the 0.7-mile climb to Craggy Pinnacle. Busy lots in season, but weak signal and fast-changing weather.",
+  ne:"Senderos cortos y populares a gran altura junto al Parkway, incluida la subida de 0.7 millas a Craggy Pinnacle. Estacionamientos concurridos en temporada, pero poca señal y clima que cambia rápido."},
+ {n:"Patton Park",a:"hend",co:"hend",st:"partial",sn:"Partly open: the city lists the park as under construction. Follow posted signs.",sne:"Abierto en parte: la ciudad indica que el parque está en obras. Siga los letreros.",lat:35.3293,lng:-82.4662,f:[4, 4, 4, 5, 2, 4],
+  t:"Park · lit half-mile loop",te:"Parque · circuito iluminado de media milla",
+  note:"A Hendersonville park on the Oklawaha Greenway with a lit half-mile walking trail, courts, fields, a pool and a skate park. Parking on 7th Avenue.",
+  ne:"Un parque de Hendersonville en el sendero Oklawaha, con un sendero iluminado de media milla, canchas, campos, piscina y skatepark. Estacionamiento en la Séptima Avenida."},
+ {n:"William H. King Memorial Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.331,lng:-82.456,f:[2, 3, 3, 5, 1, 3],
+  t:"Park · nature trail",te:"Parque · sendero natural",
+  note:"A one-mile nature trail and a half-mile walking trail off 7th Avenue East, beside the Oklawaha Greenway.",
+  ne:"Un sendero natural de una milla y un sendero para caminar de media milla junto a la Séptima Avenida Este, al lado del sendero Oklawaha."},
+ {n:"Four Seasons Rotary Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.325,lng:-82.478,f:[2, 3, 4, 5, 1, 3],
+  t:"Park · paved path",te:"Parque · sendero pavimentado",
+  note:"A small Hendersonville park along Wash Creek with a paved walking path, benches, a playground and a picnic shelter.",
+  ne:"Un parque pequeño de Hendersonville junto al arroyo Wash, con un sendero pavimentado, bancas, área de juegos y refugio de pícnic."},
+ {n:"Berkeley Mills Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.352,lng:-82.468,f:[2, 3, 4, 5, 1, 4],
+  t:"Park · greenway trailhead",te:"Parque · entrada del sendero verde",
+  note:"A nearly 60-acre park at the north end of the Oklawaha Greenway, with parking and rentable pavilions.",
+  ne:"Un parque de casi 60 acres en el extremo norte del sendero Oklawaha, con estacionamiento y pabellones para alquilar."},
+ {n:"The Park at Flat Rock",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.2888,lng:-82.4333,f:[1, 4, 5, 5, 1, 4],
+  t:"Village park · 1.6-mile loop",te:"Parque del pueblo · circuito de 1.6 millas",
+  note:"A 66-acre former golf course with a mostly flat 1.6-mile perimeter loop, small lakes, open lawns and inner paths to shorten the walk. Parking by the playgrounds.",
+  ne:"Un antiguo campo de golf de 66 acres con un circuito perimetral de 1.6 millas casi plano, lagos pequeños, céspedes abiertos y senderos internos para acortar la caminata. Estacionamiento junto a las áreas de juegos."},
+ {n:"Carl Sandburg Home",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.2736,lng:-82.4452,f:[1, 4, 3, 4, 4, 4],
+  t:"National historic site · trails",te:"Sitio histórico nacional · senderos",
+  note:"National Park Service grounds in Flat Rock with the popular Glassy Mountain Trail (about 3.3 miles round trip) and the shady one-mile Memminger Loop. Lots sit a short walk from the trailheads. Check the 2026 trail map for a temporary detour.",
+  ne:"Terrenos del Servicio de Parques Nacionales en Flat Rock, con el popular sendero Glassy Mountain (unas 3.3 millas ida y vuelta) y el circuito Memminger, de una milla y con sombra. Los estacionamientos quedan a una caminata corta de los senderos. Consulte el mapa de 2026 por un desvío temporal."},
+ {n:"Rhododendron Lake Nature Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3116,lng:-82.4859,f:[1, 3, 3, 5, 1, 3],
+  t:"Town park · lake paths",te:"Parque del pueblo · senderos del lago",
+  note:"A 10-acre Laurel Park nature park with almost a mile of walking paths around a small lake, plus fitness stations. Parking off Primrose Lane.",
+  ne:"Un parque natural de 10 acres en Laurel Park con casi una milla de senderos alrededor de un lago pequeño, además de estaciones de ejercicio. Estacionamiento en Primrose Lane."},
+ {n:"Jump Off Rock",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.3123,lng:-82.5245,f:[1, 3, 3, 4, 1, 4],
+  t:"Overlook · short forest trails",te:"Mirador · senderos cortos en el bosque",
+  note:"A town-run overlook at the end of Laurel Park Highway with long mountain views and a short forest trail system. Popular at sunset.",
+  ne:"Un mirador del pueblo al final de Laurel Park Highway, con vistas amplias a las montañas y una red corta de senderos en el bosque. Muy visitado al atardecer."},
+ {n:"Etowah Park",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.315,lng:-82.595,f:[2, 3, 4, 4, 1, 4],
+  t:"County park · 1-mile loop",te:"Parque del condado · circuito de 1 milla",
+  note:"A recently repaved one-mile loop around the ballfields and along Gash Creek, popular with dog walkers, families and runners. The ballfields are lit.",
+  ne:"Un circuito de una milla, repavimentado hace poco, alrededor de los campos de béisbol y junto al arroyo Gash, popular entre quienes pasean perros, familias y corredores. Los campos tienen iluminación."},
+ {n:"Bell Park (Saluda)",a:"hend",co:"hend",st:"open",sn:"",sne:"",lat:35.255,lng:-82.375,f:[1, 2, 2, 3, 1, 2],
+  t:"County park · forest trails",te:"Parque del condado · senderos en el bosque",
+  note:"A 69-acre park along the Green River, opened in late 2024, with about 1.8 miles of rolling forest trail and a waterfall deck reached by stairs. Small lot on US 176.",
+  ne:"Un parque de 69 acres junto al río Green, abierto a fines de 2024, con unas 1.8 millas de sendero ondulado en el bosque y una plataforma frente a una cascada a la que se llega por escaleras. Estacionamiento pequeño en la US 176."},
+ {n:"Florence Nature Preserve",a:"hend",co:"hend",st:"unclear",sn:"Closed after Hurricane Helene in the land trust's last update we found, and roads through Gerton have been restricted. Not scored until its status is confirmed.",sne:"Cerrado después del huracán Helene según la última actualización que encontramos del fideicomiso de tierras, y los caminos por Gerton han estado restringidos. No tiene puntaje hasta confirmar su estado.",lat:35.4739,lng:-82.3325,f:[1, 2, 2, 2, 1, 2],
+  t:"Nature preserve · forest trails",te:"Reserva natural · senderos en el bosque",
+  note:"A 600-acre preserve in Gerton with about five miles of forest trail, managed by Conserving Carolina.",
+  ne:"Una reserva de 600 acres en Gerton con unas cinco millas de senderos en el bosque, administrada por Conserving Carolina."},
+ {n:"Jackson County Recreation Complex",a:"jack",co:"jack",st:"open",sn:"",sne:"",lat:35.296,lng:-83.177,f:[3, 3, 4, 4, 4, 4],
+  t:"County park · 2-mile running trail",te:"Parque del condado · sendero de 2 millas para correr",
+  note:"Over 10,000 feet (about 2 miles) of running trail looping around Cullowhee Valley School, beside the staffed county recreation center, lit fields, a pond and fishing piers.",
+  ne:"Más de 10,000 pies (unas 2 millas) de sendero para correr alrededor de la escuela Cullowhee Valley, junto al centro de recreación del condado con personal, campos iluminados, un estanque y muelles de pesca."},
+ {n:"Mark Watson Park",a:"jack",co:"jack",st:"open",sn:"",sne:"",lat:35.377,lng:-83.211,f:[3, 3, 4, 4, 1, 4],
+  t:"County park · short trail",te:"Parque del condado · sendero corto",
+  note:"A 10-acre park near downtown Sylva with about a quarter mile of trail, lit tennis courts and softball fields, a dog park and restrooms.",
+  ne:"Un parque de 10 acres cerca del centro de Sylva, con cerca de un cuarto de milla de sendero, canchas de tenis y campos de softbol iluminados, parque para perros y baños."},
+ {n:"Cashiers Greenway Ramble",a:"jack",co:"jack",st:"partial",sn:"Partly built: about 2.3 miles are open, and more of the planned five-mile network is still under construction.",sne:"Construido en parte: unas 2.3 millas están abiertas, y el resto de la red planeada de cinco millas sigue en construcción.",lat:35.1075,lng:-83.102,f:[2, 3, 3, 4, 2, 3],
+  t:"Greenway · Cashiers",te:"Sendero verde · Cashiers",
+  note:"A walking network starting at the Cashiers Area Chamber of Commerce visitor center on Highway 64, with a map kiosk at the entrance.",
+  ne:"Una red para caminar que empieza en el centro de visitantes de la Cámara de Comercio de Cashiers, en la carretera 64, con un quiosco de mapas en la entrada."}
 ];
 const W=[.15,.25,.20,.15,.15,.10];
 const MIN=1;
 const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
-const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed"];
-const CHK=Array(26).fill("2026-10-09").concat(["2026-10-10","2026-10-10","2026-10-10","2026-10-10"]);
+const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed"];
+const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"));
 const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
 const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
 [["City of Asheville","https://www.ashevillenc.gov/news/richmond-hill-park-partially-reopens-on-october-11-in-recovery-milestone-as-asheville-continues-post-helene-progress/"]],
@@ -695,17 +827,47 @@ const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https:
 [],[["Conserving Carolina","https://conservingcarolina.org/bearwallow-mountain/"],["Enlace Latino NC","https://enlacelatinonc.org/en/Bearwallow-Mountain-reopens-after-nine-months-of-closure-due-to-Helene/"],["Explore Asheville","https://www.exploreasheville.com/article/bearwallow-mountain-trail"]],
 [["Jackson County Parks","https://jacksonnc.org/jackson-county-recreation-center/parks"],["Smoky Mountain News","https://smokymountainnews.com/outdoors/item/38569-jackson-county-greenway-provides-access-update"],["Citizen Portal","https://citizenportal.ai/articles/9486137/North-Carolina/Jackson-County/Residents-urge-expansion-accessibility-repairs-to-Jackson-County-Greenway-as-county-pursues-CDBG-disaster-relief"]],
 [["Mountain Xpress","https://mountainx.com/news/community-news/western_carolina_universitys_trail_system_now_open/"],["Trailforks","https://www.trailforks.com/region/wcu-trail-system/"],["WCU Base Camp","https://www.wcu.edu/experience/campus-recreation/base-camp-cullowhee/"]],
-[["Discover Jackson NC","https://www.discoverjacksonnc.com/trail/pinnacle-park-trail/67e7154faf65b9b30598d3be/"],["Explore Asheville","https://exploreasheville.com/article/pinnacle-park-hike"],["Sylva Herald","https://www.thesylvaherald.com/news/article_d2ce1ea3-402f-4536-8d70-aea5475ff74b.html"]]];
+[["Discover Jackson NC","https://www.discoverjacksonnc.com/trail/pinnacle-park-trail/67e7154faf65b9b30598d3be/"],["Explore Asheville","https://exploreasheville.com/article/pinnacle-park-hike"],["Sylva Herald","https://www.thesylvaherald.com/news/article_d2ce1ea3-402f-4536-8d70-aea5475ff74b.html"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/mountainside-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/haw-creek-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/masters-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/murray-hill-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/owens-bell-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/riverside-cemetery/"], ["City of Asheville greenways", "https://www.ashevillenc.gov/?p=71034"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/beaucatcher-overlook-park/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/weaver-park/"], ["City greenways", "https://www.ashevillenc.gov/department/transportation/greenways/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/riverbend-park/"], ["City greenways", "https://www.ashevillenc.gov/department/transportation/greenways/"]],
+[["City of Asheville", "https://www.ashevillenc.gov/locations/seven-springs-park/"]],
+[["City of Asheville greenways", "https://www.ashevillenc.gov/?p=71034"]],
+[["Buncombe County", "https://www.buncombecounty.org/Governing/Depts/Parks/facilities/parks/collier-cove-nature-preserve.aspx"]],
+[["Buncombe County", "https://www.buncombenc.gov/Facilities/Facility/Details/Buncombe-County-Sports-Park-1"]],
+[["Great Runs", "https://greatruns.com/asheville-nc-warren-wilson-college/"]],
+[["Montreat", "https://montreat.org/beginners-guide-to-hiking"]],
+[["National Park Service", "https://www.nps.gov/blri/learn/news/blue-ridge-parkway-opens-26-mile-section-from-asheville-to-craggy-gardens.htm"]],
+[["City of Hendersonville", "https://www.hendersonvillenc.gov/parks-greenspace"]],
+[["City of Hendersonville", "https://www.hendersonvillenc.gov/parks-greenspace"]],
+[["City of Hendersonville", "https://www.hendersonvillenc.gov/parks-greenspace"]],
+[["City of Hendersonville", "https://www.hendersonvillenc.gov/parks-greenspace"]],
+[["Hiking Project", "https://www.hikingproject.com/trail/7090377/ed-lastein-perimeter-trail"]],
+[["National Park Service", "https://www.nps.gov/carl/planyourvisit/hiking-trails.htm"]],
+[["Town of Laurel Park", "https://laurelpark.org/parks"]],
+[["Town of Laurel Park", "https://laurelpark.org/parks"]],
+[["Henderson County", "https://www.hendersoncountync.gov/recreation/page/etowah-park"], ["WLOS", "https://wlos.com/news/local/upgraded-etowah-trail-dedicated"]],
+[["Henderson County", "https://www.hendersoncountync.gov/recreation/page/bell-park"], ["WLOS", "https://www.wlos.com/news/local/offering-18-miles-of-walking-trails-69-acre-bell-park-opens-in-saluda"]],
+[["Conserving Carolina", "https://conservingcarolina.org/trail-update-openings-continued-closures-and-community-support/"], ["Wikipedia", "https://en.wikipedia.org/wiki/Florence_Nature_Preserve"]],
+[["Jackson County Parks", "https://www.jacksonnc.org/jackson-county-recreation-center/parks"], ["Cullowhee Rec Center", "https://www.jacksonnc.org/269/Cullowhee-Rec"]],
+[["Jackson County Parks", "https://www.jacksonnc.org/jackson-county-recreation-center/parks"]],
+[["Walk Cashiers", "https://cashiersramble.com/"]]];
 const FORMS={en:"https://tally.so/r/RGXoOd",es:"https://tally.so/r/VLRzlM"};
 
 const L={
  en:{
   FACT:["Lighting","Foot traffic","Sightlines","Cell signal","Staff presence","Visible parking"],
-  jackH:"Jackson County · Sylva and Cullowhee",jackN:"Shown as its own map because Jackson County sits west of the area above. Positions are approximate, and the county outline is not drawn.",mapAria2:"Map of Jackson County places near Sylva and Cullowhee. Each pin is a button.",
+  jackH:"Jackson County · Sylva, Cullowhee and Cashiers",jackN:"Shown as its own map because Jackson County sits west of the area above. Cashiers is about 20 miles south, so its pin sits on the bottom edge. Positions are approximate, and the county outline is not drawn.",mapAria2:"Map of Jackson County places near Sylva, Cullowhee and Cashiers. Each pin is a button.",avlH:"Asheville, up close",avlN:"The dashed box on the map above, zoomed in so nearby pins don't overlap. Positions are approximate.",mapAriaA:"Zoomed map of Asheville places. Each pin is a button.",hvlH:"Hendersonville, Laurel Park and Flat Rock, up close",hvlN:"The second dashed box on the map above, zoomed in. Positions are approximate.",mapAriaH:"Zoomed map of Hendersonville, Laurel Park and Flat Rock places. Each pin is a button.",
   TIMES:{day:"daylight",dusk:"dawn or dusk",dark:"after dark"},
   TAGS:{lit:"Well lit",people:"Other people around",signal:"Good signal",isolated:"Felt isolated",parking:"Parking felt exposed",followed:"Felt watched or followed",access:"Paved, level or step-free"},
   BL:{strong:"Strong",mixed:"Mixed",caution:"Go prepared",closed:"Closed"},
-  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva & Cullowhee"},
+  AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva, Cullowhee & Cashiers"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
   before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",
@@ -721,11 +883,11 @@ const L={
  },
  es:{
   FACT:["Iluminación","Gente alrededor","Visibilidad","Señal de celular","Personal en el lugar","Estacionamiento visible"],
-  jackH:"Condado de Jackson · Sylva y Cullowhee",jackN:"Se muestra como un mapa aparte porque el condado de Jackson queda al oeste de la zona de arriba. Las posiciones son aproximadas y no se dibuja el contorno del condado.",mapAria2:"Mapa de los lugares del condado de Jackson cerca de Sylva y Cullowhee. Cada punto es un botón.",
+  jackH:"Condado de Jackson · Sylva, Cullowhee y Cashiers",jackN:"Se muestra como un mapa aparte porque el condado de Jackson queda al oeste de la zona de arriba. Cashiers queda unas 20 millas al sur, así que su punto aparece en el borde de abajo. Las posiciones son aproximadas y no se dibuja el contorno del condado.",mapAria2:"Mapa de los lugares del condado de Jackson cerca de Sylva, Cullowhee y Cashiers. Cada punto es un botón.",avlH:"Asheville de cerca",avlN:"El recuadro punteado del mapa de arriba, ampliado para que los puntos cercanos no se encimen. Las posiciones son aproximadas.",mapAriaA:"Mapa ampliado de los lugares de Asheville. Cada punto es un botón.",hvlH:"Hendersonville, Laurel Park y Flat Rock de cerca",hvlN:"El segundo recuadro punteado del mapa de arriba, ampliado. Las posiciones son aproximadas.",mapAriaH:"Mapa ampliado de los lugares de Hendersonville, Laurel Park y Flat Rock. Cada punto es un botón.",
   TIMES:{day:"de día",dusk:"al amanecer o al atardecer",dark:"de noche"},
   TAGS:{lit:"Buena iluminación",people:"Había otras personas",signal:"Buena señal",isolated:"Me sentí aislada",parking:"El estacionamiento se sentía expuesto",followed:"Me sentí observada o seguida",access:"Pavimentado, plano o sin escalones"},
   BL:{strong:"Fuerte",mixed:"Mixto",caution:"Vaya preparada",closed:"Cerrado"},
-  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva y Cullowhee"},
+  AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva, Cullowhee y Cashiers"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
   before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",
@@ -874,7 +1036,7 @@ const county=[[35.77,-82.80],[35.81,-82.72],[35.80,-82.62],[35.82,-82.50],[35.80
 const fb=[[35.30,-82.62],[35.34,-82.585],[35.38,-82.565],[35.42,-82.545],[35.45,-82.57],[35.49,-82.585],[35.53,-82.588],[35.565,-82.580],[35.58,-82.572],[35.60,-82.575],[35.625,-82.590],[35.65,-82.605],[35.69,-82.62],[35.73,-82.635],[35.80,-82.68]];
 const sw=[[35.615,-82.31],[35.605,-82.36],[35.60,-82.41],[35.59,-82.47],[35.575,-82.52],[35.567,-82.55],[35.565,-82.578]];
 const hendCo=[[35.53,-82.32],[35.48,-82.40],[35.44,-82.50],[35.43,-82.60],[35.46,-82.70],[35.40,-82.74],[35.30,-82.76],[35.21,-82.70],[35.19,-82.60],[35.19,-82.48],[35.20,-82.37],[35.24,-82.30],[35.33,-82.27],[35.45,-82.27]];
-const towns=[["Hendersonville",35.29,-82.43],["Mills River",35.37,-82.62],["Asheville",35.606,-82.535],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
+const towns=[["Mills River",35.37,-82.62],["Black Mountain",35.632,-82.335],["Weaverville",35.712,-82.56],["Woodfin",35.645,-82.62],["Arden",35.458,-82.52],["Candler",35.530,-82.72],["Fairview",35.515,-82.41],["Leicester",35.665,-82.72],["Swannanoa",35.588,-82.405]];
 
 const svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
 const el=(t,a,parent=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);parent.appendChild(e);return e;};
@@ -885,16 +1047,36 @@ el("path",{d:path(hendCo)+" Z",class:"county","aria-hidden":"true"});
 el("path",{d:path(fb),class:"river","aria-hidden":"true"});
 el("path",{d:path(sw),class:"river","stroke-width":"2","aria-hidden":"true"});
 towns.forEach(([n,la,ln])=>{const t=el("text",{x:X(ln),y:Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"});t.textContent=n;});
-/* Jackson County sits west of the main map, so it gets its own inset with its own projection. */
-const svg2=document.getElementById("map2"),m2={minLng:-83.30,maxLng:-83.08,minLat:35.285,maxLat:35.435,H:840};
-const X2=lng=>(lng-m2.minLng)/(m2.maxLng-m2.minLng)*1000, Y2=lat=>(m2.maxLat-lat)/(m2.maxLat-m2.minLat)*m2.H;
-[["Dillsboro",35.3626,-83.2603],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817]].forEach(([n,la,ln])=>{const t=el("text",{x:X2(ln),y:Y2(la),class:"town","text-anchor":"middle","aria-hidden":"true"},svg2);t.textContent=n;});
+/* Dense areas and Jackson County get their own zoomed maps; each place is drawn on exactly one map.
+   A place outside an inset's box (Cashiers) is pinned to the nearest edge. Pins closer than 42px are nudged apart. */
+const INSETS=[
+ {id:"mapA",minLng:-82.60,maxLng:-82.48,minLat:35.553,maxLat:35.642,H:912,box:true,lbl:"Asheville",
+  towns:[["Downtown",35.6005,-82.5480],["West Asheville",35.5745,-82.5900],["North Asheville",35.6330,-82.5560],["East Asheville",35.6040,-82.5000],["Biltmore Village",35.5620,-82.5440]]},
+ {id:"mapH",minLng:-82.535,maxLng:-82.415,minLat:35.265,maxLat:35.36,H:968,box:true,lbl:"Hendersonville",
+  towns:[["Downtown",35.3230,-82.4560],["Laurel Park",35.3000,-82.5039],["Flat Rock",35.2800,-82.4600]]},
+ {id:"map2",minLng:-83.30,maxLng:-83.08,minLat:35.25,maxLat:35.435,H:1030,co:"jack",
+  towns:[["Dillsboro",35.3626,-83.2603],["Sylva",35.3742,-83.2178],["Cullowhee",35.3097,-83.1817],["Cashiers ↓",35.262,-83.165]]}
+];
 const CN=p=>p.co==="jack"?"Jackson":p.co==="hend"?"Henderson":"Buncombe";
-const halos=el("g",{"aria-hidden":"true"}),pins=el("g",{}),halos2=el("g",{"aria-hidden":"true"},svg2),pins2=el("g",{},svg2);
+const inBox=(m,p)=>p.lat>=m.minLat&&p.lat<=m.maxLat&&p.lng>=m.minLng&&p.lng<=m.maxLng;
+INSETS.forEach(m=>{
+  m.svg=document.getElementById(m.id);
+  m.X=lng=>(Math.min(Math.max(lng,m.minLng),m.maxLng)-m.minLng)/(m.maxLng-m.minLng)*1000;
+  m.Y=lat=>(m.maxLat-Math.min(Math.max(lat,m.minLat),m.maxLat))/(m.maxLat-m.minLat)*m.H;
+  m.towns.forEach(([n,la,ln])=>{const t=el("text",{x:m.X(ln),y:m.Y(la),class:"town","text-anchor":"middle","aria-hidden":"true"},m.svg);t.textContent=n;});
+  m.halos=el("g",{"aria-hidden":"true"},m.svg);m.pins=el("g",{},m.svg);m.placed=[];
+  if(m.box){const x0=X(m.minLng),y0=Y(m.maxLat);el("rect",{x:x0,y:y0,width:X(m.maxLng)-x0,height:Y(m.minLat)-y0,class:"insetbox","aria-hidden":"true"});
+    const t=el("text",{x:x0+8,y:y0+24,class:"insetlbl","aria-hidden":"true"});t.textContent=m.lbl+" ↓";}
+});
+const MAIN={X,Y,halos:el("g",{"aria-hidden":"true"}),pins:el("g",{}),placed:[]};
+function mapFor(p){if(p.co==="jack")return INSETS[2];for(const m of INSETS.slice(0,2))if(p.co!=="jack"&&inBox(m,p))return m;return MAIN;}
+function spot(m,x,y){for(let k=0;k<12;k++){const hit=m.placed.find(([a,b])=>Math.hypot(a-x,b-y)<42);if(!hit)break;
+  const dx=x-hit[0],dy=y-hit[1],d=Math.hypot(dx,dy)||1;x=hit[0]+dx/d*42;y=hit[1]+(d<1?42:dy/d*42);}m.placed.push([x,y]);return [x,y];}
+const clampXY=(m,x,y)=>[Math.min(Math.max(x,26),974),Math.min(Math.max(y,40),(m.H||MAPH)-26)];
 PLACES.forEach(p=>{
-  const jk=p.co==="jack",px=jk?X2(p.lng):X(p.lng),py=jk?Y2(p.lat):Y(p.lat);
-  p.h=el("circle",{cx:px,cy:py,class:"halo"},jk?halos2:halos);
-  const g=el("g",{class:"pin",tabindex:"0",role:"button"},jk?pins2:pins);
+  const m=mapFor(p),[px,py]=spot(m,...clampXY(m,m.X(p.lng),m.Y(p.lat)));
+  p.h=el("circle",{cx:px,cy:py,class:"halo"},m.halos);
+  const g=el("g",{class:"pin",tabindex:"0",role:"button"},m.pins);
   p.dot=el("circle",{cx:px,cy:py,r:19,class:"dot"},g);
   p.num=el("text",{x:px,y:py+6,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
   p.tt=el("title",{},g);
