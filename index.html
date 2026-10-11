@@ -37,6 +37,16 @@
 @media (max-width:640px){.panels>[role=tabpanel]:not(.on){display:none}.tablist [role=tab]{font-size:15px;padding:8px 12px}}
 .tips .tip-grid{margin-top:var(--s3)}
 .howto{display:grid;gap:var(--s2)}
+.why{display:grid;gap:var(--s2)}
+.stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}
+.stats li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) var(--s3);display:grid;gap:8px;align-content:start;justify-items:center;text-align:center}
+.stats b{display:block;font-size:44px;line-height:1;color:var(--accent)}
+.stats span{font-size:17px;line-height:1.55}
+.stats a{font-size:14px}
+.why-more{text-align:center;margin:0 auto;max-width:68ch}
+#research [data-i18n=resBody]{display:grid;gap:12px}
+#research p.note{margin:0;max-width:72ch}
+@media (max-width:900px){.stats{grid-template-columns:1fr;gap:12px}.stats li{padding:14px 16px;grid-template-columns:auto 1fr;justify-items:start;align-items:center;text-align:left;gap:4px 16px}.stats b{grid-row:span 2;font-size:34px}.stats span{font-size:16px}}
 .howto h2{text-align:center}
 .mapbox,.main>*{min-width:0}
 .maptabs{margin-top:var(--s1);min-width:0;max-width:100%}
@@ -395,6 +405,20 @@ html[data-size="large"] .wrap{zoom:1.18}
     <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Western North Carolina ↗</a> It's anonymous unless you choose to leave an email, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
 
+  <section class="why" aria-labelledby="whyH">
+    <div class="tips-head">
+      <div class="eyebrow" data-i18n="whyEyebrow">Why this matters</div>
+      <h2 id="whyH" data-i18n="whyH">What women already know</h2>
+      <p class="note" data-i18n="whyIntro">If you have changed your route, your hour or what you wear to feel safer outside, the research says most women have too.</p>
+    </div>
+    <ul class="stats">
+      <li data-i18n="st1"><b>53%</b><span>of U.S. women say they would be afraid to walk alone at night within a mile of home, about twice the share of men (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a></li>
+      <li data-i18n="st2"><b>92%</b><span>of women runners have safety concerns about running outside, and 51% fear being physically attacked, compared with 28% of men.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">adidas and White Ribbon survey, 2023 ↗</a></li>
+      <li data-i18n="st3"><b>84%</b><span>of women in a Runner's World survey of more than 5,000 runners said they had been harassed while running.</span><a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Runner's World survey, via CBC News ↗</a></li>
+    </ul>
+    <p class="note why-more" data-i18n="whyMore">The six factors behind each score come from decades of research on how places feel to women. <a href="#research">See the research</a></p>
+  </section>
+
   <section class="tips" id="safety">
     <div class="tips-head">
       <div class="eyebrow" data-i18n="tipsEyebrow">Safety tips</div>
@@ -550,6 +574,7 @@ html[data-size="large"] .wrap{zoom:1.18}
         <button type="button" role="tab" id="tab-hw-score" aria-controls="hw-score" aria-selected="true" tabindex="0" data-i18n="howH">How the score works</button>
         <button type="button" role="tab" id="tab-hw-police" aria-controls="hw-police" aria-selected="false" tabindex="-1" data-i18n="polH">No police data</button>
         <button type="button" role="tab" id="tab-hw-wont" aria-controls="hw-wont" aria-selected="false" tabindex="-1" data-i18n="wontH">What this map won't do</button>
+        <button type="button" role="tab" id="tab-research" aria-controls="research" aria-selected="false" tabindex="-1" data-i18n="resH">The research behind it</button>
       </div>
       <div class="panels">
         <div class="tip on" id="hw-score" role="tabpanel" aria-labelledby="tab-hw-score" tabindex="0">
@@ -574,6 +599,14 @@ html[data-size="large"] .wrap{zoom:1.18}
         <div class="tip" id="hw-wont" role="tabpanel" aria-labelledby="tab-hw-wont" tabindex="0">
       <h3 data-i18n="wontH">What this map won't do</h3>
       <p class="note" data-i18n="wontP">It rates places, never people. It won't show who runs where, when anyone goes, or live locations, so it can't be used to find a woman alone. Ratings are saved without names and the page shows only scores, counts and tags, never who rated.</p>
+        </div>
+        <div class="tip" id="research" role="tabpanel" aria-labelledby="tab-research" tabindex="0">
+      <h3 data-i18n="resH">The research behind it</h3>
+      <div data-i18n="resBody">
+        <p class="note">Women's safety audits began in Toronto in 1989, created by METRAC (the Metropolitan Toronto Action Committee on Violence Against Women and Children). Women walk a place together and note what makes it feel unsafe, such as poor lighting or missing signs. UN-Habitat now shares the method as a tool for cities. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">UN-Habitat guide ↗</a></p>
+        <p class="note">Bonnie Fisher and Jack Nasar found that fear runs highest where someone could hide, where you can't see far ahead and where there is no easy way out (<i>Environment and Behavior</i>, 1992). That is why open sightlines carry a fifth of every score. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Study summary ↗</a></p>
+        <p class="note">This map turns those same questions into six factors, then asks local women to confirm or correct them. Your ratings are part of the evidence.</p>
+      </div>
         </div>
       </div>
     </div>
@@ -1142,6 +1175,15 @@ const L={
   howBody:"<p class=\"note\">Cada lugar recibe de 1 a 5 en seis factores, con más peso en lo que más importa cuando se está sola:</p><ul class=\"note\"><li>Gente alrededor, 25%</li><li>Buena visibilidad, 20%</li><li>Señal de celular, 15%</li><li>Personal o guardabosques, 15%</li><li>Iluminación, 15%</li><li>Estacionamiento visible, 10%</li></ul><p class=\"note\">El resultado se lleva a una escala de 100. Luego se suman las calificaciones de las mujeres: una sola calificación puede mover el puntaje hasta unos 13 puntos, lo suficiente para cambiar la categoría de un lugar cerca de un límite, y cuantas más tenga un lugar, más cuentan, hasta el 40% del puntaje. Cualquier calificación de 1 o 2 también aparece en el lugar como advertencia.</p>",
   polH:"Sin datos policiales",
   polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran 12 meses después del incidente.",
+  whyEyebrow:"Por qué importa",
+  whyH:"Lo que las mujeres ya saben",
+  whyIntro:"Si alguna vez ha cambiado su ruta, su horario o su ropa para sentirse más segura afuera, la investigación muestra que la mayoría de las mujeres también lo ha hecho.",
+  st1:`<b>53%</b><span>de las mujeres en EE. UU. dice que tendría miedo de caminar sola de noche a menos de una milla de su casa, cerca del doble que los hombres (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a>`,
+  st2:`<b>92%</b><span>de las mujeres que corren tiene preocupaciones de seguridad al correr al aire libre, y el 51% teme ser atacada físicamente, frente al 28% de los hombres.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">Encuesta de adidas y White Ribbon, 2023 ↗</a>`,
+  st3:`<b>84%</b><span>de las mujeres en una encuesta de Runner's World a más de 5,000 corredores dijo haber sufrido acoso mientras corría.</span><a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Encuesta de Runner's World, vía CBC News ↗</a>`,
+  whyMore:`Los seis factores detrás de cada puntaje vienen de décadas de investigación sobre cómo perciben las mujeres los lugares. <a href="#research">Vea la investigación</a>`,
+  resH:"La investigación detrás",
+  resBody:`<p class="note">Las auditorías de seguridad de las mujeres comenzaron en Toronto en 1989, creadas por METRAC (el Comité de Acción de Toronto contra la Violencia hacia Mujeres y Niños). Las mujeres recorren un lugar juntas y anotan lo que lo hace sentir inseguro, como poca iluminación o falta de letreros. ONU-Hábitat comparte hoy el método como herramienta para las ciudades. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">Guía de ONU-Hábitat ↗</a></p><p class="note">Bonnie Fisher y Jack Nasar encontraron que el miedo es mayor donde alguien podría esconderse, donde no se ve lejos y donde no hay una salida fácil (<i>Environment and Behavior</i>, 1992). Por eso la visibilidad abierta vale una quinta parte de cada puntaje. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Resumen del estudio ↗</a></p><p class="note">Este mapa convierte esas mismas preguntas en seis factores y luego pide a las mujeres de la zona que los confirmen o corrijan. Sus calificaciones son parte de la evidencia.</p>`,
   wontH:"Lo que este mapa no hace",
   fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
