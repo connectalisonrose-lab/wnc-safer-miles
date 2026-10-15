@@ -1035,6 +1035,7 @@ const MIN=1;
 const CHANGE={en:"https://tally.so/r/VLRZpl",es:"https://tally.so/r/eq1BMo"};
 const CF=["high","high","med","med","med","high","high","med","med","med","med","med","unk","med","med","med","high","med","med","med","med","med","lowmed","med","med","med","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","lowmed","unk","lowmed","lowmed","lowmed","med","med","med","lowmed","med","lowmed","lowmed","lowmed","lowmed","med","high","high","med","med","med","high","med","med","med","med","med","med","med","lowmed","med","med","med","med","med","lowmed"];
 const CHK=Array(26).fill("2026-10-09").concat(Array(34).fill("2026-10-10"),Array(10).fill("2026-10-11")).concat(Array(14).fill("2026-10-11")).concat(Array(4).fill("2026-10-11")).concat(Array(2).fill("2026-10-11"));
+const LIVE=[0,7,11,21,26];
 [0,7,11,21,26].forEach(i=>{CHK[i]="2026-10-15";}); // scouted and live checked by site owner, Oct 15 2026
 const CITY=["City of Asheville","https://www.ashevillenc.gov/news/city-announces-partial-reopening-of-french-broad-riverfront-greenways-and-parks/"],WFAER=["WFAE","https://www.wfae.org/2026-07-01/ashevilles-new-riverfront-park-plan-brings-back-favorite-amenities-and-a-more-flood-resilient-design"],GRUN=["Great Runs","https://greatruns.com/asheville-nc-bent-creek/"];
 const SRC=[[CITY,WFAER],[CITY,WFAER],[],[CITY],[],[["Carolina Bird Club","https://www.carolinabirdclub.org/sites/NC/beaverlake.html"]],
@@ -1134,6 +1135,7 @@ const L={
   warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
   avg:(e,s)=>`average for how safe women felt here. Environmental score ${e}, blended score ${s}.`,
   rateS:"Rate this place",rateP:"Four quick questions, no sign-in, no name, plus an optional comment and an optional email if you want a reply. Takes about 20 seconds. All women, trans women included, and nonbinary people are welcome to rate. Totals may be used in research; individual answers never are.",
+  liveLbl:"Live checked by the site owner",
   evH:"How sure we are",CONF:{high:"High confidence: official sources or news state the key facts directly.",med:"Medium confidence: based on consistent reviews or guides more than official sources.",lowmed:"Low-to-medium confidence: few sources.",unk:"Damage is confirmed, but current access is unknown."},evCell:"Cell signal is estimated from the setting at every place, not measured.",evChecked:d=>`Checked against public sources on ${d}; not yet checked in person.`,evSrc:"Sources:",evGoogle:"Google Maps listing and reviews",evMethod:"How scores are made",change:"Report a change here ↗",MONTHS:["January","February","March","April","May","June","July","August","September","October","November","December"],fmtDate:(y,m,d,M)=>`${M[m-1]} ${d}, ${y}`,rateB:n=>`Rate ${n} ↗`,rateF:"Ratings show on the map within a day, without names.",
   dir:"Directions ↗",rank:(r,t)=>`#${r} of ${t} scored places`,blended:"blended",listCount:n=>` · ${n} ${n===1?"rating":"ratings"}`,
   aria:(n,s,b)=>`${n}, score ${s}, ${b}`,btn:"Español",btnLang:"es",
@@ -1154,6 +1156,7 @@ const L={
   warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
   avg:(e,s)=>`promedio de qué tan seguras se sintieron las mujeres aquí. Puntaje del entorno ${e}, puntaje combinado ${s}.`,
   rateS:"Califique este lugar",rateP:"Cuatro preguntas rápidas, sin registrarse y sin nombre, además de un comentario opcional y un correo opcional si quiere una respuesta. Toma unos 20 segundos. Todas las mujeres, incluidas las mujeres trans, y las personas no binarias pueden calificar. Los totales pueden usarse en investigaciones; las respuestas individuales nunca.",
+  liveLbl:"Revisado en vivo por la dueña del sitio",
   evH:"Qué tan seguros estamos",CONF:{high:"Confianza alta: fuentes oficiales o noticias dicen los datos clave directamente.",med:"Confianza media: se basa más en reseñas o guías consistentes que en fuentes oficiales.",lowmed:"Confianza baja a media: pocas fuentes.",unk:"El daño está confirmado, pero no se sabe si hoy hay acceso."},evCell:"La señal de celular se estima según el entorno en todos los lugares; no se midió.",evChecked:d=>`Revisado con fuentes públicas el ${d}; aún no se ha visitado en persona.`,evSrc:"Fuentes:",evGoogle:"ficha y reseñas de Google Maps",evMethod:"Cómo se calculan los puntajes",change:"Reporte un cambio aquí ↗",MONTHS:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],fmtDate:(y,m,d,M)=>`${d} de ${M[m-1]} de ${y}`,rateB:n=>`Calificar ${n} ↗`,rateF:"Las calificaciones aparecen en el mapa dentro de un día, sin nombres.",
   dir:"Cómo llegar ↗",rank:(r,t)=>`N.º ${r} de ${t} lugares con puntaje`,blended:"combinado",listCount:n=>` · ${n} ${n===1?"calificación":"calificaciones"}`,
   aria:(n,s,b)=>`${n}, puntaje ${s}, ${b}`,btn:"English",btnLang:"en",
@@ -1421,7 +1424,8 @@ function evidBlock(p){
   const t=T(),i=p.i,[y,m,d]=CHK[i].split("-").map(Number),dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+CN(p)+" County NC")}`;
   const links=SRC[i].map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).concat([`<a href="${dir}" target="_blank" rel="noopener">${t.evGoogle}</a>`]).join(" · ");
   const ch=CHANGE[lang]?`<a href="${CHANGE[lang]}?place=${encodeURIComponent(p.n)}" target="_blank" rel="noopener">${t.change}</a>`:"";
-  return `<span class="status">${t.evH}</span><p class="note">${t.CONF[CF[i]]} ${t.evCell} ${t.evChecked(t.fmtDate(y,m,d,t.MONTHS))}</p><p class="note src">${t.evSrc} ${links} · <a href="about.html${lang==="es"?"?lang=es#built-es":"#built"}">${t.evMethod}</a></p>${ch}`;
+  const live=LIVE.includes(i)?`<p class="note"><b>${t.liveLbl}</b></p>`:"";
+  return `${live}<span class="status">${t.evH}</span><p class="note">${t.CONF[CF[i]]} ${t.evCell} ${t.evChecked(t.fmtDate(y,m,d,t.MONTHS))}</p><p class="note src">${t.evSrc} ${links} · <a href="about.html${lang==="es"?"?lang=es#built-es":"#built"}">${t.evMethod}</a></p>${ch}`;
 }
 function formBlock(p){
   const t=T(),url=FORMS[lang]+"?place="+encodeURIComponent(p.n);
