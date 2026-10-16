@@ -13,8 +13,9 @@
    Calm and legible first. One typeface, Atkinson Hyperlegible, designed for low-vision readability.
    Palette: blush cream neutrals, dusty rose accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
 :root{
-  --bg:#fbf5f3; --surface:#ffffff; --band:#f6e9e7; --ink:#2b2226; --muted:#665559; --line:#ecd9d6;
-  --land:#f5e7e3; --river:#5b8da3; --accent:#a3475d;
+  --bg:#fbf5f3; --surface:#ffffff; --band:#f6e6e4; --ink:#231a1f; --muted:#54444a; --line:#dcc3c6;
+  --edge:#8a6a74; --tint:#f7e4e8;
+  --land:#f5e7e3; --river:#5b8da3; --accent:#872f4b;
   --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
   --font:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:var(--font); --body:var(--font); --mono:var(--font);
@@ -23,11 +24,13 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#3e3136;
+  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
+  --edge:#9c8089; --tint:#33252b;
   --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
   --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#3e3136;
+  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
+  --edge:#9c8089; --tint:#33252b;
   --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
   --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}
 
@@ -57,7 +60,7 @@ header{display:grid;gap:var(--s3)}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);flex-wrap:wrap}
 .eyebrow{font-size:16px;color:var(--muted)}
 .tools{display:flex;gap:var(--s1);flex-wrap:wrap}
-.langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);cursor:pointer}
 .sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .title{display:grid;gap:var(--s2)}
 header .lede{font-size:clamp(19px,2.2vw,22px);line-height:1.55;max-width:46ch}
