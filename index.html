@@ -483,6 +483,13 @@ details.more p{margin:8px auto 0;max-width:72ch;text-align:left}
 .tip.help .lines-h{margin-top:16px}
 p,small,li,.note{text-wrap:pretty}
 
+/* "Who made this": a quiet, centered signature before the footer */
+.who{justify-self:center;width:min(100%,820px);display:grid;justify-items:center;gap:14px;text-align:center;padding:36px clamp(20px,5vw,56px);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--rad)}
+.who h2{font-size:clamp(26px,3.2vw,32px)}
+.who p{max-width:60ch;margin-inline:auto;font-size:17.5px;line-height:1.7}
+.who-link{display:inline-flex;align-items:center;min-height:44px;padding:8px 20px;border:1.5px solid var(--accent);border-radius:999px;text-decoration:none;background:var(--surface)}
+.who-link:hover{background:var(--tint)}
+
 /* Footer: centered */
 footer{text-align:center;justify-items:center;border-top:0;padding-top:0}
 footer p{max-width:68ch;margin-inline:auto}
@@ -834,6 +841,12 @@ body{letter-spacing:-.003em}
     </details>
   </section>
   </div>
+
+  <section class="who" id="who" aria-labelledby="whoH">
+    <h2 id="whoH" data-i18n="whoH">Who made this</h2>
+    <p data-i18n="whoP">WNC Safer Miles was created by Alison Rose, a runner in Asheville who studies psychology at UNC Asheville, with minors in Native American Studies and in Women’s, Gender, and Sexuality Studies, on her way to clinical neuropsychology. Here in Western North Carolina she serves as a crisis responder with TIP of WNC, has advocated for children as a Guardian ad Litem, and invented ANCHOR, tactile grounding tools for nervous system regulation now being piloted in an ICU in the region. Her work keeps returning to one question: what helps a body feel safe? This map asks it at the scale of a community.</p>
+    <a class="who-link" id="whoLink" href="about.html#who" data-i18n="whoL">More about Alison and how the map was built</a>
+  </section>
 
   </main>
 
@@ -1425,6 +1438,9 @@ const L={
   fact3:"<strong>No es un servicio de emergencia</strong>Si está en peligro, llame al <a href=\"tel:911\">911</a>. <a href=\"#help\">Líneas de ayuda y consejos</a>",
   pathH:"¿Qué le ayudaría ahora?",
   mapH:"Encontrar un lugar",
+  whoH:"Quién hizo este mapa",
+  whoP:"WNC Safer Miles fue creado por Alison Rose, corredora de Asheville que estudia psicología en UNC Asheville, con especializaciones menores en Estudios de los Pueblos Nativos Americanos y en Estudios de la Mujer, de Género y de Sexualidad, en camino a la neuropsicología clínica. Aquí, en el oeste de Carolina del Norte, es voluntaria de respuesta a crisis en TIP of WNC, ha defendido a niños como Guardian ad Litem y creó ANCHOR, herramientas táctiles de enraizamiento para regular el sistema nervioso, que hoy se prueban en una unidad de cuidados intensivos de la región. Su trabajo siempre vuelve a una pregunta: ¿qué ayuda a un cuerpo a sentirse a salvo? Este mapa la plantea a la escala de una comunidad.",
+  whoL:"Más sobre Alison y cómo se hizo el mapa",
   p1T:"Encontrar un lugar",p1D:"Explore el mapa y filtre por puntaje",
   p2T:"Consejos y apoyo",p2D:"Opciones prácticas y líneas de ayuda las 24 horas",
   p3T:"Calificar, sugerir o avisar",p3D:"Aporte lo que sabe de un lugar",
@@ -1468,6 +1484,7 @@ function applyStatic(){
   document.documentElement.lang=lang;
   document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;el.innerHTML=lang==="en"?el.dataset.en:(L.es[k]??el.dataset.en);});
   document.querySelectorAll("[data-i18n-aria]").forEach(el=>{const k=el.dataset.i18nAria;el.setAttribute("aria-label",lang==="en"?el.dataset.enAria:(L.es[k]??el.dataset.enAria));});
+  const wl=document.getElementById("whoLink");if(wl)wl.href=lang==="es"?"about.html?lang=es#who-es":"about.html#who";
   const b=document.getElementById("langbtn");b.textContent=T().btn;b.setAttribute("lang",T().btnLang);
   b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
 }
