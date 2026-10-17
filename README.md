@@ -1,5 +1,7 @@
 # WNC Safer Miles
 
+**Live site:** https://tinyurl.com/wncsafermiles (redirects to https://connectalisonrose-lab.github.io/wnc-safer-miles/)
+
 A community map of parks, greenways and trails in western North Carolina, scored on what makes a place feel safer for women running or walking alone: lighting, foot traffic, sightlines, cell signal, staff presence and visible parking. As of October 11, 2026 it lists 90 places in Buncombe, Henderson, Jackson, Haywood, Transylvania and Madison counties. Women rate places anonymously through a short form, and their ratings blend into each place's score.
 
 - `index.html` is the map; `about.html` holds the method, terms, privacy notice and safety guidance for using the site.
