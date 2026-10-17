@@ -343,53 +343,91 @@ html[data-size="large"] .wrap{zoom:1.18}
 .docfoot{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted)}
 .docfoot p{font-size:15px}
 
-/* ---------- Oct 16 refresh: guided start, clearer edges ---------- */
-html{scroll-padding-top:84px}
+/* ---------- Oct 17 redesign: calm, centered and balanced ----------
+   One centered column. Every section opens with the same centered heading.
+   Full-width bands alternate cream and blush so the page reads in chapters.
+   The one memorable element: layered Blue Ridge ridgelines under the title. */
+:root{--sky1:#fdf4f2;--sky2:#f5dfe2;--r1:#eed3d8;--r2:#e3bfc8;--r3:#d7abb7;--zone:#f6e8e8;--deco:#c9798b;--sec:80px;--rad:18px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#221a1e;--sky2:#2d2026;--r1:#3f2e37;--r2:#34262d;--r3:#2a1f25;--zone:#201a1d;--deco:#d898a8}}
+:root[data-theme="dark"]{--sky1:#221a1e;--sky2:#2d2026;--r1:#3f2e37;--r2:#34262d;--r3:#2a1f25;--zone:#201a1d;--deco:#d898a8}
+@media (max-width:640px){:root{--sec:56px}}
+html{scroll-padding-top:92px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-.wrap{display:flex;flex-direction:column}
+html,body{overflow-x:clip}
+.wrap{display:flex;flex-direction:column;gap:var(--sec);padding-top:0}
 .wrap>*{min-width:0}
-h1{font-size:clamp(40px,6.4vw,64px);letter-spacing:-.02em}
-header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
-.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s4);align-items:start}
-@media (max-width:900px){.hero{grid-template-columns:1fr;gap:var(--s3)}}
+main{gap:var(--sec)}
 
-/* "What would help right now?": choose how to read the page */
-.paths{background:var(--surface);border:1.5px solid var(--edge);border-radius:16px;padding:var(--s3);display:grid;gap:var(--s2)}
-.paths h2{font-size:22px}
-.paths ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.paths a{display:grid;grid-template-columns:44px minmax(0,1fr) 12px;gap:16px;align-items:center;min-height:68px;padding:12px 16px;border:1.5px solid var(--edge);border-radius:12px;background:var(--bg);color:var(--ink);text-decoration:none}
+/* Full-width bands */
+.zone{position:relative;isolation:isolate;padding-block:64px}
+.zone::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:var(--zone);z-index:-1}
+@media (max-width:640px){.zone{padding-block:40px}}
+
+/* Hero: centered, on a soft dawn sky with the ridges at its foot */
+.masthead{display:grid;gap:32px}
+.hero-band{position:relative;isolation:isolate;display:grid;justify-items:center;gap:44px;padding:24px 0 170px;text-align:center}
+.hero-band::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 100%);z-index:-2}
+.ridges{position:absolute;bottom:-1px;left:calc(50% - 50vw);width:100vw;height:160px;z-index:-1;display:block}
+.ridges .r1{fill:var(--r1)}.ridges .r2{fill:var(--r2)}.ridges .r3{fill:var(--r3)}.ridges .r4{fill:var(--bg)}
+.hero-band .topbar{justify-self:stretch;justify-content:flex-end}
+.hero-text{display:grid;gap:18px;justify-items:center;max-width:780px}
+.hero-text .eyebrow{font-size:16px;color:var(--muted);font-weight:700}
+h1{font-size:clamp(44px,7.4vw,76px);line-height:1.02;letter-spacing:-.022em}
+header .lede{font-size:clamp(18px,2vw,21px);line-height:1.6;max-width:52ch;margin-inline:auto}
+header .incl{font-size:16.5px;max-width:58ch;margin-inline:auto}
+@media (max-width:640px){.hero-band{padding:16px 0 104px;gap:32px}.ridges{height:96px}}
+
+/* "What would help right now?": four equal doors */
+.paths{width:100%;display:grid;gap:20px;justify-items:center}
+.paths h2{font-size:clamp(22px,2.6vw,26px)}
+.paths ul{list-style:none;margin:0;padding:0;width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.paths li{display:grid}
+.paths a{display:grid;justify-items:center;align-content:start;gap:10px;text-align:center;padding:24px 18px 22px;border-radius:var(--rad);background:var(--surface);border:1.5px solid var(--edge);color:var(--ink);text-decoration:none;box-shadow:0 8px 24px -14px color-mix(in srgb,var(--accent) 45%,transparent)}
 .paths a:hover{border-color:var(--accent);background:var(--tint)}
-.paths a::after{content:"";width:9px;height:9px;border-top:2.5px solid var(--accent);border-right:2.5px solid var(--accent);transform:rotate(45deg);justify-self:end}
-.paths .ic{width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--accent)}
 .paths a:hover .ic{background:var(--surface)}
-.paths .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.paths b{display:block;font-size:18px;line-height:1.3}
-.paths small{display:block;font-size:15.5px;line-height:1.4;color:var(--muted);font-weight:400}
+.paths .ic{width:54px;height:54px;border-radius:50%;background:var(--tint);color:var(--accent);display:grid;place-items:center}
+.paths .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.paths b{display:block;font-size:18.5px;line-height:1.3}
+.paths small{display:block;font-size:15.5px;line-height:1.45;color:var(--muted);font-weight:400;margin-top:4px}
+@media (max-width:980px){.paths ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.paths ul{grid-template-columns:1fr;gap:10px}.paths a{grid-template-columns:48px minmax(0,1fr);justify-items:start;align-items:center;text-align:left;padding:14px 16px;gap:14px}.paths .ic{width:48px;height:48px}}
 
-@media (max-width:640px){.paths{padding:var(--s2)}.paths a{grid-template-columns:40px minmax(0,1fr) 10px;gap:12px;padding:10px 12px}.paths .ic{width:40px;height:40px}.qexit{min-height:44px;padding:8px 16px;font-size:15px}}
-
-/* The three notices become one strip, with the emergency line set apart */
-.facts{gap:0;background:var(--surface);border:1.5px solid var(--edge);border-radius:14px;overflow:hidden}
-.facts li{background:none;border:0;border-radius:0;padding:16px 20px}
+/* The three notices: one balanced strip */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--rad);overflow:hidden;text-align:center}
+.facts li{background:none;border:0;border-radius:0;padding:20px 24px;font-size:16px}
 .facts li+li{border-left:1.5px solid var(--line)}
 .facts li:last-child{background:var(--tint)}
-@media (max-width:820px){.facts li+li{border-left:0;border-top:1.5px solid var(--line)}}
+@media (max-width:820px){.facts{grid-template-columns:1fr}.facts li+li{border-left:0;border-top:1.5px solid var(--line)}}
+.draftnote{margin:0 auto;max-width:72ch}
+details.more{text-align:center}
+details.more summary{display:flex;justify-content:center}
+details.more p{margin:8px auto 0;max-width:72ch;text-align:left}
 
-/* "On this page" bar: stays in view, marks where you are */
-.pagebar{position:sticky;top:8px;z-index:15;background:var(--surface);border:1.5px solid var(--edge);border-radius:999px;padding:5px;box-shadow:0 6px 18px color-mix(in srgb,var(--ink) 14%,transparent)}
-.pagebar ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;position:relative}
+/* "On this page": centered, stays in view */
+.pagebar{position:sticky;top:10px;z-index:15;align-self:center;max-width:100%;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1.5px solid var(--edge);border-radius:999px;padding:5px;box-shadow:0 10px 26px -12px color-mix(in srgb,var(--ink) 30%,transparent)}
+.pagebar ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .pagebar ul::-webkit-scrollbar{display:none}
-.pagebar li{flex:1 0 auto}
-.pagebar a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap}
+.pagebar li{flex:0 0 auto}
+.pagebar a{display:flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap}
 .pagebar a:hover{background:var(--tint)}
 .pagebar a[aria-current=true]{background:var(--accent);color:var(--bg)}
-@media (max-width:640px){.pagebar{top:6px}.pagebar a{padding:0 14px;font-size:15px}.pagebar li{flex:0 0 auto}}
+@media (max-width:640px){.pagebar{top:6px;align-self:stretch}.pagebar a{padding:0 14px;font-size:15px}}
 
-/* Folded sections read as buttons */
-.fold-hint{border:1.5px solid var(--accent);border-radius:999px;padding:6px 16px;background:var(--surface)}
-.fold>summary:hover .fold-hint{background:var(--tint)}
+/* One heading style for every section */
+.sec-head,.tips-head{display:grid;gap:12px;justify-items:center;text-align:center;max-width:780px;margin:0 auto 36px}
+.sec-head h2,.tips-head h2,.rooted h2{font-size:clamp(30px,4vw,40px);letter-spacing:-.012em}
+.sec-head .note,.tips-head .note{font-size:18px;max-width:62ch;margin-inline:auto}
 
-/* Filters carry the same colors as the map */
+/* Map: centered controls, two equal columns */
+.toolbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:end;gap:16px 24px;margin:0 0 24px}
+.pick{width:min(100%,340px)}
+.filters{justify-content:center}
+@media (min-width:901px){.main{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}}
+.mapbox,.panel{border:1.5px solid var(--line);border-radius:var(--rad);box-shadow:0 12px 32px -22px color-mix(in srgb,var(--ink) 40%,transparent)}
+.panel{padding:28px}
+@media (min-width:901px){.panel{top:84px;max-height:calc(100vh - 100px)}}
+.legend{justify-content:center}
+.maps-n{text-align:center}
 .chip[data-f=strong]::before,.chip[data-f=mixed]::before,.chip[data-f=caution]::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 2px var(--surface)}
 .chip[data-f=strong]::before{background:var(--strong)}
 .chip[data-f=mixed]::before{background:var(--mixed)}
@@ -397,15 +435,11 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
 .chip[aria-pressed=true]::before{box-shadow:0 0 0 2px var(--bg)}
 .maptabs .tablist{gap:6px;padding:10px 12px}
 .maptabs .tablist [role=tab]{padding:6px 14px}
-
-/* Crisper pins: solid, ringed, no glow */
 .halo{display:none}
 .pin .dot{stroke:var(--surface);stroke-width:4;filter:drop-shadow(0 1.5px 1.5px color-mix(in srgb,var(--ink) 40%,transparent))}
 .pin.sel .dot{stroke:var(--ink);stroke-width:5}
 
 /* Place panel: where the score sits against the 55 and 75 cutoffs */
-.panel{border:1.5px solid var(--line)}
-@media (min-width:901px){.panel{top:80px;max-height:calc(100vh - 96px)}}
 .score{font-size:60px;color:var(--ink)}
 .scale{position:relative;display:flex;height:12px;margin:2px 0 24px}
 .scale .seg{display:block;height:100%}
@@ -417,26 +451,58 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
 .bar{height:12px;background:color-mix(in srgb,var(--accent) 14%,var(--surface));border-radius:6px}
 .bar i{border-radius:6px}
 
-/* Cards: a clearer edge */
-.mapbox,.tabs,.fold,.tg,.stats li,.facts,.suggest{border-color:var(--line)}
-.mapbox,.tabs,.fold,.tg,.stats li{border-width:1.5px}
+/* Cards share one edge, one radius */
+.tabs,.fold,.tg,.stats li,.tip.help,.suggest{border:1.5px solid var(--line);border-radius:var(--rad)}
+.tip.help{background:var(--surface)}
+.places-sec .suggest{border-style:dashed}
+
+/* Folds open like doors: centered title, then a clear button */
+.fold>summary{flex-direction:column;justify-content:center;text-align:center;gap:14px;padding:28px 24px}
+.fold>summary h2,.howto .fold>summary h2{font-size:clamp(24px,3vw,30px);text-align:center}
+.fold-hint{border:1.5px solid var(--accent);border-radius:999px;padding:8px 18px;background:var(--surface);text-align:center}
+.fold>summary:hover .fold-hint{background:var(--tint)}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.duo>section{display:grid;min-width:0}
+.duo .fold{height:100%;display:flex;flex-direction:column}
+.duo .fold>summary{flex:1}
+.duo:has(details[open])>section{grid-column:1/-1}
+@media (max-width:820px){.duo{grid-template-columns:1fr}}
+
+/* Balanced grids: an odd last row sits centered, never left-hanging */
+#safety .panels>[role=tabpanel] ul{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+#safety .panels>[role=tabpanel] li{flex:0 1 calc((100% - 28px)/3);min-width:240px}
+@media (max-width:820px){#safety .panels>[role=tabpanel] li{flex-basis:calc((100% - 14px)/2)}}
+@media (max-width:560px){#safety .panels>[role=tabpanel] li{flex-basis:100%;min-width:0}}
+.howto .panels>[role=tabpanel] ul{display:flex;flex-wrap:wrap;justify-content:center}
+.howto .panels>[role=tabpanel] li{flex:0 1 260px}
+.stats{max-width:900px}
+.stats li{grid-template-rows:auto 1fr auto;padding:24px 28px}
+@media (max-width:900px){.stats li{grid-template-rows:none}}
+.why-more{margin-top:8px}
+.tip.help>.note{text-align:center;max-width:76ch;margin-inline:auto}
+.tip.help .lines-h{margin-top:16px}
+p,small,li,.note{text-wrap:pretty}
+
+/* Footer: centered */
+footer{text-align:center;justify-items:center;border-top:0;padding-top:0}
+footer p{max-width:68ch;margin-inline:auto}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#content" data-i18n="skip">Skip to the map</a>
 <div class="wrap">
-  <header>
-    <div class="topbar">
-      <div class="eyebrow" data-i18n="eyebrow">Western North Carolina, on Cherokee land</div>
-      <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
-    </div>
-  <div class="hero">
-    <div class="title">
-      <h1>WNC Safer Miles</h1>
-      <p class="lede" data-i18n="lede">A community map of parks, greenways and trails across Western North Carolina, scored on what helps women feel safer running or walking alone. It starts in Buncombe, Henderson, Jackson, Haywood, Transylvania and Madison counties and grows as women rate and suggest places.</p>
-      <p class="incl" data-i18n="incl">For all women, trans women included, and for nonbinary, gender-expansive and LGBTQ+ people who have ever felt unsafe out alone.</p>
-    </div>
+  <header class="masthead">
+    <div class="hero-band">
+      <div class="topbar">
+        <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow" data-i18n="eyebrow">Western North Carolina, on Cherokee land</div>
+        <h1>WNC Safer Miles</h1>
+        <p class="lede" data-i18n="lede">A community map of parks, greenways and trails across Western North Carolina, scored on what helps women feel safer running or walking alone. It starts in Buncombe, Henderson, Jackson, Haywood, Transylvania and Madison counties and grows as women rate and suggest places.</p>
+        <p class="incl" data-i18n="incl">For all women, trans women included, and for nonbinary, gender-expansive and LGBTQ+ people who have ever felt unsafe out alone.</p>
+      </div>
     <section class="paths" aria-labelledby="pathH">
       <h2 id="pathH" data-i18n="pathH">What would help right now?</h2>
       <ul>
@@ -446,7 +512,8 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
         <li><a href="#how"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><span><b data-i18n="p4T">How this map works</b><small data-i18n="p4D">The scores, and what it won't do</small></span></a></li>
       </ul>
     </section>
-  </div>
+      <svg class="ridges" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="r1" d="M0 180 L0 57.4 Q0.0 57.4 30.0 51.3 Q60.0 45.3 90.0 50.6 Q120.0 55.9 150.0 57.0 Q180.0 58.1 210.0 63.1 Q240.0 68.0 270.0 61.8 Q300.0 55.7 330.0 64.5 Q360.0 73.4 390.0 80.8 Q420.0 88.2 450.0 93.1 Q480.0 97.9 510.0 94.2 Q540.0 90.5 570.0 77.7 Q600.0 64.9 630.0 66.2 Q660.0 67.5 690.0 64.0 Q720.0 60.5 750.0 63.2 Q780.0 65.8 810.0 57.2 Q840.0 48.7 870.0 46.8 Q900.0 44.9 930.0 53.8 Q960.0 62.8 990.0 70.4 Q1020.0 77.9 1050.0 87.1 Q1080.0 96.3 1110.0 87.9 Q1140.0 79.5 1170.0 80.4 Q1200.0 81.4 1230.0 80.3 Q1260.0 79.1 1290.0 80.6 Q1320.0 82.1 1350.0 76.9 Q1380.0 71.8 1410.0 58.2 L1440 44.6 L1440 180 Z"/><path class="r2" d="M0 180 L0 85.7 Q0.0 85.7 30.0 92.0 Q60.0 98.4 90.0 94.9 Q120.0 91.3 150.0 93.5 Q180.0 95.8 210.0 103.3 Q240.0 110.8 270.0 114.2 Q300.0 117.7 330.0 119.4 Q360.0 121.2 390.0 109.1 Q420.0 97.0 450.0 95.1 Q480.0 93.2 510.0 90.8 Q540.0 88.3 570.0 90.5 Q600.0 92.6 630.0 90.3 Q660.0 87.9 690.0 82.1 Q720.0 76.2 750.0 82.8 Q780.0 89.4 810.0 94.4 Q840.0 99.3 870.0 109.7 Q900.0 120.1 930.0 116.1 Q960.0 112.1 990.0 108.9 Q1020.0 105.8 1050.0 105.2 Q1080.0 104.6 1110.0 103.9 Q1140.0 103.1 1170.0 104.0 Q1200.0 104.8 1230.0 93.0 Q1260.0 81.2 1290.0 79.7 Q1320.0 78.1 1350.0 78.0 Q1380.0 78.0 1410.0 87.1 L1440 96.3 L1440 180 Z"/><path class="r3" d="M0 180 L0 119.8 Q0.0 119.8 30.0 125.1 Q60.0 130.4 90.0 132.5 Q120.0 134.7 150.0 139.8 Q180.0 144.9 210.0 137.9 Q240.0 131.0 270.0 125.6 Q300.0 120.2 330.0 118.0 Q360.0 115.7 390.0 115.7 Q420.0 115.6 450.0 118.4 Q480.0 121.2 510.0 115.3 Q540.0 109.5 570.0 112.0 Q600.0 114.4 630.0 116.9 Q660.0 119.5 690.0 127.9 Q720.0 136.4 750.0 138.7 Q780.0 141.1 810.0 136.4 Q840.0 131.8 870.0 130.9 Q900.0 130.0 930.0 126.9 Q960.0 123.9 990.0 127.3 Q1020.0 130.8 1050.0 124.4 Q1080.0 118.0 1110.0 113.7 Q1140.0 109.5 1170.0 108.1 Q1200.0 106.7 1230.0 110.5 Q1260.0 114.4 1290.0 122.6 Q1320.0 130.9 1350.0 129.2 Q1380.0 127.5 1410.0 129.5 L1440 131.4 L1440 180 Z"/><path class="r4" d="M0 180 L0 162.0 Q0.0 162.0 30.0 159.4 Q60.0 156.8 90.0 151.8 Q120.0 146.8 150.0 145.7 Q180.0 144.5 210.0 143.5 Q240.0 142.4 270.0 145.5 Q300.0 148.6 330.0 145.7 Q360.0 142.9 390.0 143.4 Q420.0 143.8 450.0 145.7 Q480.0 147.5 510.0 151.6 Q540.0 155.7 570.0 159.2 Q600.0 162.7 630.0 159.2 Q660.0 155.6 690.0 154.8 Q720.0 153.9 750.0 151.2 Q780.0 148.5 810.0 150.4 Q840.0 152.2 870.0 150.1 Q900.0 148.0 930.0 144.4 Q960.0 140.7 990.0 140.4 Q1020.0 140.0 1050.0 140.9 Q1080.0 141.9 1110.0 148.2 Q1140.0 154.5 1170.0 154.3 Q1200.0 154.1 1230.0 154.7 Q1260.0 155.3 1290.0 154.3 Q1320.0 153.3 1350.0 154.8 Q1380.0 156.2 1410.0 157.9 L1440 159.5 L1440 180 Z"/></svg>
+    </div>
     <ul class="facts">
       <li data-i18n="fact1"><strong>A community pilot</strong>Scores start as estimates and get better as women rate the places they use.</li>
       <li data-i18n="fact2"><strong>Not a guarantee</strong>A higher score means fewer known risk factors. Use it alongside your own judgment.</li>
@@ -468,7 +535,11 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
   </nav>
 
   <main id="content">
-  <section class="explore" id="explore" aria-labelledby="pickLbl">
+  <section class="explore" id="explore" aria-labelledby="mapH">
+  <div class="sec-head">
+    <h2 id="mapH" data-i18n="mapH">Find a place</h2>
+    <p class="note" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
+  </div>
   <div class="toolbar">
     <label class="pick"><span id="pickLbl" data-i18n="pickLabel">Choose a place</span><select id="pick"></select></label>
     <div class="filters" role="group" data-i18n-aria="filterAria" aria-label="Filter places">
@@ -480,7 +551,6 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
   </div>
   <div class="main">
     <div class="mapbox">
-      <p class="hint" data-i18n="hint">Tap a numbered pin, or choose a place above, to see its score and ratings and to rate it.</p>
       <div class="maptabs" data-tabs>
       <div class="tablist" role="tablist" aria-label="Map areas" data-i18n-aria="mapTabs">
         <button type="button" role="tab" id="tab-mA" aria-controls="mA" aria-selected="true" tabindex="0" data-i18n="mT1">Asheville</button>
@@ -525,7 +595,7 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
     <p class="suggest" id="suggest" data-i18n="suggest"><strong>Know a place we're missing?</strong> <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a park, greenway or trail in Western North Carolina ↗</a> It's anonymous unless you choose to leave an email, and each suggestion is researched and reviewed before anything is added to the map.</p>
   </section>
 
-  <section class="tips" id="safety">
+  <section class="tips zone" id="safety">
     <div class="tips-head">
       <div class="eyebrow" data-i18n="tipsEyebrow">Safety tips</div>
       <h2 data-i18n="tipsH">Going out with a plan</h2>
@@ -686,6 +756,7 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
     <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. They are awaiting review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
   </section>
 
+  <div class="duo zone">
   <section class="together" id="together" aria-labelledby="tgH">
     <details class="fold" id="tgFold">
       <summary><h2 id="tgH" data-i18n="tgH">Better, together</h2><span class="fold-hint" data-i18n="tgShow">Why community works, and four ways to help</span></summary>
@@ -759,6 +830,7 @@ header .lede{font-size:clamp(19px,2vw,21px);max-width:52ch}
     </div>
     </details>
   </section>
+  </div>
 
   </main>
 
@@ -1349,6 +1421,7 @@ const L={
   fact2:"<strong>No es una garantía</strong>Un puntaje más alto significa menos factores de riesgo conocidos. Úselo junto con su propio criterio.",
   fact3:"<strong>No es un servicio de emergencia</strong>Si está en peligro, llame al <a href=\"tel:911\">911</a>. <a href=\"#help\">Líneas de ayuda y consejos</a>",
   pathH:"¿Qué le ayudaría ahora?",
+  mapH:"Encontrar un lugar",
   p1T:"Encontrar un lugar",p1D:"Explore el mapa y filtre por puntaje",
   p2T:"Consejos y apoyo",p2D:"Opciones prácticas y líneas de ayuda las 24 horas",
   p3T:"Calificar, sugerir o avisar",p3D:"Aporte lo que sabe de un lugar",
