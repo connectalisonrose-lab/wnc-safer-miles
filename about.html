@@ -7,17 +7,17 @@
 <title>About, terms and privacy · WNC Safer Miles</title>
 <meta name="description" content="A community map of parks, greenways and trails across Western North Carolina, scored on what makes them safer for women running or walking alone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
 <style>
 /* WNC Safer Miles — design system (Oct 2026)
-   Calm and legible first. One typeface, Atkinson Hyperlegible, designed for low-vision readability.
+   Calm and legible first. One typeface, Lexend, designed to make reading easier and faster (chosen by Alison Oct 17, 2026).
    Palette: blush cream neutrals, dusty rose accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
 :root{
   --bg:#fbf5f3; --surface:#ffffff; --band:#f6e6e4; --ink:#231a1f; --muted:#54444a; --line:#dcc3c6;
   --edge:#8a6a74; --tint:#f7e4e8;
   --land:#f5e7e3; --river:#5b8da3; --accent:#872f4b;
   --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
-  --font:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font:"Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:var(--font); --body:var(--font); --mono:var(--font);
   --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:72px;
   --r:12px; --max:1120px; --gut:24px;
@@ -209,6 +209,9 @@ html,body{overflow-x:clip}
 .docfoot p{max-width:64ch;margin-inline:auto}
 p,li{text-wrap:pretty}
 @media (max-width:640px){.docband{padding-bottom:80px}.docband .ridges{height:64px}}
+/* Lexend: semibold headings and emphasis read softer than bold */
+h1,h2,h3,h4,b,strong{font-weight:600}
+body{letter-spacing:-.003em}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
