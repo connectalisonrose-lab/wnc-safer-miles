@@ -1368,7 +1368,7 @@ const L={
   AREAS:{ash:"Asheville",south:"South · Arden & Bent Creek",east:"East · Swannanoa & Black Mountain",north:"North · Weaverville",west:"West · Candler & Enka",hend:"Henderson County",jack:"Jackson County · Sylva, Cullowhee & Cashiers",hay:"Haywood County · Waynesville & Lake Junaluska",tran:"Transylvania County · Brevard & DuPont",mad:"Madison County · Hot Springs, Marshall & Mars Hill"},
   ADVICE:["Little or no lighting. Plan to finish well before sunset.","Often quiet. A good place to bring a friend, or to go at busier times like weekend mornings.","Dense cover in places. Keep one ear free and stay on the main trail.","Weak cell signal. Tell someone your route before you lose service, and download an offline map.","No staff on site. Note the nearest road or building you could head toward.","The lot is hard to see from the road. Park near the entrance, facing out."],
   dark:"Women have felt unsafe here around dusk or after dark. Daylight visits are the better bet.",
-  before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",
+  before:"Before you go here",noWeak:"No weak spots stand out. The general safety tips still apply.",tipsLink:"Safety tips ↓",moreTips:"More safety tips ↓",today:"Not feeling it today? Other options ↓",condH:"Conditions today",condSun:(set,dusk)=>`Sunset today is ${set}. Light fades by about ${dusk}.`,condLight:dusk=>`Lighting here is limited, so plan to finish before ${dusk}.`,condWx:"Check today’s forecast (National Weather Service) ↗",condWet:"After heavy rain, river greenways and creek crossings can flood or close. In winter, shaded trails and bridges can ice over. Check for closures before you go.",condFine:"Conditions never change a score. The score describes the place; this describes today.",
   rNone:"Women's ratings · none yet",rNoneP:"Be the first. Ratings show as soon as they come in.",
   rCount:n=>`Women's ratings · ${n} ${n===1?"rating":"ratings"}`,
   warn:n=>n===1?"Someone felt unsafe here":`${n} women felt unsafe here`,noTime:"time not given",
@@ -1389,7 +1389,7 @@ const L={
   AREAS:{ash:"Asheville",south:"Sur · Arden y Bent Creek",east:"Este · Swannanoa y Black Mountain",north:"Norte · Weaverville",west:"Oeste · Candler y Enka",hend:"Condado de Henderson",jack:"Condado de Jackson · Sylva, Cullowhee y Cashiers",hay:"Condado de Haywood · Waynesville y lago Junaluska",tran:"Condado de Transylvania · Brevard y DuPont",mad:"Condado de Madison · Hot Springs, Marshall y Mars Hill"},
   ADVICE:["Poca o ninguna iluminación. Planee terminar mucho antes del atardecer.","Suele estar tranquilo. Buen lugar para ir acompañada, o en horas más concurridas como los fines de semana por la mañana.","Vegetación densa en algunos tramos. Mantenga un oído libre y quédese en el sendero principal.","Poca señal de celular. Avise a alguien su ruta antes de perder la señal y descargue un mapa sin conexión.","No hay personal en el lugar. Fíjese en la calle o el edificio más cercano hacia donde podría dirigirse.","El estacionamiento es difícil de ver desde la calle. Estaciónese cerca de la entrada, de frente a la salida."],
   dark:"Algunas mujeres se han sentido inseguras aquí al atardecer o de noche. Es mejor visitarlo de día.",
-  before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",
+  before:"Antes de ir aquí",noWeak:"No hay puntos débiles notables. Los consejos generales de seguridad siguen aplicando.",tipsLink:"Consejos de seguridad ↓",moreTips:"Más consejos de seguridad ↓",today:"¿Hoy no se siente bien? Otras opciones ↓",condH:"Condiciones de hoy",condSun:(set,dusk)=>`Hoy el sol se pone a las ${set} y la luz se apaga hacia las ${dusk}`,condLight:dusk=>`La iluminación aquí es limitada; conviene terminar antes de las ${dusk}`,condWx:"Consulte el pronóstico de hoy (Servicio Meteorológico Nacional) ↗",condWet:"Después de lluvias fuertes, los senderos junto a ríos y los cruces de arroyos pueden inundarse o cerrarse. En invierno, los senderos con sombra y los puentes pueden congelarse. Revise si hay cierres antes de ir.",condFine:"Las condiciones nunca cambian una puntuación. La puntuación describe el lugar; esto describe el día de hoy.",
   rNone:"Calificaciones de mujeres · aún no hay",rNoneP:"Sea la primera. Las calificaciones aparecen en cuanto llegan.",
   rCount:n=>`Calificaciones de mujeres · ${n} ${n===1?"calificación":"calificaciones"}`,
   warn:n=>n===1?"Alguien se sintió insegura aquí":`${n} mujeres se sintieron inseguras aquí`,noTime:"sin hora indicada",
@@ -1709,6 +1709,26 @@ function goBlock(p){
   if(!tips.length)return `<span class="status">${t.before}</span><p class="note">${t.noWeak}</p><a href="#safety">${t.tipsLink}</a><a href="#today">${t.today}</a>`;
   return `<span class="status">${t.before}</span><ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul><a href="#safety">${t.moreTips}</a><a href="#today">${t.today}</a>`;
 }
+/* Conditions layer: not scored. Sunset is computed in the browser (NOAA-style formula) from the place's coordinates, so nothing is sent anywhere. */
+function sunAt(lat,lng,y,m,d,zen,rise){
+  const R=Math.PI/180,N=Math.floor((Date.UTC(y,m-1,d)-Date.UTC(y,0,0))/864e5),lh=lng/15,t=N+((rise?6:18)-lh)/24,M=0.9856*t-3.289;
+  let L=(M+1.916*Math.sin(M*R)+0.02*Math.sin(2*M*R)+282.634)%360;if(L<0)L+=360;
+  let RA=Math.atan(0.91764*Math.tan(L*R))/R;RA=((RA%360)+360)%360;RA+=Math.floor(L/90)*90-Math.floor(RA/90)*90;RA/=15;
+  const sd=0.39782*Math.sin(L*R),cd=Math.cos(Math.asin(sd)),ch=(Math.cos(zen*R)-sd*Math.sin(lat*R))/(cd*Math.cos(lat*R));
+  if(ch>1||ch<-1)return null;
+  const H=(rise?360-Math.acos(ch)/R:Math.acos(ch)/R)/15,T=H+RA-0.06571*t-6.622;let UT=(T-lh)%24;if(UT<0)UT+=24;
+  return Date.UTC(y,m-1,d)+UT*36e5;
+}
+function condBlock(p){
+  const t=T(),tz="America/New_York",now=new Date();
+  const q=new Intl.DateTimeFormat("en-US",{timeZone:tz,year:"numeric",month:"numeric",day:"numeric"}).formatToParts(now),g=k=>+q.find(x=>x.type===k).value;
+  const set=sunAt(p.lat,p.lng,g("year"),g("month"),g("day"),90.833,false),dusk=sunAt(p.lat,p.lng,g("year"),g("month"),g("day"),96,false);
+  const f=ms=>new Intl.DateTimeFormat(lang==="es"?"es-US":"en-US",{timeZone:tz,hour:"numeric",minute:"2-digit"}).format(new Date(ms));
+  const lines=[];
+  if(set&&dusk){lines.push(`<p class="note">${t.condSun(f(set),f(dusk))}</p>`);if(p.f[3]<=2)lines.push(`<p class="note"><b>${t.condLight(f(dusk))}</b></p>`);}
+  const wx=`https://forecast.weather.gov/MapClick.php?lat=${p.lat}&lon=${p.lng}`;
+  return `<span class="status">${t.condH}</span>${lines.join("")}<p class="note">${t.condWet}</p><a href="${wx}" target="_blank" rel="noopener">${t.condWx}</a><p class="fine">${t.condFine}</p>`;
+}
 function renderPanel(){
   const p=state.sel;if(!p)return;const t=T();
   const dir=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n+" "+CN(p)+" County NC")}`;
@@ -1732,6 +1752,7 @@ function renderPanel(){
     <div class="factors">${t.FACT.map((f,k)=>`<div class="f"><span>${f}</span><span class="bar" aria-hidden="true"><i style="width:${p.f[k]*20}%"></i></span><b>${p.f[k]}/5</b></div>`).join("")}</div>
     <div class="layer">${evidBlock(p)}</div>
     <div class="layer go">${goBlock(p)}</div>
+    <div class="layer cond">${condBlock(p)}</div>
     <div class="layer">${ratingsBlock(p)}</div>
     <div class="layer">${formBlock(p)}</div>
     <a href="${dir}" target="_blank" rel="noopener">${t.dir}</a>`;
