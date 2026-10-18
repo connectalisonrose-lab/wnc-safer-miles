@@ -493,6 +493,21 @@ details.more p{margin:8px auto 0;max-width:72ch;text-align:left}
 .stats li{grid-template-rows:auto 1fr auto;padding:24px 28px}
 @media (max-width:900px){.stats li{grid-template-rows:none}}
 .why-more{margin-top:8px}
+.watch{display:grid;gap:var(--s2);justify-items:center}
+.vid{width:100%;max-width:820px;aspect-ratio:16/9;border-radius:var(--rad);overflow:hidden;border:1.5px solid var(--edge);background:linear-gradient(180deg,var(--sky1),var(--sky2));position:relative}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid-play{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center}
+.vid-play svg.bg{position:absolute;inset:0;width:100%;height:100%}
+.vid-btn{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:50%;background:var(--accent);color:var(--bg);box-shadow:0 12px 30px -10px color-mix(in srgb,var(--ink) 45%,transparent)}
+.vid-btn svg{width:36px;height:36px;margin-left:5px}
+.vid-cap{position:relative;font-weight:700;font-size:20px;color:var(--ink);background:color-mix(in srgb,var(--surface) 88%,transparent);padding:8px 18px;border-radius:999px}
+.vid-play:hover .vid-btn{transform:scale(1.05)}
+.vid-play:focus-visible{outline:4px solid var(--ink);outline-offset:-8px}
+.vid-note{text-align:center;max-width:62ch;margin:0 auto;font-size:16px}
+.vid-tr{width:100%;max-width:820px}
+.vid-tr>.vid-text{margin:var(--s2) var(--s3) var(--s3);display:grid;gap:12px;max-width:68ch}
+.vid-tr>.vid-text p{margin:0}
+@media (prefers-reduced-motion:reduce){.vid-play:hover .vid-btn{transform:none}}
 .tip.help>.note{text-align:center;max-width:76ch;margin-inline:auto}
 .tip.help .lines-h{margin-top:16px}
 p,small,li,.note{text-wrap:pretty}
@@ -753,6 +768,34 @@ body{letter-spacing:-.003em}
       <li data-i18n="st2"><b>92%</b><span>of women runners have safety concerns about running outside, and 51% fear being physically attacked, compared with 28% of men.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">adidas and White Ribbon survey, 2023 ↗</a></li>
     </ul>
     <p class="note why-more" data-i18n="whyMore">The six factors behind each score come from decades of research on how places feel to women. <a href="#research">See the research</a></p>
+  </section>
+
+  <section class="watch" id="watch" aria-labelledby="watchH">
+    <div class="tips-head">
+      <div class="eyebrow" data-i18n="vidEyebrow">Watch</div>
+      <h2 id="watchH" data-i18n="vidH">Take your miles back</h2>
+      <p class="note" data-i18n="vidIntro">A two-minute story about why this map exists, and how you can help it grow.</p>
+    </div>
+    <div class="vid" id="vid" data-src="https://app.colossyan.com/embed/c80ba9e5-d7b1-44c7-8c4a-122c2da4c28e">
+      <button type="button" class="vid-play" id="vidPlay" aria-label="Play the video: Take your miles back, about two minutes, in English" data-i18n-aria="vidAria">
+        <svg class="bg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path style="fill:var(--r1)" d="M0 250 Q120 150 240 210 T480 190 T800 230 V450 H0Z"/><path style="fill:var(--r2)" d="M0 320 Q200 240 400 300 T800 290 V450 H0Z"/><path style="fill:var(--r3)" d="M0 390 Q250 340 500 385 T800 370 V450 H0Z"/></svg>
+        <span class="vid-btn" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="vid-cap" data-i18n="vidPlay">Play the video</span>
+      </button>
+    </div>
+    <p class="note vid-note" data-i18n="vidNote">The video loads from our video host, Colossyan, only when you press play. It is in English.</p>
+    <details class="fold vid-tr">
+      <summary><h2 data-i18n="vidTrH">Read the video as text</h2><span class="fold-hint" data-i18n="vidTrShow">Show the text</span></summary>
+      <div class="vid-text" lang="en">
+        <p>Before I lace up, I do a different kind of math. Is it light out? Who’s around? Do I have signal? That’s a lot of cardio before the cardio.</p>
+        <p>Over half of American women are afraid to walk alone at night near home. Nine in ten women runners carry safety concerns. Most of us do that math alone, every run. What if we didn’t?</p>
+        <p>I’m a psychology student, and I keep asking one question: what helps a body feel safe? Some of it lives in the place. Lighting. Sightlines. Other people on the path. A trailhead you can see from the parking lot.</p>
+        <p>So I built WNC Safer Miles: a free community map of ninety parks, greenways and trails across six Western North Carolina counties. It rates places, never people. No police data. No names.</p>
+        <p>Here’s the part I love: it isn’t mine. Every rating is a gift to the next woman. The Cherokee word gadugi means working together, and it’s the idea underneath all of this. Rate a place you know. Suggest one we missed. Walk it with your run club.</p>
+        <p>Is it perfect? No. The scores start from public evidence, not site visits, and your ratings correct them. It shows the fewest known risk factors, which is not the same as safe. Honest beats impressive.</p>
+        <p>Safe shouldn’t be something we find alone. Fear has taken enough of our miles. Take them back. Rate your favorite loop this week. Add a place we missed. Send this to a friend who runs alone. The more we use it, the more we know. Tap the button, and take your miles back.</p>
+      </div>
+    </details>
   </section>
 
   <section class="rooted" id="rooted">
@@ -1443,6 +1486,14 @@ const L={
   whyIntro:"Si alguna vez ha cambiado su ruta, su horario o su ropa para sentirse más segura afuera, la investigación muestra que la mayoría de las mujeres también lo ha hecho.",
   st1:`<b>53%</b><span>de las mujeres en EE. UU. dice que tendría miedo de caminar sola de noche a menos de una milla de su casa, cerca del doble que los hombres (26%).</span><a href="https://news.gallup.com/poll/544415/personal-safety-fears-three-decade-high.aspx" target="_blank" rel="noopener">Gallup, 2023 ↗</a>`,
   st2:`<b>92%</b><span>de las mujeres que corren tiene preocupaciones de seguridad al correr al aire libre, y el 51% teme ser atacada físicamente, frente al 28% de los hombres.</span><a href="https://www.foxbusiness.com/lifestyle/92-of-women-runners-say-concerned-safety-outdoor-runs-survey" target="_blank" rel="noopener">Encuesta de adidas y White Ribbon, 2023 ↗</a>`,
+  vidEyebrow:"Ver",
+  vidH:"Recupere sus millas",
+  vidIntro:"Una historia de dos minutos sobre por qué existe este mapa y cómo puede ayudar a que crezca.",
+  vidPlay:"Reproducir el video",
+  vidAria:"Reproducir el video: Recupere sus millas, unos dos minutos, en inglés",
+  vidNote:"El video se carga desde nuestro proveedor de video, Colossyan, solo cuando usted presiona reproducir. Está en inglés.",
+  vidTrH:"Leer el video como texto",
+  vidTrShow:"Mostrar el texto",
   whyMore:`Los seis factores detrás de cada puntaje vienen de décadas de investigación sobre cómo perciben las mujeres los lugares. <a href="#research">Vea la investigación</a>`,
   resH:"La investigación detrás",
   resBody:`<p class="note">Las auditorías de seguridad de las mujeres comenzaron en Toronto en 1989, creadas por METRAC (el Comité de Acción de Toronto contra la Violencia hacia Mujeres y Niños). Las mujeres recorren un lugar juntas y anotan lo que lo hace sentir inseguro, como poca iluminación o falta de letreros. ONU-Hábitat comparte hoy el método como herramienta para las ciudades. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">Guía de ONU-Hábitat ↗</a></p><p class="note">Bonnie Fisher y Jack Nasar encontraron que el miedo es mayor donde alguien podría esconderse, donde no se ve lejos y donde no hay una salida fácil (<i>Environment and Behavior</i>, 1992). Por eso la visibilidad abierta vale una quinta parte de cada puntaje. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Resumen del estudio ↗</a></p><p class="note">El acoso también es común: el 84% de las mujeres en una encuesta de Runner's World a más de 5,000 corredores dijo haber sufrido acoso mientras corría. <a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Vía CBC News ↗</a></p><p class="note">Este mapa convierte esas mismas preguntas en seis factores y luego pide a las mujeres de la zona que los confirmen o corrijan. Sus calificaciones son parte de la evidencia.</p>`,
@@ -1502,6 +1553,15 @@ function applyStatic(){
   const b=document.getElementById("langbtn");b.textContent=T().btn;b.setAttribute("lang",T().btnLang);
   b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
 }
+(function(){const box=document.getElementById("vid"),btn=document.getElementById("vidPlay");if(!box||!btn)return;
+  btn.addEventListener("click",()=>{
+    const f=document.createElement("iframe");
+    f.src=box.dataset.src;f.title=lang==="es"?"Video: Recupere sus millas (en inglés)":"Video: Take your miles back";
+    f.setAttribute("allow","autoplay; fullscreen; picture-in-picture");f.setAttribute("allowfullscreen","");f.setAttribute("loading","lazy");
+    f.setAttribute("referrerpolicy","no-referrer-when-downgrade");
+    btn.remove();box.appendChild(f);f.focus();
+  });
+})();
 document.getElementById("langbtn").addEventListener("click",()=>{
   lang=lang==="en"?"es":"en";
   try{localStorage.setItem("sm-lang",lang);}catch(e){}
