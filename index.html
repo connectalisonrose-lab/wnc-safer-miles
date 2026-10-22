@@ -62,8 +62,11 @@
 .stats span{font-size:17px;line-height:1.55}
 .stats a{font-size:14px}
 .why-more{text-align:center;margin:0 auto;max-width:68ch}
-#research [data-i18n=resBody]{display:grid;gap:12px}
-#research p.note{margin:0;max-width:72ch}
+#research [data-i18n=resBody],#health [data-i18n=hlBody]{display:grid;gap:12px}
+#research p.note,#health p.note{margin:0;max-width:72ch}
+.howto .panels>#health ul.note{margin:0;padding:0;list-style:none;columns:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:none}
+.howto .panels>#health ul.note li{margin:0;border-radius:12px;padding:14px 18px;text-align:left;font-weight:400;line-height:1.55;font-size:16px;color:var(--ink)}
+.howto .panels>#health ul.note li b{display:block;color:var(--accent);margin-bottom:4px}
 @media (max-width:900px){.stats{grid-template-columns:1fr;gap:12px}.stats li{padding:14px 16px;grid-template-columns:auto 1fr;justify-items:start;align-items:center;text-align:left;gap:4px 16px}.stats b{grid-row:span 2;font-size:34px}.stats span{font-size:16px}}
 .howto h2{text-align:center}
 .mapbox,.main>*{min-width:0}
@@ -803,8 +806,8 @@ body{letter-spacing:-.003em}
     <div class="rooted-grid">
       <div>
         <p class="term" lang="chr-Latn">gadugi</p>
-        <p class="sub" data-i18n="rootS1">Tsalagi (Cherokee)<br>working together · said ga-doo-gee</p>
-        <p class="body" data-i18n="rootP1">This map sits on Tsalagi homelands, still home to the Eastern Band of Cherokee Indians. <strong>Gadugi</strong> is the Cherokee tradition of people turning out together to help a neighbor plant, harvest or get through hard times. Each rating is a small part of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
+        <p class="sub" data-i18n="rootS1">Cherokee<br>working together for others' good · said ga-doo-gee</p>
+        <p class="body" data-i18n="rootP1">This map sits on the homelands of the Aniyunwiya, the Principal People, the people of Kituwah, still home to the Eastern Band of Cherokee Indians. As Cherokee elder and linguist Thomas N. Belt describes it, <strong>gadugi</strong> means always looking to benefit others: joining together and working together for one another's good. It reaches into the cycles of life and ceremony, and even into how living things work, in unison, each sustaining the other. Each rating is a small part of that work: one woman's experience, offered so the next woman can go out knowing more and fearing less.</p>
       </div>
       <div>
         <p class="term">orenda</p>
@@ -812,14 +815,14 @@ body{letter-spacing:-.003em}
         <p class="body" data-i18n="rootP2"><strong>Orenda</strong> comes from the Haudenosaunee peoples, and is offered here by someone learning her own family's Haudenosaunee line. It names the power every living being holds. Fear takes some of that power away by narrowing where women go and how fully they live in their own bodies. This map exists to give some of it back, together.</p>
       </div>
     </div>
-    <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. They are awaiting review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
+    <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. The meaning of gadugi here follows Thomas N. Belt (Cherokee Nation) in Lisa J. Lefler and Thomas N. Belt, <i>Sounds of Tohi: Cherokee Health and Well-Being in Southern Appalachia</i> (University of Alabama Press), shared with this project by a member of the community. Both words remain open to review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
   </section>
 
   <div class="duo zone">
   <section class="together" id="together" aria-labelledby="tgH">
     <details class="fold" id="tgFold">
       <summary><h2 id="tgH" data-i18n="tgH">Better, together</h2><span class="fold-hint" data-i18n="tgShow">Why community works, and four ways to help</span></summary>
-      <p class="note tg-intro" data-i18n="tgIntro">This map works the way <a href="#rooted">gadugi</a> does: people turning out together to do what no one could do alone. Every rating and suggestion makes it a little truer for the next woman.</p>
+      <p class="note tg-intro" data-i18n="tgIntro">This map works the way <a href="#rooted">gadugi</a> does: people joining together for one another's good, doing what no one could do alone. Every rating and suggestion makes it a little truer for the next woman.</p>
     <div class="tg">
       <div class="tg-why">
         <h3 data-i18n="tgWhyH">Why together works</h3>
@@ -844,13 +847,14 @@ body{letter-spacing:-.003em}
 
   <section class="howto" id="how" aria-labelledby="howToH">
     <details class="fold" id="howFold">
-    <summary><h2 id="howToH" data-i18n="howToH">How this map works</h2><span class="fold-hint" data-i18n="howShow">Scores, the no-police-data rule and the research</span></summary>
+    <summary><h2 id="howToH" data-i18n="howToH">How this map works</h2><span class="fold-hint" data-i18n="howShow">Scores, the no-police-data rule, the research and health in two languages</span></summary>
     <div class="tabs" data-tabs>
       <div class="tablist" role="tablist" aria-label="How this map works" data-i18n-aria="howToH">
         <button type="button" role="tab" id="tab-hw-score" aria-controls="hw-score" aria-selected="true" tabindex="0" data-i18n="howH">How the score works</button>
         <button type="button" role="tab" id="tab-hw-police" aria-controls="hw-police" aria-selected="false" tabindex="-1" data-i18n="polH">No police data</button>
         <button type="button" role="tab" id="tab-hw-wont" aria-controls="hw-wont" aria-selected="false" tabindex="-1" data-i18n="wontH">What this map won't do</button>
         <button type="button" role="tab" id="tab-research" aria-controls="research" aria-selected="false" tabindex="-1" data-i18n="resH">The research behind it</button>
+        <button type="button" role="tab" id="tab-health" aria-controls="health" aria-selected="false" tabindex="-1" data-i18n="hlH">Health, in two languages</button>
       </div>
       <div class="panels">
         <div class="tip on" id="hw-score" role="tabpanel" aria-labelledby="tab-hw-score" tabindex="0">
@@ -883,6 +887,19 @@ body{letter-spacing:-.003em}
         <p class="note">Bonnie Fisher and Jack Nasar found that fear runs highest where someone could hide, where you can't see far ahead and where there is no easy way out (<i>Environment and Behavior</i>, 1992). That is why open sightlines carry a fifth of every score. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Study summary ↗</a></p>
         <p class="note">Harassment is common, too: 84% of women in a Runner's World survey of more than 5,000 runners said they had been harassed while running. <a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Via CBC News ↗</a></p>
         <p class="note">This map turns those same questions into six factors, then asks local women to confirm or correct them. Your ratings are part of the evidence.</p>
+      </div>
+        </div>
+        <div class="tip" id="health" role="tabpanel" aria-labelledby="tab-health" tabindex="0">
+      <h3 data-i18n="hlH">Health, in two languages</h3>
+      <div data-i18n="hlBody">
+        <p class="note">Cherokee knowledge comes first here. <b lang="chr-Latn">Tohi</b> (ᏙᎯ, said tow-hee) is the Kituwah word for health. In <i>Sounds of Tohi</i>, Cherokee elder and linguist Thomas N. Belt and medical anthropologist Lisa J. Lefler describe health that cannot be pulled apart from land, language and community. As Belt explains gadugi, working for one another's good reaches all the way into how living things work together.</p>
+        <p class="note">Western health science arrived at part of this in the biopsychosocial model (George Engel, 1977): body, mind and community shape one another. This map draws on all three.</p>
+        <ul class="note">
+          <li><b>Body.</b> Your body's read on a place is information, and that is what a rating records. Exercising with others and time outdoors both show measurable benefits (Yorks and colleagues, 2017; White and colleagues, 2019).</li>
+          <li><b>Mind.</b> Fear narrows where women go and how fully they live in their bodies, the loss <a href="#rooted">orenda</a> names. Open sightlines and ways out ease it (Fisher and Nasar, 1992).</li>
+          <li><b>Community.</b> Places are safer where people look out for one another (Sampson, Raudenbush and Earls, 1997). Each rating is that care, offered at the scale of the land.</li>
+        </ul>
+        <p class="note">Linking tohi and gadugi to the biopsychosocial model is this project's own reading, not Dr. Belt's or Dr. Lefler's, and it is part of the cultural review still underway.</p>
       </div>
         </div>
       </div>
@@ -1466,9 +1483,9 @@ const L={
   polH:"Sin datos policiales",
   polP:"Este mapa no usa datos policiales ni de delitos. Los conteos de incidentes muestran sobre todo dónde patrulla la policía y qué se denuncia, la mayor parte del acoso en los senderos nunca se denuncia, y los mapas de delitos pueden hacer que un lugar parezca más peligroso, o más seguro, de lo que se siente para una mujer sola. La única excepción es un incidente violento grave en un lugar específico, como una agresión o un ataque en un sendero, confirmado por un aviso oficial o por noticias locales confiables. Después de revisarlo, puede aparecer en ese lugar como una alerta con fecha y fuente. Las alertas nunca cambian el puntaje y se retiran 12 meses después del incidente.",
   tgH:"Mejor, juntas",
-  howShow:"Puntajes, la regla de no usar datos policiales y la investigación",
+  howShow:"Puntajes, la regla de no usar datos policiales, la investigación y la salud en dos lenguas",
   tgShow:"Por qué funciona la comunidad, y cuatro formas de ayudar",
-  tgIntro:`Este mapa funciona como el <a href="#rooted">gadugi</a>: gente que se reúne para hacer lo que nadie podría hacer sola. Cada calificación y cada sugerencia lo hacen un poco más fiel para la siguiente mujer.`,
+  tgIntro:`Este mapa funciona como el <a href="#rooted">gadugi</a>: gente que se une por el bien de los demás para hacer lo que nadie podría hacer sola. Cada calificación y cada sugerencia lo hacen un poco más fiel para la siguiente mujer.`,
   tgWhyH:"Por qué funciona hacerlo juntas",
   tgWhy:`<li><b>La fuerza está en el grupo</b>Los barrios donde la gente confía entre sí y está dispuesta a intervenir por los demás tienen menos violencia. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush y Earls, <i>Science</i>, 1997 ↗</a></small></li><li><b>Moverse juntas calma el cuerpo</b>En un estudio pequeño, quienes hicieron ejercicio en grupo redujeron su estrés un 26%; quienes lo hicieron solos no tuvieron un cambio real. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks y colegas, 2017 ↗</a></small></li><li><b>Vale la pena proteger el tiempo afuera</b>Las personas que pasaron al menos dos horas a la semana en la naturaleza, en una visita o en varias, tenían más probabilidad de reportar buena salud y bienestar. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White y colegas, <i>Scientific Reports</i>, 2019 ↗</a></small></li>`,
   tgHowH:"Cuatro formas de mejorarlo",
@@ -1489,6 +1506,15 @@ const L={
   vidTrShow:"Mostrar el texto",
   whyMore:`Los seis factores detrás de cada puntaje vienen de décadas de investigación sobre cómo perciben las mujeres los lugares. <a href="#research">Vea la investigación</a>`,
   resH:"La investigación detrás",
+  hlH:"La salud, en dos lenguas",
+  hlBody:`<p class="note">Aquí el conocimiento cherokee va primero. <b lang="chr-Latn">Tohi</b> (ᏙᎯ, se dice tou-ji) es la palabra kituwah para la salud. En <i>Sounds of Tohi</i>, Thomas N. Belt, anciano y lingüista cherokee, y la antropóloga médica Lisa J. Lefler describen una salud que no se puede separar de la tierra, la lengua y la comunidad. Tal como Belt explica el gadugi, trabajar por el bien de los demás llega hasta la forma en que los seres vivos funcionan juntos.</p>
+        <p class="note">La ciencia de la salud occidental llegó a una parte de esto con el modelo biopsicosocial (George Engel, 1977): el cuerpo, la mente y la comunidad se moldean entre sí. Este mapa se apoya en los tres.</p>
+        <ul class="note">
+          <li><b>Cuerpo.</b> Lo que su cuerpo percibe de un lugar es información, y eso es lo que registra una calificación. Hacer ejercicio con otras personas y pasar tiempo al aire libre tienen beneficios medibles (Yorks y colegas, 2017; White y colegas, 2019).</li>
+          <li><b>Mente.</b> El miedo limita adónde van las mujeres y qué tan plenamente viven en su cuerpo, la pérdida que nombra el <a href="#rooted">orenda</a>. La buena visibilidad y las salidas fáciles lo alivian (Fisher y Nasar, 1992).</li>
+          <li><b>Comunidad.</b> Los lugares son más seguros donde la gente se cuida entre sí (Sampson, Raudenbush y Earls, 1997). Cada calificación es ese cuidado, a la escala de la tierra.</li>
+        </ul>
+        <p class="note">Relacionar tohi y gadugi con el modelo biopsicosocial es una lectura propia de este proyecto, no del Dr. Belt ni de la Dra. Lefler, y forma parte de la revisión cultural que sigue en curso.</p>`,
   resBody:`<p class="note">Las auditorías de seguridad de las mujeres comenzaron en Toronto en 1989, creadas por METRAC (el Comité de Acción de Toronto contra la Violencia hacia Mujeres y Niños). Las mujeres recorren un lugar juntas y anotan lo que lo hace sentir inseguro, como poca iluminación o falta de letreros. ONU-Hábitat comparte hoy el método como herramienta para las ciudades. <a href="https://unhabitat.org/sites/default/files/download-manager-files/1404462831wpdm_Women%27s%20Safety%20Audit.pdf" target="_blank" rel="noopener">Guía de ONU-Hábitat ↗</a></p><p class="note">Bonnie Fisher y Jack Nasar encontraron que el miedo es mayor donde alguien podría esconderse, donde no se ve lejos y donde no hay una salida fácil (<i>Environment and Behavior</i>, 1992). Por eso la visibilidad abierta vale una quinta parte de cada puntaje. <a href="https://www.ojp.gov/ncjrs/virtual-library/abstracts/fear-crime-relation-three-exterior-site-features-prospect-refuge" target="_blank" rel="noopener">Resumen del estudio ↗</a></p><p class="note">El acoso también es común: el 84% de las mujeres en una encuesta de Runner's World a más de 5,000 corredores dijo haber sufrido acoso mientras corría. <a href="https://www.cbc.ca/1.5289133" target="_blank" rel="noopener">Vía CBC News ↗</a></p><p class="note">Este mapa convierte esas mismas preguntas en seis factores y luego pide a las mujeres de la zona que los confirmen o corrijan. Sus calificaciones son parte de la evidencia.</p>`,
   wontH:"Lo que este mapa no hace",
   fact1:"<strong>Un piloto comunitario</strong>Los puntajes empiezan como estimaciones y mejoran a medida que las mujeres califican los lugares que usan.",
@@ -1505,7 +1531,7 @@ const L={
   p4T:"Cómo funciona el mapa",p4D:"Los puntajes y lo que este mapa no hará",
   navAria:"En esta página",navMap:"Mapa",navSafety:"Seguridad y ayuda",navWhy:"Por qué importa",navRooted:"Raíces",navTogether:"Participe",navHow:"Cómo funciona",
   moreS:"Más sobre este piloto",
-  rootS1:"Tsalagi (cherokee)<br>trabajar juntos · se dice ga-du-gui",
+  rootS1:"Cherokee<br>trabajar juntos por el bien de los demás · se dice ga-du-gui",
   rootS2:"Haudenosaunee<br>el poder que tiene todo ser vivo",
   lgClosed:"Cerrado o sin confirmar (×)",
   rootH:"Arraigado en esta tierra",
@@ -1516,8 +1542,8 @@ const L={
   listShow:"Ver todos los lugares en una lista",
   tipsTabs:"Consejos de seguridad",
   howToH:"Cómo funciona este mapa",
-  rootP1:"Este mapa está en tierras tsalagi, todavía hogar de la Banda Oriental de Indios Cherokee. El <strong>gadugi</strong> es la tradición cherokee de reunirse para ayudar a un vecino a sembrar, cosechar o pasar tiempos difíciles. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, para que la siguiente salga sabiendo más y con menos miedo.",
-  rootReview:"Ambas palabras se comparten con respeto, por alguien que no es cherokee y que todavía está aprendiendo sobre sus raíces haudenosaunee. Están en espera de revisión por parte de personas cherokee y haudenosaunee que guardan este conocimiento, y se cambiarán si así lo piden.",
+  rootP1:"Este mapa está en las tierras ancestrales de los aniyunwiya, el Pueblo Principal, el pueblo de Kituwah, todavía hogar de la Banda Oriental de Indios Cherokee. Como lo describe Thomas N. Belt, anciano y lingüista cherokee, el <strong>gadugi</strong> significa buscar siempre el bien de los demás: unirse y trabajar juntos por el bien de todos. Alcanza los ciclos de la vida y la ceremonia, e incluso la forma en que funcionan los seres vivos, en unísono, sosteniéndose unos a otros. Cada calificación es una pequeña parte de ese trabajo: la experiencia de una mujer, para que la siguiente salga sabiendo más y con menos miedo.",
+  rootReview:"Ambas palabras se comparten con respeto, por alguien que no es cherokee y que todavía está aprendiendo sobre sus raíces haudenosaunee. El sentido de gadugi aquí sigue a Thomas N. Belt (Nación Cherokee) en Lisa J. Lefler y Thomas N. Belt, <i>Sounds of Tohi: Cherokee Health and Well-Being in Southern Appalachia</i> (University of Alabama Press), que una persona de la comunidad compartió con este proyecto. Ambas palabras siguen abiertas a revisión por parte de personas cherokee y haudenosaunee que guardan este conocimiento, y cambiarán si así lo piden.",
   draftNote:"Esta versión en español es un borrador hecho con IA y está en revisión por hablantes nativas. Si algo no se entiende bien, la versión en inglés es la de referencia.",
   rootP2:"El <strong>orenda</strong> viene de los pueblos haudenosaunee, y lo comparte aquí alguien que aprende sobre la línea haudenosaunee de su familia. Nombra el poder que tiene todo ser vivo. El miedo le quita parte de ese poder al limitar a dónde van las mujeres y qué tan plenamente viven en su propio cuerpo. Este mapa existe para devolver algo de ese poder, juntas.",
   wontP:"Califica lugares, nunca personas. No muestra quién corre dónde, cuándo va alguien ni ubicaciones en tiempo real, así que no se puede usar para encontrar a una mujer sola. Las calificaciones se guardan sin nombres y la página solo muestra puntajes, cantidades y etiquetas, nunca quién calificó.",
