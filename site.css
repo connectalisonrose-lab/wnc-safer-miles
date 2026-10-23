@@ -741,3 +741,5 @@ html{scroll-padding-top:84px}
 .vid-tr>.vid-text{margin:var(--s2) auto var(--s3);max-width:64ch;padding-inline:var(--s3)}
 /* A tab card is now as tall as the tab you are reading, not as tall as the longest one */
 #safety .panels>[role=tabpanel]:not(.on),.howto .panels>[role=tabpanel]:not(.on){display:none}
+/* Tip cards size to their own content, so a long one does not leave voids beside it */
+#safety .panels>[role=tabpanel] ul{align-items:flex-start}
