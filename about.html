@@ -22,223 +22,29 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-<style>
-/* WNC Safer Miles — design system (Oct 2026)
-   Calm and legible first. One typeface, Lexend, designed to make reading easier and faster (chosen by Alison Oct 17, 2026).
-   Palette: blush cream neutrals, dusty rose accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
-:root{
-  --bg:#fbf5f3; --surface:#ffffff; --band:#f6e6e4; --ink:#231a1f; --muted:#54444a; --line:#dcc3c6;
-  --edge:#8a6a74; --tint:#f7e4e8;
-  --land:#f5e7e3; --river:#5b8da3; --accent:#872f4b;
-  --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
-  --font:"Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --display:var(--font); --body:var(--font); --mono:var(--font);
-  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:72px;
-  --r:12px; --max:1120px; --gut:24px;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
-  --edge:#9c8089; --tint:#33252b;
-  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
-  --edge:#9c8089; --tint:#33252b;
-  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--font);font-variant-numeric:tabular-nums}
-.wrap{max-width:var(--max);margin:0 auto;padding:var(--s4) var(--gut) var(--s5);display:grid;gap:var(--s5)}
-@media (max-width:640px){:root{--gut:16px;--s5:48px}.wrap{padding-top:var(--s3)}}
-h1,h2,h3{font-family:var(--font);font-weight:700;margin:0;line-height:1.2;text-wrap:balance}
-h1{font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.015em}
-h2{font-size:clamp(25px,3.4vw,31px)}
-h3{font-size:21px}
-p{margin:0;max-width:64ch}
-a{color:var(--accent);font-weight:700;text-underline-offset:3px;text-decoration-thickness:1.5px}
-strong,b{font-weight:700}
-button{font-family:var(--font)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:8px;z-index:10}
-.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
-.note,.hint{color:var(--muted);font-size:17px}
-.fine{color:var(--muted);font-size:15px}
-.section-head{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
-
-/* ---------- Header ---------- */
-header{display:grid;gap:var(--s3)}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.eyebrow{font-size:16px;color:var(--muted)}
-.tools{display:flex;gap:var(--s1);flex-wrap:wrap}
-.langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);cursor:pointer}
-.sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.title{display:grid;gap:var(--s2)}
-header .lede{font-size:clamp(19px,2.2vw,22px);line-height:1.55;max-width:46ch}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);list-style:none;margin:0;padding:0}
-@media (max-width:820px){.facts{grid-template-columns:1fr}}
-.facts li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) 20px;font-size:16px;line-height:1.55}
-.facts li strong{display:block;font-size:18px;margin-bottom:2px}
-details.more{font-size:16px;color:var(--muted)}
-details.more summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:44px;display:inline-flex;align-items:center}
-details.more p{margin-top:var(--s1);max-width:72ch}
-
-/* ---------- Map + panel ---------- */
-.toolbar{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:var(--s2);align-items:end;margin-bottom:var(--s2)}
-@media (max-width:820px){.toolbar{grid-template-columns:1fr}}
-.pick{display:grid;gap:6px;font-weight:700;font-size:16px}
-.pick select{font:400 17px var(--font);min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
-.filters{display:flex;flex-wrap:wrap;gap:var(--s1)}
-.main{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s3);align-items:start}
-@media (max-width:900px){.main{grid-template-columns:1fr}}
-.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2);display:grid;gap:var(--s2);min-width:0}
-.mapbox .hint{font-size:15px}
-svg.map{width:100%;height:auto;display:block}
-.county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
-.river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.town{font:400 22px var(--font);fill:var(--muted)}
-.pin{cursor:pointer}
-.pin .dot{stroke:var(--surface);stroke-width:3}
-.pin.sel .dot{stroke:var(--ink);stroke-width:4}
-.pin .num{font:700 17px var(--font);fill:var(--surface);pointer-events:none}
-.pin .lbl{font:700 20px var(--font);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:6px;stroke-linejoin:round;pointer-events:none}
-.pin.dim{opacity:.25;pointer-events:none}
-@media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
-.legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);font-size:15px}
-.legend>span{display:inline-flex;align-items:center;gap:8px}
-.sw{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none}
-
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:var(--s2);min-width:0;scroll-margin-top:var(--s2)}
-@media (min-width:901px){.panel{position:sticky;top:var(--s2);max-height:calc(100vh - 32px);overflow:auto}}
-.panel>.eyebrow{font-size:15px}
-.panel h2{font-size:28px}
-.scoreline{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.score{font:700 52px/1 var(--font)}
-.band{font:700 15px var(--font);padding:5px 14px;border-radius:999px;color:var(--ink)}
-.b-strong{background:color-mix(in srgb,var(--strong) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--strong)}
-.b-mixed{background:color-mix(in srgb,var(--mixed) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--mixed)}
-.b-caution{background:color-mix(in srgb,var(--caution) 16%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--caution)}
-.factors{display:grid;gap:10px}
-.f{display:grid;grid-template-columns:132px 1fr 36px;gap:12px;align-items:center;font-size:16px}
-.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--accent);border-radius:5px}
-.f b{text-align:right;font-size:16px}
-.layer{border-top:1px solid var(--line);padding-top:var(--s2);display:grid;gap:var(--s1)}
-.layer .status{font-weight:700;font-size:17px}
-.layer ul{margin:0;padding-left:20px;display:grid;gap:6px}
-.mini{font:700 32px/1 var(--font)}
-.mini small{font-size:16px;color:var(--muted)}
-.tags{display:flex;flex-wrap:wrap;gap:var(--s1)}
-.tag{font-size:15px;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
-.tag b{margin-left:4px}
-.warn{border-left:4px solid var(--caution);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;background:color-mix(in srgb,var(--caution) 9%,var(--surface))}
-.warn b{display:block}
-.save{display:inline-flex;align-items:center;justify-self:start;font:700 17px var(--font);min-height:52px;padding:12px 24px;border-radius:10px;background:var(--accent);color:var(--surface);text-decoration:none}
-
-/* ---------- Places list ---------- */
-.list{columns:2 360px;column-gap:var(--s3)}
-.list .area{font:700 18px var(--font);margin:var(--s3) 0 var(--s1);padding:0;color:var(--ink);break-after:avoid}
-.list .area:first-child{margin-top:0}
-.row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:var(--s2);align-items:center;width:100%;padding:12px 16px;margin-bottom:var(--s1);background:var(--surface);border:1px solid var(--line);border-radius:10px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;break-inside:avoid}
-.row:hover,.row.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.row .n{font-weight:700;color:var(--muted)}
-.row .nm{font-weight:700}
-.row .ty{display:block;font-size:15px;color:var(--muted);font-weight:400}
-.row .sc{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
-
-/* ---------- Tips ---------- */
-.tips-head .eyebrow{display:none}
-.tip-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2)}
-.tip{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:12px;align-content:start;min-width:0}
-.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}
-.tip.help{grid-column:1/-1}
-@media (max-width:980px){.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}.tip:nth-child(5){grid-column:1/-1}}
-@media (max-width:640px){.tip-grid{grid-template-columns:1fr}.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:auto}}
-.tip ul{margin:0;padding-left:20px;display:grid;gap:12px}
-.tip.help{background:var(--band);border-color:transparent}
-.tip .lines{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:var(--s4);gap:0 var(--s4)}
-.tip .lines li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-.tip .lines span{display:grid;flex:1 1 200px;font-weight:700;font-size:17px}
-.tip .lines small{font-weight:400;color:var(--muted);font-size:15px}
-.tip .lines a{font:700 18px var(--font);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:10px 18px;min-height:44px;min-width:76px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
-
-/* ---------- Rooted (the one bold moment) ---------- */
-.rooted{background:var(--band);border-radius:var(--r);padding:var(--s4) clamp(20px,4vw,48px);display:grid;gap:var(--s3)}
-.rooted-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
-@media (max-width:760px){.rooted-grid{grid-template-columns:1fr;gap:var(--s3)}}
-.rooted .term{font:700 clamp(40px,6vw,60px)/1 var(--font);color:var(--accent);letter-spacing:-.01em}
-.rooted .sub{font-size:16px;color:var(--muted);margin:6px 0 var(--s2)}
-.rooted p.body{font-size:18px;line-height:1.7}
-
-/* ---------- Explainers ---------- */
-.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
-@media (max-width:900px){.cols{grid-template-columns:1fr;gap:var(--s3)}}
-.cols section{display:grid;gap:var(--s1);align-content:start;border-top:2px solid var(--ink);padding-top:var(--s2)}
-.cols ul{margin:0;padding-left:20px;display:grid;gap:4px}
-
-footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted);display:grid;gap:var(--s1)}
-
-.qexit{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:700 16px var(--font);min-height:48px;padding:10px 20px;border-radius:999px;border:2px solid var(--surface);background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:0 2px 10px color-mix(in srgb,var(--ink) 25%,transparent)}
-.qexit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.docfoot{padding-bottom:72px}
-
-/* ---------- Larger text ---------- */
-html[data-size="large"] .wrap{zoom:1.18}
-
-/* ---------- About page ---------- */
-.doc{max-width:760px}
-.doc article{display:grid;gap:var(--s4)}
-.doc section{display:grid;gap:12px}
-.doc h2{font-size:27px}
-.doc h3{font-size:20px}
-.doc p,.doc li{font-size:18px;line-height:1.75}
-.doc ul{margin:0;padding-left:22px;display:grid;gap:12px}
-.doc .lede{font-size:20px}
-.back{font-size:17px}
-.mail{font-weight:700;user-select:all}
-.docfoot{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted)}
-.docfoot p{font-size:15px}
-
-/* ---------- Oct 17 redesign: matches the map page ---------- */
-:root{--sky1:#eff1f9;--sky2:#f8e0e4;--r1:#ccd2e8;--r2:#dcc4d6;--r3:#e0b3c1}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}}
-:root[data-theme="dark"]{--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}
-html,body{overflow-x:clip}
-.wrap.doc{padding-top:0}
-.docband{position:relative;isolation:isolate;padding:24px 0 112px}
-.ridges .r1{opacity:.82}.ridges .r2{opacity:.94}
-.docband::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:linear-gradient(180deg,var(--sky1),var(--sky2));z-index:-2}
-.docband .ridges{position:absolute;bottom:-1px;left:calc(50% - 50vw);width:100vw;height:96px;z-index:-1;display:block}
-.ridges .r1{fill:var(--r1)}.ridges .r2{fill:var(--r2)}.ridges .r3{fill:var(--r3)}.ridges .r4{fill:var(--bg)}
-.docband .topbar{align-items:center}
-.doc article>.eyebrow,.doc article>h1,.doc article>.lede,.doc article>h1+.lede+.note{text-align:center;margin-inline:auto}
-.doc article>.eyebrow{font-weight:700}
-.doc article>.lede{max-width:56ch}
-.doc h1{font-size:clamp(36px,5.6vw,56px);letter-spacing:-.02em}
-.doc h2{font-size:clamp(25px,3vw,30px)}
-.doc section{padding-top:8px}
-.docfoot{text-align:center;border-top:1.5px solid var(--line)}
-.docfoot p{max-width:64ch;margin-inline:auto}
-p,li{text-wrap:pretty}
-@media (max-width:640px){.docband{padding-bottom:80px}.docband .ridges{height:64px}}
-/* Lexend: semibold headings and emphasis read softer than bold */
-h1,h2,h3,h4,b,strong{font-weight:600}
-body{letter-spacing:-.003em}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <a class="skip" href="#content" data-l="en">Skip to content</a>
 <a class="skip" href="#content" data-l="es" lang="es" hidden>Ir al contenido</a>
+<nav class="sitenav" aria-label="WNC Safer Miles">
+  <div class="sitenav-in">
+    <a class="brand" data-p="./" href="./">WNC Safer Miles</a>
+    <ul>
+        <li><a class="navlink" data-p="./" data-en="Map" data-es="Mapa" href="./">Map</a></li>
+        <li><a class="navlink nav-help" data-p="help.html" data-en="Safety and support" data-es="Seguridad y apoyo" href="help.html">Safety and support</a></li>
+        <li><a class="navlink" data-p="roots.html" data-en="Roots and land" data-es="Raíces y tierra" href="roots.html">Roots and land</a></li>
+        <li><a class="navlink" data-p="evidence.html" data-en="Evidence" data-es="Evidencia" href="evidence.html">Evidence</a></li>
+        <li><a class="navlink" data-p="watch.html" data-en="Watch" data-es="Video" href="watch.html">Watch</a></li>
+        <li><a class="navlink" data-p="about.html" data-en="About" data-es="Acerca de" href="about.html" aria-current="page">About</a></li>
+    </ul>
+    <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+  </div>
+</nav>
 <div class="wrap doc">
   <header class="docband">
     <div class="topbar">
-      <a class="back" href="./" data-l="en">← Back to the map</a>
-      <a class="back" href="./?lang=es" data-l="es" lang="es" hidden>← Volver al mapa</a>
-      <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+      <a class="back" data-p="./" href="./" data-en="← Back to the map" data-es="← Volver al mapa">← Back to the map</a>
     </div>
     <svg class="ridges" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="r1" d="M0 180 L0 57.4 Q0.0 57.4 30.0 51.3 Q60.0 45.3 90.0 50.6 Q120.0 55.9 150.0 57.0 Q180.0 58.1 210.0 63.1 Q240.0 68.0 270.0 61.8 Q300.0 55.7 330.0 64.5 Q360.0 73.4 390.0 80.8 Q420.0 88.2 450.0 93.1 Q480.0 97.9 510.0 94.2 Q540.0 90.5 570.0 77.7 Q600.0 64.9 630.0 66.2 Q660.0 67.5 690.0 64.0 Q720.0 60.5 750.0 63.2 Q780.0 65.8 810.0 57.2 Q840.0 48.7 870.0 46.8 Q900.0 44.9 930.0 53.8 Q960.0 62.8 990.0 70.4 Q1020.0 77.9 1050.0 87.1 Q1080.0 96.3 1110.0 87.9 Q1140.0 79.5 1170.0 80.4 Q1200.0 81.4 1230.0 80.3 Q1260.0 79.1 1290.0 80.6 Q1320.0 82.1 1350.0 76.9 Q1380.0 71.8 1410.0 58.2 L1440 44.6 L1440 180 Z"/><path class="r2" d="M0 180 L0 85.7 Q0.0 85.7 30.0 92.0 Q60.0 98.4 90.0 94.9 Q120.0 91.3 150.0 93.5 Q180.0 95.8 210.0 103.3 Q240.0 110.8 270.0 114.2 Q300.0 117.7 330.0 119.4 Q360.0 121.2 390.0 109.1 Q420.0 97.0 450.0 95.1 Q480.0 93.2 510.0 90.8 Q540.0 88.3 570.0 90.5 Q600.0 92.6 630.0 90.3 Q660.0 87.9 690.0 82.1 Q720.0 76.2 750.0 82.8 Q780.0 89.4 810.0 94.4 Q840.0 99.3 870.0 109.7 Q900.0 120.1 930.0 116.1 Q960.0 112.1 990.0 108.9 Q1020.0 105.8 1050.0 105.2 Q1080.0 104.6 1110.0 103.9 Q1140.0 103.1 1170.0 104.0 Q1200.0 104.8 1230.0 93.0 Q1260.0 81.2 1290.0 79.7 Q1320.0 78.1 1350.0 78.0 Q1380.0 78.0 1410.0 87.1 L1440 96.3 L1440 180 Z"/><path class="r3" d="M0 180 L0 119.8 Q0.0 119.8 30.0 125.1 Q60.0 130.4 90.0 132.5 Q120.0 134.7 150.0 139.8 Q180.0 144.9 210.0 137.9 Q240.0 131.0 270.0 125.6 Q300.0 120.2 330.0 118.0 Q360.0 115.7 390.0 115.7 Q420.0 115.6 450.0 118.4 Q480.0 121.2 510.0 115.3 Q540.0 109.5 570.0 112.0 Q600.0 114.4 630.0 116.9 Q660.0 119.5 690.0 127.9 Q720.0 136.4 750.0 138.7 Q780.0 141.1 810.0 136.4 Q840.0 131.8 870.0 130.9 Q900.0 130.0 930.0 126.9 Q960.0 123.9 990.0 127.3 Q1020.0 130.8 1050.0 124.4 Q1080.0 118.0 1110.0 113.7 Q1140.0 109.5 1170.0 108.1 Q1200.0 106.7 1230.0 110.5 Q1260.0 114.4 1290.0 122.6 Q1320.0 130.9 1350.0 129.2 Q1380.0 127.5 1410.0 129.5 L1440 131.4 L1440 180 Z"/><path class="r4" d="M0 180 L0 162.0 Q0.0 162.0 30.0 159.4 Q60.0 156.8 90.0 151.8 Q120.0 146.8 150.0 145.7 Q180.0 144.5 210.0 143.5 Q240.0 142.4 270.0 145.5 Q300.0 148.6 330.0 145.7 Q360.0 142.9 390.0 143.4 Q420.0 143.8 450.0 145.7 Q480.0 147.5 510.0 151.6 Q540.0 155.7 570.0 159.2 Q600.0 162.7 630.0 159.2 Q660.0 155.6 690.0 154.8 Q720.0 153.9 750.0 151.2 Q780.0 148.5 810.0 150.4 Q840.0 152.2 870.0 150.1 Q900.0 148.0 930.0 144.4 Q960.0 140.7 990.0 140.4 Q1020.0 140.0 1050.0 140.9 Q1080.0 141.9 1110.0 148.2 Q1140.0 154.5 1170.0 154.3 Q1200.0 154.1 1230.0 154.7 Q1260.0 155.3 1290.0 154.3 Q1320.0 153.3 1350.0 154.8 Q1380.0 156.2 1410.0 157.9 L1440 159.5 L1440 180 Z"/></svg>
   </header>
@@ -300,7 +106,7 @@ body{letter-spacing:-.003em}
     <section id="land-care">
       <h2>Caring for the land</h2>
       <p>This map rates places, and it also asks something of us in return. Gadugi, as Thomas N. Belt describes it, is not only people working for one another's good; it reaches into how living things sustain each other. And tohi, the Kituwah word for health, cannot be separated from the land it comes from. Reading those teachings out onto litter and trail care is this project's own extension of them, not Dr. Belt's or Dr. Lefler's, and it is part of the cultural review still underway.</p>
-      <p>There is a practical side too. Research on how places feel has found that visible neglect changes what people believe about a place: in one study, people shown litter in a park expected more trouble there and were likelier to think crime was getting worse, even though the park itself was unchanged (Medway, Parker and Roper, <i>Journal of Environmental Psychology</i>, 2016). Broken glass and dumping are real hazards as well, and they gather where nobody is watching. The practices on the <a href="index.html#land">Caring for the land</a> section of the map follow the <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">Leave No Trace principles</a>, kept by the Leave No Trace Center for Outdoor Ethics, written for a two-mile loop rather than a backcountry trip.</p>
+      <p>There is a practical side too. Research on how places feel has found that visible neglect changes what people believe about a place: in one study, people shown litter in a park expected more trouble there and were likelier to think crime was getting worse, even though the park itself was unchanged (Medway, Parker and Roper, <i>Journal of Environmental Psychology</i>, 2016). Broken glass and dumping are real hazards as well, and they gather where nobody is watching. The practices on the <a href="roots.html#land">Caring for the land</a> section of the map follow the <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">Leave No Trace principles</a>, kept by the Leave No Trace Center for Outdoor Ethics, written for a two-mile loop rather than a backcountry trip.</p>
     </section>
 
     <section id="safe-use">
@@ -393,7 +199,7 @@ body{letter-spacing:-.003em}
     <section id="land-care-es">
       <h2>Cuidar la tierra</h2>
       <p>Este mapa califica lugares y también pide algo a cambio. El gadugi, tal como lo describe Thomas N. Belt, no es solo gente trabajando por el bien de los demás: llega a la forma en que los seres vivos se sostienen unos a otros. Y el tohi, la palabra kituwah para la salud, no se puede separar de la tierra de la que viene. Extender esas enseñanzas a la basura y al cuidado de los senderos es una lectura propia de este proyecto, no del Dr. Belt ni de la Dra. Lefler, y forma parte de la revisión cultural que sigue en curso.</p>
-      <p>También hay un lado práctico. La investigación sobre cómo se perciben los lugares ha encontrado que el descuido visible cambia lo que la gente cree de un sitio: en un estudio, las personas a quienes se les mostró basura en un parque esperaban más problemas allí y eran más propensas a pensar que el delito estaba aumentando, aunque el parque fuera el mismo (Medway, Parker y Roper, <i>Journal of Environmental Psychology</i>, 2016). El vidrio roto y los tiraderos son además peligros reales, y se juntan donde nadie está mirando. Las prácticas de la sección <a href="index.html?lang=es#land">Cuidar la tierra</a> del mapa siguen los <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">principios de Leave No Trace</a>, que mantiene el Leave No Trace Center for Outdoor Ethics, escritos para una vuelta de dos millas y no para una expedición.</p>
+      <p>También hay un lado práctico. La investigación sobre cómo se perciben los lugares ha encontrado que el descuido visible cambia lo que la gente cree de un sitio: en un estudio, las personas a quienes se les mostró basura en un parque esperaban más problemas allí y eran más propensas a pensar que el delito estaba aumentando, aunque el parque fuera el mismo (Medway, Parker y Roper, <i>Journal of Environmental Psychology</i>, 2016). El vidrio roto y los tiraderos son además peligros reales, y se juntan donde nadie está mirando. Las prácticas de la sección <a href="roots.html?lang=es#land">Cuidar la tierra</a> del mapa siguen los <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">principios de Leave No Trace</a>, que mantiene el Leave No Trace Center for Outdoor Ethics, escritos para una vuelta de dos millas y no para una expedición.</p>
     </section>
 
     <section id="safe-use-es">
@@ -431,47 +237,14 @@ body{letter-spacing:-.003em}
   </article>
   </main>
 </div>
+<script src="site.js"></script>
 <script>
-let lang="en";
-try{const q=new URLSearchParams(location.search).get("lang");if(q==="es"||q==="en")lang=q;else{const s=localStorage.getItem("sm-lang");if(s==="es"||s==="en")lang=s;else if((navigator.language||"").toLowerCase().startsWith("es"))lang="es";}}catch(e){}
+let lang=SM.readLang();
 function apply(){document.documentElement.lang=lang;document.querySelectorAll("[data-l]").forEach(el=>{el.hidden=el.dataset.l!==lang;});
-const b=document.getElementById("langbtn");b.textContent=lang==="en"?"Español":"English";b.setAttribute("lang",lang==="en"?"es":"en");b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
+SM.paintNav(lang);
 document.title=lang==="en"?"About, terms and privacy · WNC Safer Miles":"Acerca de, términos y privacidad · WNC Safer Miles";}
 document.getElementById("langbtn").addEventListener("click",()=>{lang=lang==="en"?"es":"en";try{localStorage.setItem("sm-lang",lang);}catch(e){}apply();});
 apply();
-</script>
-<script>
-/* Larger-text toggle: remembered per browser, labelled in the page's current language. */
-(function(){
-  const root=document.documentElement, lb=document.getElementById("langbtn");
-  if(!lb)return;
-  const btn=document.createElement("button");btn.type="button";btn.className="sizebtn";btn.id="sizebtn";
-  const box=document.createElement("div");box.className="tools";lb.replaceWith(box);box.append(btn,lb);
-  let big=false;try{big=localStorage.getItem("sm-size")==="large";}catch(e){}
-  function paint(){
-    if(big)root.dataset.size="large";else delete root.dataset.size;
-    const es=(root.lang||"en").startsWith("es");
-    btn.textContent=big?(es?"Texto normal":"Normal text"):(es?"Texto más grande":"Larger text");
-    btn.setAttribute("aria-pressed",String(big));
-  }
-  btn.addEventListener("click",()=>{big=!big;try{localStorage.setItem("sm-size",big?"large":"normal");}catch(e){}paint();});
-  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
-  paint();
-})();
-</script>
-<script>
-/* Quick exit: replaces this page with a neutral site so Back does not return here. */
-(function(){
-  const root=document.documentElement;
-  const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
-  function paint(){const es=(root.lang||"en").startsWith("es");
-    b.textContent=es?"Salida rápida":"Quick exit";
-    b.setAttribute("aria-label",es?"Salida rápida: salir de este sitio de inmediato":"Quick exit: leave this site immediately");}
-  b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
-    try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
-  document.body.appendChild(b);paint();
-  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
-})();
 </script>
 </body>
 </html>

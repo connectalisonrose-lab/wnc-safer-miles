@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light dark}body{margin:0;font:17px system-ui,sans-serif;background:#fbf5f3;color:#2b2226}@media (prefers-color-scheme:dark){body{background:#191416;color:#f6edef}}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Crisis lines and support · WNC Safer Miles</title>
-<meta name="description" content="Crisis lines, text and chat support and LGBTQ+ resources for Western North Carolina, from the WNC Safer Miles community map.">
+<title>Safety and support · WNC Safer Miles</title>
+<meta name="description" content="Safety practices women in Western North Carolina already use, plus crisis lines, text and chat support and LGBTQ+ resources.">
 <meta name="theme-color" content="#872f4b">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://connectalisonrose-lab.github.io/wnc-safer-miles/help.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WNC Safer Miles">
-<meta property="og:title" content="Crisis lines and support · WNC Safer Miles">
-<meta property="og:description" content="Crisis lines, text and chat support and LGBTQ+ resources for Western North Carolina, from the WNC Safer Miles community map.">
+<meta property="og:title" content="Safety and support · WNC Safer Miles">
+<meta property="og:description" content="Safety practices women in Western North Carolina already use, plus crisis lines, text and chat support and LGBTQ+ resources.">
 <meta property="og:url" content="https://connectalisonrose-lab.github.io/wnc-safer-miles/help.html">
 <meta property="og:image" content="https://connectalisonrose-lab.github.io/wnc-safer-miles/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -22,265 +22,131 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap">
-<style>
-/* WNC Safer Miles — design system (Oct 2026)
-   Calm and legible first. One typeface, Lexend, designed to make reading easier and faster (chosen by Alison Oct 17, 2026).
-   Palette: blush cream neutrals, dusty rose accent. 8px spacing rhythm, one grid, one bold moment (the "Rooted" terms). */
-:root{
-  --bg:#fbf5f3; --surface:#ffffff; --band:#f6e6e4; --ink:#231a1f; --muted:#54444a; --line:#dcc3c6;
-  --edge:#8a6a74; --tint:#f7e4e8;
-  --land:#f5e7e3; --river:#5b8da3; --accent:#872f4b;
-  --strong:#2a6b5c; --mixed:#8a6212; --caution:#775089;
-  --font:"Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --display:var(--font); --body:var(--font); --mono:var(--font);
-  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:72px;
-  --r:12px; --max:1120px; --gut:24px;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
-  --edge:#9c8089; --tint:#33252b;
-  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#191416; --surface:#221b1e; --band:#2a2125; --ink:#f6edef; --muted:#cdbcc1; --line:#4d3c43;
-  --edge:#9c8089; --tint:#33252b;
-  --land:#251d21; --river:#5f93aa; --accent:#eaa7b7;
-  --strong:#5fc4a6; --mixed:#e4b157; --caution:#cba0d8; color-scheme:dark}
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--font);font-variant-numeric:tabular-nums}
-.wrap{max-width:var(--max);margin:0 auto;padding:var(--s4) var(--gut) var(--s5);display:grid;gap:var(--s5)}
-@media (max-width:640px){:root{--gut:16px;--s5:48px}.wrap{padding-top:var(--s3)}}
-h1,h2,h3{font-family:var(--font);font-weight:700;margin:0;line-height:1.2;text-wrap:balance}
-h1{font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.015em}
-h2{font-size:clamp(25px,3.4vw,31px)}
-h3{font-size:21px}
-p{margin:0;max-width:64ch}
-a{color:var(--accent);font-weight:700;text-underline-offset:3px;text-decoration-thickness:1.5px}
-strong,b{font-weight:700}
-button{font-family:var(--font)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:8px;z-index:10}
-.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
-.note,.hint{color:var(--muted);font-size:17px}
-.fine{color:var(--muted);font-size:15px}
-.section-head{display:grid;gap:var(--s1);margin-bottom:var(--s3)}
-
-/* ---------- Header ---------- */
-header{display:grid;gap:var(--s3)}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.eyebrow{font-size:16px;color:var(--muted)}
-.tools{display:flex;gap:var(--s1);flex-wrap:wrap}
-.langbtn,.sizebtn,.chip{font:700 16px var(--font);min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);cursor:pointer}
-.sizebtn[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.title{display:grid;gap:var(--s2)}
-header .lede{font-size:clamp(19px,2.2vw,22px);line-height:1.55;max-width:46ch}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);list-style:none;margin:0;padding:0}
-@media (max-width:820px){.facts{grid-template-columns:1fr}}
-.facts li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2) 20px;font-size:16px;line-height:1.55}
-.facts li strong{display:block;font-size:18px;margin-bottom:2px}
-details.more{font-size:16px;color:var(--muted)}
-details.more summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:44px;display:inline-flex;align-items:center}
-details.more p{margin-top:var(--s1);max-width:72ch}
-
-/* ---------- Map + panel ---------- */
-.toolbar{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:var(--s2);align-items:end;margin-bottom:var(--s2)}
-@media (max-width:820px){.toolbar{grid-template-columns:1fr}}
-.pick{display:grid;gap:6px;font-weight:700;font-size:16px}
-.pick select{font:400 17px var(--font);min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
-.filters{display:flex;flex-wrap:wrap;gap:var(--s1)}
-.main{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s3);align-items:start}
-@media (max-width:900px){.main{grid-template-columns:1fr}}
-.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s2);display:grid;gap:var(--s2);min-width:0}
-.mapbox .hint{font-size:15px}
-svg.map{width:100%;height:auto;display:block}
-.county{fill:var(--land);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 5}
-.river{fill:none;stroke:var(--river);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.town{font:400 22px var(--font);fill:var(--muted)}
-.pin{cursor:pointer}
-.pin .dot{stroke:var(--surface);stroke-width:3}
-.pin.sel .dot{stroke:var(--ink);stroke-width:4}
-.pin .num{font:700 17px var(--font);fill:var(--surface);pointer-events:none}
-.pin .lbl{font:700 20px var(--font);fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:6px;stroke-linejoin:round;pointer-events:none}
-.pin.dim{opacity:.25;pointer-events:none}
-@media (prefers-reduced-motion:no-preference){.pin .halo{transition:opacity .2s}}
-.legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);font-size:15px}
-.legend>span{display:inline-flex;align-items:center;gap:8px}
-.sw{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none}
-
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:var(--s2);min-width:0;scroll-margin-top:var(--s2)}
-@media (min-width:901px){.panel{position:sticky;top:var(--s2);max-height:calc(100vh - 32px);overflow:auto}}
-.panel>.eyebrow{font-size:15px}
-.panel h2{font-size:28px}
-.scoreline{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
-.score{font:700 52px/1 var(--font)}
-.band{font:700 15px var(--font);padding:5px 14px;border-radius:999px;color:var(--ink)}
-.b-strong{background:color-mix(in srgb,var(--strong) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--strong)}
-.b-mixed{background:color-mix(in srgb,var(--mixed) 18%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--mixed)}
-.b-caution{background:color-mix(in srgb,var(--caution) 16%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--caution)}
-.factors{display:grid;gap:10px}
-.f{display:grid;grid-template-columns:132px 1fr 36px;gap:12px;align-items:center;font-size:16px}
-.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--accent);border-radius:5px}
-.f b{text-align:right;font-size:16px}
-.layer{border-top:1px solid var(--line);padding-top:var(--s2);display:grid;gap:var(--s1)}
-.layer .status{font-weight:700;font-size:17px}
-.layer ul{margin:0;padding-left:20px;display:grid;gap:6px}
-.mini{font:700 32px/1 var(--font)}
-.mini small{font-size:16px;color:var(--muted)}
-.tags{display:flex;flex-wrap:wrap;gap:var(--s1)}
-.tag{font-size:15px;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
-.tag b{margin-left:4px}
-.warn{border-left:4px solid var(--caution);border-radius:0 10px 10px 0;padding:12px 16px;font-size:16px;background:color-mix(in srgb,var(--caution) 9%,var(--surface))}
-.warn b{display:block}
-.save{display:inline-flex;align-items:center;justify-self:start;font:700 17px var(--font);min-height:52px;padding:12px 24px;border-radius:10px;background:var(--accent);color:var(--surface);text-decoration:none}
-
-/* ---------- Places list ---------- */
-.list{columns:2 360px;column-gap:var(--s3)}
-.list .area{font:700 18px var(--font);margin:var(--s3) 0 var(--s1);padding:0;color:var(--ink);break-after:avoid}
-.list .area:first-child{margin-top:0}
-.row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:var(--s2);align-items:center;width:100%;padding:12px 16px;margin-bottom:var(--s1);background:var(--surface);border:1px solid var(--line);border-radius:10px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;break-inside:avoid}
-.row:hover,.row.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.row .n{font-weight:700;color:var(--muted)}
-.row .nm{font-weight:700}
-.row .ty{display:block;font-size:15px;color:var(--muted);font-weight:400}
-.row .sc{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
-
-/* ---------- Tips ---------- */
-.tips-head .eyebrow{display:none}
-.tip-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2)}
-.tip{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);display:grid;gap:12px;align-content:start;min-width:0}
-.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}
-.tip.help{grid-column:1/-1}
-@media (max-width:980px){.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:span 3}.tip:nth-child(5){grid-column:1/-1}}
-@media (max-width:640px){.tip-grid{grid-template-columns:1fr}.tip,.tip:nth-child(4),.tip:nth-child(5){grid-column:auto}}
-.tip ul{margin:0;padding-left:20px;display:grid;gap:12px}
-.tip.help{background:var(--band);border-color:transparent}
-.tip .lines{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:var(--s4);gap:0 var(--s4)}
-.tip .lines li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-.tip .lines span{display:grid;flex:1 1 200px;font-weight:700;font-size:17px}
-.tip .lines small{font-weight:400;color:var(--muted);font-size:15px}
-.tip .lines a{font:700 18px var(--font);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:10px 18px;min-height:44px;min-width:76px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
-
-/* ---------- Rooted (the one bold moment) ---------- */
-.rooted{background:var(--band);border-radius:var(--r);padding:var(--s4) clamp(20px,4vw,48px);display:grid;gap:var(--s3)}
-.rooted-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
-@media (max-width:760px){.rooted-grid{grid-template-columns:1fr;gap:var(--s3)}}
-.rooted .term{font:700 clamp(40px,6vw,60px)/1 var(--font);color:var(--accent);letter-spacing:-.01em}
-.rooted .sub{font-size:16px;color:var(--muted);margin:6px 0 var(--s2)}
-.rooted p.body{font-size:18px;line-height:1.7}
-
-/* ---------- Explainers ---------- */
-.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
-@media (max-width:900px){.cols{grid-template-columns:1fr;gap:var(--s3)}}
-.cols section{display:grid;gap:var(--s1);align-content:start;border-top:2px solid var(--ink);padding-top:var(--s2)}
-.cols ul{margin:0;padding-left:20px;display:grid;gap:4px}
-
-footer{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted);display:grid;gap:var(--s1)}
-
-.qexit{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:700 16px var(--font);min-height:48px;padding:10px 20px;border-radius:999px;border:2px solid var(--surface);background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:0 2px 10px color-mix(in srgb,var(--ink) 25%,transparent)}
-.qexit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.docfoot{padding-bottom:72px}
-
-/* ---------- Larger text ---------- */
-html[data-size="large"] .wrap{zoom:1.18}
-
-/* ---------- About page ---------- */
-.doc{max-width:760px}
-.doc article{display:grid;gap:var(--s4)}
-.doc section{display:grid;gap:12px}
-.doc h2{font-size:27px}
-.doc h3{font-size:20px}
-.doc p,.doc li{font-size:18px;line-height:1.75}
-.doc ul{margin:0;padding-left:22px;display:grid;gap:12px}
-.doc .lede{font-size:20px}
-.back{font-size:17px}
-.mail{font-weight:700;user-select:all}
-.docfoot{border-top:1px solid var(--line);padding-top:var(--s3);font-size:15px;color:var(--muted)}
-.docfoot p{font-size:15px}
-
-/* ---------- Oct 17 redesign: matches the map page ---------- */
-:root{--sky1:#eff1f9;--sky2:#f8e0e4;--r1:#ccd2e8;--r2:#dcc4d6;--r3:#e0b3c1}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}}
-:root[data-theme="dark"]{--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}
-html,body{overflow-x:clip}
-.wrap.doc{padding-top:0}
-.docband{position:relative;isolation:isolate;padding:24px 0 112px}
-.ridges .r1{opacity:.82}.ridges .r2{opacity:.94}
-.docband::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:linear-gradient(180deg,var(--sky1),var(--sky2));z-index:-2}
-.docband .ridges{position:absolute;bottom:-1px;left:calc(50% - 50vw);width:100vw;height:96px;z-index:-1;display:block}
-.ridges .r1{fill:var(--r1)}.ridges .r2{fill:var(--r2)}.ridges .r3{fill:var(--r3)}.ridges .r4{fill:var(--bg)}
-.docband .topbar{align-items:center}
-.doc article>.eyebrow,.doc article>h1,.doc article>.lede,.doc article>h1+.lede+.note{text-align:center;margin-inline:auto}
-.doc article>.eyebrow{font-weight:700}
-.doc article>.lede{max-width:56ch}
-.doc h1{font-size:clamp(36px,5.6vw,56px);letter-spacing:-.02em}
-.doc h2{font-size:clamp(25px,3vw,30px)}
-.doc section{padding-top:8px}
-.docfoot{text-align:center;border-top:1.5px solid var(--line)}
-.docfoot p{max-width:64ch;margin-inline:auto}
-p,li{text-wrap:pretty}
-@media (max-width:640px){.docband{padding-bottom:80px}.docband .ridges{height:64px}}
-/* Lexend: semibold headings and emphasis read softer than bold */
-h1,h2,h3,h4,b,strong{font-weight:600}
-body{letter-spacing:-.003em}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-
-/* ---------- Crisis lines page ---------- */
-:root{--rad:18px;--shadow:0 14px 34px -22px rgba(74,28,43,.5)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--shadow:0 14px 34px -20px rgba(0,0,0,.66)}}
-:root[data-theme="dark"]{--shadow:0 14px 34px -20px rgba(0,0,0,.66)}
-.helpdoc{max-width:980px}
-.helpdoc article{display:grid;gap:var(--s4)}
-.helpdoc section{display:grid;gap:var(--s2)}
-.now{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--s2) var(--s3);padding:22px var(--s2);
-  background:color-mix(in srgb,var(--accent) 8%,var(--surface));border:2px solid var(--accent);border-radius:var(--rad);
-  font-weight:600;font-size:21px;box-shadow:var(--shadow)}
-.rescards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.rescards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.rescards li{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--rad);padding:16px 18px;display:grid;gap:12px;align-content:space-between;box-shadow:var(--shadow)}
-.rescards li>span{display:grid;gap:3px;font-weight:600;font-size:17.5px}
-.rescards small{font-weight:400;color:var(--muted);font-size:15px;line-height:1.5}
-.acts{display:flex;flex-wrap:wrap;gap:8px}
-.acts a,.now a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;font:600 16px var(--font);text-decoration:none;border:1.5px solid var(--accent);white-space:nowrap}
-a.call{background:var(--accent);color:var(--bg)}
-a.call.big{font-size:21px;padding:10px 30px}
-a.web{background:var(--surface);color:var(--accent)}
-.acts a:focus-visible,.now a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.helpdoc h2{font-size:clamp(23px,3vw,28px);text-align:center}
-.helpdoc .lede{text-align:center;margin-inline:auto}
-.helpdoc .desk-note,.helpdoc .mid-note{max-width:74ch;margin-inline:auto}
-.helpdoc .mid-note{background:var(--band);border-radius:var(--rad);padding:18px 22px}
-.backtomap{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;border:1.5px solid var(--accent);border-radius:999px;text-decoration:none;background:var(--surface);justify-self:center}
-.backtomap:hover{background:var(--tint)}
-@media (max-width:900px){.rescards.three{grid-template-columns:1fr}}
-@media (max-width:700px){.rescards{grid-template-columns:1fr}.acts a{flex:1 1 auto}}
-
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-<a class="skip" href="#content" data-l="en">Skip to the crisis lines</a>
-<a class="skip" href="#content" data-l="es" lang="es" hidden>Ir a las líneas de ayuda</a>
-<div class="wrap doc helpdoc">
-  <header class="docband">
-    <div class="topbar">
-      <a class="back" href="./" data-l="en">← Back to the map</a>
-      <a class="back" href="./?lang=es" data-l="es" lang="es" hidden>← Volver al mapa</a>
-      <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
-    </div>
+<a class="skip" href="#content" data-i18n="skip">Skip to the content</a>
+<nav class="sitenav" aria-label="WNC Safer Miles">
+  <div class="sitenav-in">
+    <a class="brand" data-p="./" href="./">WNC Safer Miles</a>
+    <ul>
+        <li><a class="navlink" data-p="./" data-en="Map" data-es="Mapa" href="./">Map</a></li>
+        <li><a class="navlink nav-help" data-p="help.html" data-en="Safety and support" data-es="Seguridad y apoyo" href="help.html" aria-current="page">Safety and support</a></li>
+        <li><a class="navlink" data-p="roots.html" data-en="Roots and land" data-es="Raíces y tierra" href="roots.html">Roots and land</a></li>
+        <li><a class="navlink" data-p="evidence.html" data-en="Evidence" data-es="Evidencia" href="evidence.html">Evidence</a></li>
+        <li><a class="navlink" data-p="watch.html" data-en="Watch" data-es="Video" href="watch.html">Watch</a></li>
+        <li><a class="navlink" data-p="about.html" data-en="About" data-es="Acerca de" href="about.html">About</a></li>
+    </ul>
+    <button class="langbtn" id="langbtn" type="button" lang="es">Español</button>
+  </div>
+</nav>
+<div class="wrap">
+  <header class="pagehead docband">
+      <h1 data-i18n="pgHelpH">Safety and support</h1>
+      <p class="lede" data-i18n="pgHelpLede">Practices women here already use, and the lines to call when something happens. Take what fits and leave the rest.</p>
+      <p class="draftnote" data-i18n="draftNote"></p>
     <svg class="ridges" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="r1" d="M0 180 L0 57.4 Q0.0 57.4 30.0 51.3 Q60.0 45.3 90.0 50.6 Q120.0 55.9 150.0 57.0 Q180.0 58.1 210.0 63.1 Q240.0 68.0 270.0 61.8 Q300.0 55.7 330.0 64.5 Q360.0 73.4 390.0 80.8 Q420.0 88.2 450.0 93.1 Q480.0 97.9 510.0 94.2 Q540.0 90.5 570.0 77.7 Q600.0 64.9 630.0 66.2 Q660.0 67.5 690.0 64.0 Q720.0 60.5 750.0 63.2 Q780.0 65.8 810.0 57.2 Q840.0 48.7 870.0 46.8 Q900.0 44.9 930.0 53.8 Q960.0 62.8 990.0 70.4 Q1020.0 77.9 1050.0 87.1 Q1080.0 96.3 1110.0 87.9 Q1140.0 79.5 1170.0 80.4 Q1200.0 81.4 1230.0 80.3 Q1260.0 79.1 1290.0 80.6 Q1320.0 82.1 1350.0 76.9 Q1380.0 71.8 1410.0 58.2 L1440 44.6 L1440 180 Z"/><path class="r2" d="M0 180 L0 85.7 Q0.0 85.7 30.0 92.0 Q60.0 98.4 90.0 94.9 Q120.0 91.3 150.0 93.5 Q180.0 95.8 210.0 103.3 Q240.0 110.8 270.0 114.2 Q300.0 117.7 330.0 119.4 Q360.0 121.2 390.0 109.1 Q420.0 97.0 450.0 95.1 Q480.0 93.2 510.0 90.8 Q540.0 88.3 570.0 90.5 Q600.0 92.6 630.0 90.3 Q660.0 87.9 690.0 82.1 Q720.0 76.2 750.0 82.8 Q780.0 89.4 810.0 94.4 Q840.0 99.3 870.0 109.7 Q900.0 120.1 930.0 116.1 Q960.0 112.1 990.0 108.9 Q1020.0 105.8 1050.0 105.2 Q1080.0 104.6 1110.0 103.9 Q1140.0 103.1 1170.0 104.0 Q1200.0 104.8 1230.0 93.0 Q1260.0 81.2 1290.0 79.7 Q1320.0 78.1 1350.0 78.0 Q1380.0 78.0 1410.0 87.1 L1440 96.3 L1440 180 Z"/><path class="r3" d="M0 180 L0 119.8 Q0.0 119.8 30.0 125.1 Q60.0 130.4 90.0 132.5 Q120.0 134.7 150.0 139.8 Q180.0 144.9 210.0 137.9 Q240.0 131.0 270.0 125.6 Q300.0 120.2 330.0 118.0 Q360.0 115.7 390.0 115.7 Q420.0 115.6 450.0 118.4 Q480.0 121.2 510.0 115.3 Q540.0 109.5 570.0 112.0 Q600.0 114.4 630.0 116.9 Q660.0 119.5 690.0 127.9 Q720.0 136.4 750.0 138.7 Q780.0 141.1 810.0 136.4 Q840.0 131.8 870.0 130.9 Q900.0 130.0 930.0 126.9 Q960.0 123.9 990.0 127.3 Q1020.0 130.8 1050.0 124.4 Q1080.0 118.0 1110.0 113.7 Q1140.0 109.5 1170.0 108.1 Q1200.0 106.7 1230.0 110.5 Q1260.0 114.4 1290.0 122.6 Q1320.0 130.9 1350.0 129.2 Q1380.0 127.5 1410.0 129.5 L1440 131.4 L1440 180 Z"/><path class="r4" d="M0 180 L0 162.0 Q0.0 162.0 30.0 159.4 Q60.0 156.8 90.0 151.8 Q120.0 146.8 150.0 145.7 Q180.0 144.5 210.0 143.5 Q240.0 142.4 270.0 145.5 Q300.0 148.6 330.0 145.7 Q360.0 142.9 390.0 143.4 Q420.0 143.8 450.0 145.7 Q480.0 147.5 510.0 151.6 Q540.0 155.7 570.0 159.2 Q600.0 162.7 630.0 159.2 Q660.0 155.6 690.0 154.8 Q720.0 153.9 750.0 151.2 Q780.0 148.5 810.0 150.4 Q840.0 152.2 870.0 150.1 Q900.0 148.0 930.0 144.4 Q960.0 140.7 990.0 140.4 Q1020.0 140.0 1050.0 140.9 Q1080.0 141.9 1110.0 148.2 Q1140.0 154.5 1170.0 154.3 Q1200.0 154.1 1230.0 154.7 Q1260.0 155.3 1290.0 154.3 Q1320.0 153.3 1350.0 154.8 Q1380.0 156.2 1410.0 157.9 L1440 159.5 L1440 180 Z"/></svg>
   </header>
-
   <main id="content">
-  <article data-l="en" lang="en">
-    <div class="eyebrow">WNC Safer Miles</div>
-    <h1>Crisis lines and support</h1>
-    <p class="lede">Being followed, watched or harassed, including for your gender, how you look or who you love, is reason enough to call. You decide what counts, and talking to an advocate does not require a police report.</p>
+  <section class="tips" id="safety">
+    <div class="tips-head">
+      <div class="eyebrow" data-i18n="tipsEyebrow">Safety tips</div>
+      <h2 data-i18n="tipsH">Going out with a plan</h2>
+      <p class="note" data-i18n="tipsIntro">None of this is a list of what you owe anyone. The responsibility for harm always belongs to the person who causes it. These are practices women here already use to keep the miles they love, gathered in one place so no one has to learn them alone. Take what fits and leave the rest.</p>
+    </div>
+    <div class="tabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Safety tips" data-i18n-aria="tipsTabs">
+        <button type="button" role="tab" id="tab-tp-before" aria-controls="tp-before" aria-selected="true" tabindex="0" data-i18n="t1H">Before you go</button>
+        <button type="button" role="tab" id="tab-tp-while" aria-controls="tp-while" aria-selected="false" tabindex="-1" data-i18n="t2H">While you're out</button>
+        <button type="button" role="tab" id="tab-tp-phone" aria-controls="tp-phone" aria-selected="false" tabindex="-1" data-i18n="t3H">Your phone and apps</button>
+        <button type="button" role="tab" id="tab-tp-together" aria-controls="tp-together" aria-selected="false" tabindex="-1" data-i18n="t4H">Together is a strategy</button>
+        <button type="button" role="tab" id="tab-tp-share" aria-controls="tp-share" aria-selected="false" tabindex="-1" data-i18n="t5H">If you share these trails</button>
+        <button type="button" role="tab" id="tab-today" aria-controls="today" aria-selected="false" tabindex="-1" data-i18n="t7H">If today doesn't feel right</button>
+        <button type="button" role="tab" id="tab-after" aria-controls="after" aria-selected="false" tabindex="-1" data-i18n="t8H">After a scare</button>
+      </div>
+      <div class="panels">
+        <div class="tip on" id="tp-before" role="tabpanel" aria-labelledby="tab-tp-before" tabindex="0">
+          <h3 data-i18n="t1H">Before you go</h3>
+          <ul data-i18n="t1L">
+            <li><b>Tell one person</b> your route and when you'll be back, and text them when you're done.</li>
+            <li><b>Check this map for cell signal</b> before you pick a route. Some trails here lose signal minutes from the trailhead. Charge your phone and download an offline map.</li>
+            <li><b>Plan for the light.</b> Dusk comes early under trees. If you'll be out near sunset, start at the open end of a route and finish there.</li>
+            <li><b>Check the season.</b> Gates and hours change through the year, and on state game lands like Bent Creek hunting is allowed in season. Wear something bright in fall and winter.</li>
+            <li><b>Leave the car ready:</b> parked facing out near the lot entrance, nothing visible inside, key within reach.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-while" role="tabpanel" aria-labelledby="tab-tp-while" tabindex="0">
+          <h3 data-i18n="t2H">While you're out</h3>
+          <ul data-i18n="t2L">
+            <li><b>Keep one ear free</b>, or skip music on quiet stretches. Hearing is how you get the extra seconds.</li>
+            <li><b>Trust the feeling.</b> If a person, a car or a stretch of trail makes you uneasy, turn around, leave or cut the run short. You never need a reason that would satisfy someone else.</li>
+            <li><b>Stay alert at the edges.</b> The parking lot and the first and last quarter mile are where most unwanted encounters start.</li>
+            <li><b>If someone follows you,</b> go toward people: a dog park, a field, a staffed building, another runner. Say out loud what is happening.</li>
+            <li><b>Vary your routes and times</b> so your pattern is harder to predict.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-phone" role="tabpanel" aria-labelledby="tab-tp-phone" tabindex="0">
+          <h3 data-i18n="t3H">Your phone and apps</h3>
+          <ul data-i18n="t3L">
+            <li><b>Set up emergency SOS today.</b> Most phones call 911 and alert your contacts with a few presses of the side button. Practice once so you know it.</li>
+            <li><b>Share live location</b> with one trusted person for the length of your run, then turn it off.</li>
+            <li><b>Lock down fitness apps.</b> Make activities private or followers-only, hide the start and end near home, and opt out of public heatmaps. Researchers at NC State showed public heatmaps can still reveal where frequent runners live.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-together" role="tabpanel" aria-labelledby="tab-tp-together" tabindex="0">
+          <h3 data-i18n="t4H">Together is a strategy</h3>
+          <ul data-i18n="t4L">
+            <li><b>Run with someone</b> when you can. A partner changes which routes are open to you. Local running stores can point you to women's group runs.</li>
+            <li><b>Nod to other women</b> on the trail. Being seen, and seeing, is part of what makes a place safe.</li>
+            <li><b>Rate the places you use.</b> Your rating turns this map from estimates into something the next woman can trust.</li>
+          </ul>
+        </div>
+        <div class="tip" id="tp-share" role="tabpanel" aria-labelledby="tab-tp-share" tabindex="0">
+          <h3 data-i18n="t5H">If you share these trails</h3>
+          <p class="note" data-i18n="t5P">Most people on these paths mean no harm. A few habits make that obvious to a woman who can't yet tell.</p>
+          <ul data-i18n="t5L">
+            <li>Call out before you pass, and pass wide.</li>
+            <li>Don't match pace behind someone. Pass, or fall back.</li>
+            <li>Don't stop her to talk. Headphones in and eyes forward is an answer.</li>
+            <li>If you see someone being followed or bothered, walk alongside, ask if she's okay, and stay until she says she is.</li>
+          </ul>
+        </div>
+        <div class="tip" id="today" role="tabpanel" aria-labelledby="tab-today" tabindex="0">
+          <h3 data-i18n="t7H">If today doesn't feel right</h3>
+          <p class="note" data-i18n="t7P">Not going is a choice, not a failure. If a place or a day doesn't feel safe, that feeling is information worth trusting. Some other ways to get your miles:</p>
+          <ul data-i18n="t7L">
+            <li><b>Pick a busier, staffed place</b> for today. Filter the map to Strong, or choose somewhere with staff during open hours.</li>
+            <li><b>Go with someone.</b> Local running stores and clubs host group runs, and a friend or a dog changes which routes feel open.</li>
+            <li><b>Move indoors.</b> A YMCA, YWCA, gym or community recreation center gives you a track or treadmill with people and staff around.</li>
+            <li><b>Stay close to home.</b> A shorter daylight loop in your own neighborhood, or a route you know well, still counts.</li>
+            <li><b>Move at home.</b> Stairs, a walking or yoga video, or stretching on the floor keeps the habit without the trip.</li>
+            <li><b>Rest.</b> A day off is part of training, and so is listening to your body.</li>
+          </ul>
+        </div>
+        <div class="tip" id="after" role="tabpanel" aria-labelledby="tab-after" tabindex="0">
+          <h3 data-i18n="t8H">After a scare</h3>
+          <p class="note" data-i18n="t8P">A frightening moment can stay in the body after it's over. A racing heart, shaking or feeling numb are normal responses. These are options for the hour afterward; use what helps.</p>
+          <ul data-i18n="t8L">
+            <li><b>Get somewhere safer first:</b> a lit lot, a staffed building, other people, or your locked car.</li>
+            <li><b>Slow the exhale.</b> Breathe out longer than you breathe in, a few times. A longer exhale helps your body settle.</li>
+            <li><b>Come back to right now.</b> Name five things you can see and three you can hear, and press your feet into the ground.</li>
+            <li><b>Hold something.</b> Keys, a smooth stone or anything with texture in your hand gives your body something steady to focus on.</li>
+            <li><b>Reach out.</b> Text someone you trust, or call or text an advocate: <a href="help.html">crisis lines and support</a>. You don't have to explain it well.</li>
+            <li><b>Later, if and when you want:</b> rate the place so the next woman is warned, and try <a href="#today">a different option</a> next time. There's no rush, and no wrong way to recover.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="now"><span>In danger now</span><a class="call big" href="tel:911">911</a></div>
+  <section class="crisis zone" id="help" aria-labelledby="crisisH">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="crisisEyebrow">Crisis lines</div>
+      <h2 id="crisisH" data-i18n="crisisH">If something happens</h2>
+      <p class="note" data-i18n="crisisP">Being followed, watched or harassed, including for your gender, how you look or who you love, is reason enough to call. You decide what counts, and talking to an advocate does not require a police report.</p>
+    </div>
+    <div class="crisis-cards" data-l="en" lang="en">
+<div class="now"><span>In danger now</span><a class="call big" href="tel:911">911</a></div>
 
     <section>
       <h2>Call, 24 hours a day</h2>
@@ -319,23 +185,11 @@ a.web{background:var(--surface);color:var(--accent)}
       <h2>A few things worth knowing</h2>
       <p class="note mid-note"><b>Rating a place is not a report.</b> When you're ready, rating the place, including “Felt watched or followed,” warns other women without naming anyone. It is anonymous, and the map never shows who rated.</p>
       <p class="note mid-note"><b>If someone checks your phone or browser:</b> use a private or incognito window, and the Quick exit button at the bottom of the screen leaves this site at once. Your browser history may still show this visit, so clear it if that is safe for you. <a href="about.html#safe-use">More on using this site safely</a></p>
-      <p class="note mid-note"><b>After a frightening moment,</b> a racing heart, shaking or feeling numb are normal responses. The map has grounding options for the hour afterward, and other ways to get your miles on a day a route feels wrong. <a href="index.html#after">After a scare</a> · <a href="index.html#today">If today doesn't feel right</a></p>
+      <p class="note mid-note"><b>After a frightening moment,</b> a racing heart, shaking or feeling numb are normal responses. The map has grounding options for the hour afterward, and other ways to get your miles on a day a route feels wrong. <a href="#after">After a scare</a> · <a href="#today">If today doesn't feel right</a></p>
     </section>
-
-    <a class="backtomap" href="./">← Back to the map</a>
-
-    <footer class="docfoot">
-      <p>WNC Safer Miles is not affiliated with or endorsed by any organization listed on this page, and it is not an emergency service. Numbers were verified against each organization's own site in October 2026; if one has changed, please <a href="mailto:connect.alisonrose@gmail.com">tell us</a>.</p>
-      <p>© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
-    </footer>
-  </article>
-
-  <article data-l="es" lang="es" hidden>
-    <div class="eyebrow">WNC Safer Miles</div>
-    <h1>Líneas de ayuda y apoyo</h1>
-    <p class="lede">Que la sigan, la observen o la acosen, incluso por su género, su apariencia o a quién ama, es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial.</p>
-
-    <div class="now"><span>Peligro inmediato</span><a class="call big" href="tel:911">911</a></div>
+    </div>
+    <div class="crisis-cards" data-l="es" lang="es" hidden>
+<div class="now"><span>Peligro inmediato</span><a class="call big" href="tel:911">911</a></div>
 
     <section>
       <h2>Llame, las 24 horas</h2>
@@ -375,59 +229,67 @@ a.web{background:var(--surface);color:var(--accent)}
       <h2>Algunas cosas que vale la pena saber</h2>
       <p class="note mid-note"><b>Calificar un lugar no es una denuncia.</b> Cuando esté lista, calificar el lugar, incluso marcando «Me sentí observada o seguida», advierte a otras mujeres sin nombrar a nadie. Es anónimo, y el mapa nunca muestra quién calificó.</p>
       <p class="note mid-note"><b>Si alguien revisa su teléfono o su navegador:</b> use una ventana privada o de incógnito, y el botón Salida rápida, abajo en la pantalla, lo saca de este sitio al instante. Es posible que el historial del navegador muestre esta visita; bórrelo si es seguro para usted. <a href="about.html?lang=es#safe-use-es">Más sobre cómo usar este sitio con seguridad</a></p>
-      <p class="note mid-note"><b>Después de un momento de miedo,</b> el corazón acelerado, temblar o sentirse adormecida son respuestas normales. El mapa tiene opciones para la hora siguiente y otras maneras de moverse el día en que una ruta no se siente bien. <a href="index.html?lang=es#after">Después de un susto</a> · <a href="index.html?lang=es#today">Si hoy no se siente bien</a></p>
+      <p class="note mid-note"><b>Después de un momento de miedo,</b> el corazón acelerado, temblar o sentirse adormecida son respuestas normales. El mapa tiene opciones para la hora siguiente y otras maneras de moverse el día en que una ruta no se siente bien. <a href="#after">Después de un susto</a> · <a href="#today">Si hoy no se siente bien</a></p>
     </section>
-
-    <a class="backtomap" href="./?lang=es">← Volver al mapa</a>
-
-    <footer class="docfoot">
-      <p>WNC Safer Miles no está afiliado ni respaldado por ninguna organización de esta página, y no es un servicio de emergencia. Los números se verificaron con los sitios de cada organización en octubre de 2026; si alguno cambió, por favor <a href="mailto:connect.alisonrose@gmail.com">avísenos</a>.</p>
-      <p>© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra.</p>
-    </footer>
-  </article>
+    </div>
+  </section>
   </main>
+  <footer>
+    <p data-i18n="pgFootNav"><a href="./">The map</a> · <a href="roots.html">Roots and land</a> · <a href="evidence.html">Evidence and method</a> · <a href="watch.html">Watch</a> · <a href="about.html">About, terms and privacy</a></p>
+    <p data-i18n="helpFoot">WNC Safer Miles is not affiliated with or endorsed by any organization listed here, and it is not an emergency service. Numbers were verified against each organization's own site in October 2026.</p>
+    <p data-i18n="foot2">© 2026 Alison Rose. Concept, content and design direction belong to Alison Rose, who holds full creative control and rights to adapt, rename, extend or publish this work.</p>
+  </footer>
 </div>
+<script src="site.js"></script>
 <script>
-let lang="en";
-try{const q=new URLSearchParams(location.search).get("lang");if(q==="es"||q==="en")lang=q;else{const s=localStorage.getItem("sm-lang");if(s==="es"||s==="en")lang=s;else if((navigator.language||"").toLowerCase().startsWith("es"))lang="es";}}catch(e){}
-function apply(){document.documentElement.lang=lang;document.querySelectorAll("[data-l]").forEach(el=>{el.hidden=el.dataset.l!==lang;});
-const b=document.getElementById("langbtn");b.textContent=lang==="en"?"Español":"English";b.setAttribute("lang",lang==="en"?"es":"en");b.setAttribute("aria-label",lang==="en"?"Ver en español":"View in English");
-document.title=lang==="en"?"Crisis lines and support · WNC Safer Miles":"Líneas de ayuda y apoyo · WNC Safer Miles";}
-document.getElementById("langbtn").addEventListener("click",()=>{lang=lang==="en"?"es":"en";try{localStorage.setItem("sm-lang",lang);}catch(e){}apply();});
-apply();
-</script>
-<script>
-/* Larger-text toggle: remembered per browser, labelled in the page's current language. */
-(function(){
-  const root=document.documentElement, lb=document.getElementById("langbtn");
-  if(!lb)return;
-  const btn=document.createElement("button");btn.type="button";btn.className="sizebtn";btn.id="sizebtn";
-  const box=document.createElement("div");box.className="tools";lb.replaceWith(box);box.append(btn,lb);
-  let big=false;try{big=localStorage.getItem("sm-size")==="large";}catch(e){}
-  function paint(){
-    if(big)root.dataset.size="large";else delete root.dataset.size;
-    const es=(root.lang||"en").startsWith("es");
-    btn.textContent=big?(es?"Texto normal":"Normal text"):(es?"Texto más grande":"Larger text");
-    btn.setAttribute("aria-pressed",String(big));
-  }
-  btn.addEventListener("click",()=>{big=!big;try{localStorage.setItem("sm-size",big?"large":"normal");}catch(e){}paint();});
-  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
-  paint();
-})();
-</script>
-<script>
-/* Quick exit: replaces this page with a neutral site so Back does not return here. */
-(function(){
-  const root=document.documentElement;
-  const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
-  function paint(){const es=(root.lang||"en").startsWith("es");
-    b.textContent=es?"Salida rápida":"Quick exit";
-    b.setAttribute("aria-label",es?"Salida rápida: salir de este sitio de inmediato":"Quick exit: leave this site immediately");}
-  b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
-    try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
-  document.body.appendChild(b);paint();
-  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
-})();
+const L={es:{
+ "crisisEyebrow": "Líneas de ayuda",
+ "crisisH": "Si algo pasa",
+ "crisisP": "Que la sigan, la observen o la acosen, incluso por su género, su apariencia o a quién ama, es razón suficiente para llamar. Usted decide qué cuenta, y hablar con una consejera no requiere hacer un reporte policial.",
+ "draftNote": "Esta versión en español es un borrador hecho con IA y está en revisión por hablantes nativas. Si algo no se entiende bien, la versión en inglés es la de referencia.",
+ "foot2": "© 2026 Alison Rose. El concepto, el contenido y la dirección de diseño pertenecen a Alison Rose, quien tiene pleno control creativo y los derechos para adaptar, renombrar, ampliar o publicar esta obra.",
+ "helpFoot": "WNC Safer Miles no está afiliado ni respaldado por ninguna organización de esta página, y no es un servicio de emergencia. Los números se verificaron con los sitios de cada organización en octubre de 2026.",
+ "pgFootNav": "<a href=\"./?lang=es\">El mapa</a> · <a href=\"roots.html?lang=es\">Raíces y tierra</a> · <a href=\"evidence.html?lang=es\">Evidencia y método</a> · <a href=\"watch.html?lang=es\">Video</a> · <a href=\"about.html?lang=es\">Acerca de, términos y privacidad</a>",
+ "pgHelpH": "Seguridad y apoyo",
+ "pgHelpLede": "Prácticas que las mujeres de aquí ya usan, y las líneas a las que llamar cuando algo pasa. Tome lo que le sirva y deje el resto.",
+ "t1H": "Antes de salir",
+ "t1L": "<li><b>Avísele a una persona</b> su ruta y a qué hora volverá, y mándele un mensaje al terminar.</li><li><b>Revise la señal de celular en este mapa</b> antes de elegir una ruta. En algunos senderos se pierde la señal a pocos minutos de la entrada. Cargue su teléfono y descargue un mapa sin conexión.</li><li><b>Planee según la luz.</b> Bajo los árboles oscurece temprano. Si va a estar afuera cerca del atardecer, empiece por el extremo abierto de la ruta y termine allí.</li><li><b>Fíjese en la temporada.</b> Los portones y horarios cambian durante el año, y en terrenos de caza del estado como Bent Creek se permite cazar en temporada. Use algo de color vivo en otoño e invierno.</li><li><b>Deje el carro listo:</b> estacionado de frente a la salida cerca de la entrada del lote, sin nada a la vista adentro y con la llave a mano.</li>",
+ "t2H": "Mientras está afuera",
+ "t2L": "<li><b>Mantenga un oído libre</b>, o no use música en los tramos solitarios. Oír le da esos segundos de ventaja.</li><li><b>Confíe en lo que siente.</b> Si una persona, un carro o un tramo del sendero la incomoda, dé la vuelta, váyase o acorte su recorrido. Nunca necesita una razón que convenza a otra persona.</li><li><b>Esté atenta en los extremos.</b> El estacionamiento y el primer y último tramo del recorrido son donde empiezan la mayoría de los encuentros no deseados.</li><li><b>Si alguien la sigue,</b> vaya hacia donde hay gente: un parque para perros, un campo, un edificio con personal, otra corredora. Diga en voz alta lo que está pasando.</li><li><b>Cambie sus rutas y horarios</b> para que su rutina sea más difícil de predecir.</li>",
+ "t3H": "Su teléfono y sus aplicaciones",
+ "t3L": "<li><b>Configure hoy la función de emergencia SOS.</b> La mayoría de los teléfonos llaman al 911 y avisan a sus contactos al presionar varias veces el botón lateral. Practíquelo una vez para conocerlo.</li><li><b>Comparta su ubicación en tiempo real</b> con una persona de confianza mientras dure su recorrido, y luego desactívela.</li><li><b>Proteja sus aplicaciones de ejercicio.</b> Haga que sus actividades sean privadas o solo para seguidores, oculte el inicio y el final cerca de su casa, y desactive los mapas de calor públicos. Investigadores de NC State demostraron que estos mapas aún pueden revelar dónde viven las personas que corren con frecuencia.</li>",
+ "t4H": "Juntas es una estrategia",
+ "t4L": "<li><b>Salga acompañada</b> cuando pueda. Tener compañía cambia qué rutas están a su alcance. En las tiendas de artículos para correr le pueden recomendar grupos de mujeres.</li><li><b>Salude a otras mujeres</b> en el sendero. Ser vista, y ver, es parte de lo que hace seguro un lugar.</li><li><b>Califique los lugares que usa.</b> Su calificación convierte este mapa de estimaciones en algo en lo que la próxima mujer puede confiar.</li>",
+ "t5H": "Si comparte estos senderos",
+ "t5L": "<li>Avise antes de pasar, y pase con espacio.</li><li>No mantenga el mismo ritmo detrás de alguien. Pase o quédese atrás.</li><li>No la detenga para hablar. Audífonos puestos y mirada al frente es una respuesta.</li><li>Si ve que alguien está siendo seguida o molestada, camine a su lado, pregúntele si está bien y quédese hasta que ella diga que lo está.</li>",
+ "t5P": "La mayoría de las personas en estos caminos no quieren hacer daño. Algunos hábitos lo dejan claro a una mujer que todavía no puede saberlo.",
+ "t7H": "Si hoy no se siente bien",
+ "t7L": "<li><b>Elija un lugar más concurrido y con personal</b> para hoy. Filtre el mapa por Fuerte, o escoja un lugar con personal en horario de apertura.</li><li><b>Vaya acompañada.</b> Las tiendas de artículos para correr y los clubes organizan salidas en grupo, y una amiga o un perro cambian qué rutas se sienten posibles.</li><li><b>Muévase bajo techo.</b> Un YMCA, YWCA, gimnasio o centro recreativo comunitario le ofrece una pista o caminadora con gente y personal alrededor.</li><li><b>Quédese cerca de casa.</b> Una vuelta más corta de día por su propio vecindario, o una ruta que conoce bien, también cuenta.</li><li><b>Muévase en casa.</b> Escaleras, un video de caminata o de yoga, o estiramientos en el piso mantienen el hábito sin salir.</li><li><b>Descanse.</b> Un día libre es parte del entrenamiento, y escuchar a su cuerpo también.</li>",
+ "t7P": "No ir es una decisión, no un fracaso. Si un lugar o un día no se siente seguro, esa sensación es información en la que vale la pena confiar. Otras maneras de moverse:",
+ "t8H": "Después de un susto",
+ "t8L": "<li><b>Primero, vaya a un lugar más seguro:</b> un estacionamiento iluminado, un edificio con personal, donde haya gente, o su carro con seguro puesto.</li><li><b>Alargue la exhalación.</b> Saque el aire más despacio de lo que lo toma, varias veces. Una exhalación larga ayuda a que el cuerpo se calme.</li><li><b>Vuelva al presente.</b> Nombre cinco cosas que ve y tres que oye, y apoye bien los pies en el suelo.</li><li><b>Sostenga algo.</b> Las llaves, una piedra lisa o cualquier cosa con textura en la mano le da al cuerpo algo firme en qué enfocarse.</li><li><b>Busque apoyo.</b> Mándele un mensaje a alguien de confianza, o llame o escriba a una consejera: <a href=\"help.html?lang=es\">líneas de ayuda y apoyo</a>. No tiene que explicarlo bien.</li><li><b>Más adelante, si quiere y cuando quiera:</b> califique el lugar para advertir a la próxima mujer, y pruebe <a href=\"#today\">otra opción</a> la próxima vez. No hay prisa ni una manera equivocada de recuperarse.</li>",
+ "t8P": "Un momento de miedo puede quedarse en el cuerpo después de que pasa. El corazón acelerado, temblar o sentirse adormecida son respuestas normales. Estas son opciones para la hora siguiente; use lo que le ayude.",
+ "tipsEyebrow": "Consejos de seguridad",
+ "tipsH": "Salir con un plan",
+ "tipsIntro": "Nada de esto es una lista de lo que usted le debe a alguien. La responsabilidad por el daño siempre es de quien lo causa. Estas son prácticas que las mujeres de aquí ya usan para seguir disfrutando de los lugares que quieren, reunidas en un solo lugar para que nadie tenga que aprenderlas sola. Tome lo que le sirva y deje el resto.",
+ "tipsTabs": "Consejos de seguridad"
+}};
+let lang=SM.readLang();
+document.querySelectorAll("[data-i18n]").forEach(el=>{el.dataset.en=el.innerHTML;});
+document.querySelectorAll("[data-i18n-aria]").forEach(el=>{el.dataset.enAria=el.getAttribute("aria-label");});
+function applyStatic(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;el.innerHTML=lang==="en"?el.dataset.en:(L.es[k]??el.dataset.en);});
+  document.querySelectorAll("[data-i18n-aria]").forEach(el=>{const k=el.dataset.i18nAria;el.setAttribute("aria-label",lang==="en"?el.dataset.enAria:(L.es[k]??el.dataset.enAria));});
+  document.querySelectorAll("[data-l]").forEach(el=>{el.hidden=el.dataset.l!==lang;});
+  document.title=lang==="en"?"Safety and support · WNC Safer Miles":"Seguridad y apoyo · WNC Safer Miles";
+  SM.paintNav(lang);
+}
+document.getElementById("langbtn").addEventListener("click",()=>{
+  lang=lang==="en"?"es":"en";try{localStorage.setItem("sm-lang",lang);}catch(e){}applyStatic();
+});
+applyStatic();
+SM.openHash();
 </script>
 </body>
 </html>
