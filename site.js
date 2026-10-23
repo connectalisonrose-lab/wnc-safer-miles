@@ -155,6 +155,27 @@
     new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ["lang"] });
   })();
 
+
+  /* The film: nothing loads from the video host until the play button is pressed. */
+  (function () {
+    const box = document.getElementById("vid");
+    const btn = document.getElementById("vidPlay");
+    if (!box || !btn) return;
+    btn.addEventListener("click", () => {
+      const es = (document.documentElement.lang || "en").startsWith("es");
+      const f = document.createElement("iframe");
+      f.src = box.dataset.src;
+      f.title = es ? "Video: Recupere sus millas (en inglés)" : "Video: Take your miles back";
+      f.setAttribute("allow", "autoplay; fullscreen; picture-in-picture");
+      f.setAttribute("allowfullscreen", "");
+      f.setAttribute("loading", "lazy");
+      f.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+      btn.remove();
+      box.appendChild(f);
+      f.focus();
+    });
+  })();
+
   /* Back to top: appears once the page has scrolled. */
   (function () {
     const root = document.documentElement;

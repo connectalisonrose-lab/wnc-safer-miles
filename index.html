@@ -739,15 +739,6 @@ function applyStatic(){
   document.title=lang==="en"?"WNC Safer Miles":"WNC Safer Miles · mapa comunitario";
   SM.paintNav(lang);
 }
-(function(){const box=document.getElementById("vid"),btn=document.getElementById("vidPlay");if(!box||!btn)return;
-  btn.addEventListener("click",()=>{
-    const f=document.createElement("iframe");
-    f.src=box.dataset.src;f.title=lang==="es"?"Video: Recupere sus millas (en inglés)":"Video: Take your miles back";
-    f.setAttribute("allow","autoplay; fullscreen; picture-in-picture");f.setAttribute("allowfullscreen","");f.setAttribute("loading","lazy");
-    f.setAttribute("referrerpolicy","no-referrer-when-downgrade");
-    btn.remove();box.appendChild(f);f.focus();
-  });
-})();
 document.getElementById("langbtn").addEventListener("click",()=>{
   lang=lang==="en"?"es":"en";
   try{localStorage.setItem("sm-lang",lang);}catch(e){}
