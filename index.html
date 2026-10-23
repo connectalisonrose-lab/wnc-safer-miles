@@ -529,6 +529,88 @@ footer p{max-width:68ch;margin-inline:auto}
 h1,h2,h3,h4,b,strong{font-weight:600}
 body{letter-spacing:-.003em}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Oct 23 pass: Blue Ridge depth, softer edges, clearer wayfinding ----------
+   The theme holds: pink mountains. What changes is depth. Real ridges go blue as they
+   recede, so the farthest line is now hazy periwinkle and the near ones stay dusty rose,
+   the sky reads cool at the top and warm at the horizon, and a small ridge mark repeats
+   under every section heading so the page feels like one range instead of many cards. */
+:root{
+  --sky1:#eff1f9; --sky2:#f8e0e4;
+  --r1:#ccd2e8; --r2:#dcc4d6; --r3:#e0b3c1;
+  --shadow:0 14px 34px -22px rgba(74,28,43,.5);
+  --shadow-lift:0 18px 38px -18px rgba(135,47,75,.42);
+  --ridgemark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 26'%3E%3Cpath d='M0,25L22,7L34,16L58,1L82,17L96,8L120,25Z'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --sky1:#1b1a26; --sky2:#2d2026;
+  --r1:#333852; --r2:#372a37; --r3:#2b2027;
+  --shadow:0 14px 34px -20px rgba(0,0,0,.66);
+  --shadow-lift:0 18px 38px -16px rgba(0,0,0,.72)}}
+:root[data-theme="dark"]{
+  --sky1:#1b1a26; --sky2:#2d2026;
+  --r1:#333852; --r2:#372a37; --r3:#2b2027;
+  --shadow:0 14px 34px -20px rgba(0,0,0,.66);
+  --shadow-lift:0 18px 38px -16px rgba(0,0,0,.72)}
+
+/* Aerial perspective: the far ridge sits back in the haze */
+.ridges .r1{opacity:.82}
+.ridges .r2{opacity:.94}
+.hero-band::after{content:"";position:absolute;left:50%;top:-60px;width:min(820px,94vw);height:420px;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,#fff 62%,transparent),transparent 70%);z-index:-2;pointer-events:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero-band::after{background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%)}}
+:root[data-theme="dark"] .hero-band::after{background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%)}
+
+/* One ridge mark under every section heading, and one closing the page */
+.sec-head::after,.tips-head::after,footer::before{content:"";display:block;width:76px;height:16px;
+  -webkit-mask:var(--ridgemark) center/contain no-repeat;mask:var(--ridgemark) center/contain no-repeat;
+  background:var(--accent);opacity:.42}
+footer::before{width:112px;height:22px;margin:0 auto var(--s2);opacity:.3}
+
+/* Eyebrows earn their place: small, accented, spaced */
+.sec-head .eyebrow,.tips-head .eyebrow{display:block;color:var(--accent);font-weight:600;font-size:13.5px;
+  letter-spacing:.1em;text-transform:uppercase}
+
+/* Every card shares one soft shadow, so the page has depth without lines everywhere */
+.facts,.tabs,.fold,.tg,.stats li,.tip.help,.suggest,.mapbox,.panel,.who,.vid,.paths a{box-shadow:var(--shadow)}
+.zone::before{background:linear-gradient(180deg,transparent 0%,var(--zone) 7%,var(--zone) 93%,transparent 100%)}
+
+/* The four doors: warmer, and they answer the cursor */
+.paths .ic{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 18%,var(--surface)),var(--tint));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 24%,transparent)}
+.paths a:hover{box-shadow:var(--shadow-lift)}
+@media (prefers-reduced-motion:no-preference){
+  .paths a{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease}
+  .paths a:hover{transform:translateY(-3px)}
+  .row,.stats li{transition:border-color .15s ease,box-shadow .15s ease}}
+
+/* Place panel: the score reads as one object, section labels in accent */
+.panel .scoreline{background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1px solid var(--line);
+  border-radius:14px;padding:14px 18px;margin-bottom:2px}
+.panel>.eyebrow{color:var(--accent);font-weight:600;letter-spacing:.03em}
+.panel .layer .status{color:var(--accent);letter-spacing:.01em}
+.panel .factors{background:var(--band);border-radius:14px;padding:16px 18px}
+.row:hover{box-shadow:inset 0 0 0 1px var(--accent),var(--shadow)}
+
+/* Caring for the land */
+.land{display:grid;gap:var(--s2)}
+.land .tg{overflow:hidden}
+.land-note{max-width:74ch;margin:var(--s3) auto 0;text-align:center;font-size:16px;padding-top:var(--s3);border-top:1px solid var(--line)}
+.land .tg ol li{padding-left:46px}
+
+/* Back to top, opposite Quick exit so neither hides the other */
+.totop{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:none;
+  align-items:center;gap:8px;font:600 15px var(--font);min-height:48px;padding:10px 18px;border-radius:999px;
+  border:1.5px solid var(--edge);background:color-mix(in srgb,var(--surface) 93%,transparent);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);cursor:pointer;box-shadow:var(--shadow)}
+.totop.on{display:inline-flex}
+.totop:hover{border-color:var(--accent);background:var(--tint)}
+.totop:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:420px){.totop{padding:10px 14px;font-size:14px}}
+
+/* The page bar keeps up with seven stops */
+.pagebar a[aria-current=true]{box-shadow:0 2px 10px -4px color-mix(in srgb,var(--accent) 60%,transparent)}
+@media (max-width:1100px){.pagebar a{padding:0 15px}}
 </style>
 </head>
 <body>
@@ -571,6 +653,7 @@ body{letter-spacing:-.003em}
       <li><a href="#safety" data-i18n="navSafety">Safety and help</a></li>
       <li><a href="#why" data-i18n="navWhy">Why it matters</a></li>
       <li><a href="#rooted" data-i18n="navRooted">Rooted</a></li>
+      <li><a href="#land" data-i18n="navLand">The land</a></li>
       <li><a href="#together" data-i18n="navTogether">Get involved</a></li>
       <li><a href="#how" data-i18n="navHow">How it works</a></li>
     </ul>
@@ -818,6 +901,37 @@ body{letter-spacing:-.003em}
     <p class="note root-review" data-i18n="rootReview">Both words are offered with respect, by someone who is not Cherokee and is still learning her Haudenosaunee roots. The meaning of gadugi here follows Thomas N. Belt (Cherokee Nation) in Lisa J. Lefler and Thomas N. Belt, <i>Sounds of Tohi: Cherokee Health and Well-Being in Southern Appalachia</i> (University of Alabama Press), shared with this project by a member of the community. Both words remain open to review by Cherokee and Haudenosaunee knowledge holders, and will change if they ask.</p>
   </section>
 
+  <section class="land" id="land" aria-labelledby="landH">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="landEyebrow">The same spirit, out on the trail</div>
+      <h2 id="landH" data-i18n="landH">Caring for the land</h2>
+      <p class="note" data-i18n="landIntro">Gadugi, as Thomas N. Belt describes it, reaches past people and into how living things work together, each one sustaining the other. And <b lang="chr-Latn">tohi</b>, the Kituwah word for health, cannot be pulled apart from the land it comes from. So the land belongs in what we are looking after here. These paths carry us, and many of them are still mending after Helene. Picking up what gets left behind is the same work as rating a place: small labor, offered for whoever comes next.</p>
+    </div>
+    <div class="tg">
+      <div class="tg-why">
+        <h3 data-i18n="landWhyH">A cared-for place is a safer place</h3>
+        <ul data-i18n="landWhy">
+          <li><b>Neglect reads as risk</b>In one study, people shown litter in a park expected more trouble there and were likelier to believe crime was getting worse. The litter changed nothing about the park. It changed what people believed about it. <small><a href="https://pure.hud.ac.uk/en/publications/litter-gender-and-brand-the-anticipation-of-incivilities-and-perc/" target="_blank" rel="noopener">Medway, Parker and Roper, <i>Journal of Environmental Psychology</i>, 2016 ↗</a></small></li>
+          <li><b>Trash hides real hazards</b>Broken glass, bottles and dumped metal on a trail or in a creek are injuries waiting on a dog, a child or a bare hand. Dumping also collects where nobody is watching, which tends to be the same stretch that already feels isolated.</li>
+          <li><b>Care is visible</b>Places are safer where people look out for one another, and a clean trailhead is that care in plain sight: proof somebody comes by here, and recently. <small><a href="#together">Why together works</a></small></li>
+          <li><b>This is what we came for</b>Time outside is tied to better health and wellbeing. Keeping these places whole is how that stays available to the next woman, and to her kids.</li>
+        </ul>
+      </div>
+      <div class="tg-how">
+        <h3 data-i18n="landHowH">Ways to leave it better</h3>
+        <ol data-i18n="landHow">
+          <li><b>Pack out everything you brought</b>Gel wrappers, tape, tissues, water bottles, dog waste bags, including the one you meant to collect on the way back. If the can at the trailhead is full, the trash rides home with you.</li>
+          <li><b>Take one more than your own</b>Keep a grocery bag in the car and pick up one piece that isn't yours each time out. Across a county of runners, that is a cleanup every single day. Gloves if there's glass.</li>
+          <li><b>Stay on the trail</b>Cutting switchbacks and walking around mud widens the path and starts the erosion that closes trails later. Go through the puddle, not around it.</li>
+          <li><b>Leave what you find</b>No picking wildflowers or ramps, no carving, and no stacking rocks pulled from a creek. Those stones are somebody's habitat, and a cairn can send the next hiker the wrong way.</li>
+          <li><b>Let wildlife stay wild</b>Keep your distance, leash where it's posted, and feed nothing. Food left at a trailhead is how a bear learns to meet people there.</li>
+          <li><b>Report dumping, or join a cleanup</b>Report littering or a dump site to NCDOT's Swat-A-Litterbug at <a href="tel:+18003315864">1-800-331-5864</a> or <a href="https://www.ncdot.gov/litter/" target="_blank" rel="noopener">ncdot.gov/litter ↗</a>. <a href="https://riverlink.org/volunteer/" target="_blank" rel="noopener">RiverLink ↗</a> and <a href="https://www.ashevillegreenworks.org/" target="_blank" rel="noopener">Asheville GreenWorks ↗</a> run river and trail cleanups, and RiverLink lends out gloves, bags and grabbers if you would rather clean a stretch you already love, on your own time.</li>
+        </ol>
+      </div>
+    </div>
+    <p class="note land-note" data-i18n="landNote">Reading gadugi and tohi out onto the land this way is this project's own, not Dr. Belt's or Dr. Lefler's, and it is part of the cultural review still underway. The practical half follows the Leave No Trace principles, kept by the Leave No Trace Center for Outdoor Ethics and used by the National Park Service, written here for a two-mile loop instead of a backcountry trip. <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">The seven principles ↗</a></p>
+  </section>
+
   <div class="duo zone">
   <section class="together" id="together" aria-labelledby="tgH">
     <details class="fold" id="tgFold">
@@ -833,12 +947,13 @@ body{letter-spacing:-.003em}
         </ul>
       </div>
       <div class="tg-how">
-        <h3 data-i18n="tgHowH">Four ways to make it better</h3>
+        <h3 data-i18n="tgHowH">Five ways to make it better</h3>
         <ol data-i18n="tgHow">
           <li><b>Rate the places you use</b>Your body's read on a place is information. If somewhere feels off, or feels good, say so. It takes about 20 seconds and asks for no name. <a href="#content">Choose a place</a></li>
           <li><b>Suggest a place we're missing</b>Every suggestion is researched before it goes on the map. <a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">Suggest a place ↗</a></li>
           <li><b>Walk it together</b>Go with a friend or two at the hour you'd usually go. Notice the lighting, how far ahead you can see and where you'd head if you needed to leave, the same questions women's safety audits ask. Then rate it.</li>
           <li><b>Tell us what's changed</b>A light out, a new closure, a trail cleared after Helene. <a href="https://tally.so/r/VLRZpl" target="_blank" rel="noopener">Report a change ↗</a></li>
+          <li><b>Leave it better than you found it</b>Pack out your own trash and one piece that isn't yours. A cared-for place is a watched place. <a href="#land">Caring for the land</a></li>
         </ol>
       </div>
     </div>
@@ -1488,8 +1603,17 @@ const L={
   tgIntro:`Este mapa funciona como el <a href="#rooted">gadugi</a>: gente que se une por el bien de los demás para hacer lo que nadie podría hacer sola. Cada calificación y cada sugerencia lo hacen un poco más fiel para la siguiente mujer.`,
   tgWhyH:"Por qué funciona hacerlo juntas",
   tgWhy:`<li><b>La fuerza está en el grupo</b>Los barrios donde la gente confía entre sí y está dispuesta a intervenir por los demás tienen menos violencia. <small><a href="https://crab.rutgers.edu/users/goertzel/NeighborhoodsCrimeEarls.html" target="_blank" rel="noopener">Sampson, Raudenbush y Earls, <i>Science</i>, 1997 ↗</a></small></li><li><b>Moverse juntas calma el cuerpo</b>En un estudio pequeño, quienes hicieron ejercicio en grupo redujeron su estrés un 26%; quienes lo hicieron solos no tuvieron un cambio real. <small><a href="https://thedo.osteopathic.org/2017/10/study-finds-group-exercise-reduces-stress-solo-workouts" target="_blank" rel="noopener">Yorks y colegas, 2017 ↗</a></small></li><li><b>Vale la pena proteger el tiempo afuera</b>Las personas que pasaron al menos dos horas a la semana en la naturaleza, en una visita o en varias, tenían más probabilidad de reportar buena salud y bienestar. <small><a href="https://www.sciencedaily.com/releases/2019/06/190613095227.htm" target="_blank" rel="noopener">White y colegas, <i>Scientific Reports</i>, 2019 ↗</a></small></li>`,
-  tgHowH:"Cuatro formas de mejorarlo",
-  tgHow:`<li><b>Califique los lugares que usa</b>Lo que su cuerpo percibe de un lugar es información. Si algo se siente mal, o bien, dígalo. Toma unos 20 segundos y no pide su nombre. <a href="#content">Elija un lugar</a></li><li><b>Sugiera un lugar que falta</b>Cada sugerencia se investiga antes de agregarse al mapa. <a href="https://tally.so/r/WOGNya" target="_blank" rel="noopener">Sugerir un lugar ↗</a></li><li><b>Recórralo acompañada</b>Vaya con una o dos amigas a la hora en que suele ir. Fíjese en la iluminación, qué tan lejos puede ver y hacia dónde iría si tuviera que irse: las mismas preguntas de las auditorías de seguridad de las mujeres. Luego califíquelo.</li><li><b>Cuéntenos qué cambió</b>Una luz apagada, un cierre nuevo, un sendero despejado después de Helene. <a href="https://tally.so/r/eq1BMo" target="_blank" rel="noopener">Reportar un cambio ↗</a></li>`,
+  tgHowH:"Cinco formas de mejorarlo",
+  tgHow:`<li><b>Califique los lugares que usa</b>Lo que su cuerpo percibe de un lugar es información. Si algo se siente mal, o bien, dígalo. Toma unos 20 segundos y no pide su nombre. <a href="#content">Elija un lugar</a></li><li><b>Sugiera un lugar que falta</b>Cada sugerencia se investiga antes de agregarse al mapa. <a href="https://tally.so/r/WOGNya" target="_blank" rel="noopener">Sugerir un lugar ↗</a></li><li><b>Recórralo acompañada</b>Vaya con una o dos amigas a la hora en que suele ir. Fíjese en la iluminación, qué tan lejos puede ver y hacia dónde iría si tuviera que irse: las mismas preguntas de las auditorías de seguridad de las mujeres. Luego califíquelo.</li><li><b>Cuéntenos qué cambió</b>Una luz apagada, un cierre nuevo, un sendero despejado después de Helene. <a href="https://tally.so/r/eq1BMo" target="_blank" rel="noopener">Reportar un cambio ↗</a></li><li><b>Déjelo mejor de como lo encontró</b>Llévese su basura y una cosa que no sea suya. Un lugar cuidado es un lugar donde alguien está pendiente. <a href="#land">Cuidar la tierra</a></li>`,
+  navLand:"La tierra",
+  landEyebrow:"El mismo espíritu, en el sendero",
+  landH:"Cuidar la tierra",
+  landIntro:`El gadugi, tal como lo describe Thomas N. Belt, va más allá de las personas y llega a la forma en que los seres vivos funcionan juntos, sosteniéndose unos a otros. Y el <b lang="chr-Latn">tohi</b>, la palabra kituwah para la salud, no se puede separar de la tierra de la que viene. Por eso la tierra también forma parte de lo que cuidamos aquí. Estos caminos nos sostienen, y muchos siguen sanando después de Helene. Recoger lo que otros dejan atrás es el mismo trabajo que calificar un lugar: una pequeña labor, ofrecida para quien venga después.`,
+  landWhyH:"Un lugar cuidado es un lugar más seguro",
+  landWhy:`<li><b>El descuido se lee como riesgo</b>En un estudio, las personas a quienes se les mostró basura en un parque esperaban más problemas allí y eran más propensas a creer que el delito estaba aumentando. La basura no cambió nada del parque: cambió lo que la gente creía de él. <small><a href="https://pure.hud.ac.uk/en/publications/litter-gender-and-brand-the-anticipation-of-incivilities-and-perc/" target="_blank" rel="noopener">Medway, Parker y Roper, <i>Journal of Environmental Psychology</i>, 2016 ↗</a></small></li><li><b>La basura esconde peligros reales</b>El vidrio roto, las botellas y el metal tirado en un sendero o en un arroyo son heridas esperando a un perro, a un niño o a una mano desnuda. Además, los tiraderos se juntan donde nadie está mirando, que suele ser el mismo tramo que ya se siente solitario.</li><li><b>El cuidado se ve</b>Los lugares son más seguros donde la gente se cuida entre sí, y una entrada limpia es ese cuidado a la vista: prueba de que alguien pasa por aquí, y hace poco. <small><a href="#together">Por qué funciona hacerlo juntas</a></small></li><li><b>Por esto venimos</b>El tiempo al aire libre está ligado a mejor salud y bienestar. Mantener enteros estos lugares es la manera de que eso siga disponible para la siguiente mujer, y para sus hijos.</li>`,
+  landHowH:"Formas de dejarlo mejor",
+  landHow:`<li><b>Llévese todo lo que trajo</b>Envolturas de geles, cinta, pañuelos, botellas de agua y bolsas de desechos del perro, incluida la que pensaba recoger al regresar. Si el bote de la entrada está lleno, la basura se va con usted.</li><li><b>Recoja una cosa más que la suya</b>Deje una bolsa en el carro y recoja una cosa que no sea suya cada vez que salga. En un condado lleno de corredoras, eso es una limpieza todos los días. Use guantes si hay vidrio.</li><li><b>Quédese en el sendero</b>Cortar las curvas y rodear el lodo ensancha el camino y empieza la erosión que después cierra senderos. Pase por el charco, no alrededor.</li><li><b>Deje lo que encuentre</b>No corte flores silvestres ni ramps, no talle nada y no apile piedras sacadas de un arroyo. Esas piedras son el hábitat de alguien, y un montículo puede mandar a la siguiente excursionista por el camino equivocado.</li><li><b>Deje que la fauna siga siendo salvaje</b>Mantenga su distancia, use correa donde lo indiquen y no alimente a ningún animal. La comida que se deja en una entrada es como un oso aprende a buscar gente allí.</li><li><b>Reporte los tiraderos, o únase a una limpieza</b>Reporte la basura o un tiradero al programa Swat-A-Litterbug del NCDOT llamando al <a href="tel:+18003315864">1-800-331-5864</a> o en <a href="https://www.ncdot.gov/litter/" target="_blank" rel="noopener">ncdot.gov/litter ↗</a> (en inglés). <a href="https://riverlink.org/volunteer/" target="_blank" rel="noopener">RiverLink ↗</a> y <a href="https://www.ashevillegreenworks.org/" target="_blank" rel="noopener">Asheville GreenWorks ↗</a> organizan limpiezas de ríos y senderos, y RiverLink presta guantes, bolsas y pinzas si prefiere limpiar por su cuenta un tramo que ya quiere.</li>`,
+  landNote:`Leer el gadugi y el tohi así, extendidos a la tierra, es una lectura propia de este proyecto, no del Dr. Belt ni de la Dra. Lefler, y forma parte de la revisión cultural que sigue en curso. La parte práctica sigue los principios de Leave No Trace, que mantiene el Leave No Trace Center for Outdoor Ethics y usa el Servicio de Parques Nacionales, escritos aquí para una vuelta de dos millas y no para una expedición. <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">Los siete principios ↗</a>`,
   whyEyebrow:"Por qué importa",
   whyH:"Lo que las mujeres ya saben",
   whyIntro:"Si alguna vez ha cambiado su ruta, su horario o su ropa para sentirse más segura afuera, la investigación muestra que la mayoría de las mujeres también lo ha hecho.",
@@ -1654,7 +1778,7 @@ PLACES.forEach(p=>{
   const g=el("g",{class:"pin",tabindex:"0",role:"button"},m.pins);
   p.dot=el("circle",{cx:px,cy:py,r:19,class:"dot"},g);
   p.num=el("text",{x:px,y:py+6,"text-anchor":"middle",class:"num","aria-hidden":"true"},g);
-  p.tt=el("title",{},g);
+  p.tt=el("title",{"aria-hidden":"true"},g);
   p.lbl=el("text",{x:px,y:py-28,"text-anchor":"middle",class:"lbl","aria-hidden":"true"},g);
   g.addEventListener("click",()=>select(p,true));
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p,true);}});
@@ -1678,8 +1802,9 @@ function renderMap(){
   PLACES.forEach(p=>{
     p.h.setAttribute("r",p.off?0:22+p.s*.5);p.h.setAttribute("fill",`url(#g-${p.b})`);
     p.dot.setAttribute("style",`fill:var(--${p.b})`);
-    p.num.textContent=p.off?"×":p.r;p.tt.textContent=p.off?`${p.n} · ${t.BL.closed}`:`${p.n} · ${p.s}`;
-    p.g.setAttribute("aria-label",p.off?t.ariaOff(p.n):t.aria(p.n,p.s,t.BL[p.b]));
+    p.num.textContent=p.off?"×":p.r;
+    const lab=p.off?t.ariaOff(p.n):t.aria(p.n,p.s,t.BL[p.b]);
+    p.tt.textContent=lab;p.g.setAttribute("aria-label",lab);
     const on=state.filter==="all"||p.b===state.filter;
     p.g.classList.toggle("dim",!on);p.h.style.opacity=on?1:.1;p.row.hidden=!on;
     p.g.classList.toggle("sel",p===state.sel);p.row.classList.toggle("sel",p===state.sel);
@@ -1827,11 +1952,29 @@ rebuildPicker();renderMap();renderPanel();
   const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
   function paint(){const es=(root.lang||"en").startsWith("es");
     b.textContent=es?"Salida rápida":"Quick exit";
-    b.setAttribute("aria-label",es?"Salir de este sitio de inmediato":"Leave this site immediately");}
+    b.setAttribute("aria-label",es?"Salida rápida: salir de este sitio de inmediato":"Quick exit: leave this site immediately");}
   b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
     try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
   document.body.appendChild(b);paint();
   new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
+})();
+
+/* Back to top: appears once the page has scrolled, labelled in the page's language. */
+(function(){
+  const root=document.documentElement;
+  const b=document.createElement("button");b.type="button";b.className="totop";b.id="totop";
+  function paint(){const es=(root.lang||"en").startsWith("es");
+    b.innerHTML='<span aria-hidden="true">↑</span>'+(es?"Volver arriba":"Back to top");}
+  b.addEventListener("click",()=>{
+    const soft=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scrollTo({top:0,behavior:soft?"smooth":"auto"});
+    const h=document.querySelector("h1");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}
+  });
+  document.body.appendChild(b);paint();
+  new MutationObserver(paint).observe(root,{attributes:true,attributeFilter:["lang"]});
+  let tick=false;
+  function upd(){tick=false;b.classList.toggle("on",(scrollY||document.documentElement.scrollTop)>700);}
+  addEventListener("scroll",()=>{if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});upd();
 })();
 
 /* Tabs: one topic at a time, equal height on wide screens; in-page links open the right tab */

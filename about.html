@@ -203,12 +203,13 @@ html[data-size="large"] .wrap{zoom:1.18}
 .docfoot p{font-size:15px}
 
 /* ---------- Oct 17 redesign: matches the map page ---------- */
-:root{--sky1:#fdf4f2;--sky2:#f5dfe2;--r1:#eed3d8;--r2:#e3bfc8;--r3:#d7abb7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#221a1e;--sky2:#2d2026;--r1:#3f2e37;--r2:#34262d;--r3:#2a1f25}}
-:root[data-theme="dark"]{--sky1:#221a1e;--sky2:#2d2026;--r1:#3f2e37;--r2:#34262d;--r3:#2a1f25}
+:root{--sky1:#eff1f9;--sky2:#f8e0e4;--r1:#ccd2e8;--r2:#dcc4d6;--r3:#e0b3c1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}}
+:root[data-theme="dark"]{--sky1:#1b1a26;--sky2:#2d2026;--r1:#333852;--r2:#372a37;--r3:#2b2027}
 html,body{overflow-x:clip}
 .wrap.doc{padding-top:0}
 .docband{position:relative;isolation:isolate;padding:24px 0 112px}
+.ridges .r1{opacity:.82}.ridges .r2{opacity:.94}
 .docband::before{content:"";position:absolute;inset:0 calc(50% - 50vw);background:linear-gradient(180deg,var(--sky1),var(--sky2));z-index:-2}
 .docband .ridges{position:absolute;bottom:-1px;left:calc(50% - 50vw);width:100vw;height:96px;z-index:-1;display:block}
 .ridges .r1{fill:var(--r1)}.ridges .r2{fill:var(--r2)}.ridges .r3{fill:var(--r3)}.ridges .r4{fill:var(--bg)}
@@ -294,6 +295,12 @@ body{letter-spacing:-.003em}
       <h2>Suggesting a place</h2>
       <p>Anyone can suggest a public park, greenway or trail in Western North Carolina through a short form (<a href="https://tally.so/r/MekbWp" target="_blank" rel="noopener">English</a> or <a href="https://tally.so/r/WOGNya" target="_blank" rel="noopener">Spanish</a>). It asks for the county, the place's name, a nearby road or landmark, the type of place and a few optional observations, plus an optional comment box and an optional email if you'd like a reply. It never asks for your name, and an email you leave is never posted or shared. Please name places, not people.</p>
       <p>Suggestions go to a private sheet and are never published automatically. Alison Rose reviews each one, Claude researches the place the same way as the others (official pages, recent news and Helene status), and only then is it added, scored on the same six factors. Private land, places outside the three counties and anything that names or describes a person are not added. A place you love for being quiet will be public once it's on the map, and may be marked "Go prepared."</p>
+    </section>
+
+    <section id="land-care">
+      <h2>Caring for the land</h2>
+      <p>This map rates places, and it also asks something of us in return. Gadugi, as Thomas N. Belt describes it, is not only people working for one another's good; it reaches into how living things sustain each other. And tohi, the Kituwah word for health, cannot be separated from the land it comes from. Reading those teachings out onto litter and trail care is this project's own extension of them, not Dr. Belt's or Dr. Lefler's, and it is part of the cultural review still underway.</p>
+      <p>There is a practical side too. Research on how places feel has found that visible neglect changes what people believe about a place: in one study, people shown litter in a park expected more trouble there and were likelier to think crime was getting worse, even though the park itself was unchanged (Medway, Parker and Roper, <i>Journal of Environmental Psychology</i>, 2016). Broken glass and dumping are real hazards as well, and they gather where nobody is watching. The practices on the <a href="index.html#land">Caring for the land</a> section of the map follow the <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">Leave No Trace principles</a>, kept by the Leave No Trace Center for Outdoor Ethics, written for a two-mile loop rather than a backcountry trip.</p>
     </section>
 
     <section id="safe-use">
@@ -383,6 +390,12 @@ body{letter-spacing:-.003em}
       <p>Las sugerencias van a una hoja privada y nunca se publican automáticamente. Alison Rose revisa cada una, Claude investiga el lugar igual que los demás (páginas oficiales, noticias recientes y estado después de Helene), y solo entonces se agrega, con puntaje según los mismos seis factores. No se agregan terrenos privados, lugares fuera de los tres condados ni nada que nombre o describa a una persona. Un lugar que usted quiere por ser tranquilo será público una vez que esté en el mapa, y puede quedar marcado como "Vaya preparada".</p>
     </section>
 
+    <section id="land-care-es">
+      <h2>Cuidar la tierra</h2>
+      <p>Este mapa califica lugares y también pide algo a cambio. El gadugi, tal como lo describe Thomas N. Belt, no es solo gente trabajando por el bien de los demás: llega a la forma en que los seres vivos se sostienen unos a otros. Y el tohi, la palabra kituwah para la salud, no se puede separar de la tierra de la que viene. Extender esas enseñanzas a la basura y al cuidado de los senderos es una lectura propia de este proyecto, no del Dr. Belt ni de la Dra. Lefler, y forma parte de la revisión cultural que sigue en curso.</p>
+      <p>También hay un lado práctico. La investigación sobre cómo se perciben los lugares ha encontrado que el descuido visible cambia lo que la gente cree de un sitio: en un estudio, las personas a quienes se les mostró basura en un parque esperaban más problemas allí y eran más propensas a pensar que el delito estaba aumentando, aunque el parque fuera el mismo (Medway, Parker y Roper, <i>Journal of Environmental Psychology</i>, 2016). El vidrio roto y los tiraderos son además peligros reales, y se juntan donde nadie está mirando. Las prácticas de la sección <a href="index.html?lang=es#land">Cuidar la tierra</a> del mapa siguen los <a href="https://www.nps.gov/articles/leave-no-trace-seven-principles.htm" target="_blank" rel="noopener">principios de Leave No Trace</a>, que mantiene el Leave No Trace Center for Outdoor Ethics, escritos para una vuelta de dos millas y no para una expedición.</p>
+    </section>
+
     <section id="safe-use-es">
       <h2>Cómo usar este sitio con seguridad</h2>
       <p>Si alguien revisa su teléfono, computadora o navegador, estos pasos pueden ayudar a mantener su visita en privado.</p>
@@ -453,7 +466,7 @@ apply();
   const b=document.createElement("button");b.type="button";b.className="qexit";b.id="qexit";
   function paint(){const es=(root.lang||"en").startsWith("es");
     b.textContent=es?"Salida rápida":"Quick exit";
-    b.setAttribute("aria-label",es?"Salir de este sitio de inmediato":"Leave this site immediately");}
+    b.setAttribute("aria-label",es?"Salida rápida: salir de este sitio de inmediato":"Quick exit: leave this site immediately");}
   b.addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname.replace(/[^/]*$/,""));}catch(e){}
     try{window.top.location.replace("https://weather.com/");}catch(e){location.replace("https://weather.com/");}});
   document.body.appendChild(b);paint();
