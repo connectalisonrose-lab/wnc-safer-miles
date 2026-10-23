@@ -720,3 +720,24 @@ html{scroll-padding-top:84px}
 .crisis h2{text-align:center}
 .watch .vid-tr{margin-inline:auto}
 @media (max-width:860px){.sitenav ul{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:10px}}
+
+/* ---------- Centering pass ----------
+   Two things sat off to one side: the bar's links, pushed about 36px left by the
+   wordmark being narrower than the buttons; and the text blocks inside cards, which
+   had a reading width but no auto margins, so each one hugged its left edge. */
+@media (min-width:860px){
+  .sitenav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+  .sitenav ul{flex:none;justify-content:center}
+  .sitenav .tools{justify-self:end;display:flex;gap:var(--s1)}
+}
+.fold>.note,.fold>.tg-intro{margin:var(--s2) auto;padding-inline:var(--s3);max-width:72ch}
+.panels>[role=tabpanel]>.note,.panels>[role=tabpanel]>p,.panels>[role=tabpanel]>ul.note,
+.panels [data-i18n]>p,.panels [data-i18n]>ul.note{margin-inline:auto}
+.vid-text p,.crisis-cards p,.crisis-cards .desk-note{margin-inline:auto}
+.tips-head .note,.sec-head .note{margin-inline:auto}
+/* the same, where an id-scoped rule was holding the old margins */
+#safety .panels>[role=tabpanel]>.note{margin:0 auto 4px}
+#research [data-i18n=resBody]>p.note,#health [data-i18n=hlBody]>p.note{margin-inline:auto}
+.vid-tr>.vid-text{margin:var(--s2) auto var(--s3);max-width:64ch;padding-inline:var(--s3)}
+/* A tab card is now as tall as the tab you are reading, not as tall as the longest one */
+#safety .panels>[role=tabpanel]:not(.on),.howto .panels>[role=tabpanel]:not(.on){display:none}
