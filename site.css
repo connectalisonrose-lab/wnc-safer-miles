@@ -743,3 +743,14 @@ html{scroll-padding-top:84px}
 #safety .panels>[role=tabpanel]:not(.on),.howto .panels>[role=tabpanel]:not(.on){display:none}
 /* Tip cards size to their own content, so a long one does not leave voids beside it */
 #safety .panels>[role=tabpanel] ul{align-items:flex-start}
+
+/* ---------- The rose: Alison's mark, redrawn Oct 23 ---------- */
+.rooted .rose{--petal:#b8606e;--petal2:#cf8592;--petalDeep:#8e4753;--leaf:#5f8a6e;--leaf2:#7da98a;
+  display:block;margin:0 auto -6px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rooted .rose{
+  --petal:#d98e9c;--petal2:#e9b2bc;--petalDeep:#a9606f;--leaf:#6f9a7e;--leaf2:#8cb79a}}
+:root[data-theme="dark"] .rooted .rose{
+  --petal:#d98e9c;--petal2:#e9b2bc;--petalDeep:#a9606f;--leaf:#6f9a7e;--leaf2:#8cb79a}
+@media (max-width:640px){.rooted .rose{width:84px;height:auto}}
+.rooted .rose{width:112px;height:auto}
+@media (max-width:640px){.rooted .rose{width:88px}}
